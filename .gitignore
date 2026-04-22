@@ -1,0 +1,31 @@
+# Obsidian
+.obsidian/
+
+# 虚拟环境
+.venv/
+
+# PDF 图片提取临时文件（全页截图，裁剪完成后无需保留）
+**/resource/page*_full_*dpi.png
+
+# 论文元信息（由 CLI 自动生成，不必追踪）
+**/meta.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# 各平台生成的配置目录（从 .mcp.json 复制而来，无需追踪）
+.cursor/
+.vscode/mcp.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器
+*.swp
+*.swo
+*~

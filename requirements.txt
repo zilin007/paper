@@ -1,0 +1,28 @@
+# =============================================================================
+# Paper Reading - 论文精读工作流
+# Python >= 3.10
+# =============================================================================
+#
+# 前置条件（系统级工具，需提前安装）:
+#   - uv (推荐): pip install uv 或 https://docs.astral.sh/uv/getting-started/installation/
+#     用于创建虚拟环境、安装依赖、运行 arxiv-mcp-server
+#
+# 安装方式:
+#   uv venv .venv && .venv\Scripts\activate && uv pip install -r requirements.txt
+#   或
+#   python -m venv .venv && .venv\Scripts\activate && pip install -r requirements.txt
+#
+# =============================================================================
+
+# --- 脚本运行依赖 ---
+
+# PDF 处理 —— extract_pdf_figures.py 和 paper_workflow.py 的图片提取功能
+# download_arxiv.py 仅使用 Python 标准库，无需额外安装
+PyMuPDF>=1.24.0
+
+# --- MCP 服务运行时（AI 平台模式需要）---
+# 以下依赖通过 uv tool install 安装到独立环境，不污染项目 venv
+# 如需手动安装到 venv，取消注释下面的行:
+#
+# arxiv-mcp-server            # arXiv MCP 服务（推荐用 uv tool install arxiv-mcp-server）
+# arxiv-mcp-server[pdf]       # 含 PDF 回退支持（旧论文无 HTML 版本时需要）
