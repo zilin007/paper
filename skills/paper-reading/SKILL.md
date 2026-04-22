@@ -5,7 +5,7 @@ description: 论文精读技能。根据用户给出的论文名称，从 arXiv 
 
 # 论文精读
 
-根据用户给出的论文名称或 arXiv ID，下载论文到 paper 目录，并生成一篇面向初学者的中文 Markdown 论文解读。
+根据用户给出的论文名称或 arXiv ID，下载论文到 `papers/` 目录，并生成一篇面向初学者的中文 Markdown 论文解读。
 
 ## 前置依赖
 
@@ -61,10 +61,10 @@ python skills/paper-reading/scripts/download_arxiv.py "<论文名称或arXiv ID>
    - 该工具自动下载并提取全文（优先 HTML，回退 PDF）
    - 返回论文全文内容（Markdown 格式），可直接阅读
 
-2. 在用户的 paper 目录下创建**论文专属文件夹**，并用 `curl` 下载 PDF：
+2. 在项目的 `papers/` 目录下创建**论文专属文件夹**，并用 `curl` 下载 PDF：
    ```bash
-   mkdir -p "<paper目录>/<论文简称>"
-   curl -L -o "<paper目录>/<论文简称>/<论文简称>.pdf" "https://arxiv.org/pdf/<paper_id>.pdf"
+   mkdir -p "papers/<论文简称>"
+   curl -L -o "papers/<论文简称>/<论文简称>.pdf" "https://arxiv.org/pdf/<paper_id>.pdf"
    ```
    论文简称 = 英文标题中每个主要单词首字母大写、用下划线连接，如 `LoRA_Low-Rank_Adaptation_of_Large_Language_Models`
 
@@ -90,17 +90,17 @@ python skills/paper-reading/scripts/download_arxiv.py "<论文名称或arXiv ID>
 
 **原则：论文中的图优先从 PDF 提取原图使用；若原图提取失败（如矢量图裁剪不干净、PDF 加密无法提取等），则降级为自绘 ASCII 图表替代。自绘图也可用于论文中没有的概念性说明。**
 
-在论文专属文件夹下创建 `resource/` 子目录存放提取的图片。
+在论文专属文件夹（`papers/<论文简称>/`）下创建 `resource/` 子目录存放提取的图片。
 
 **提取方式 — 使用 `extract_pdf_figures.py` 脚本**：
 
 ```bash
 # 从项目根目录运行（需要先激活虚拟环境）
 # 自动检测：渲染含 Figure 的页面为高清截图
-python skills/paper-reading/scripts/extract_pdf_figures.py "<论文专属文件夹>/<论文简称>.pdf" "<论文专属文件夹>/resource" --dpi 300
+python skills/paper-reading/scripts/extract_pdf_figures.py "papers/<论文简称>/<论文简称>.pdf" "papers/<论文简称>/resource" --dpi 300
 
 # 手动裁剪指定区域（坐标为 PDF 坐标系，单位 pt，原点左上角）
-python skills/paper-reading/scripts/extract_pdf_figures.py "<论文专属文件夹>/<论文简称>.pdf" "<论文专属文件夹>/resource" --crop <页码>:<x0>,<y0>,<x1>,<y1> --name <figure名称> --dpi 300
+python skills/paper-reading/scripts/extract_pdf_figures.py "papers/<论文简称>/<论文简称>.pdf" "papers/<论文简称>/resource" --crop <页码>:<x0>,<y0>,<x1>,<y1> --name <figure名称> --dpi 300
 ```
 
 **提取流程**：
@@ -183,18 +183,18 @@ ASCII 图表使用 Markdown 代码块（```）包裹，用 `─│┌┐└┘�
 将生成的 Markdown 保存到论文专属文件夹内，文件名格式：
 
 ```
-<论文简称>_解读.md
+papers/<论文简称>/<论文简称>_解读.md
 ```
 
-例如：`Attention_Is_All_You_Need/Attention_Is_All_You_Need_解读.md`
+例如：`papers/Attention_Is_All_You_Need/Attention_Is_All_You_Need_解读.md`
 
 ### Step 7: 自动提交并推送
 
 解读文件保存后，自动将本次新增的论文文件夹提交到 git 仓库并推送到远程。
 
 ```bash
-cd <paper目录>
-git add "<论文简称>/"
+cd <项目根目录>
+git add "papers/<论文简称>/"
 git commit -m "docs(<论文简称>): 添加论文解读
 
 - 下载论文 PDF
@@ -204,7 +204,7 @@ git push
 ```
 
 **注意事项**：
-- 提交范围仅限当前论文的专属文件夹，不要把其他未完成的论文一起提交
+- 提交范围仅限当前论文的 `papers/<论文简称>/` 文件夹，不要把其他未完成的论文一起提交
 - 如果远程仓库尚未配置（`git remote` 为空），跳过 push 并提示用户先配置远程仓库
 - 如果 push 失败（网络问题等），提示用户手动 push，不要重试
 
@@ -217,10 +217,10 @@ git push
 
 ### 目录结构规范
 
-每篇论文在 paper 目录下拥有独立的文件夹，所有相关文件集中管理：
+每篇论文在 `papers/` 目录下拥有独立的文件夹，所有相关文件集中管理：
 
 ```
-paper/
+papers/
 ├── Attention_Is_All_You_Need/               # 论文专属文件夹
 │   ├── Attention_Is_All_You_Need.pdf        # 论文原文 PDF
 │   ├── Attention_Is_All_You_Need_解读.md    # 论文解读
@@ -244,6 +244,7 @@ paper/
 - 解读 Markdown 中引用资源使用**相对路径** `./resource/xxx.png`
 - `resource/` 目录仅存放解读所需的资源（提取的原图、自制图表等）
 - 全页截图等临时文件（`pageN_full_300dpi.png`）在裁剪完成后可清理，不必保留
+- Git 推送后，GitHub Actions 会自动将论文解读同步发布到博客
 
 ## 可用 MCP 工具速查
 

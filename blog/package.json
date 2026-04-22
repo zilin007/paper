@@ -1,0 +1,17 @@
+{
+  "name": "paper-reading-blog",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-papers.mjs",
+    "dev": "npm run sync && vitepress dev",
+    "build": "npm run sync && vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.0"
+  },
+  "dependencies": {
+    "markdown-it-mathjax3": "^4.3.2"
+  }
+}

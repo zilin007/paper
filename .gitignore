@@ -20,6 +20,18 @@ __pycache__/
 .cursor/
 .vscode/mcp.json
 
+# arXiv MCP server 缓存（由 arxiv-mcp-server 自动管理）
+.arxiv-cache/
+
+# ============ Blog (VitePress) ============
+# 依赖
+blog/node_modules/
+# 构建产物
+blog/.vitepress/dist/
+blog/.vitepress/cache/
+# 同步脚本生成的文件（由 scripts/sync-papers.mjs 在构建时生成）
+blog/posts/
+
 # OS
 .DS_Store
 Thumbs.db

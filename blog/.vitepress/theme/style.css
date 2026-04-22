@@ -1,0 +1,89 @@
+/* ========================================
+   Paper Reading Blog — 自定义样式
+   ======================================== */
+
+/* ---------- 论文卡片列表 ---------- */
+.paper-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.paper-card {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.paper-card:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.paper-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.paper-card h3 a {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+}
+
+.paper-card h3 a:hover {
+  text-decoration: underline;
+}
+
+.paper-meta {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+  margin-bottom: 0.5rem;
+}
+
+.paper-meta span + span::before {
+  content: '·';
+  margin: 0 0.5em;
+}
+
+.paper-desc {
+  font-size: 0.95rem;
+  color: var(--vp-c-text-1);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.paper-tags {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.paper-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  background-color: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+}
+
+/* ---------- 图片优化 ---------- */
+.vp-doc img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+  max-width: 100%;
+}
+
+/* ---------- ASCII 图表的等宽字体优化 ---------- */
+.vp-doc pre code {
+  font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+}
+
+/* ---------- 首页标题调整 ---------- */
+.VPHero .name {
+  font-size: 2.5rem !important;
+}
