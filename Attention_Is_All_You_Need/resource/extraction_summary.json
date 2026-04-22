@@ -1,0 +1,108 @@
+{
+  "pdf": "F:/professional/AI笔记/paper/Attention_Is_All_You_Need/Attention_Is_All_You_Need.pdf",
+  "total_pages": 15,
+  "embedded_images": 3,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 3,
+      "caption_y": 404.7
+    },
+    {
+      "fig_num": "1",
+      "page": 3,
+      "caption_y": 447.6
+    },
+    {
+      "fig_num": "2",
+      "page": 4,
+      "caption_y": 274.4
+    },
+    {
+      "fig_num": "2",
+      "page": 4,
+      "caption_y": 369.7
+    },
+    {
+      "fig_num": "2",
+      "page": 5,
+      "caption_y": 85.3
+    },
+    {
+      "fig_num": "2",
+      "page": 5,
+      "caption_y": 471.9
+    },
+    {
+      "fig_num": "3",
+      "page": 13,
+      "caption_y": 312.3
+    },
+    {
+      "fig_num": "4",
+      "page": 14,
+      "caption_y": 614.3
+    },
+    {
+      "fig_num": "5",
+      "page": 15,
+      "caption_y": 602.3
+    }
+  ],
+  "files": [
+    {
+      "page": 3,
+      "file": "page3_img1_1520x2239.png",
+      "size": "1520x2239",
+      "method": "embedded"
+    },
+    {
+      "page": 4,
+      "file": "page4_img1_445x884.png",
+      "size": "445x884",
+      "method": "embedded"
+    },
+    {
+      "page": 4,
+      "file": "page4_img2_835x1282.png",
+      "size": "835x1282",
+      "method": "embedded"
+    },
+    {
+      "page": 3,
+      "file": "page3_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 4,
+      "file": "page4_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 5,
+      "file": "page5_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 13,
+      "file": "page13_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 14,
+      "file": "page14_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 15,
+      "file": "page15_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    }
+  ]
+}
