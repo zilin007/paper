@@ -1,5 +1,7 @@
 # Paper Reading - 论文精读知识库
 
+> **在线博客**：[https://zilin007.github.io/paper/](https://zilin007.github.io/paper/)
+
 从 arXiv 搜索论文、下载 PDF、提取原图，并生成通俗易懂的中文 Markdown 解读（含 LaTeX 公式、数值推导、原图引用）。精读内容自动发布为博客。
 
 项目由两层组成，按需使用：
