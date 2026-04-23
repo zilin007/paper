@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" width="720" height="280" font-family="sans-serif">
+  <defs>
+    <filter id="shadow1" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="1" stdDeviation="1.5" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="720" height="36" rx="6" ry="6" fill="#D6EAF8"/>
+  <text x="360" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#2C3E50">三种轻量化微调方案对比</text>
+
+  <!-- Column A: Adapter Tuning -->
+  <rect x="10" y="46" width="228" height="224" rx="8" ry="8" fill="#FAFAFA" stroke="#CCC" stroke-width="1" filter="url(#shadow1)"/>
+  <rect x="10" y="46" width="228" height="32" rx="8" ry="8" fill="#AED6F1"/>
+  <rect x="10" y="70" width="228" height="8" fill="#AED6F1"/>
+  <text x="124" y="67" text-anchor="middle" font-size="13" font-weight="bold" fill="#2C3E50">(a) Adapter Tuning</text>
+
+  <text x="124" y="98" text-anchor="middle" font-size="11" fill="#555">在每层 Transformer 中间</text>
+  <text x="124" y="114" text-anchor="middle" font-size="11" fill="#555">插入小型 MLP 模块</text>
+
+  <!-- Adapter diagram -->
+  <rect x="72" y="122" width="104" height="22" rx="4" fill="#E8E8E8" stroke="#AAA"/>
+  <text x="124" y="137" text-anchor="middle" font-size="10" fill="#555">Transformer Layer</text>
+  <rect x="82" y="148" width="84" height="18" rx="4" fill="#F9E79F" stroke="#F0C040"/>
+  <text x="124" y="161" text-anchor="middle" font-size="9" font-weight="bold" fill="#7D6608">Adapter MLP</text>
+  <rect x="72" y="170" width="104" height="22" rx="4" fill="#E8E8E8" stroke="#AAA"/>
+  <text x="124" y="185" text-anchor="middle" font-size="10" fill="#555">Transformer Layer</text>
+  <line x1="124" y1="144" x2="124" y2="148" stroke="#999" stroke-width="1.5"/>
+  <line x1="124" y1="166" x2="124" y2="170" stroke="#999" stroke-width="1.5"/>
+
+  <!-- Drawbacks -->
+  <rect x="20" y="200" width="208" height="60" rx="5" fill="#FADBD8" stroke="#E6B0AA"/>
+  <text x="28" y="216" font-size="10" fill="#922B21">&#x2716; 增加模型深度</text>
+  <text x="28" y="230" font-size="10" fill="#922B21">&#x2716; 推理时有额外延迟</text>
+  <text x="28" y="244" font-size="10" fill="#922B21">&#x2716; batch=1 时延迟高达 +30%</text>
+
+  <!-- Column B: Prefix Tuning -->
+  <rect x="246" y="46" width="228" height="224" rx="8" ry="8" fill="#FAFAFA" stroke="#CCC" stroke-width="1" filter="url(#shadow1)"/>
+  <rect x="246" y="46" width="228" height="32" rx="8" ry="8" fill="#AED6F1"/>
+  <rect x="246" y="70" width="228" height="8" fill="#AED6F1"/>
+  <text x="360" y="67" text-anchor="middle" font-size="13" font-weight="bold" fill="#2C3E50">(b) Prefix Tuning</text>
+
+  <text x="360" y="98" text-anchor="middle" font-size="11" fill="#555">在输入前拼接</text>
+  <text x="360" y="114" text-anchor="middle" font-size="11" fill="#555">可学习的提示向量</text>
+
+  <!-- Prefix diagram -->
+  <g transform="translate(270, 124)">
+    <rect x="0" y="0" width="50" height="20" rx="4" fill="#D5F5E3" stroke="#82E0AA"/>
+    <text x="25" y="14" text-anchor="middle" font-size="9" fill="#1E8449">Prefix</text>
+    <rect x="54" y="0" width="50" height="20" rx="4" fill="#D5F5E3" stroke="#82E0AA"/>
+    <text x="79" y="14" text-anchor="middle" font-size="9" fill="#1E8449">Prefix</text>
+    <rect x="108" y="0" width="72" height="20" rx="4" fill="#E8E8E8" stroke="#AAA"/>
+    <text x="144" y="14" text-anchor="middle" font-size="9" fill="#555">Input x</text>
+  </g>
+  <path d="M 360 148 L 360 165" stroke="#999" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <rect x="308" y="166" width="104" height="22" rx="4" fill="#E8E8E8" stroke="#AAA"/>
+  <text x="360" y="181" text-anchor="middle" font-size="10" fill="#555">Transformer</text>
+
+  <!-- Drawbacks -->
+  <rect x="256" y="200" width="208" height="60" rx="5" fill="#FADBD8" stroke="#E6B0AA"/>
+  <text x="264" y="216" font-size="10" fill="#922B21">&#x2716; 占用输入序列长度</text>
+  <text x="264" y="230" font-size="10" fill="#922B21">&#x2716; 优化困难，性能不稳定</text>
+  <text x="264" y="244" font-size="10" fill="#922B21">&#x2716; 性能随参数量非单调变化</text>
+
+  <!-- Column C: LoRA -->
+  <rect x="482" y="46" width="228" height="224" rx="8" ry="8" fill="#FAFAFA" stroke="#CCC" stroke-width="1" filter="url(#shadow1)"/>
+  <rect x="482" y="46" width="228" height="32" rx="8" ry="8" fill="#AED6F1"/>
+  <rect x="482" y="70" width="228" height="8" fill="#AED6F1"/>
+  <text x="596" y="67" text-anchor="middle" font-size="13" font-weight="bold" fill="#2C3E50">(c) LoRA (本文)</text>
+
+  <text x="596" y="98" text-anchor="middle" font-size="11" fill="#555">在权重矩阵旁并联</text>
+  <text x="596" y="114" text-anchor="middle" font-size="11" fill="#555">两个低秩矩阵 A 和 B</text>
+
+  <!-- LoRA diagram -->
+  <rect x="544" y="124" width="60" height="22" rx="4" fill="#D5DBDB" stroke="#AAA"/>
+  <text x="574" y="139" text-anchor="middle" font-size="10" fill="#555">W₀ ❄️</text>
+  <rect x="612" y="124" width="30" height="22" rx="4" fill="#A9DFBF" stroke="#27AE60"/>
+  <text x="627" y="139" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E8449">A</text>
+  <rect x="648" y="124" width="30" height="22" rx="4" fill="#A9DFBF" stroke="#27AE60"/>
+  <text x="663" y="139" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E8449">B</text>
+  <!-- plus sign -->
+  <text x="607" y="139" text-anchor="middle" font-size="14" fill="#27AE60" font-weight="bold">+</text>
+
+  <rect x="544" y="156" width="134" height="18" rx="4" fill="#EBF5FB" stroke="#5DADE2"/>
+  <text x="611" y="169" text-anchor="middle" font-size="9" fill="#2471A3">h = W₀x + BAx</text>
+
+  <!-- Advantages -->
+  <rect x="492" y="200" width="208" height="60" rx="5" fill="#D5F5E3" stroke="#A9DFBF"/>
+  <text x="500" y="216" font-size="10" fill="#1E8449">&#x2714; 部署时可合并，零额外延迟</text>
+  <text x="500" y="230" font-size="10" fill="#1E8449">&#x2714; 参数极少，效果持平全量微调</text>
+  <text x="500" y="244" font-size="10" fill="#1E8449">&#x2714; 可快速切换不同下游任务</text>
+</svg>

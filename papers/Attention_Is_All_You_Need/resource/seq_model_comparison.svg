@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" width="720" height="320" font-family="sans-serif">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="1" stdDeviation="1.5" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="720" height="320" fill="#fafafa" rx="8"/>
+
+  <!-- 总标题 -->
+  <text x="360" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">2017 年前的序列建模方案对比</text>
+
+  <!-- ========== (a) RNN/LSTM ========== -->
+  <g transform="translate(10, 42)">
+    <!-- 标题栏 -->
+    <rect width="228" height="32" rx="6" ry="6" fill="#d0e4f7"/>
+    <text x="114" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a3a5c">(a) RNN / LSTM</text>
+
+    <!-- 内容区 -->
+    <rect y="36" width="228" height="230" rx="6" ry="6" fill="#fff" stroke="#ccc" filter="url(#shadow)"/>
+
+    <!-- 示意图：串行链 -->
+    <g transform="translate(14, 50)">
+      <rect width="40" height="28" rx="4" fill="#b3d4fc" stroke="#6699cc"/>
+      <text x="20" y="19" text-anchor="middle" font-size="11" fill="#1a3a5c">x&#x2081;</text>
+      <line x1="40" y1="14" x2="52" y2="14" stroke="#666" stroke-width="1.5" marker-end="url(#arrowG)"/>
+      <rect x="52" width="40" height="28" rx="4" fill="#cde4b0" stroke="#7aa94e"/>
+      <text x="72" y="19" text-anchor="middle" font-size="11" fill="#3a5c1a">h&#x2081;</text>
+      <line x1="92" y1="14" x2="104" y2="14" stroke="#666" stroke-width="1.5"/>
+      <rect x="104" width="40" height="28" rx="4" fill="#b3d4fc" stroke="#6699cc"/>
+      <text x="124" y="19" text-anchor="middle" font-size="11" fill="#1a3a5c">x&#x2082;</text>
+      <line x1="144" y1="14" x2="156" y2="14" stroke="#666" stroke-width="1.5"/>
+      <rect x="156" width="40" height="28" rx="4" fill="#cde4b0" stroke="#7aa94e"/>
+      <text x="176" y="19" text-anchor="middle" font-size="11" fill="#3a5c1a">h&#x2082;</text>
+      <text x="200" y="20" font-size="14" fill="#666">...</text>
+    </g>
+
+    <text x="114" y="106" text-anchor="middle" font-size="12" fill="#555">串行处理，逐词计算</text>
+
+    <!-- 缺点 -->
+    <rect x="10" y="118" width="208" height="140" rx="5" fill="#fde8e8" stroke="#e6a0a0"/>
+    <text x="114" y="138" text-anchor="middle" font-size="12" font-weight="bold" fill="#a03030">缺点</text>
+    <text x="20" y="158" font-size="11" fill="#703030">&#x2022; 无法并行，训练慢</text>
+    <text x="20" y="178" font-size="11" fill="#703030">&#x2022; 长距离依赖困难</text>
+    <text x="20" y="198" font-size="11" fill="#703030">&#x2022; 信号路径长度 O(n)</text>
+    <text x="20" y="222" font-size="11" fill="#703030">&#x2022; 梯度消失/爆炸</text>
+  </g>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowG" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- ========== (b) CNN (ConvS2S) ========== -->
+  <g transform="translate(246, 42)">
+    <rect width="228" height="32" rx="6" ry="6" fill="#d0e4f7"/>
+    <text x="114" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a3a5c">(b) CNN (ConvS2S)</text>
+
+    <rect y="36" width="228" height="230" rx="6" ry="6" fill="#fff" stroke="#ccc" filter="url(#shadow)"/>
+
+    <!-- 示意图：并排卷积核 -->
+    <g transform="translate(24, 50)">
+      <rect width="50" height="28" rx="4" fill="#fce4b0" stroke="#d4a044"/>
+      <text x="25" y="19" text-anchor="middle" font-size="10" fill="#6b4e0a">Conv</text>
+      <rect x="58" width="50" height="28" rx="4" fill="#fce4b0" stroke="#d4a044"/>
+      <text x="83" y="19" text-anchor="middle" font-size="10" fill="#6b4e0a">Conv</text>
+      <rect x="116" width="50" height="28" rx="4" fill="#fce4b0" stroke="#d4a044"/>
+      <text x="141" y="19" text-anchor="middle" font-size="10" fill="#6b4e0a">Conv</text>
+    </g>
+
+    <text x="114" y="106" text-anchor="middle" font-size="12" fill="#555">并行卷积，但感受野有限</text>
+
+    <rect x="10" y="118" width="208" height="140" rx="5" fill="#fde8e8" stroke="#e6a0a0"/>
+    <text x="114" y="138" text-anchor="middle" font-size="12" font-weight="bold" fill="#a03030">缺点</text>
+    <text x="20" y="158" font-size="11" fill="#703030">&#x2022; 长距离依赖需堆叠层</text>
+    <text x="20" y="178" font-size="11" fill="#703030">&#x2022; 层数多，计算量大</text>
+    <text x="20" y="198" font-size="11" fill="#703030">&#x2022; 路径长度 O(log n)</text>
+    <text x="20" y="222" font-size="11" fill="#703030">&#x2022; 局部建模，全局受限</text>
+  </g>
+
+  <!-- ========== (c) Transformer ========== -->
+  <g transform="translate(482, 42)">
+    <rect width="228" height="32" rx="6" ry="6" fill="#d0e4f7"/>
+    <text x="114" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a3a5c">(c) Transformer (本文)</text>
+
+    <rect y="36" width="228" height="230" rx="6" ry="6" fill="#fff" stroke="#ccc" filter="url(#shadow)"/>
+
+    <!-- 示意图：Self-Attention 全连接 -->
+    <g transform="translate(34, 48)">
+      <rect width="160" height="34" rx="6" fill="#a8d8a8" stroke="#5a9a5a"/>
+      <text x="80" y="22" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a4a1a">Self-Attention</text>
+    </g>
+
+    <text x="114" y="106" text-anchor="middle" font-size="12" fill="#555">完全并行，全局视野</text>
+
+    <rect x="10" y="118" width="208" height="140" rx="5" fill="#e3f5e3" stroke="#8cc88c"/>
+    <text x="114" y="138" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a6b1a">优势</text>
+    <text x="20" y="158" font-size="11" fill="#1a5a1a">&#x2022; O(1) 信号路径长度</text>
+    <text x="20" y="178" font-size="11" fill="#1a5a1a">&#x2022; 完全可并行化</text>
+    <text x="20" y="198" font-size="11" fill="#1a5a1a">&#x2022; 训练速度极快</text>
+    <text x="20" y="222" font-size="11" fill="#1a5a1a">&#x2022; 全局依赖一步到达</text>
+  </g>
+</svg>

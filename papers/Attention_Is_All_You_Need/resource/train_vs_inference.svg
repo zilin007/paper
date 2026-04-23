@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" width="720" height="320" font-family="sans-serif">
+  <defs>
+    <marker id="aGray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#888"/>
+    </marker>
+  </defs>
+
+  <rect width="720" height="320" fill="#fafafa" rx="8"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">训练阶段 vs 推理阶段</text>
+
+  <!-- ===== 左框：训练阶段 ===== -->
+  <rect x="15" y="40" width="338" height="268" rx="8" fill="#eaf2fb" stroke="#7aabdb" stroke-width="1.5"/>
+  <rect x="15" y="40" width="338" height="32" rx="8" fill="#c3d9f0" stroke="#7aabdb" stroke-width="1.5"/>
+  <!-- 修复底部圆角被盖住 -->
+  <rect x="16" y="60" width="336" height="14" fill="#c3d9f0"/>
+  <text x="184" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#2c5f8a">训练阶段 (Training)</text>
+
+  <g transform="translate(30, 82)">
+    <!-- Step 1 -->
+    <rect x="0" y="0" width="308" height="40" rx="5" fill="#fff" stroke="#9cc0e6"/>
+    <text x="154" y="17" text-anchor="middle" font-size="11" fill="#2c5f8a" font-weight="bold">编码器：并行处理整个输入序列</text>
+    <text x="154" y="33" text-anchor="middle" font-size="10" fill="#6a8aaa">"I love NLP" 一次全部编码</text>
+
+    <line x1="154" y1="40" x2="154" y2="54" stroke="#888" stroke-width="1.5" marker-end="url(#aGray)"/>
+
+    <!-- Step 2 -->
+    <rect x="0" y="58" width="308" height="54" rx="5" fill="#fff" stroke="#9cc0e6"/>
+    <text x="154" y="76" text-anchor="middle" font-size="11" fill="#2c5f8a" font-weight="bold">解码器：Teacher Forcing</text>
+    <text x="154" y="92" text-anchor="middle" font-size="10" fill="#6a8aaa">输入完整目标序列（右移一位）</text>
+    <text x="154" y="106" text-anchor="middle" font-size="10" fill="#6a8aaa">掩码防止"偷看"未来词</text>
+
+    <line x1="154" y1="112" x2="154" y2="126" stroke="#888" stroke-width="1.5" marker-end="url(#aGray)"/>
+
+    <!-- Step 3 -->
+    <rect x="0" y="130" width="308" height="40" rx="5" fill="#fff" stroke="#9cc0e6"/>
+    <text x="154" y="148" text-anchor="middle" font-size="11" fill="#2c5f8a" font-weight="bold">一次前向传播得到所有位置预测</text>
+    <text x="154" y="163" text-anchor="middle" font-size="10" fill="#6a8aaa">所有时间步并行计算 Loss</text>
+
+    <!-- 总结 -->
+    <rect x="40" y="182" width="228" height="30" rx="15" fill="#d5edcc" stroke="#6aaa50" stroke-width="1.5"/>
+    <text x="154" y="202" text-anchor="middle" font-size="12" fill="#3a6a20" font-weight="bold">高效并行 &#x26A1;</text>
+  </g>
+
+  <!-- ===== 右框：推理阶段 ===== -->
+  <rect x="367" y="40" width="338" height="268" rx="8" fill="#fdf4ea" stroke="#e0a850" stroke-width="1.5"/>
+  <rect x="367" y="40" width="338" height="32" rx="8" fill="#f5d9a8" stroke="#e0a850" stroke-width="1.5"/>
+  <rect x="368" y="60" width="336" height="14" fill="#f5d9a8"/>
+  <text x="536" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#8a5a10">推理阶段 (Inference)</text>
+
+  <g transform="translate(382, 82)">
+    <!-- Step 1 -->
+    <rect x="0" y="0" width="308" height="40" rx="5" fill="#fff" stroke="#e0c080"/>
+    <text x="154" y="17" text-anchor="middle" font-size="11" fill="#8a5a10" font-weight="bold">编码器：并行处理整个输入序列</text>
+    <text x="154" y="33" text-anchor="middle" font-size="10" fill="#aa8a5a">同训练阶段，一次编码完成</text>
+
+    <line x1="154" y1="40" x2="154" y2="54" stroke="#888" stroke-width="1.5" marker-end="url(#aGray)"/>
+
+    <!-- Step 2 -->
+    <rect x="0" y="58" width="308" height="54" rx="5" fill="#fff" stroke="#e0c080"/>
+    <text x="154" y="76" text-anchor="middle" font-size="11" fill="#8a5a10" font-weight="bold">解码器：自回归生成</text>
+    <text x="154" y="92" text-anchor="middle" font-size="10" fill="#aa8a5a">逐词生成，每步将已生成词作为新输入</text>
+    <text x="154" y="106" text-anchor="middle" font-size="10" fill="#aa8a5a">&lt;bos&gt; &#x2192; "我" &#x2192; "我爱" &#x2192; "我爱NLP" &#x2192; ...</text>
+
+    <line x1="154" y1="112" x2="154" y2="126" stroke="#888" stroke-width="1.5" marker-end="url(#aGray)"/>
+
+    <!-- Step 3 -->
+    <rect x="0" y="130" width="308" height="40" rx="5" fill="#fff" stroke="#e0c080"/>
+    <text x="154" y="148" text-anchor="middle" font-size="11" fill="#8a5a10" font-weight="bold">每生成一个词需一次前向传播</text>
+    <text x="154" y="163" text-anchor="middle" font-size="10" fill="#aa8a5a">生成长度为 T 的序列需 T 次前向</text>
+
+    <!-- 总结 -->
+    <rect x="40" y="182" width="228" height="30" rx="15" fill="#fde8cc" stroke="#e0a850" stroke-width="1.5"/>
+    <text x="154" y="202" text-anchor="middle" font-size="12" fill="#aa6a10" font-weight="bold">自回归，较慢 &#x23F3;</text>
+  </g>
+
+  <!-- 中间分隔线 -->
+  <line x1="360" y1="50" x2="360" y2="300" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="360" y="314" text-anchor="middle" font-size="10" fill="#999">vs</text>
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 400" width="480" height="400" font-family="sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="480" height="34" rx="6" fill="#D6EAF8"/>
+  <text x="240" y="23" text-anchor="middle" font-size="15" font-weight="bold" fill="#2C3E50">LoRA 在 Transformer Block 中的应用位置</text>
+
+  <!-- Transformer Block border -->
+  <rect x="30" y="46" width="420" height="298" rx="10" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="240" y="66" text-anchor="middle" font-size="13" font-weight="bold" fill="#455A64">Transformer Block</text>
+
+  <!-- Self-Attention Layer -->
+  <rect x="50" y="78" width="380" height="130" rx="8" fill="#FFF" stroke="#90CAF9" stroke-width="1.2"/>
+  <text x="240" y="98" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">Self-Attention Layer</text>
+
+  <!-- W_q with LoRA -->
+  <rect x="68" y="110" width="76" height="36" rx="6" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1.2"/>
+  <text x="106" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#2E7D32">W_q</text>
+  <text x="106" y="140" text-anchor="middle" font-size="10" fill="#388E3C">&#x2705; +LoRA</text>
+
+  <!-- W_k frozen -->
+  <rect x="158" y="110" width="76" height="36" rx="6" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1.2"/>
+  <text x="196" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#78909C">W_k</text>
+  <text x="196" y="140" text-anchor="middle" font-size="10" fill="#90A4AE">&#x2744;&#xFE0F; 冻结</text>
+
+  <!-- W_v with LoRA -->
+  <rect x="248" y="110" width="76" height="36" rx="6" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1.2"/>
+  <text x="286" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#2E7D32">W_v</text>
+  <text x="286" y="140" text-anchor="middle" font-size="10" fill="#388E3C">&#x2705; +LoRA</text>
+
+  <!-- W_o frozen -->
+  <rect x="338" y="110" width="76" height="36" rx="6" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1.2"/>
+  <text x="376" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#78909C">W_o</text>
+  <text x="376" y="140" text-anchor="middle" font-size="10" fill="#90A4AE">&#x2744;&#xFE0F; 冻结</text>
+
+  <!-- Attention output -->
+  <rect x="130" y="158" width="220" height="24" rx="5" fill="#E3F2FD" stroke="#90CAF9"/>
+  <text x="240" y="175" text-anchor="middle" font-size="10" fill="#1565C0">Attention(Q, K, V) = softmax(QK&#x1D40;/&#x221A;d)V</text>
+
+  <!-- Arrow from Attention to MLP -->
+  <line x1="240" y1="208" x2="240" y2="226" stroke="#666" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="196" y="196" width="88" height="16" rx="3" fill="#FFF9C4"/>
+  <text x="240" y="208" text-anchor="middle" font-size="9" fill="#F57F17">Add &amp; Norm</text>
+
+  <!-- MLP Layer -->
+  <rect x="50" y="226" width="380" height="100" rx="8" fill="#FFF" stroke="#CE93D8" stroke-width="1.2"/>
+  <text x="240" y="248" text-anchor="middle" font-size="12" font-weight="bold" fill="#7B1FA2">MLP Layer (FFN)</text>
+
+  <!-- FFN internals frozen -->
+  <rect x="80" y="258" width="130" height="28" rx="5" fill="#ECEFF1" stroke="#B0BEC5"/>
+  <text x="145" y="276" text-anchor="middle" font-size="10" fill="#78909C">&#x2744;&#xFE0F; W&#x2081; + b&#x2081;</text>
+
+  <rect x="270" y="258" width="130" height="28" rx="5" fill="#ECEFF1" stroke="#B0BEC5"/>
+  <text x="335" y="276" text-anchor="middle" font-size="10" fill="#78909C">&#x2744;&#xFE0F; W&#x2082; + b&#x2082;</text>
+
+  <!-- Arrow between FFN blocks -->
+  <line x1="214" y1="272" x2="266" y2="272" stroke="#999" stroke-width="1" marker-end="url(#arr)"/>
+  <text x="240" y="266" text-anchor="middle" font-size="9" fill="#999">ReLU</text>
+
+  <text x="240" y="312" text-anchor="middle" font-size="10" fill="#90A4AE">FFN(x) = max(0, xW&#x2081;+b&#x2081;)W&#x2082;+b&#x2082;  &#x2014; &#x2744;&#xFE0F; 全部冻结</text>
+
+  <!-- Legend -->
+  <rect x="80" y="356" width="320" height="34" rx="6" fill="#F5F5F5" stroke="#DDD"/>
+  <rect x="100" y="363" width="16" height="16" rx="3" fill="#C8E6C9" stroke="#4CAF50"/>
+  <text x="122" y="376" font-size="11" fill="#2E7D32">&#x2705; = 注入 LoRA（可训练）</text>
+  <rect x="290" y="363" width="16" height="16" rx="3" fill="#ECEFF1" stroke="#B0BEC5"/>
+  <text x="312" y="376" font-size="11" fill="#78909C">&#x2744;&#xFE0F; = 冻结不训练</text>
+</svg>

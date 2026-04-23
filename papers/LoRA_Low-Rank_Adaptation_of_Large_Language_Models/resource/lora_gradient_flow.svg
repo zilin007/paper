@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 250" width="550" height="250" font-family="sans-serif">
+  <defs>
+    <marker id="ag" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#27AE60"/>
+    </marker>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#C0392B"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="550" height="34" rx="6" fill="#D6EAF8"/>
+  <text x="275" y="23" text-anchor="middle" font-size="15" font-weight="bold" fill="#2C3E50">LoRA 梯度流向</text>
+
+  <!-- Source node -->
+  <rect x="200" y="50" width="150" height="36" rx="8" fill="#EDE7F6" stroke="#7E57C2" stroke-width="1.5"/>
+  <text x="275" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#4527A0">&#x2202;L / &#x2202;h</text>
+
+  <!-- Branch 1: W0 (frozen - red) -->
+  <line x1="225" y1="86" x2="80" y2="130" stroke="#E74C3C" stroke-width="1.8" marker-end="url(#ar)"/>
+  <rect x="14" y="134" width="180" height="60" rx="8" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1.2"/>
+  <text x="104" y="155" text-anchor="middle" font-size="11" font-weight="bold" fill="#C0392B">&#x2202;L / &#x2202;W&#x2080;</text>
+  <text x="104" y="172" text-anchor="middle" font-size="10" fill="#922B21">= (&#x2202;L/&#x2202;h) &#xB7; x&#x1D40;</text>
+  <text x="104" y="188" text-anchor="middle" font-size="10" fill="#922B21">&#x2744;&#xFE0F; W&#x2080; 被冻结</text>
+
+  <!-- X mark for W0 -->
+  <rect x="56" y="200" width="96" height="24" rx="5" fill="#E74C3C"/>
+  <text x="104" y="216" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFF">&#x2717; 不更新</text>
+
+  <!-- Branch 2: B (trainable - green) -->
+  <line x1="275" y1="86" x2="275" y2="130" stroke="#27AE60" stroke-width="1.8" marker-end="url(#ag)"/>
+  <rect x="185" y="134" width="180" height="60" rx="8" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.2"/>
+  <text x="275" y="155" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E8449">&#x2202;L / &#x2202;B</text>
+  <text x="275" y="172" text-anchor="middle" font-size="10" fill="#1E8449">= (&#x2202;L/&#x2202;h) &#xB7; (Ax)&#x1D40;</text>
+  <text x="275" y="188" text-anchor="middle" font-size="10" fill="#1E8449">B 可训练</text>
+
+  <!-- Check mark for B -->
+  <rect x="227" y="200" width="96" height="24" rx="5" fill="#27AE60"/>
+  <text x="275" y="216" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFF">&#x2713; 更新 B</text>
+
+  <!-- Branch 3: A (trainable - green) -->
+  <line x1="325" y1="86" x2="470" y2="130" stroke="#27AE60" stroke-width="1.8" marker-end="url(#ag)"/>
+  <rect x="380" y="134" width="160" height="60" rx="8" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.2"/>
+  <text x="460" y="155" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E8449">&#x2202;L / &#x2202;A</text>
+  <text x="460" y="172" text-anchor="middle" font-size="10" fill="#1E8449">= B&#x1D40;(&#x2202;L/&#x2202;h) &#xB7; x&#x1D40;</text>
+  <text x="460" y="188" text-anchor="middle" font-size="10" fill="#1E8449">A 可训练</text>
+
+  <!-- Check mark for A -->
+  <rect x="412" y="200" width="96" height="24" rx="5" fill="#27AE60"/>
+  <text x="460" y="216" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFF">&#x2713; 更新 A</text>
+
+  <!-- Legend -->
+  <rect x="138" y="232" width="274" height="16" rx="4" fill="#F5F5F5" stroke="#DDD"/>
+  <circle cx="172" cy="240" r="5" fill="#E74C3C"/>
+  <text x="184" y="244" font-size="9" fill="#C0392B">冻结路径</text>
+  <circle cx="302" cy="240" r="5" fill="#27AE60"/>
+  <text x="314" y="244" font-size="9" fill="#1E8449">可训练路径</text>
+</svg>

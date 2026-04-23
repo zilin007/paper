@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" width="700" height="250" font-family="sans-serif">
+  <defs>
+    <marker id="ap" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#8E44AD"/>
+    </marker>
+    <marker id="ab" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#5B7FA5"/>
+    </marker>
+    <marker id="agr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#27AE60"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="700" height="34" rx="6" fill="#D6EAF8"/>
+  <text x="350" y="23" text-anchor="middle" font-size="15" font-weight="bold" fill="#2C3E50">训练时 vs 部署时</text>
+
+  <!-- ===== Left: Training ===== -->
+  <rect x="16" y="46" width="290" height="170" rx="10" fill="#EBF5FB" stroke="#5DADE2" stroke-width="1.5"/>
+  <rect x="16" y="46" width="290" height="30" rx="10" ry="10" fill="#AED6F1"/>
+  <rect x="16" y="66" width="290" height="10" fill="#AED6F1"/>
+  <text x="161" y="67" text-anchor="middle" font-size="13" font-weight="bold" fill="#1A5276">训练时</text>
+
+  <!-- Input x -->
+  <rect x="32" y="114" width="42" height="32" rx="5" fill="#EDE7F6" stroke="#9575CD"/>
+  <text x="53" y="134" text-anchor="middle" font-size="11" font-weight="bold" fill="#4527A0">x</text>
+
+  <!-- Fork -->
+  <circle cx="94" cy="130" r="3" fill="#555"/>
+  <line x1="74" y1="130" x2="91" y2="130" stroke="#555" stroke-width="1.5"/>
+
+  <!-- Top path: W0 -->
+  <line x1="97" y1="130" x2="97" y2="96" stroke="#5B7FA5" stroke-width="1.3"/>
+  <line x1="97" y1="96" x2="124" y2="96" stroke="#5B7FA5" stroke-width="1.3" marker-end="url(#ab)"/>
+  <rect x="132" y="82" width="64" height="28" rx="5" fill="#D6DBDF" stroke="#95A5A6"/>
+  <text x="164" y="98" text-anchor="middle" font-size="10" fill="#566573">W&#x2080; &#x2744;&#xFE0F;</text>
+  <text x="164" y="77" text-anchor="middle" font-size="8" fill="#7F8C8D">冻结</text>
+  <line x1="196" y1="96" x2="224" y2="96" stroke="#5B7FA5" stroke-width="1.3"/>
+  <text x="216" y="90" font-size="9" fill="#5B7FA5">W&#x2080;x</text>
+
+  <!-- Bottom path: BA -->
+  <line x1="97" y1="134" x2="97" y2="164" stroke="#27AE60" stroke-width="1.3"/>
+  <line x1="97" y1="164" x2="124" y2="164" stroke="#27AE60" stroke-width="1.3" marker-end="url(#agr)"/>
+  <rect x="132" y="150" width="30" height="28" rx="5" fill="#A9DFBF" stroke="#27AE60"/>
+  <text x="147" y="168" text-anchor="middle" font-size="10" font-weight="bold" fill="#1E8449">A</text>
+  <line x1="162" y1="164" x2="172" y2="164" stroke="#27AE60" stroke-width="1.3"/>
+  <rect x="176" y="150" width="30" height="28" rx="5" fill="#A9DFBF" stroke="#27AE60"/>
+  <text x="191" y="168" text-anchor="middle" font-size="10" font-weight="bold" fill="#1E8449">B</text>
+  <text x="164" y="145" text-anchor="middle" font-size="8" fill="#27AE60">可训练</text>
+  <line x1="206" y1="164" x2="224" y2="164" stroke="#27AE60" stroke-width="1.3"/>
+  <text x="218" y="158" font-size="9" fill="#27AE60">BAx</text>
+
+  <!-- Merge -->
+  <line x1="228" y1="96" x2="240" y2="130" stroke="#8E44AD" stroke-width="1.3"/>
+  <line x1="228" y1="164" x2="240" y2="130" stroke="#8E44AD" stroke-width="1.3"/>
+  <circle cx="240" cy="130" r="10" fill="#F4ECF7" stroke="#8E44AD" stroke-width="1.2"/>
+  <text x="240" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#8E44AD">+</text>
+
+  <!-- Output h -->
+  <line x1="250" y1="130" x2="268" y2="130" stroke="#8E44AD" stroke-width="1.3" marker-end="url(#ap)"/>
+  <rect x="276" y="114" width="22" height="32" rx="5" fill="#E8DAEF" stroke="#8E44AD"/>
+  <text x="287" y="134" text-anchor="middle" font-size="11" font-weight="bold" fill="#6C3483">h</text>
+
+  <!-- Formula -->
+  <rect x="42" y="192" width="240" height="18" rx="4" fill="#D4E6F1" stroke="#85C1E9"/>
+  <text x="162" y="205" text-anchor="middle" font-size="10" font-weight="bold" fill="#1A5276">h = W&#x2080;x + BAx</text>
+
+  <!-- ===== Center arrow ===== -->
+  <rect x="322" y="108" width="56" height="44" rx="8" fill="#F4ECF7" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="350" y="125" text-anchor="middle" font-size="9" font-weight="bold" fill="#8E44AD">合并</text>
+  <text x="350" y="140" text-anchor="middle" font-size="9" font-weight="bold" fill="#8E44AD">权重</text>
+  <!-- Arrows -->
+  <line x1="308" y1="130" x2="320" y2="130" stroke="#8E44AD" stroke-width="1.5" marker-end="url(#ap)"/>
+  <line x1="378" y1="130" x2="394" y2="130" stroke="#8E44AD" stroke-width="1.5" marker-end="url(#ap)"/>
+
+  <!-- ===== Right: Deployment ===== -->
+  <rect x="394" y="46" width="290" height="170" rx="10" fill="#EAFAF1" stroke="#58D68D" stroke-width="1.5"/>
+  <rect x="394" y="46" width="290" height="30" rx="10" ry="10" fill="#A9DFBF"/>
+  <rect x="394" y="66" width="290" height="10" fill="#A9DFBF"/>
+  <text x="539" y="67" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E8449">部署时</text>
+
+  <!-- Input x -->
+  <rect x="420" y="114" width="42" height="32" rx="5" fill="#EDE7F6" stroke="#9575CD"/>
+  <text x="441" y="134" text-anchor="middle" font-size="11" font-weight="bold" fill="#4527A0">x</text>
+
+  <!-- Single path -->
+  <line x1="462" y1="130" x2="494" y2="130" stroke="#1E8449" stroke-width="1.8" marker-end="url(#agr)"/>
+
+  <!-- Merged weight -->
+  <rect x="502" y="106" width="100" height="48" rx="8" fill="#D5F5E3" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="552" y="128" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E8449">W&#x2080; + BA</text>
+  <text x="552" y="144" text-anchor="middle" font-size="9" fill="#27AE60">单个合并矩阵</text>
+
+  <!-- Arrow to h -->
+  <line x1="602" y1="130" x2="634" y2="130" stroke="#1E8449" stroke-width="1.8" marker-end="url(#agr)"/>
+
+  <!-- Output h -->
+  <rect x="642" y="114" width="28" height="32" rx="5" fill="#E8DAEF" stroke="#8E44AD"/>
+  <text x="656" y="134" text-anchor="middle" font-size="11" font-weight="bold" fill="#6C3483">h</text>
+
+  <!-- Formula -->
+  <rect x="424" y="172" width="240" height="18" rx="4" fill="#D5F5E3" stroke="#A9DFBF"/>
+  <text x="544" y="185" text-anchor="middle" font-size="10" font-weight="bold" fill="#1E8449">h = (W&#x2080; + BA)x</text>
+
+  <!-- Key benefit -->
+  <rect x="440" y="196" width="200" height="16" rx="4" fill="#FEF9E7" stroke="#F9E79F"/>
+  <text x="540" y="208" text-anchor="middle" font-size="10" font-weight="bold" fill="#7D6608">&#x2714; 零额外推理延迟!</text>
+
+  <!-- Bottom note -->
+  <rect x="130" y="228" width="440" height="18" rx="5" fill="#F5F5F5" stroke="#DDD"/>
+  <text x="350" y="241" text-anchor="middle" font-size="10" fill="#666">部署时将 BA 合并到 W&#x2080;，模型结构和原始模型完全一致，无额外计算开销</text>
+</svg>
