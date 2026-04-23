@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="sans-serif">
+  <defs>
+    <marker id="fwd" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6"/>
+    </marker>
+    <marker id="bwd" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#EF4444"/>
+    </marker>
+  </defs>
+
+  <text x="400" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F2937">PEZ 中的梯度流向</text>
+
+  <!-- Forward pass (top) -->
+  <text x="400" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#3B82F6">-- 前向传播（蓝色实线）--</text>
+
+  <!-- P continuous -->
+  <rect x="30" y="80" width="130" height="55" rx="8" fill="#10B981" opacity="0.25" stroke="#10B981" stroke-width="2"/>
+  <text x="95" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#065F46">P (连续)</text>
+  <text x="95" y="118" text-anchor="middle" font-size="11" fill="#065F46">[e1, e2, ..., eM]</text>
+
+  <!-- Arrow: P -> P' -->
+  <line x1="165" y1="108" x2="205" y2="108" stroke="#3B82F6" stroke-width="2" marker-end="url(#fwd)"/>
+  <text x="185" y="100" text-anchor="middle" font-size="10" fill="#3B82F6">Proj</text>
+
+  <!-- P' projected -->
+  <rect x="210" y="80" width="130" height="55" rx="8" fill="#3B82F6" opacity="0.2" stroke="#3B82F6" stroke-width="2"/>
+  <text x="275" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8">P' (离散)</text>
+  <text x="275" y="118" text-anchor="middle" font-size="11" fill="#1D4ED8">最近邻 token 嵌入</text>
+
+  <!-- Arrow: P' -> Text Encoder -->
+  <line x1="345" y1="108" x2="385" y2="108" stroke="#3B82F6" stroke-width="2" marker-end="url(#fwd)"/>
+
+  <!-- Text Encoder -->
+  <rect x="390" y="80" width="130" height="55" rx="8" fill="#9CA3AF" opacity="0.25" stroke="#9CA3AF" stroke-width="2"/>
+  <text x="455" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#4B5563">Text Encoder</text>
+  <text x="455" y="118" text-anchor="middle" font-size="11" fill="#4B5563">f(P') (frozen)</text>
+
+  <!-- Arrow: Text Encoder -> Loss -->
+  <line x1="525" y1="108" x2="565" y2="108" stroke="#3B82F6" stroke-width="2" marker-end="url(#fwd)"/>
+
+  <!-- Loss -->
+  <rect x="570" y="75" width="190" height="65" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+  <text x="665" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#92400E">Loss</text>
+  <text x="665" y="118" text-anchor="middle" font-size="12" fill="#92400E">L = 1 - cos(f(P'), g(x))</text>
+
+  <!-- Target image -->
+  <rect x="620" y="155" width="120" height="40" rx="8" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="680" y="180" text-anchor="middle" font-size="12" fill="#4B5563">Target image g(x)</text>
+  <line x1="680" y1="155" x2="680" y2="140" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#fwd)"/>
+
+  <!-- Backward pass -->
+  <text x="400" y="230" text-anchor="middle" font-size="14" font-weight="bold" fill="#EF4444">-- 反向传播（红色虚线）--</text>
+
+  <!-- Loss -> gradient -->
+  <rect x="570" y="250" width="190" height="45" rx="8" fill="#EF4444" opacity="0.15" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="665" y="278" text-anchor="middle" font-size="13" fill="#B91C1C">dL/dP' = gradient g</text>
+
+  <!-- Arrow: gradient -> P' -->
+  <line x1="565" y1="272" x2="350" y2="272" stroke="#EF4444" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#bwd)"/>
+
+  <!-- P' receives gradient -->
+  <rect x="210" y="250" width="135" height="45" rx="8" fill="#EF4444" opacity="0.1" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="278" y="270" text-anchor="middle" font-size="12" fill="#B91C1C">g 施加到 P' 上</text>
+  <text x="278" y="286" text-anchor="middle" font-size="11" fill="#B91C1C">但梯度来自投影后的值</text>
+
+  <!-- Arrow: gradient applied to P -->
+  <line x1="205" y1="272" x2="145" y2="272" stroke="#EF4444" stroke-width="2.5" stroke-dasharray="5,3" marker-end="url(#bwd)"/>
+
+  <!-- P gets updated -->
+  <rect x="15" y="250" width="130" height="45" rx="8" fill="#10B981" opacity="0.25" stroke="#10B981" stroke-width="2.5"/>
+  <text x="80" y="270" text-anchor="middle" font-size="13" font-weight="bold" fill="#065F46">更新 P</text>
+  <text x="80" y="286" text-anchor="middle" font-size="12" fill="#065F46">P = P - lr * g</text>
+
+  <!-- Key insight box -->
+  <rect x="80" y="320" width="640" height="60" rx="10" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+  <text x="400" y="345" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8">关键设计: 前向用离散 P'，反向更新连续 P</text>
+  <text x="400" y="365" text-anchor="middle" font-size="13" fill="#3B82F6">连续 P 在嵌入空间中自由移动，积累多步梯度信息 -> 最终投影到最优离散 token</text>
+</svg>

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 340" font-family="sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6B7280"/>
+    </marker>
+    <marker id="arr-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#EF4444"/>
+    </marker>
+    <marker id="arr-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="460" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F2937">PEZ 优化流程：从连续空间到离散 Token</text>
+
+  <!-- Step 1: Initialize -->
+  <g transform="translate(20, 50)">
+    <rect x="0" y="0" width="130" height="70" rx="8" fill="#10B981" opacity="0.2" stroke="#10B981" stroke-width="1.5"/>
+    <text x="65" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#065F46">Step 0: 初始化</text>
+    <text x="65" y="45" text-anchor="middle" font-size="12" fill="#065F46">从词表随机采样</text>
+    <text x="65" y="62" text-anchor="middle" font-size="12" fill="#065F46">P = [e1, ..., eM]</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="155" y1="85" x2="175" y2="85" stroke="#6B7280" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Step 2: Project -->
+  <g transform="translate(180, 50)">
+    <rect x="0" y="0" width="140" height="70" rx="8" fill="#3B82F6" opacity="0.2" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="70" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#1D4ED8">Step 1: 前向投影</text>
+    <text x="70" y="45" text-anchor="middle" font-size="12" fill="#1D4ED8">P' = Proj_E(P)</text>
+    <text x="70" y="62" text-anchor="middle" font-size="11" fill="#1D4ED8">找最近邻离散 token</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="325" y1="85" x2="345" y2="85" stroke="#6B7280" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Step 3: Forward pass -->
+  <g transform="translate(350, 50)">
+    <rect x="0" y="0" width="140" height="70" rx="8" fill="#9CA3AF" opacity="0.2" stroke="#9CA3AF" stroke-width="1.5"/>
+    <text x="70" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#4B5563">Step 2: 前向传播</text>
+    <text x="70" y="45" text-anchor="middle" font-size="12" fill="#4B5563">用 P' 过 frozen model</text>
+    <text x="70" y="62" text-anchor="middle" font-size="12" fill="#4B5563">计算 L(P', target)</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="495" y1="85" x2="515" y2="85" stroke="#6B7280" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Step 4: Compute gradient -->
+  <g transform="translate(520, 50)">
+    <rect x="0" y="0" width="150" height="70" rx="8" fill="#EF4444" opacity="0.15" stroke="#EF4444" stroke-width="1.5"/>
+    <text x="75" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#B91C1C">Step 3: 计算梯度</text>
+    <text x="75" y="45" text-anchor="middle" font-size="12" fill="#B91C1C">g = nabla_P' L</text>
+    <text x="75" y="62" text-anchor="middle" font-size="11" fill="#B91C1C">对投影后的 P' 求导</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="675" y1="85" x2="695" y2="85" stroke="#6B7280" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Step 5: Update continuous -->
+  <g transform="translate(700, 50)">
+    <rect x="0" y="0" width="190" height="70" rx="8" fill="#10B981" opacity="0.2" stroke="#10B981" stroke-width="1.5"/>
+    <text x="95" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#065F46">Step 4: 更新连续变量</text>
+    <text x="95" y="45" text-anchor="middle" font-size="12" fill="#065F46">P = P - lr * g</text>
+    <text x="95" y="62" text-anchor="middle" font-size="11" fill="#065F46">梯度施加在连续嵌入上!</text>
+  </g>
+
+  <!-- Loop arrow back -->
+  <path d="M 795,125 L 795,155 L 250,155 L 250,125" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arr)"/>
+  <text x="520" y="150" text-anchor="middle" font-size="13" font-weight="bold" fill="#D97706">重复 T 次迭代</text>
+
+  <!-- Final projection -->
+  <g transform="translate(340, 180)">
+    <rect x="0" y="0" width="240" height="60" rx="8" fill="#3B82F6" opacity="0.3" stroke="#3B82F6" stroke-width="2"/>
+    <text x="120" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8">最终投影: P = Proj_E(P)</text>
+    <text x="120" y="45" text-anchor="middle" font-size="12" fill="#1D4ED8">将连续嵌入映射到真实 token</text>
+  </g>
+
+  <line x1="460" y1="240" x2="460" y2="265" stroke="#6B7280" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Output -->
+  <g transform="translate(310, 270)">
+    <rect x="0" y="0" width="300" height="50" rx="8" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+    <text x="150" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8">输出 Hard Prompt</text>
+    <text x="150" y="42" text-anchor="middle" font-size="12" fill="#3B82F6">"cuddly teddy skateboarding comforting nyc led cl"</text>
+  </g>
+
+  <!-- Key insight annotation -->
+  <rect x="20" y="190" width="280" height="55" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="160" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400E">核心巧妙之处:</text>
+  <text x="160" y="230" text-anchor="middle" font-size="12" fill="#92400E">梯度对 P' 计算，但更新施加在连续 P 上</text>
+</svg>

@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 480" font-family="sans-serif">
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#6B7280"/>
+    </marker>
+    <marker id="a2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <text x="430" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F2937">PEZ 优化迭代全景图</text>
+
+  <!-- Iteration 1 -->
+  <g transform="translate(20, 50)">
+    <rect x="0" y="0" width="250" height="360" rx="10" fill="#F0FDF4" stroke="#10B981" stroke-width="1.5"/>
+    <text x="125" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#065F46">第 1 轮迭代 (t=1)</text>
+
+    <!-- P_0 -->
+    <rect x="20" y="40" width="210" height="32" rx="6" fill="#10B981" opacity="0.2"/>
+    <text x="125" y="61" text-anchor="middle" font-size="12" fill="#065F46">P_0 = 随机采样嵌入 (连续)</text>
+
+    <line x1="125" y1="72" x2="125" y2="88" stroke="#6B7280" stroke-width="1" marker-end="url(#a1)"/>
+
+    <!-- Proj -->
+    <rect x="35" y="90" width="180" height="28" rx="6" fill="#3B82F6" opacity="0.15"/>
+    <text x="125" y="109" text-anchor="middle" font-size="12" fill="#1D4ED8">P'_0 = Proj(P_0) -> "apple dog ..."</text>
+
+    <line x1="125" y1="118" x2="125" y2="134" stroke="#6B7280" stroke-width="1" marker-end="url(#a1)"/>
+
+    <!-- Forward -->
+    <rect x="35" y="136" width="180" height="28" rx="6" fill="#9CA3AF" opacity="0.15"/>
+    <text x="125" y="155" text-anchor="middle" font-size="12" fill="#4B5563">f(P'_0) -> CLIP text feature</text>
+
+    <line x1="125" y1="164" x2="125" y2="180" stroke="#6B7280" stroke-width="1" marker-end="url(#a1)"/>
+
+    <!-- Loss -->
+    <rect x="45" y="182" width="160" height="28" rx="6" fill="#FEF3C7"/>
+    <text x="125" y="201" text-anchor="middle" font-size="12" fill="#92400E">L_0 = 1-cos(f(P'_0), g(x)) = 0.82</text>
+
+    <line x1="125" y1="210" x2="125" y2="226" stroke="#EF4444" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#a1)"/>
+
+    <!-- Gradient -->
+    <rect x="45" y="228" width="160" height="28" rx="6" fill="#EF4444" opacity="0.1"/>
+    <text x="125" y="247" text-anchor="middle" font-size="12" fill="#B91C1C">g_0 = nabla_P'_0 L</text>
+
+    <line x1="125" y1="256" x2="125" y2="272" stroke="#10B981" stroke-width="1" marker-end="url(#a2)"/>
+
+    <!-- Update -->
+    <rect x="20" y="274" width="210" height="32" rx="6" fill="#10B981" opacity="0.2"/>
+    <text x="125" y="295" text-anchor="middle" font-size="12" fill="#065F46">P_1 = P_0 - lr * g_0 (连续更新)</text>
+
+    <!-- Loss value display -->
+    <rect x="60" y="320" width="130" height="28" rx="14" fill="#F59E0B" opacity="0.3"/>
+    <text x="125" y="339" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400E">Loss: 0.82</text>
+  </g>
+
+  <!-- Arrow between iterations -->
+  <line x1="275" y1="230" x2="305" y2="230" stroke="#10B981" stroke-width="2.5" marker-end="url(#a2)"/>
+
+  <!-- Iteration 2 -->
+  <g transform="translate(310, 50)">
+    <rect x="0" y="0" width="250" height="360" rx="10" fill="#F0FDF4" stroke="#10B981" stroke-width="1.5"/>
+    <text x="125" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#065F46">第 2 轮迭代 (t=2)</text>
+
+    <rect x="20" y="40" width="210" height="32" rx="6" fill="#10B981" opacity="0.2"/>
+    <text x="125" y="61" text-anchor="middle" font-size="12" fill="#065F46">P_1 (已经移动了一小步)</text>
+
+    <line x1="125" y1="72" x2="125" y2="88" stroke="#6B7280" stroke-width="1" marker-end="url(#a1)"/>
+
+    <rect x="35" y="90" width="180" height="28" rx="6" fill="#3B82F6" opacity="0.15"/>
+    <text x="125" y="109" text-anchor="middle" font-size="12" fill="#1D4ED8">P'_1 = Proj(P_1) -> "bear toy ..."</text>
+
+    <line x1="125" y1="118" x2="125" y2="134" stroke="#6B7280" stroke-width="1" marker-end="url(#a1)"/>
+
+    <rect x="35" y="136" width="180" height="28" rx="6" fill="#9CA3AF" opacity="0.15"/>
+    <text x="125" y="155" text-anchor="middle" font-size="12" fill="#4B5563">f(P'_1) -> CLIP text feature</text>
+
+    <line x1="125" y1="164" x2="125" y2="180" stroke="#6B7280" stroke-width="1" marker-end="url(#a1)"/>
+
+    <rect x="45" y="182" width="160" height="28" rx="6" fill="#FEF3C7"/>
+    <text x="125" y="201" text-anchor="middle" font-size="12" fill="#92400E">L_1 = 0.65 (down!)</text>
+
+    <line x1="125" y1="210" x2="125" y2="226" stroke="#EF4444" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#a1)"/>
+
+    <rect x="45" y="228" width="160" height="28" rx="6" fill="#EF4444" opacity="0.1"/>
+    <text x="125" y="247" text-anchor="middle" font-size="12" fill="#B91C1C">g_1 = nabla_P'_1 L</text>
+
+    <line x1="125" y1="256" x2="125" y2="272" stroke="#10B981" stroke-width="1" marker-end="url(#a2)"/>
+
+    <rect x="20" y="274" width="210" height="32" rx="6" fill="#10B981" opacity="0.2"/>
+    <text x="125" y="295" text-anchor="middle" font-size="12" fill="#065F46">P_2 = P_1 - lr * g_1</text>
+
+    <rect x="60" y="320" width="130" height="28" rx="14" fill="#F59E0B" opacity="0.3"/>
+    <text x="125" y="339" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400E">Loss: 0.65</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="565" y1="230" x2="595" y2="230" stroke="#10B981" stroke-width="2.5" marker-end="url(#a2)"/>
+
+  <!-- Iteration T -->
+  <g transform="translate(600, 50)">
+    <rect x="0" y="0" width="240" height="360" rx="10" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+    <text x="120" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8">第 T 轮 (最终)</text>
+
+    <rect x="15" y="40" width="210" height="32" rx="6" fill="#10B981" opacity="0.2"/>
+    <text x="120" y="61" text-anchor="middle" font-size="12" fill="#065F46">P_T (经过 T 步优化)</text>
+
+    <line x1="120" y1="72" x2="120" y2="100" stroke="#6B7280" stroke-width="1" marker-end="url(#a1)"/>
+
+    <!-- Final projection (highlighted) -->
+    <rect x="15" y="102" width="210" height="50" rx="8" fill="#3B82F6" opacity="0.25" stroke="#3B82F6" stroke-width="2"/>
+    <text x="120" y="122" text-anchor="middle" font-size="13" font-weight="bold" fill="#1D4ED8">Final Proj_E(P_T)</text>
+    <text x="120" y="142" text-anchor="middle" font-size="12" fill="#1D4ED8">连续 -> 离散 (一次性)</text>
+
+    <line x1="120" y1="152" x2="120" y2="178" stroke="#6B7280" stroke-width="1" marker-end="url(#a1)"/>
+
+    <!-- Result -->
+    <rect x="10" y="180" width="220" height="80" rx="8" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+    <text x="120" y="205" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8">Hard Prompt</text>
+    <text x="120" y="225" text-anchor="middle" font-size="11" fill="#3B82F6">"cuddly teddy skateboarding</text>
+    <text x="120" y="242" text-anchor="middle" font-size="11" fill="#3B82F6"> comforting nyc led cl"</text>
+
+    <rect x="45" y="280" width="150" height="28" rx="14" fill="#10B981" opacity="0.3"/>
+    <text x="120" y="299" text-anchor="middle" font-size="13" font-weight="bold" fill="#065F46">Loss: 0.31</text>
+
+    <text x="120" y="340" text-anchor="middle" font-size="12" fill="#6B7280">可直接用于 Stable Diffusion</text>
+  </g>
+
+  <!-- Bottom summary -->
+  <rect x="130" y="430" width="600" height="40" rx="8" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+  <text x="430" y="455" text-anchor="middle" font-size="13" fill="#4B5563">连续嵌入 P 在整个优化过程中自由移动，积累梯度信息；只在最终一次投影到离散 token 空间</text>
+</svg>

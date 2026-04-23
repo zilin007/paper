@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6B7280"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F2937">三种 Prompt 优化方案对比</text>
+
+  <!-- Column A: Hard Prompt (Manual) -->
+  <g transform="translate(30, 55)">
+    <rect x="0" y="0" width="260" height="340" rx="12" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+    <text x="130" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#92400E">Hard Prompt（手工）</text>
+
+    <rect x="30" y="50" width="200" height="40" rx="8" fill="#FBBF24" opacity="0.6"/>
+    <text x="130" y="75" text-anchor="middle" font-size="14" fill="#78350F">"a teddy bear on a skateboard"</text>
+
+    <line x1="130" y1="90" x2="130" y2="115" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="50" y="118" width="160" height="36" rx="8" fill="#9CA3AF" opacity="0.3"/>
+    <text x="130" y="141" text-anchor="middle" font-size="13" fill="#4B5563">Text Encoder (frozen)</text>
+
+    <line x1="130" y1="154" x2="130" y2="179" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="50" y="182" width="160" height="36" rx="8" fill="#9CA3AF" opacity="0.3"/>
+    <text x="130" y="205" text-anchor="middle" font-size="13" fill="#4B5563">Diffusion Model</text>
+
+    <line x1="130" y1="218" x2="130" y2="243" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="65" y="246" width="130" height="30" rx="8" fill="#FDE68A"/>
+    <text x="130" y="266" text-anchor="middle" font-size="13" fill="#78350F">Generated Image</text>
+
+    <!-- Drawbacks -->
+    <text x="130" y="300" text-anchor="middle" font-size="12" fill="#DC2626">x 需要人工反复试错</text>
+    <text x="130" y="318" text-anchor="middle" font-size="12" fill="#DC2626">x 难以精确控制语义</text>
+  </g>
+
+  <!-- Column B: Soft Prompt -->
+  <g transform="translate(320, 55)">
+    <rect x="0" y="0" width="260" height="340" rx="12" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="2"/>
+    <text x="130" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#5B21B6">Soft Prompt（连续优化）</text>
+
+    <rect x="30" y="50" width="200" height="40" rx="8" fill="#A78BFA" opacity="0.5"/>
+    <text x="130" y="68" text-anchor="middle" font-size="13" fill="#4C1D95">[0.23, -0.17, ...]</text>
+    <text x="130" y="84" text-anchor="middle" font-size="11" fill="#6D28D9">连续嵌入向量（不可读）</text>
+
+    <line x1="130" y1="90" x2="130" y2="115" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="50" y="118" width="160" height="36" rx="8" fill="#9CA3AF" opacity="0.3"/>
+    <text x="130" y="141" text-anchor="middle" font-size="13" fill="#4B5563">Text Encoder (frozen)</text>
+
+    <line x1="130" y1="154" x2="130" y2="179" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="50" y="182" width="160" height="36" rx="8" fill="#9CA3AF" opacity="0.3"/>
+    <text x="130" y="205" text-anchor="middle" font-size="13" fill="#4B5563">Diffusion Model</text>
+
+    <line x1="130" y1="218" x2="130" y2="243" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="65" y="246" width="130" height="30" rx="8" fill="#DDD6FE"/>
+    <text x="130" y="266" text-anchor="middle" font-size="13" fill="#5B21B6">Generated Image</text>
+
+    <!-- Drawbacks -->
+    <text x="130" y="300" text-anchor="middle" font-size="12" fill="#DC2626">x 不可解释，无法阅读</text>
+    <text x="130" y="318" text-anchor="middle" font-size="12" fill="#DC2626">x 不可跨模型迁移</text>
+  </g>
+
+  <!-- Column C: PEZ (This Paper) -->
+  <g transform="translate(610, 55)">
+    <rect x="0" y="0" width="260" height="340" rx="12" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2.5"/>
+    <text x="130" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1D4ED8">PEZ（本文方法）</text>
+
+    <rect x="15" y="50" width="100" height="40" rx="8" fill="#10B981" opacity="0.3"/>
+    <text x="65" y="68" text-anchor="middle" font-size="11" fill="#065F46">连续嵌入 P</text>
+    <text x="65" y="83" text-anchor="middle" font-size="10" fill="#065F46">(可训练)</text>
+
+    <text x="130" y="75" text-anchor="middle" font-size="18" fill="#3B82F6">-></text>
+
+    <rect x="145" y="50" width="100" height="40" rx="8" fill="#3B82F6" opacity="0.3"/>
+    <text x="195" y="68" text-anchor="middle" font-size="11" fill="#1E3A8A">投影 P'</text>
+    <text x="195" y="83" text-anchor="middle" font-size="10" fill="#1E3A8A">(离散 token)</text>
+
+    <line x1="195" y1="90" x2="195" y2="115" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+
+    <rect x="50" y="118" width="160" height="36" rx="8" fill="#9CA3AF" opacity="0.3"/>
+    <text x="130" y="141" text-anchor="middle" font-size="13" fill="#4B5563">Text Encoder (frozen)</text>
+
+    <line x1="130" y1="154" x2="130" y2="179" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="50" y="182" width="160" height="36" rx="8" fill="#9CA3AF" opacity="0.3"/>
+    <text x="130" y="205" text-anchor="middle" font-size="13" fill="#4B5563">Loss (CLIP cosine sim)</text>
+
+    <!-- Gradient flows back -->
+    <path d="M 50,200 C 20,200 10,140 10,80 L 30,80" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+    <text x="8" y="145" font-size="10" fill="#EF4444" transform="rotate(-90,8,145)">gradient</text>
+
+    <line x1="130" y1="218" x2="130" y2="243" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="25" y="246" width="210" height="30" rx="8" fill="#BFDBFE"/>
+    <text x="130" y="266" text-anchor="middle" font-size="12" fill="#1D4ED8">"cuddly teddy skateboarding"</text>
+
+    <!-- Advantages -->
+    <text x="130" y="300" text-anchor="middle" font-size="12" fill="#059669">+ 可解释的真实单词</text>
+    <text x="130" y="318" text-anchor="middle" font-size="12" fill="#059669">+ 可跨模型迁移 + 自动优化</text>
+  </g>
+</svg>
