@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" font-family="sans-serif">
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#6B7280"/>
+    </marker>
+  </defs>
+
+  <text x="410" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F2937">训练时 vs 部署时</text>
+
+  <!-- Training phase -->
+  <g transform="translate(20, 55)">
+    <rect x="0" y="0" width="370" height="300" rx="12" ry="12" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+    <text x="185" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#1E40AF">训练阶段</text>
+
+    <!-- MLP reparametrization -->
+    <rect x="20" y="50" width="100" height="50" rx="8" ry="8" fill="#10B981" fill-opacity="0.3" stroke="#10B981" stroke-width="1.5"/>
+    <text x="70" y="72" text-anchor="middle" font-size="11" fill="#065F46" font-weight="bold">P'_theta</text>
+    <text x="70" y="88" text-anchor="middle" font-size="10" fill="#065F46">(小矩阵)</text>
+
+    <line x1="120" y1="75" x2="148" y2="75" stroke="#6B7280" stroke-width="1.5" marker-end="url(#a1)"/>
+
+    <rect x="150" y="50" width="80" height="50" rx="8" ry="8" fill="#10B981" fill-opacity="0.3" stroke="#10B981" stroke-width="1.5"/>
+    <text x="190" y="72" text-anchor="middle" font-size="11" fill="#065F46" font-weight="bold">MLP_theta</text>
+    <text x="190" y="88" text-anchor="middle" font-size="10" fill="#065F46">(重参数化)</text>
+
+    <line x1="230" y1="75" x2="258" y2="75" stroke="#6B7280" stroke-width="1.5" marker-end="url(#a1)"/>
+
+    <rect x="260" y="50" width="90" height="50" rx="8" ry="8" fill="#10B981" fill-opacity="0.5" stroke="#10B981" stroke-width="2"/>
+    <text x="305" y="72" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">P_theta</text>
+    <text x="305" y="88" text-anchor="middle" font-size="10" fill="#fff">(实际前缀)</text>
+
+    <!-- Arrow down to Transformer -->
+    <line x1="305" y1="100" x2="305" y2="120" stroke="#10B981" stroke-width="2" marker-end="url(#a1)"/>
+
+    <!-- Prefix + Transformer -->
+    <rect x="260" y="122" width="90" height="35" rx="6" ry="6" fill="#10B981" fill-opacity="0.4" stroke="#10B981"/>
+    <text x="305" y="144" text-anchor="middle" font-size="11" fill="#065F46">Prefix</text>
+
+    <rect x="30" y="122" width="220" height="35" rx="6" ry="6" fill="#9CA3AF" fill-opacity="0.3" stroke="#9CA3AF" stroke-width="1.5"/>
+    <text x="140" y="144" text-anchor="middle" font-size="11" fill="#4B5563">Transformer (冻结 phi)</text>
+
+    <!-- Input/Output -->
+    <rect x="30" y="175" width="100" height="30" rx="6" ry="6" fill="#DBEAFE" stroke="#3B82F6"/>
+    <text x="80" y="195" text-anchor="middle" font-size="11" fill="#1E40AF">Input x</text>
+
+    <rect x="220" y="175" width="100" height="30" rx="6" ry="6" fill="#DBEAFE" stroke="#3B82F6"/>
+    <text x="270" y="195" text-anchor="middle" font-size="11" fill="#1E40AF">Output y</text>
+
+    <line x1="130" y1="190" x2="215" y2="190" stroke="#6B7280" stroke-width="1.5" marker-end="url(#a1)"/>
+
+    <!-- Notes -->
+    <text x="185" y="230" text-anchor="middle" font-size="12" fill="#1E40AF">优化 theta = {P'_theta, MLP_theta}</text>
+    <text x="185" y="250" text-anchor="middle" font-size="11" fill="#6B7280">max log p(y|x) 只对前缀参数求梯度</text>
+    <text x="185" y="275" text-anchor="middle" font-size="11" fill="#DC2626">MLP 重参数化防止训练不稳定</text>
+  </g>
+
+  <!-- Arrow between -->
+  <g transform="translate(395, 150)">
+    <line x1="0" y1="55" x2="30" y2="55" stroke="#6B7280" stroke-width="3" marker-end="url(#a1)"/>
+    <text x="15" y="45" text-anchor="middle" font-size="12" fill="#6B7280" font-weight="bold">训练</text>
+    <text x="15" y="75" text-anchor="middle" font-size="12" fill="#6B7280" font-weight="bold">完成</text>
+  </g>
+
+  <!-- Deployment phase -->
+  <g transform="translate(430, 55)">
+    <rect x="0" y="0" width="370" height="300" rx="12" ry="12" fill="#F0FDF4" stroke="#10B981" stroke-width="2"/>
+    <text x="185" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#059669">部署阶段</text>
+
+    <!-- Only P_theta saved -->
+    <rect x="250" y="60" width="90" height="50" rx="8" ry="8" fill="#10B981" fill-opacity="0.5" stroke="#10B981" stroke-width="2"/>
+    <text x="295" y="82" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">P_theta</text>
+    <text x="295" y="98" text-anchor="middle" font-size="10" fill="#fff">(仅保存前缀)</text>
+
+    <!-- Discarded MLP -->
+    <rect x="20" y="60" width="200" height="50" rx="8" ry="8" fill="#FEE2E2" stroke="#EF4444" stroke-width="1" stroke-dasharray="5,3"/>
+    <text x="120" y="82" text-anchor="middle" font-size="11" fill="#9CA3AF" text-decoration="line-through">P'_theta + MLP_theta</text>
+    <text x="120" y="98" text-anchor="middle" font-size="10" fill="#EF4444">丢弃 (不再需要)</text>
+
+    <!-- Prefix + Transformer -->
+    <line x1="295" y1="110" x2="295" y2="128" stroke="#10B981" stroke-width="2" marker-end="url(#a1)"/>
+    <rect x="250" y="130" width="90" height="35" rx="6" ry="6" fill="#10B981" fill-opacity="0.4" stroke="#10B981"/>
+    <text x="295" y="152" text-anchor="middle" font-size="11" fill="#065F46">Prefix</text>
+
+    <rect x="20" y="130" width="220" height="35" rx="6" ry="6" fill="#9CA3AF" fill-opacity="0.3" stroke="#9CA3AF" stroke-width="1.5"/>
+    <text x="130" y="152" text-anchor="middle" font-size="11" fill="#4B5563">Transformer (共享)</text>
+
+    <!-- Task switching -->
+    <rect x="20" y="185" width="320" height="90" rx="8" ry="8" fill="#ECFDF5" stroke="#10B981" stroke-width="1"/>
+    <text x="180" y="208" text-anchor="middle" font-size="12" fill="#059669" font-weight="bold">多任务切换 (仅换前缀)</text>
+    <rect x="35" y="220" width="80" height="25" rx="4" ry="4" fill="#10B981" fill-opacity="0.3" stroke="#10B981"/>
+    <text x="75" y="237" text-anchor="middle" font-size="10" fill="#065F46">翻译前缀</text>
+    <rect x="125" y="220" width="80" height="25" rx="4" ry="4" fill="#3B82F6" fill-opacity="0.3" stroke="#3B82F6"/>
+    <text x="165" y="237" text-anchor="middle" font-size="10" fill="#1E40AF">摘要前缀</text>
+    <rect x="215" y="220" width="110" height="25" rx="4" ry="4" fill="#F97316" fill-opacity="0.3" stroke="#F97316"/>
+    <text x="270" y="237" text-anchor="middle" font-size="10" fill="#9A3412">Table-to-text前缀</text>
+
+    <text x="185" y="295" text-anchor="middle" font-size="11" fill="#065F46">每个前缀仅 ~250K 参数 (0.1%)</text>
+  </g>
+</svg>

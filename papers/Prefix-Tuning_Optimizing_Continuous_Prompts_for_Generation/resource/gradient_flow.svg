@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 440" font-family="sans-serif">
+  <defs>
+    <marker id="arrFwd" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrBwd" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+      <polygon points="8 0, 0 3, 8 6" fill="#EF4444"/>
+    </marker>
+    <marker id="arrDown" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#EF4444"/>
+    </marker>
+  </defs>
+
+  <text x="390" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F2937">Prefix-Tuning 的前向传播与梯度流向</text>
+
+  <!-- Legend -->
+  <line x1="50" y1="50" x2="100" y2="50" stroke="#3B82F6" stroke-width="2.5" marker-end="url(#arrFwd)"/>
+  <text x="110" y="54" font-size="12" fill="#3B82F6">前向传播</text>
+  <line x1="230" y1="50" x2="180" y2="50" stroke="#EF4444" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrBwd)"/>
+  <text x="240" y="54" font-size="12" fill="#EF4444">梯度回传</text>
+  <rect x="360" y="42" width="16" height="16" rx="3" ry="3" fill="#9CA3AF" fill-opacity="0.4"/>
+  <text x="382" y="54" font-size="12" fill="#6B7280">冻结参数</text>
+  <rect x="480" y="42" width="16" height="16" rx="3" ry="3" fill="#10B981" fill-opacity="0.5"/>
+  <text x="502" y="54" font-size="12" fill="#10B981">可训练前缀</text>
+
+  <!-- Prefix P_theta -->
+  <rect x="30" y="140" width="100" height="220" rx="8" ry="8" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="2"/>
+  <text x="80" y="170" text-anchor="middle" font-size="14" font-weight="bold" fill="#059669">P_theta</text>
+  <text x="80" y="190" text-anchor="middle" font-size="11" fill="#065F46">前缀参数</text>
+  <text x="80" y="210" text-anchor="middle" font-size="10" fill="#065F46">(可训练)</text>
+  <!-- Sub-blocks for each layer -->
+  <rect x="45" y="225" width="70" height="25" rx="4" ry="4" fill="#10B981" fill-opacity="0.4" stroke="#10B981"/>
+  <text x="80" y="242" text-anchor="middle" font-size="10" fill="#fff">Layer 1 prefix</text>
+  <rect x="45" y="260" width="70" height="25" rx="4" ry="4" fill="#10B981" fill-opacity="0.4" stroke="#10B981"/>
+  <text x="80" y="277" text-anchor="middle" font-size="10" fill="#fff">Layer 2 prefix</text>
+  <rect x="45" y="295" width="70" height="25" rx="4" ry="4" fill="#10B981" fill-opacity="0.4" stroke="#10B981"/>
+  <text x="80" y="312" text-anchor="middle" font-size="10" fill="#fff">Layer N prefix</text>
+
+  <!-- Input -->
+  <rect x="180" y="340" width="120" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="240" y="365" text-anchor="middle" font-size="13" fill="#1E40AF">输入 x</text>
+
+  <!-- Transformer Layer 1 -->
+  <rect x="180" y="260" width="120" height="50" rx="8" ry="8" fill="#9CA3AF" fill-opacity="0.25" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="240" y="282" text-anchor="middle" font-size="12" fill="#4B5563">Transformer</text>
+  <text x="240" y="298" text-anchor="middle" font-size="11" fill="#4B5563">Layer 1 (冻结)</text>
+
+  <!-- Transformer Layer N -->
+  <rect x="180" y="160" width="120" height="50" rx="8" ry="8" fill="#9CA3AF" fill-opacity="0.25" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="240" y="182" text-anchor="middle" font-size="12" fill="#4B5563">Transformer</text>
+  <text x="240" y="198" text-anchor="middle" font-size="11" fill="#4B5563">Layer N (冻结)</text>
+
+  <!-- Dots between layers -->
+  <text x="240" y="240" text-anchor="middle" font-size="16" fill="#6B7280">...</text>
+
+  <!-- Output h -->
+  <rect x="180" y="90" width="120" height="40" rx="8" ry="8" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="240" y="115" text-anchor="middle" font-size="13" fill="#1E40AF">输出 h</text>
+
+  <!-- Forward arrows (blue) -->
+  <line x1="240" y1="340" x2="240" y2="315" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrFwd)"/>
+  <line x1="240" y1="260" x2="240" y2="215" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrFwd)"/>
+  <line x1="240" y1="160" x2="240" y2="135" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrFwd)"/>
+
+  <!-- Prefix to layers (green forward) -->
+  <line x1="130" y1="237" x2="175" y2="278" stroke="#10B981" stroke-width="1.8" marker-end="url(#arrFwd)"/>
+  <line x1="130" y1="272" x2="175" y2="285" stroke="#10B981" stroke-width="1.8"/>
+  <line x1="130" y1="307" x2="175" y2="185" stroke="#10B981" stroke-width="1.8" marker-end="url(#arrFwd)"/>
+
+  <!-- Loss -->
+  <rect x="400" y="90" width="120" height="40" rx="8" ry="8" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="460" y="115" text-anchor="middle" font-size="13" fill="#DC2626">Loss L</text>
+  <line x1="300" y1="110" x2="395" y2="110" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrFwd)"/>
+
+  <!-- Backward arrows (red dashed) -->
+  <line x1="400" y1="115" x2="305" y2="115" stroke="#EF4444" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrBwd)"/>
+  <line x1="245" y1="130" x2="245" y2="155" stroke="#EF4444" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrDown)"/>
+  <line x1="245" y1="210" x2="245" y2="255" stroke="#EF4444" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrDown)"/>
+
+  <!-- Gradient to prefix (red dashed, key!) -->
+  <path d="M 200 280 Q 155 260 130 250" stroke="#EF4444" stroke-width="2.5" stroke-dasharray="6,3" fill="none" marker-end="url(#arrBwd)"/>
+  <path d="M 200 185 Q 155 200 130 280" stroke="#EF4444" stroke-width="2.5" stroke-dasharray="6,3" fill="none" marker-end="url(#arrBwd)"/>
+
+  <!-- Key insight box -->
+  <rect x="420" y="180" width="330" height="200" rx="10" ry="10" fill="#F0FDF4" stroke="#10B981" stroke-width="1.5"/>
+  <text x="585" y="205" text-anchor="middle" font-size="14" font-weight="bold" fill="#059669">关键洞察</text>
+  <text x="435" y="232" font-size="12" fill="#1F2937">1. 梯度从 Loss 回传经过冻结的</text>
+  <text x="440" y="250" font-size="12" fill="#1F2937">   Transformer 层 (不更新这些参数)</text>
+  <text x="435" y="278" font-size="12" fill="#1F2937">2. 梯度最终到达前缀参数 P_theta</text>
+  <text x="440" y="296" font-size="12" fill="#10B981" font-weight="bold">   只有 P_theta 被梯度更新!</text>
+  <text x="435" y="324" font-size="12" fill="#1F2937">3. 冻结层充当"中继站":</text>
+  <text x="440" y="342" font-size="12" fill="#1F2937">   前向: 前缀通过注意力影响输出</text>
+  <text x="440" y="360" font-size="12" fill="#1F2937">   反向: 梯度穿过冻结层回到前缀</text>
+
+  <!-- X mark on frozen params -->
+  <text x="315" y="290" font-size="14" fill="#EF4444" font-weight="bold">X</text>
+  <text x="330" y="290" font-size="10" fill="#EF4444">不更新</text>
+  <text x="315" y="190" font-size="14" fill="#EF4444" font-weight="bold">X</text>
+  <text x="330" y="190" font-size="10" fill="#EF4444">不更新</text>
+</svg>

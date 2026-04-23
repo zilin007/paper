@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="sans-serif">
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F2937">三种微调方案对比</text>
+
+  <!-- Fine-tuning -->
+  <g transform="translate(30, 60)">
+    <rect x="0" y="0" width="260" height="340" rx="12" ry="12" fill="#FEF2F2" stroke="#EF4444" stroke-width="2"/>
+    <text x="130" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#DC2626">Fine-tuning (全量微调)</text>
+    <!-- Model box -->
+    <rect x="30" y="50" width="200" height="120" rx="8" ry="8" fill="#EF4444" fill-opacity="0.3" stroke="#EF4444" stroke-width="1.5"/>
+    <text x="130" y="80" text-anchor="middle" font-size="13" fill="#991B1B">Transformer</text>
+    <text x="130" y="100" text-anchor="middle" font-size="13" fill="#991B1B">全部参数</text>
+    <text x="130" y="120" text-anchor="middle" font-size="12" fill="#DC2626" font-weight="bold">345M 参数全部更新</text>
+    <text x="130" y="150" text-anchor="middle" font-size="11" fill="#991B1B">每个任务一份完整模型副本</text>
+    <!-- Cons -->
+    <text x="20" y="195" font-size="12" fill="#991B1B">存储: 每任务 ~1.4GB</text>
+    <text x="20" y="215" font-size="12" fill="#991B1B">参数量: 100%</text>
+    <text x="20" y="245" font-size="12" fill="#DC2626" font-weight="bold">缺点:</text>
+    <text x="20" y="265" font-size="11" fill="#6B7280">- 每个任务需要完整模型副本</text>
+    <text x="20" y="283" font-size="11" fill="#6B7280">- 存储成本随任务数线性增长</text>
+    <text x="20" y="301" font-size="11" fill="#6B7280">- 低数据场景容易过拟合</text>
+    <text x="20" y="319" font-size="11" fill="#6B7280">- 无法跨用户批处理</text>
+  </g>
+
+  <!-- Adapter-tuning -->
+  <g transform="translate(320, 60)">
+    <rect x="0" y="0" width="260" height="340" rx="12" ry="12" fill="#FFF7ED" stroke="#F97316" stroke-width="2"/>
+    <text x="130" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#EA580C">Adapter-tuning</text>
+    <!-- Model box -->
+    <rect x="30" y="50" width="200" height="120" rx="8" ry="8" fill="#9CA3AF" fill-opacity="0.3" stroke="#9CA3AF" stroke-width="1.5"/>
+    <text x="130" y="75" text-anchor="middle" font-size="13" fill="#4B5563">Transformer (冻结)</text>
+    <!-- Adapter blocks -->
+    <rect x="70" y="90" width="50" height="20" rx="4" ry="4" fill="#F97316" fill-opacity="0.6" stroke="#F97316" stroke-width="1"/>
+    <text x="95" y="104" text-anchor="middle" font-size="9" fill="#fff">Adapter</text>
+    <rect x="130" y="90" width="50" height="20" rx="4" ry="4" fill="#F97316" fill-opacity="0.6" stroke="#F97316" stroke-width="1"/>
+    <text x="155" y="104" text-anchor="middle" font-size="9" fill="#fff">Adapter</text>
+    <rect x="70" y="120" width="50" height="20" rx="4" ry="4" fill="#F97316" fill-opacity="0.6" stroke="#F97316" stroke-width="1"/>
+    <text x="95" y="134" text-anchor="middle" font-size="9" fill="#fff">Adapter</text>
+    <rect x="130" y="120" width="50" height="20" rx="4" ry="4" fill="#F97316" fill-opacity="0.6" stroke="#F97316" stroke-width="1"/>
+    <text x="155" y="134" text-anchor="middle" font-size="9" fill="#fff">Adapter</text>
+    <text x="130" y="160" text-anchor="middle" font-size="11" fill="#EA580C">在层间插入小模块</text>
+    <!-- Stats -->
+    <text x="20" y="195" font-size="12" fill="#9A3412">存储: 每任务约 3%</text>
+    <text x="20" y="215" font-size="12" fill="#9A3412">参数量: 0.1%~3%</text>
+    <text x="20" y="245" font-size="12" fill="#EA580C" font-weight="bold">缺点:</text>
+    <text x="20" y="265" font-size="11" fill="#6B7280">- 增加推理延迟 (串行瓶颈)</text>
+    <text x="20" y="283" font-size="11" fill="#6B7280">- 无法跨用户批处理</text>
+    <text x="20" y="301" font-size="11" fill="#6B7280">- 改变了模型计算图</text>
+    <text x="20" y="319" font-size="11" fill="#6B7280">- 同参数量下不如 Prefix</text>
+  </g>
+
+  <!-- Prefix-tuning -->
+  <g transform="translate(610, 60)">
+    <rect x="0" y="0" width="260" height="340" rx="12" ry="12" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+    <text x="130" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#059669">Prefix-tuning (本文)</text>
+    <!-- Model box -->
+    <rect x="60" y="50" width="170" height="120" rx="8" ry="8" fill="#9CA3AF" fill-opacity="0.3" stroke="#9CA3AF" stroke-width="1.5"/>
+    <text x="145" y="80" text-anchor="middle" font-size="13" fill="#4B5563">Transformer (冻结)</text>
+    <text x="145" y="130" text-anchor="middle" font-size="11" fill="#4B5563">完全不动</text>
+    <!-- Prefix blocks -->
+    <rect x="15" y="60" width="35" height="100" rx="6" ry="6" fill="#10B981" fill-opacity="0.6" stroke="#10B981" stroke-width="1.5"/>
+    <text x="32" y="100" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">P</text>
+    <text x="32" y="115" text-anchor="middle" font-size="9" fill="#fff">prefix</text>
+    <text x="130" y="160" text-anchor="middle" font-size="11" fill="#059669">仅在输入前拼接前缀</text>
+    <!-- Stats -->
+    <text x="20" y="195" font-size="12" fill="#065F46">存储: 每任务仅 250K</text>
+    <text x="20" y="215" font-size="12" fill="#065F46">参数量: 0.1%</text>
+    <text x="20" y="245" font-size="12" fill="#059669" font-weight="bold">优势:</text>
+    <text x="20" y="265" font-size="11" fill="#065F46">+ 参数量最少 (0.1%)</text>
+    <text x="20" y="283" font-size="11" fill="#065F46">+ 无额外推理延迟</text>
+    <text x="20" y="301" font-size="11" fill="#065F46">+ 支持跨用户批处理</text>
+    <text x="20" y="319" font-size="11" fill="#065F46">+ 低数据/外推更强</text>
+  </g>
+</svg>
