@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="sans-serif">
+  <defs>
+    <marker id="ar1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#6B7280"/>
+    </marker>
+    <marker id="ar2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#10B981"/>
+    </marker>
+    <marker id="ar3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#EF4444"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F2937">Prompt Tuning 训练迭代全景图</text>
+
+  <!-- ===== Iteration 1 ===== -->
+  <rect x="20" y="50" width="420" height="440" rx="10" fill="#FAFAFA" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="230" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#374151">第 1 轮迭代</text>
+
+  <!-- Step 1: Forward -->
+  <rect x="40" y="90" width="380" height="75" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="50" y="110" font-size="13" fill="#1D4ED8" font-weight="bold">Step 1: 前向传播</text>
+  <text x="50" y="128" font-size="12" fill="#374151">P_e^(0) (随机/词汇/标签初始化) + X_e</text>
+  <text x="50" y="146" font-size="12" fill="#374151">--> Transformer(冻结) --> Y_hat^(0)</text>
+  <text x="50" y="158" font-size="11" fill="#6B7280">注: 初始 prompt 未经训练，输出可能很差</text>
+
+  <!-- Step 2: Loss -->
+  <rect x="40" y="180" width="380" height="55" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="50" y="200" font-size="13" fill="#92400E" font-weight="bold">Step 2: 计算损失</text>
+  <text x="50" y="218" font-size="12" fill="#374151">L = CrossEntropy(Y_hat^(0), Y_true)</text>
+  <text x="50" y="230" font-size="11" fill="#6B7280">T5 标准交叉熵损失</text>
+
+  <!-- Step 3: Backward -->
+  <rect x="40" y="250" width="380" height="70" rx="8" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="50" y="270" font-size="13" fill="#DC2626" font-weight="bold">Step 3: 反向传播</text>
+  <text x="50" y="288" font-size="12" fill="#374151">dL/dP_e = (梯度穿过 Transformer 传到 P_e)</text>
+  <text x="50" y="306" font-size="12" fill="#DC2626">Transformer 参数 theta 不接收更新!</text>
+  <text x="50" y="316" font-size="11" fill="#6B7280">梯度仅对 P_e 的 p x e 个参数有效</text>
+
+  <!-- Step 4: Update -->
+  <rect x="40" y="335" width="380" height="65" rx="8" fill="#DCFCE7" stroke="#10B981" stroke-width="2"/>
+  <text x="50" y="355" font-size="13" fill="#059669" font-weight="bold">Step 4: 参数更新</text>
+  <text x="50" y="375" font-size="12" fill="#374151">P_e^(1) = P_e^(0) - lr * dL/dP_e</text>
+  <text x="50" y="393" font-size="12" fill="#059669">使用 Adafactor 优化器, lr=0.3</text>
+
+  <!-- Loss value -->
+  <rect x="90" y="420" width="260" height="35" rx="6" fill="#FEF2F2" stroke="#EF4444" stroke-width="1"/>
+  <text x="220" y="442" text-anchor="middle" font-size="13" fill="#DC2626">Loss = L^(0) (较大)</text>
+
+  <!-- ===== Arrow between iterations ===== -->
+  <line x1="440" y1="270" x2="465" y2="270" stroke="#10B981" stroke-width="3" marker-end="url(#ar2)"/>
+  <text x="453" y="260" text-anchor="middle" font-size="22" fill="#10B981" font-weight="bold">...</text>
+
+  <!-- ===== Iteration T ===== -->
+  <rect x="470" y="50" width="420" height="440" rx="10" fill="#F0FDF4" stroke="#10B981" stroke-width="1.5"/>
+  <text x="680" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#059669">第 T 轮迭代 (收敛)</text>
+
+  <!-- Step 1: Forward -->
+  <rect x="490" y="90" width="380" height="75" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="500" y="110" font-size="13" fill="#1D4ED8" font-weight="bold">Step 1: 前向传播</text>
+  <text x="500" y="128" font-size="12" fill="#374151">P_e^(T) (已学到任务知识) + X_e</text>
+  <text x="500" y="146" font-size="12" fill="#374151">--> 同一个冻结 Transformer --> Y_hat^(T)</text>
+  <text x="500" y="158" font-size="11" fill="#059669">prompt 已能正确引导模型输出</text>
+
+  <!-- Step 2: Loss -->
+  <rect x="490" y="180" width="380" height="55" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="500" y="200" font-size="13" fill="#92400E" font-weight="bold">Step 2: 计算损失</text>
+  <text x="500" y="218" font-size="12" fill="#374151">L = CrossEntropy(Y_hat^(T), Y_true)</text>
+  <text x="500" y="230" font-size="11" fill="#059669">损失已降至较低水平</text>
+
+  <!-- Step 3: Backward (near convergence) -->
+  <rect x="490" y="250" width="380" height="70" rx="8" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="500" y="270" font-size="13" fill="#DC2626" font-weight="bold">Step 3: 反向传播</text>
+  <text x="500" y="288" font-size="12" fill="#374151">dL/dP_e 很小 (接近最优)</text>
+  <text x="500" y="306" font-size="12" fill="#374151">Transformer 从始至终未被修改</text>
+
+  <!-- Step 4: Update (minimal) -->
+  <rect x="490" y="335" width="380" height="65" rx="8" fill="#DCFCE7" stroke="#10B981" stroke-width="2"/>
+  <text x="500" y="355" font-size="13" fill="#059669" font-weight="bold">Step 4: 参数更新 (微小)</text>
+  <text x="500" y="375" font-size="12" fill="#374151">P_e^(T+1) ~= P_e^(T)  (几乎不变)</text>
+  <text x="500" y="393" font-size="12" fill="#059669">收敛! 训练完成 (共 30K steps)</text>
+
+  <!-- Loss value -->
+  <rect x="540" y="420" width="260" height="35" rx="6" fill="#F0FDF4" stroke="#10B981" stroke-width="1.5"/>
+  <text x="670" y="442" text-anchor="middle" font-size="13" fill="#059669">Loss = L^(T) (很小)</text>
+
+  <!-- Bottom summary -->
+  <text x="450" y="510" text-anchor="middle" font-size="14" fill="#374151">整个训练过程中，只有 P_e 从随机初始化逐步学习到"如何用自然语言之外的方式告诉模型该做什么任务"</text>
+</svg>

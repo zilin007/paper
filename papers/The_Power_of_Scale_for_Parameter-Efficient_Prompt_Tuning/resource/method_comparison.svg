@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="#6B7280" fill="#6B7280" d="M0,0 L8,3 L0,6 Z"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F2937">四种参数高效适配方法对比</text>
+
+  <!-- ===== Column 1: Full Fine-tuning ===== -->
+  <g transform="translate(30, 60)">
+    <text x="100" y="20" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F2937">全量微调</text>
+    <text x="100" y="38" text-anchor="middle" font-size="12" fill="#6B7280">Fine-Tuning</text>
+    <!-- Model block - all trainable -->
+    <rect x="20" y="55" width="160" height="200" rx="8" fill="#DCFCE7" stroke="#10B981" stroke-width="2"/>
+    <text x="100" y="100" text-anchor="middle" font-size="14" fill="#059669" font-weight="bold">Transformer</text>
+    <text x="100" y="120" text-anchor="middle" font-size="14" fill="#059669" font-weight="bold">全部层</text>
+    <text x="100" y="150" text-anchor="middle" font-size="13" fill="#059669">所有参数</text>
+    <text x="100" y="170" text-anchor="middle" font-size="13" fill="#059669">均可训练</text>
+    <rect x="40" y="190" width="120" height="24" rx="4" fill="#10B981" opacity="0.2"/>
+    <text x="100" y="207" text-anchor="middle" font-size="11" fill="#059669">100% 参数更新</text>
+    <!-- Input -->
+    <rect x="35" y="270" width="130" height="30" rx="6" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="100" y="290" text-anchor="middle" font-size="12" fill="#3B82F6">输入文本</text>
+    <line x1="100" y1="270" x2="100" y2="255" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <!-- Drawback -->
+    <rect x="5" y="320" width="190" height="60" rx="6" fill="#FEF2F2" stroke="#EF4444" stroke-width="1" stroke-dasharray="4"/>
+    <text x="100" y="340" text-anchor="middle" font-size="11" fill="#DC2626">每个任务一份完整模型副本</text>
+    <text x="100" y="358" text-anchor="middle" font-size="11" fill="#DC2626">存储 &amp; 计算成本极高</text>
+    <text x="100" y="375" text-anchor="middle" font-size="11" fill="#DC2626">T5-XXL: 11B x N 个任务</text>
+  </g>
+
+  <!-- ===== Column 2: Adapter ===== -->
+  <g transform="translate(260, 60)">
+    <text x="100" y="20" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F2937">Adapter</text>
+    <text x="100" y="38" text-anchor="middle" font-size="12" fill="#6B7280">Houlsby et al., 2019</text>
+    <!-- Model block - frozen -->
+    <rect x="20" y="55" width="160" height="200" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2"/>
+    <text x="100" y="85" text-anchor="middle" font-size="14" fill="#6B7280">Transformer 层</text>
+    <text x="100" y="103" text-anchor="middle" font-size="12" fill="#9CA3AF">(冻结)</text>
+    <!-- Adapter modules -->
+    <rect x="45" y="118" width="110" height="28" rx="4" fill="#DCFCE7" stroke="#10B981" stroke-width="1.5"/>
+    <text x="100" y="137" text-anchor="middle" font-size="11" fill="#059669">Adapter 模块</text>
+    <rect x="45" y="155" width="110" height="28" rx="4" fill="#DCFCE7" stroke="#10B981" stroke-width="1.5"/>
+    <text x="100" y="174" text-anchor="middle" font-size="11" fill="#059669">Adapter 模块</text>
+    <rect x="45" y="192" width="110" height="28" rx="4" fill="#DCFCE7" stroke="#10B981" stroke-width="1.5"/>
+    <text x="100" y="211" text-anchor="middle" font-size="11" fill="#059669">Adapter 模块</text>
+    <text x="100" y="242" text-anchor="middle" font-size="11" fill="#059669">2-4% 参数可训练</text>
+    <!-- Input -->
+    <rect x="35" y="270" width="130" height="30" rx="6" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="100" y="290" text-anchor="middle" font-size="12" fill="#3B82F6">输入文本</text>
+    <line x1="100" y1="270" x2="100" y2="255" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <!-- Drawback -->
+    <rect x="5" y="320" width="190" height="60" rx="6" fill="#FEF2F2" stroke="#EF4444" stroke-width="1" stroke-dasharray="4"/>
+    <text x="100" y="340" text-anchor="middle" font-size="11" fill="#DC2626">每层插入瓶颈层</text>
+    <text x="100" y="358" text-anchor="middle" font-size="11" fill="#DC2626">增加推理延迟(串行计算)</text>
+    <text x="100" y="375" text-anchor="middle" font-size="11" fill="#DC2626">改动模型内部结构</text>
+  </g>
+
+  <!-- ===== Column 3: Prefix Tuning ===== -->
+  <g transform="translate(490, 60)">
+    <text x="100" y="20" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F2937">Prefix Tuning</text>
+    <text x="100" y="38" text-anchor="middle" font-size="12" fill="#6B7280">Li &amp; Liang, 2021</text>
+    <!-- Model block - frozen -->
+    <rect x="20" y="55" width="160" height="200" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2"/>
+    <!-- Prefix at each layer -->
+    <rect x="30" y="68" width="45" height="20" rx="3" fill="#DCFCE7" stroke="#10B981" stroke-width="1"/>
+    <text x="52" y="82" text-anchor="middle" font-size="9" fill="#059669">Prefix</text>
+    <rect x="80" y="68" width="90" height="20" rx="3" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+    <text x="125" y="82" text-anchor="middle" font-size="9" fill="#6B7280">Layer 1 (冻结)</text>
+
+    <rect x="30" y="98" width="45" height="20" rx="3" fill="#DCFCE7" stroke="#10B981" stroke-width="1"/>
+    <text x="52" y="112" text-anchor="middle" font-size="9" fill="#059669">Prefix</text>
+    <rect x="80" y="98" width="90" height="20" rx="3" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+    <text x="125" y="112" text-anchor="middle" font-size="9" fill="#6B7280">Layer 2 (冻结)</text>
+
+    <rect x="30" y="128" width="45" height="20" rx="3" fill="#DCFCE7" stroke="#10B981" stroke-width="1"/>
+    <text x="52" y="142" text-anchor="middle" font-size="9" fill="#059669">Prefix</text>
+    <rect x="80" y="128" width="90" height="20" rx="3" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+    <text x="125" y="142" text-anchor="middle" font-size="9" fill="#6B7280">Layer 3 (冻结)</text>
+
+    <text x="100" y="170" text-anchor="middle" font-size="12" fill="#6B7280">...</text>
+
+    <rect x="30" y="182" width="45" height="20" rx="3" fill="#DCFCE7" stroke="#10B981" stroke-width="1"/>
+    <text x="52" y="196" text-anchor="middle" font-size="9" fill="#059669">Prefix</text>
+    <rect x="80" y="182" width="90" height="20" rx="3" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+    <text x="125" y="196" text-anchor="middle" font-size="9" fill="#6B7280">Layer N (冻结)</text>
+
+    <text x="100" y="230" text-anchor="middle" font-size="11" fill="#059669">每层都有前缀激活</text>
+    <text x="100" y="245" text-anchor="middle" font-size="11" fill="#059669">0.1-1% 参数可训练</text>
+    <!-- Input -->
+    <rect x="35" y="270" width="130" height="30" rx="6" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="100" y="290" text-anchor="middle" font-size="12" fill="#3B82F6">输入文本</text>
+    <line x1="100" y1="270" x2="100" y2="255" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <!-- Drawback -->
+    <rect x="5" y="320" width="190" height="60" rx="6" fill="#FEF2F2" stroke="#EF4444" stroke-width="1" stroke-dasharray="4"/>
+    <text x="100" y="340" text-anchor="middle" font-size="11" fill="#DC2626">需要重参数化技巧稳定训练</text>
+    <text x="100" y="358" text-anchor="middle" font-size="11" fill="#DC2626">每层都要注入前缀</text>
+    <text x="100" y="375" text-anchor="middle" font-size="11" fill="#DC2626">训练时参数量更大</text>
+  </g>
+
+  <!-- ===== Column 4: Prompt Tuning ===== -->
+  <g transform="translate(720, 60)">
+    <text x="120" y="20" text-anchor="middle" font-size="15" font-weight="bold" fill="#10B981">Prompt Tuning</text>
+    <text x="120" y="38" text-anchor="middle" font-size="12" fill="#6B7280">Lester et al., 2021</text>
+    <!-- Highlight border -->
+    <rect x="5" y="48" width="230" height="350" rx="10" fill="none" stroke="#10B981" stroke-width="3" stroke-dasharray="8,4"/>
+    <!-- Model block - frozen -->
+    <rect x="20" y="90" width="200" height="165" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2"/>
+    <text x="120" y="130" text-anchor="middle" font-size="14" fill="#6B7280">Transformer</text>
+    <text x="120" y="150" text-anchor="middle" font-size="14" fill="#6B7280">全部层</text>
+    <text x="120" y="175" text-anchor="middle" font-size="13" fill="#9CA3AF">完全冻结</text>
+    <text x="120" y="195" text-anchor="middle" font-size="13" fill="#9CA3AF">不做任何修改</text>
+    <rect x="45" y="210" width="150" height="24" rx="4" fill="#9CA3AF" opacity="0.15"/>
+    <text x="120" y="227" text-anchor="middle" font-size="11" fill="#9CA3AF">0% 模型参数更新</text>
+    <!-- Soft Prompt -->
+    <rect x="20" y="270" width="85" height="30" rx="6" fill="#DCFCE7" stroke="#10B981" stroke-width="2"/>
+    <text x="62" y="290" text-anchor="middle" font-size="12" fill="#059669" font-weight="bold">Soft Prompt</text>
+    <!-- Input -->
+    <rect x="115" y="270" width="105" height="30" rx="6" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="167" y="290" text-anchor="middle" font-size="12" fill="#3B82F6">输入文本</text>
+    <!-- Concat bracket -->
+    <text x="108" y="290" text-anchor="middle" font-size="16" fill="#6B7280">+</text>
+    <line x1="120" y1="270" x2="120" y2="255" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <!-- Advantage -->
+    <rect x="5" y="320" width="230" height="70" rx="6" fill="#F0FDF4" stroke="#10B981" stroke-width="1.5"/>
+    <text x="120" y="340" text-anchor="middle" font-size="11" fill="#059669" font-weight="bold">仅需 &lt;0.01% 任务参数</text>
+    <text x="120" y="358" text-anchor="middle" font-size="11" fill="#059669">不改变模型结构、无推理延迟</text>
+    <text x="120" y="375" text-anchor="middle" font-size="11" fill="#059669">多任务共享同一冻结模型</text>
+  </g>
+
+  <!-- Legend at bottom -->
+  <g transform="translate(250, 475)">
+    <rect x="0" y="0" width="16" height="16" rx="3" fill="#DCFCE7" stroke="#10B981" stroke-width="1.5"/>
+    <text x="22" y="13" font-size="12" fill="#374151">可训练参数</text>
+    <rect x="130" y="0" width="16" height="16" rx="3" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5"/>
+    <text x="152" y="13" font-size="12" fill="#374151">冻结参数</text>
+    <rect x="260" y="0" width="16" height="16" rx="3" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="282" y="13" font-size="12" fill="#374151">输入数据</text>
+    <rect x="370" y="0" width="16" height="16" rx="3" fill="#FEF2F2" stroke="#EF4444" stroke-width="1" stroke-dasharray="3"/>
+    <text x="392" y="13" font-size="12" fill="#374151">主要缺点</text>
+  </g>
+</svg>

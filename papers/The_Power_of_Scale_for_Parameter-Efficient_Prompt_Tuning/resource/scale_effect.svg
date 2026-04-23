@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400" font-family="sans-serif">
+  <!-- Title -->
+  <text x="425" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F2937">规模效应: 模型越大，Prompt Tuning 越强</text>
+
+  <!-- Small model -->
+  <g transform="translate(30, 60)">
+    <text x="100" y="20" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F2937">T5-Small</text>
+    <text x="100" y="38" text-anchor="middle" font-size="12" fill="#6B7280">60M 参数</text>
+
+    <!-- Model box -->
+    <rect x="30" y="50" width="140" height="80" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2"/>
+    <text x="100" y="90" text-anchor="middle" font-size="12" fill="#6B7280">模型容量小</text>
+    <text x="100" y="108" text-anchor="middle" font-size="11" fill="#9CA3AF">语言理解能力有限</text>
+
+    <!-- Prompt -->
+    <rect x="55" y="145" width="90" height="24" rx="5" fill="#DCFCE7" stroke="#10B981" stroke-width="1.5"/>
+    <text x="100" y="162" text-anchor="middle" font-size="11" fill="#059669">Soft Prompt</text>
+
+    <!-- Score -->
+    <rect x="30" y="190" width="140" height="55" rx="8" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5"/>
+    <text x="100" y="210" text-anchor="middle" font-size="13" fill="#DC2626" font-weight="bold">SuperGLUE: ~59</text>
+    <text x="100" y="228" text-anchor="middle" font-size="11" fill="#DC2626">vs 模型微调 ~63</text>
+    <text x="100" y="240" text-anchor="middle" font-size="11" fill="#DC2626">差距 ~4 分</text>
+
+    <!-- Gap indicator -->
+    <rect x="50" y="260" width="100" height="20" rx="4" fill="#EF4444" opacity="0.2"/>
+    <rect x="50" y="260" width="60" height="20" rx="4" fill="#EF4444" opacity="0.5"/>
+    <text x="100" y="295" text-anchor="middle" font-size="11" fill="#DC2626">差距较大</text>
+  </g>
+
+  <!-- Large model -->
+  <g transform="translate(220, 60)">
+    <text x="120" y="20" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F2937">T5-Large</text>
+    <text x="120" y="38" text-anchor="middle" font-size="12" fill="#6B7280">770M 参数</text>
+
+    <!-- Model box -->
+    <rect x="20" y="50" width="200" height="80" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2"/>
+    <text x="120" y="90" text-anchor="middle" font-size="12" fill="#6B7280">模型容量中等</text>
+    <text x="120" y="108" text-anchor="middle" font-size="11" fill="#9CA3AF">较强语言理解</text>
+
+    <!-- Prompt -->
+    <rect x="65" y="145" width="110" height="24" rx="5" fill="#DCFCE7" stroke="#10B981" stroke-width="1.5"/>
+    <text x="120" y="162" text-anchor="middle" font-size="11" fill="#059669">Soft Prompt</text>
+
+    <!-- Score -->
+    <rect x="20" y="190" width="200" height="55" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+    <text x="120" y="210" text-anchor="middle" font-size="13" fill="#92400E" font-weight="bold">SuperGLUE: ~76</text>
+    <text x="120" y="228" text-anchor="middle" font-size="11" fill="#92400E">vs 模型微调 ~81</text>
+    <text x="120" y="240" text-anchor="middle" font-size="11" fill="#92400E">差距 ~5 分</text>
+
+    <!-- Gap indicator -->
+    <rect x="45" y="260" width="150" height="20" rx="4" fill="#F59E0B" opacity="0.2"/>
+    <rect x="45" y="260" width="70" height="20" rx="4" fill="#F59E0B" opacity="0.5"/>
+    <text x="120" y="295" text-anchor="middle" font-size="11" fill="#92400E">差距缩小</text>
+  </g>
+
+  <!-- XL model -->
+  <g transform="translate(450, 60)">
+    <text x="120" y="20" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F2937">T5-XL</text>
+    <text x="120" y="38" text-anchor="middle" font-size="12" fill="#6B7280">3B 参数</text>
+
+    <!-- Model box -->
+    <rect x="10" y="50" width="220" height="80" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2"/>
+    <text x="120" y="90" text-anchor="middle" font-size="12" fill="#6B7280">模型容量大</text>
+    <text x="120" y="108" text-anchor="middle" font-size="11" fill="#9CA3AF">强语言理解</text>
+
+    <!-- Prompt -->
+    <rect x="60" y="145" width="120" height="24" rx="5" fill="#DCFCE7" stroke="#10B981" stroke-width="1.5"/>
+    <text x="120" y="162" text-anchor="middle" font-size="11" fill="#059669">Soft Prompt</text>
+
+    <!-- Score -->
+    <rect x="10" y="190" width="220" height="55" rx="8" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="120" y="210" text-anchor="middle" font-size="13" fill="#1D4ED8" font-weight="bold">SuperGLUE: ~80</text>
+    <text x="120" y="228" text-anchor="middle" font-size="11" fill="#1D4ED8">vs 模型微调 ~88</text>
+    <text x="120" y="240" text-anchor="middle" font-size="11" fill="#1D4ED8">差距进一步缩小</text>
+
+    <!-- Gap indicator -->
+    <rect x="35" y="260" width="170" height="20" rx="4" fill="#3B82F6" opacity="0.15"/>
+    <rect x="35" y="260" width="50" height="20" rx="4" fill="#3B82F6" opacity="0.4"/>
+    <text x="120" y="295" text-anchor="middle" font-size="11" fill="#1D4ED8">差距较小</text>
+  </g>
+
+  <!-- XXL model -->
+  <g transform="translate(680, 60)">
+    <text x="80" y="20" text-anchor="middle" font-size="15" font-weight="bold" fill="#10B981">T5-XXL</text>
+    <text x="80" y="38" text-anchor="middle" font-size="12" fill="#6B7280">11B 参数</text>
+
+    <!-- Model box -->
+    <rect x="0" y="50" width="160" height="80" rx="8" fill="#F0FDF4" stroke="#10B981" stroke-width="2.5"/>
+    <text x="80" y="90" text-anchor="middle" font-size="12" fill="#059669">模型容量极大</text>
+    <text x="80" y="108" text-anchor="middle" font-size="11" fill="#059669">卓越语言理解</text>
+
+    <!-- Prompt -->
+    <rect x="15" y="145" width="130" height="24" rx="5" fill="#DCFCE7" stroke="#10B981" stroke-width="2"/>
+    <text x="80" y="162" text-anchor="middle" font-size="11" fill="#059669" font-weight="bold">Soft Prompt</text>
+
+    <!-- Score -->
+    <rect x="0" y="190" width="160" height="55" rx="8" fill="#F0FDF4" stroke="#10B981" stroke-width="2"/>
+    <text x="80" y="210" text-anchor="middle" font-size="13" fill="#059669" font-weight="bold">SuperGLUE: ~90</text>
+    <text x="80" y="228" text-anchor="middle" font-size="11" fill="#059669">= 模型微调 ~90</text>
+    <text x="80" y="240" text-anchor="middle" font-size="11" fill="#059669" font-weight="bold">差距消失!</text>
+
+    <!-- Gap indicator -->
+    <rect x="15" y="260" width="130" height="20" rx="4" fill="#10B981" opacity="0.15"/>
+    <rect x="15" y="260" width="10" height="20" rx="4" fill="#10B981" opacity="0.5"/>
+    <text x="80" y="295" text-anchor="middle" font-size="11" fill="#059669" font-weight="bold">几乎无差距</text>
+  </g>
+
+  <!-- Arrows between models showing progression -->
+  <line x1="175" y1="200" x2="220" y2="200" stroke="#6B7280" stroke-width="1.5" marker-end="url(#ar1)"/>
+  <line x1="410" y1="200" x2="448" y2="200" stroke="#6B7280" stroke-width="1.5" marker-end="url(#ar1)"/>
+  <line x1="640" y1="200" x2="678" y2="200" stroke="#10B981" stroke-width="2" marker-end="url(#ar2)"/>
+
+  <!-- Bottom insight -->
+  <rect x="100" y="330" width="650" height="60" rx="10" fill="#F0FDF4" stroke="#10B981" stroke-width="2"/>
+  <text x="425" y="355" text-anchor="middle" font-size="15" fill="#059669" font-weight="bold">核心发现: 模型规模是 Prompt Tuning 成功的关键因素</text>
+  <text x="425" y="378" text-anchor="middle" font-size="13" fill="#374151">当模型达到 10B+ 参数时，仅用 &lt;0.01% 的可训练参数即可匹配全量微调效果</text>
+</svg>
