@@ -1,0 +1,143 @@
+{
+  "pdf": "papers/Parameter-Efficient_Transfer_Learning_for_NLP/Parameter-Efficient_Transfer_Learning_for_NLP.pdf",
+  "total_pages": 13,
+  "embedded_images": 0,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 1,
+      "caption_y": 360.1
+    },
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 147.2
+    },
+    {
+      "fig_num": "2",
+      "page": 3,
+      "caption_y": 98.6
+    },
+    {
+      "fig_num": "2",
+      "page": 3,
+      "caption_y": 358.6
+    },
+    {
+      "fig_num": "3",
+      "page": 5,
+      "caption_y": 503.8
+    },
+    {
+      "fig_num": "4",
+      "page": 5,
+      "caption_y": 605.5
+    },
+    {
+      "fig_num": "3",
+      "page": 6,
+      "caption_y": 240.5
+    },
+    {
+      "fig_num": "4",
+      "page": 6,
+      "caption_y": 482.9
+    },
+    {
+      "fig_num": "5",
+      "page": 6,
+      "caption_y": 595.4
+    },
+    {
+      "fig_num": "6",
+      "page": 6,
+      "caption_y": 632.5
+    },
+    {
+      "fig_num": "5",
+      "page": 7,
+      "caption_y": 225.9
+    },
+    {
+      "fig_num": "6",
+      "page": 7,
+      "caption_y": 372.8
+    },
+    {
+      "fig_num": "6",
+      "page": 7,
+      "caption_y": 592.3
+    },
+    {
+      "fig_num": "6",
+      "page": 8,
+      "caption_y": 199.8
+    },
+    {
+      "fig_num": "7",
+      "page": 12,
+      "caption_y": 554.3
+    },
+    {
+      "fig_num": "7",
+      "page": 13,
+      "caption_y": 628.0
+    }
+  ],
+  "files": [
+    {
+      "page": 1,
+      "file": "page1_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 2,
+      "file": "page2_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 3,
+      "file": "page3_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 5,
+      "file": "page5_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 6,
+      "file": "page6_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 7,
+      "file": "page7_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 8,
+      "file": "page8_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 12,
+      "file": "page12_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 13,
+      "file": "page13_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    }
+  ]
+}

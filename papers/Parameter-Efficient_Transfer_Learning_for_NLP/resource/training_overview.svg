@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 320" font-family="sans-serif">
+  <defs>
+    <marker id="ta" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#374151"/>
+    </marker>
+    <marker id="ta-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3B82F6"/>
+    </marker>
+  </defs>
+
+  <text x="430" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F2937">Adapter 训练迭代全景图</text>
+
+  <!-- Round 1 -->
+  <g transform="translate(15, 50)">
+    <rect x="0" y="0" width="240" height="240" rx="10" ry="10" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1.5"/>
+    <text x="120" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">第 1 轮迭代</text>
+
+    <!-- Forward -->
+    <rect x="15" y="35" width="210" height="42" rx="6" ry="6" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="120" y="52" text-anchor="middle" font-size="11" fill="#1E40AF" font-weight="bold">前向传播</text>
+    <text x="120" y="68" text-anchor="middle" font-size="10" fill="#3B82F6">h = W_frozen·x + W_up·ReLU(W_down·x)</text>
+
+    <!-- Loss -->
+    <rect x="45" y="85" width="150" height="30" rx="6" ry="6" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+    <text x="120" y="105" text-anchor="middle" font-size="11" fill="#92400E">损失 L = 0.185</text>
+
+    <!-- Backward -->
+    <rect x="15" y="123" width="210" height="42" rx="6" ry="6" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5"/>
+    <text x="120" y="140" text-anchor="middle" font-size="11" fill="#DC2626" font-weight="bold">反向传播</text>
+    <text x="120" y="156" text-anchor="middle" font-size="10" fill="#EF4444">计算 dL/dW_down, dL/dW_up 梯度</text>
+
+    <!-- Update -->
+    <rect x="15" y="173" width="210" height="42" rx="6" ry="6" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
+    <text x="120" y="190" text-anchor="middle" font-size="11" fill="#065F46" font-weight="bold">参数更新</text>
+    <text x="120" y="206" text-anchor="middle" font-size="10" fill="#059669">W = W - lr * grad (仅 Adapter)</text>
+
+    <!-- Note -->
+    <text x="120" y="232" text-anchor="middle" font-size="10" fill="#6B7280">W_frozen 不动, 仅更新插入的小模块</text>
+  </g>
+
+  <!-- Arrow 1->2 -->
+  <line x1="260" y1="170" x2="290" y2="170" stroke="#374151" stroke-width="2" marker-end="url(#ta)"/>
+  <text x="275" y="163" text-anchor="middle" font-size="10" fill="#6B7280">更新后</text>
+
+  <!-- Round 2 -->
+  <g transform="translate(295, 50)">
+    <rect x="0" y="0" width="240" height="240" rx="10" ry="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+    <text x="120" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#374151">第 2 轮迭代</text>
+
+    <!-- Forward -->
+    <rect x="15" y="35" width="210" height="42" rx="6" ry="6" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="120" y="52" text-anchor="middle" font-size="11" fill="#1E40AF" font-weight="bold">前向传播</text>
+    <text x="120" y="68" text-anchor="middle" font-size="10" fill="#3B82F6">Adapter 开始输出非零增量</text>
+
+    <!-- Loss -->
+    <rect x="45" y="85" width="150" height="30" rx="6" ry="6" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
+    <text x="120" y="105" text-anchor="middle" font-size="11" fill="#065F46">损失 L = 0.142 (↓23%)</text>
+
+    <!-- Backward -->
+    <rect x="15" y="123" width="210" height="42" rx="6" ry="6" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5"/>
+    <text x="120" y="140" text-anchor="middle" font-size="11" fill="#DC2626" font-weight="bold">反向传播</text>
+    <text x="120" y="156" text-anchor="middle" font-size="10" fill="#EF4444">梯度更精准, 输出更接近目标</text>
+
+    <!-- Update -->
+    <rect x="15" y="173" width="210" height="42" rx="6" ry="6" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
+    <text x="120" y="190" text-anchor="middle" font-size="11" fill="#065F46" font-weight="bold">参数更新</text>
+    <text x="120" y="206" text-anchor="middle" font-size="10" fill="#059669">继续仅更新 Adapter 参数</text>
+
+    <text x="120" y="232" text-anchor="middle" font-size="10" fill="#6B7280">Adapter 逐渐学到任务特有的调整</text>
+  </g>
+
+  <!-- Arrow 2->3 -->
+  <line x1="540" y1="170" x2="570" y2="170" stroke="#374151" stroke-width="2" marker-end="url(#ta)"/>
+  <text x="555" y="163" text-anchor="middle" font-size="10" fill="#6B7280">收敛</text>
+
+  <!-- Round N (converged) -->
+  <g transform="translate(575, 50)">
+    <rect x="0" y="0" width="260" height="240" rx="10" ry="10" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+    <text x="130" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#065F46">训练完成 (收敛)</text>
+
+    <rect x="15" y="38" width="230" height="55" rx="6" ry="6" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
+    <text x="130" y="58" text-anchor="middle" font-size="12" fill="#065F46" font-weight="bold">最终模型结构</text>
+    <text x="130" y="76" text-anchor="middle" font-size="11" fill="#059669">原 BERT (冻结) + 训练好的 Adapters</text>
+
+    <rect x="15" y="102" width="230" height="50" rx="6" ry="6" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="130" y="120" text-anchor="middle" font-size="11" fill="#374151">共享参数: 330M (BERT-Large)</text>
+    <text x="130" y="140" text-anchor="middle" font-size="11" fill="#10B981" font-weight="bold">新增参数: ~12M (3.6%)</text>
+
+    <rect x="15" y="162" width="230" height="65" rx="6" ry="6" fill="#ECFDF5" stroke="#10B981" stroke-width="1"/>
+    <text x="130" y="180" text-anchor="middle" font-size="11" fill="#065F46">GLUE: 80.0 (vs Fine-tune 80.4)</text>
+    <text x="130" y="198" text-anchor="middle" font-size="11" fill="#065F46">仅差 0.4%, 但参数量从 9x 降到 1.3x</text>
+    <text x="130" y="216" text-anchor="middle" font-size="11" fill="#065F46" font-weight="bold">新任务? 加一组 Adapter 即可!</text>
+  </g>
+</svg>
