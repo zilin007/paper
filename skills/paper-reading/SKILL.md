@@ -26,6 +26,25 @@ description: 论文精读技能。根据用户给出的论文名称，从 arXiv 
 
 ## 工作流程
 
+### Step 0: 去重检查（重要）
+
+在开始任何工作之前，**必须先检查论文是否已经精读过**。
+
+**检查方法**：扫描 `papers/` 目录下所有子文件夹，如果存在同名文件夹且内部已有 `*_解读.md` 文件，说明该论文已精读完成。
+
+```bash
+# 列出所有已精读论文
+ls papers/*/  # 查看文件夹列表
+ls papers/*/_解读.md 2>/dev/null  # 查看已有解读文件
+```
+
+**判定逻辑**：
+- 文件夹名与论文标题匹配（英文标题转下划线格式）且包含 `_解读.md` → **已精读，跳过**
+- 文件夹存在但没有 `_解读.md`（只有 PDF）→ **未完成，继续精读**
+- 文件夹不存在 → **未精读，正常开始**
+
+**用户提交多篇论文时**：逐一检查，跳过已精读的，只处理未精读的。对于跳过的论文，告知用户"该论文已精读，跳过"。如果全部已精读，告知用户并列出已有解读文件路径。
+
 ### Step 1: 确定论文信息
 
 从用户输入中提取：
@@ -60,6 +79,7 @@ python skills/paper-reading/scripts/download_arxiv.py "<论文名称或arXiv ID>
 1. 使用 `mcp__arxiv__download_paper`，传入 `paper_id`（如 `"1706.03762"`）
    - 该工具自动下载并提取全文（优先 HTML，回退 PDF）
    - 返回论文全文内容（Markdown 格式），可直接阅读
+   - **重要**：MCP 下载可能会在项目根目录生成 `{arxiv_id}.md` 缓存文件。该文件必须立即移动到对应论文的 `resource/` 目录下，并重命名为 `temp_paper_{arxiv_id}.md`。禁止让任何论文相关文件散落在根目录。
 
 2. 在项目的 `papers/` 目录下创建**论文专属文件夹**，并用 `curl` 下载 PDF：
    ```bash
@@ -106,11 +126,42 @@ python skills/paper-reading/scripts/extract_pdf_figures.py "papers/<论文简称
 **提取流程**：
 
 1. 先运行自动检测模式，获取各 Figure 标题所在页码和 y 坐标
-2. 查看全页截图（`pageN_full_300dpi.png`），确定每个 Figure 的精确裁剪坐标
+2. 查看全页截图（`temp_pageN_full_300dpi.png`），确定每个 Figure 的精确裁剪坐标
 3. 用手动裁剪模式逐一提取干净的 Figure 图片
 4. 裁剪时注意：排除周围正文文字，仅保留图形本体和标题（caption）
 
-**命名规范**：`figure1_<简要描述>.png`，如 `figure1_lora_reparametrization.png`
+**文件命名规范（resource/ 目录下）**：
+
+| 文件类型 | 命名格式 | 是否保留 | 说明 |
+|---------|---------|---------|------|
+| 最终 Figure 图片 | `figure{N}_{描述}.png` | **保留** | 手动裁剪或确认可用的论文原图 |
+| 自绘辅助图表 | `{描述}.svg` | **保留** | 方法对比图、流程图、梯度流向图等 |
+| 提取摘要 | `extraction_summary.json` | **保留** | 记录提取过程，便于追溯 |
+| 嵌入位图 | `page{N}_img{序号}_{宽}x{高}.{ext}` | **保留** | 从 PDF 直接提取的嵌入图片，可能包含可用原图 |
+| 全页截图（临时） | `temp_page{N}_full_{dpi}dpi.png` | **清理** | 仅用于手动裁剪参考，确认裁剪完成后即可删除 |
+| 论文全文缓存（临时） | `temp_paper_{arxiv_id}.md` | **清理** | MCP 下载的 HTML 转换全文，质量不高，有 PDF 作为正式原文，禁止留在根目录 |
+
+**清理规则**：`temp_*` 前缀的文件是明确的临时文件，在手动裁剪完成、最终 Figure 图片确认无误后，可直接代码删除，无需二次确认。
+
+```bash
+# 自动清理临时全页截图（保留最终 figure、svg、json 和嵌入图片）
+rm papers/<论文简称>/resource/temp_*
+```
+
+### Step 4.6: 清理临时文件（自动执行）
+
+在手动裁剪完成、最终 Figure 图片已保存后，**自动删除**所有 `temp_` 前缀的临时文件。此步骤无需询问用户，因为 `temp_` 前缀已明确标识这些文件为一次性参考用途。
+
+**需清理的临时文件清单**：
+- `temp_page{N}_full_{dpi}dpi.png` —— 全页截图
+- `temp_paper_{arxiv_id}.md` —— MCP 下载的 HTML 转换全文缓存
+
+```bash
+# 自动清理该论文目录下 resource/ 中的所有临时文件
+rm papers/<论文简称>/resource/temp_*
+```
+
+**清理后 resource/ 中应仅保留**：最终 Figure 图片（`figure{N}_*.png`）、自绘 SVG、嵌入位图、`extraction_summary.json`。若某论文没有可提取的嵌入图片且所有 figure 均为自绘 SVG，则仅保留 SVG 和 `extraction_summary.json`。
 
 ### Step 5: 生成论文解读
 
@@ -176,7 +227,7 @@ python skills/paper-reading/scripts/extract_pdf_figures.py "papers/<论文简称
    - 用更新后的参数对同一输入再做一次前向传播，算出新的输出和新的损失
    - 用对比表格或列表展示：每个输出分量是否朝目标方向移动了、损失是否下降了
    - 如果存在"冷启动"现象（如某参数初始为零导致另一参数第一轮无梯度），明确指出从第几轮开始所有参数都参与更新
-   - 用 ASCII 图画出多轮迭代的全景图，展示训练如何逐步收敛
+   - 用 SVG 画出多轮迭代的全景图，展示训练如何逐步收敛
 6. **部署/推理**：如果方法在推理阶段有特殊处理（如权重合并、模块移除），用图示说明
 
 注意：推导的目的是建立直觉，不是严格数学证明。数值可以简化，但维度变化和计算流程必须正确。
@@ -232,16 +283,19 @@ papers/
 │   ├── Attention_Is_All_You_Need.pdf        # 论文原文 PDF
 │   ├── Attention_Is_All_You_Need_解读.md    # 论文解读
 │   └── resource/                            # 解读引用的资源
-│       ├── figure1_transformer_arch.png     # 从 PDF 提取的原图
+│       ├── figure1_transformer_arch.png     # 最终保留：从 PDF 提取的原图
 │       ├── figure2_attention_detail.png
-│       └── extraction_summary.json          # 图片提取摘要
+│       ├── gradient_flow.svg                # 最终保留：自绘辅助图表
+│       ├── extraction_summary.json          # 最终保留：提取摘要记录
+│       └── page5_img1_640x480.png           # 最终保留：从 PDF 提取的嵌入位图
 │
 ├── LoRA_Low-Rank_Adaptation/                # 另一篇论文
 │   ├── LoRA_Low-Rank_Adaptation.pdf
 │   ├── LoRA_Low-Rank_Adaptation_解读.md
 │   └── resource/
-│       ├── figure1_reparametrization.png
-│       └── figure2_accuracy_vs_params.png
+│       ├── figure1_reparametrization.png    # 手动裁剪的最终 Figure
+│       ├── figure2_accuracy_vs_params.png
+│       └── method_comparison.svg            # 自绘对比图
 │
 └── ...                                      # 更多论文
 ```
@@ -249,8 +303,10 @@ papers/
 **关键约定**：
 - 论文文件夹名 = 论文简称（与 PDF 文件名一致，不含扩展名）
 - 解读 Markdown 中引用资源使用**相对路径** `./resource/xxx.png`
-- `resource/` 目录仅存放解读所需的资源（提取的原图、自制图表等）
-- 全页截图等临时文件（`pageN_full_300dpi.png`）在裁剪完成后可清理，不必保留
+- `resource/` 目录存放解读所需的最终资源（提取原图、自制 SVG、`extraction_summary.json`）
+- **所有论文相关文件必须集中在 `papers/<论文简称>/` 下**，禁止任何文件散落在项目根目录
+- **临时文件统一使用 `temp_` 前缀**（如 `temp_page5_full_300dpi.png`、`temp_paper_2309.12307.md`），仅用于中间处理，确认完成后自动代码删除
+- **保留文件命名规则**：最终 Figure 用 `figure{N}_{描述}.png`，自绘图用 `{描述}.svg`，不得使用 `temp_` 前缀
 - Git 推送后，GitHub Actions 会自动将论文解读同步发布到博客
 
 ## 可用 MCP 工具速查

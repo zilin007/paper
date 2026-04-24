@@ -108,7 +108,7 @@ def auto_extract_figures(pdf_path, out_dir, dpi=300):
     # Step 3: 对包含 figure 的页面做全页截图（供后续手动裁剪或 AI 辅助裁剪）
     figure_pages = set(fig["page"] for fig in figures)
     for pg in sorted(figure_pages):
-        fname = f"page{pg+1}_full_{dpi}dpi.png"
+        fname = f"temp_page{pg+1}_full_{dpi}dpi.png"
         path = os.path.join(out_dir, fname)
         w, h = render_full_page(doc, pg, path, dpi)
         all_results.append({"page": pg+1, "file": fname, "size": f"{w}x{h}", "method": "page_render"})
