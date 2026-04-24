@@ -41,3 +41,6 @@ desktop.ini
 *.swp
 *.swo
 *~
+
+# 各平台
+.opencode/
