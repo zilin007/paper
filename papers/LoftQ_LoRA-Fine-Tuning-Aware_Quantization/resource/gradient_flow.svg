@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" font-family="sans-serif">
+  <!-- Background -->
+  <rect width="700" height="350" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="350" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">LoftQ 微调阶段梯度流向</text>
+  
+  <!-- Input -->
+  <rect x="20" y="70" width="120" height="50" fill="#e3f2fd" rx="6" stroke="#1976d2" stroke-width="2"/>
+  <text x="80" y="100" text-anchor="middle" font-size="13" fill="#333">输入 x</text>
+  
+  <!-- Dequantize -->
+  <rect x="180" y="70" width="130" height="50" fill="#fff3e0" rx="6" stroke="#f57c00" stroke-width="2"/>
+  <text x="245" y="92" text-anchor="middle" font-size="12" fill="#333">反量化</text>
+  <text x="245" y="108" text-anchor="middle" font-size="11" fill="#666">M → Q (冻结)</text>
+  
+  <!-- Matrix multiply -->
+  <rect x="350" y="70" width="130" height="50" fill="#fff3e0" rx="6" stroke="#f57c00" stroke-width="2"/>
+  <text x="415" y="100" text-anchor="middle" font-size="12" fill="#333">x·Q (冻结)</text>
+  
+  <!-- LoRA branch -->
+  <rect x="350" y="160" width="130" height="50" fill="#e8f5e9" rx="6" stroke="#2e7d32" stroke-width="2"/>
+  <text x="415" y="182" text-anchor="middle" font-size="12" fill="#333">x·A·Bᵀ</text>
+  <text x="415" y="198" text-anchor="middle" font-size="11" fill="#2e7d32">(可训练)</text>
+  
+  <!-- Add -->
+  <circle cx="530" cy="115" r="20" fill="#fff" stroke="#333" stroke-width="2"/>
+  <text x="530" y="120" text-anchor="middle" font-size="18" fill="#333">+</text>
+  
+  <!-- Output -->
+  <rect x="580" y="85" width="100" height="50" fill="#e3f2fd" rx="6" stroke="#1976d2" stroke-width="2"/>
+  <text x="630" y="115" text-anchor="middle" font-size="13" fill="#333">输出 y</text>
+  
+  <!-- Arrows -->
+  <line x1="140" y1="95" x2="180" y2="95" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="310" y1="95" x2="350" y2="95" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="415" y1="120" x2="415" y2="160" stroke="#2e7d32" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowGreen)"/>
+  <line x1="480" y1="95" x2="510" y2="95" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="480" y1="185" x2="515" y2="130" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="550" y1="115" x2="580" y2="115" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Gradient flow annotation -->
+  <rect x="20" y="240" width="660" height="95" fill="#fff" rx="6" stroke="#666" stroke-width="1"/>
+  <text x="40" y="265" font-size="13" font-weight="bold" fill="#333">梯度流向（反向传播）：</text>
+  <text x="40" y="290" font-size="12" fill="#d32f2f">✗ 量化权重 Q（整数存储）：无梯度，不更新</text>
+  <text x="40" y="315" font-size="12" fill="#2e7d32">✓ LoRA 参数 A, B（FP16）：有梯度，AdamW 优化</text>
+  
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2e7d32"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,68 @@
+{
+  "pdf": "papers/LoftQ_LoRA-Fine-Tuning-Aware_Quantization/LoftQ_LoRA-Fine-Tuning-Aware_Quantization.pdf",
+  "total_pages": 23,
+  "embedded_images": 0,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 430.7
+    },
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 464.5
+    },
+    {
+      "fig_num": "2",
+      "page": 2,
+      "caption_y": 600.0
+    },
+    {
+      "fig_num": "1",
+      "page": 3,
+      "caption_y": 273.4
+    },
+    {
+      "fig_num": "2",
+      "page": 3,
+      "caption_y": 622.3
+    },
+    {
+      "fig_num": "3",
+      "page": 12,
+      "caption_y": 512.9
+    },
+    {
+      "fig_num": "3",
+      "page": 13,
+      "caption_y": 218.5
+    }
+  ],
+  "files": [
+    {
+      "page": 2,
+      "file": "temp_page2_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 3,
+      "file": "temp_page3_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 12,
+      "file": "temp_page12_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 13,
+      "file": "temp_page13_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    }
+  ]
+}

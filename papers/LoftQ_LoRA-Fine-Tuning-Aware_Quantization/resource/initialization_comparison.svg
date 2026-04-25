@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" font-family="sans-serif">
+  <!-- Background -->
+  <rect width="700" height="400" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="350" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">QLoRA vs LoftQ 初始化误差对比</text>
+  
+  <!-- Left: QLoRA -->
+  <text x="175" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#d32f2f">QLoRA 初始化</text>
+  
+  <!-- QLoRA diagram -->
+  <rect x="50" y="85" width="250" height="60" fill="#e3f2fd" rx="6" stroke="#1976d2" stroke-width="2"/>
+  <text x="175" y="120" text-anchor="middle" font-size="13" fill="#333">预训练权重 W (FP16)</text>
+  
+  <text x="175" y="170" text-anchor="middle" font-size="20" fill="#666">↓ 量化</text>
+  
+  <rect x="50" y="190" width="250" height="50" fill="#fff3e0" rx="6" stroke="#f57c00" stroke-width="2"/>
+  <text x="175" y="220" text-anchor="middle" font-size="13" fill="#333">量化权重 Q (NF4/NF2)</text>
+  
+  <text x="175" y="265" text-anchor="middle" font-size="20" fill="#666">+ 零初始化 LoRA</text>
+  
+  <rect x="50" y="285" width="250" height="50" fill="#fce4ec" rx="6" stroke="#d32f2f" stroke-width="2"/>
+  <text x="175" y="315" text-anchor="middle" font-size="13" fill="#d32f2f">A=0, B~N(0,σ²) → AB=0</text>
+  
+  <!-- Error annotation -->
+  <rect x="30" y="345" width="290" height="40" fill="#ffebee" rx="4"/>
+  <text x="175" y="370" text-anchor="middle" font-size="12" fill="#d32f2f">⚠ 量化误差 ||W-Q|| 未被补偿!</text>
+  
+  <!-- Right: LoftQ -->
+  <text x="525" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">LoftQ 初始化</text>
+  
+  <!-- LoftQ diagram -->
+  <rect x="400" y="85" width="250" height="60" fill="#e3f2fd" rx="6" stroke="#1976d2" stroke-width="2"/>
+  <text x="525" y="120" text-anchor="middle" font-size="13" fill="#333">预训练权重 W (FP16)</text>
+  
+  <text x="525" y="170" text-anchor="middle" font-size="20" fill="#666">↓ 交替优化</text>
+  
+  <rect x="400" y="190" width="110" height="50" fill="#fff3e0" rx="6" stroke="#f57c00" stroke-width="2"/>
+  <text x="455" y="220" text-anchor="middle" font-size="12" fill="#333">量化权重 Q</text>
+  
+  <text x="525" y="215" text-anchor="middle" font-size="18" fill="#666">+</text>
+  
+  <rect x="540" y="190" width="110" height="50" fill="#e8f5e9" rx="6" stroke="#2e7d32" stroke-width="2"/>
+  <text x="595" y="220" text-anchor="middle" font-size="12" fill="#333">LoRA 初始 AB</text>
+  
+  <text x="525" y="265" text-anchor="middle" font-size="18" fill="#666">≈</text>
+  
+  <rect x="400" y="285" width="250" height="50" fill="#e8f5e9" rx="6" stroke="#2e7d32" stroke-width="2"/>
+  <text x="525" y="315" text-anchor="middle" font-size="13" fill="#2e7d32">Q + AB ≈ W (误差极小)</text>
+  
+  <!-- Success annotation -->
+  <rect x="380" y="345" width="290" height="40" fill="#e8f5e9" rx="4"/>
+  <text x="525" y="370" text-anchor="middle" font-size="12" fill="#2e7d32">✓ 量化误差被 AB 补偿!</text>
+  
+  <!-- Arrow between two sides -->
+  <text x="350" y="220" text-anchor="middle" font-size="24" fill="#666">⟹</text>
+</svg>

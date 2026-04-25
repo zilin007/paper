@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 350" font-family="sans-serif">
+  <!-- Background -->
+  <rect width="750" height="350" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="375" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">训练时 vs 部署时</text>
+  
+  <!-- Training side -->
+  <rect x="30" y="55" width="330" height="270" fill="#e3f2fd" rx="8" stroke="#1976d2" stroke-width="2"/>
+  <text x="195" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#1976d2">训练阶段 (Fine-tuning)</text>
+  
+  <!-- Training components -->
+  <rect x="60" y="105" width="270" height="45" fill="#fff3e0" rx="6" stroke="#f57c00" stroke-width="2"/>
+  <text x="195" y="133" text-anchor="middle" font-size="12" fill="#333">量化权重 Q (INT4/INT2) — 冻结</text>
+  
+  <text x="195" y="170" text-anchor="middle" font-size="18" fill="#666">+</text>
+  
+  <rect x="60" y="185" width="270" height="45" fill="#e8f5e9" rx="6" stroke="#2e7d32" stroke-width="2"/>
+  <text x="195" y="213" text-anchor="middle" font-size="12" fill="#333">LoRA 参数 A, B (FP16) — 可训练</text>
+  
+  <text x="195" y="250" text-anchor="middle" font-size="12" fill="#666">前向: y = x·Q + x·A·Bᵀ</text>
+  <text x="195" y="270" text-anchor="middle" font-size="12" fill="#2e7d32">反向: 梯度仅流向 A, B</text>
+  
+  <rect x="60" y="285" width="270" height="30" fill="#bbdefb" rx="4"/>
+  <text x="195" y="305" text-anchor="middle" font-size="11" fill="#1976d2">优化器: AdamW 更新 A, B</text>
+  
+  <!-- Deployment side -->
+  <rect x="390" y="55" width="330" height="270" fill="#e8f5e9" rx="8" stroke="#2e7d32" stroke-width="2"/>
+  <text x="555" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">部署阶段 (Inference)</text>
+  
+  <!-- Deployment components -->
+  <rect x="420" y="105" width="270" height="45" fill="#fff3e0" rx="6" stroke="#f57c00" stroke-width="2"/>
+  <text x="555" y="133" text-anchor="middle" font-size="12" fill="#333">量化权重 Q (INT4/INT2)</text>
+  
+  <text x="555" y="170" text-anchor="middle" font-size="18" fill="#666">+</text>
+  
+  <rect x="420" y="185" width="270" height="45" fill="#e8f5e9" rx="6" stroke="#2e7d32" stroke-width="2"/>
+  <text x="555" y="213" text-anchor="middle" font-size="12" fill="#333">LoRA 参数 A, B (训练后的值)</text>
+  
+  <text x="555" y="250" text-anchor="middle" font-size="12" fill="#666">前向: y = x·Q + x·A·Bᵀ</text>
+  <text x="555" y="270" text-anchor="middle" font-size="12" fill="#2e7d32">无反向传播</text>
+  
+  <rect x="420" y="285" width="270" height="30" fill="#c8e6c9" rx="4"/>
+  <text x="555" y="305" text-anchor="middle" font-size="11" fill="#2e7d32">显存占用: Q(低比特) + A,B(小秩)</text>
+  
+  <!-- Arrow between -->
+  <text x="375" y="190" text-anchor="middle" font-size="24" fill="#666">⟹</text>
+</svg>
