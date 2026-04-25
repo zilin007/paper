@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; fill: #333; }
+    .label { font-size: 13px; fill: #333; }
+    .label-small { font-size: 11px; fill: #555; }
+    .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    .box { rx: 6; ry: 6; }
+    .box-green { fill: #e8f5e9; stroke: #4caf50; stroke-width: 2; }
+    .box-blue { fill: #e3f2fd; stroke: #2196f3; stroke-width: 2; }
+    .box-orange { fill: #fff3e0; stroke: #ff9800; stroke-width: 2; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" class="title">训练时 vs 推理时：BatchNorm 的差异</text>
+
+  <!-- Training side -->
+  <rect x="30" y="55" width="300" height="300" rx="10" ry="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+  <text x="180" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="#2e7d32">训练阶段 (Training)</text>
+
+  <rect x="50" y="105" width="260" height="40" class="box box-green"/>
+  <text x="180" y="130" text-anchor="middle" class="label">使用当前 mini-batch 的 μ_B, σ²_B</text>
+
+  <path d="M180 145 L180 165" class="arrow"/>
+
+  <rect x="50" y="165" width="260" height="40" class="box box-green"/>
+  <text x="180" y="190" text-anchor="middle" class="label">γ, β 通过反向传播更新</text>
+
+  <path d="M180 205 L180 225" class="arrow"/>
+
+  <rect x="50" y="225" width="260" height="40" class="box box-orange"/>
+  <text x="180" y="250" text-anchor="middle" class="label">同时累积移动平均:</text>
+  <text x="180" y="265" text-anchor="middle" class="label-small">E[x] ← momentum·E[x] + (1-momentum)·μ_B</text>
+
+  <path d="M180 265 L180 285" class="arrow"/>
+
+  <rect x="50" y="285" width="260" height="40" class="box box-green"/>
+  <text x="180" y="310" text-anchor="middle" class="label">每个 batch 的归一化不同</text>
+  <text x="180" y="325" text-anchor="middle" class="label-small">→ 自带正则化效果 (类似 Dropout)</text>
+
+  <!-- Inference side -->
+  <rect x="370" y="55" width="300" height="300" rx="10" ry="10" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+  <text x="520" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="#1565c0">推理阶段 (Inference)</text>
+
+  <rect x="390" y="105" width="260" height="40" class="box box-blue"/>
+  <text x="520" y="130" text-anchor="middle" class="label">使用训练时累积的全局 μ, σ²</text>
+
+  <path d="M520 145 L520 165" class="arrow"/>
+
+  <rect x="390" y="165" width="260" height="40" class="box box-blue"/>
+  <text x="520" y="190" text-anchor="middle" class="label">γ, β 固定 (不再更新)</text>
+
+  <path d="M520 205 L520 225" class="arrow"/>
+
+  <rect x="390" y="225" width="260" height="40" class="box box-blue"/>
+  <text x="520" y="250" text-anchor="middle" class="label">归一化变成确定性线性变换:</text>
+  <text x="520" y="265" text-anchor="middle" class="label-small">y = γ·(x-μ)/√(σ²+ε) + β</text>
+
+  <path d="M520 265 L520 285" class="arrow"/>
+
+  <rect x="390" y="285" width="260" height="40" class="box box-blue"/>
+  <text x="520" y="310" text-anchor="middle" class="label">可与前层权重融合</text>
+  <text x="520" y="325" text-anchor="middle" class="label-small">→ 推理无额外开销!</text>
+
+  <!-- Arrow between -->
+  <path d="M330 205 L370 205" stroke="#ff9800" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="350" y="195" text-anchor="middle" font-size="11" fill="#e65100" font-weight="bold">训练完成</text>
+</svg>

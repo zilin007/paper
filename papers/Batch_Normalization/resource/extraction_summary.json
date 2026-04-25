@@ -1,0 +1,94 @@
+{
+  "pdf": "papers/Batch_Normalization/Batch_Normalization.pdf",
+  "total_pages": 11,
+  "embedded_images": 0,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 6,
+      "caption_y": 107.3
+    },
+    {
+      "fig_num": "1",
+      "page": 6,
+      "caption_y": 369.1
+    },
+    {
+      "fig_num": "1",
+      "page": 6,
+      "caption_y": 440.7
+    },
+    {
+      "fig_num": "2",
+      "page": 7,
+      "caption_y": 175.4
+    },
+    {
+      "fig_num": "3",
+      "page": 7,
+      "caption_y": 153.4
+    },
+    {
+      "fig_num": "2",
+      "page": 7,
+      "caption_y": 469.5
+    },
+    {
+      "fig_num": "3",
+      "page": 7,
+      "caption_y": 505.4
+    },
+    {
+      "fig_num": "4",
+      "page": 7,
+      "caption_y": 590.9
+    },
+    {
+      "fig_num": "4",
+      "page": 8,
+      "caption_y": 140.1
+    },
+    {
+      "fig_num": "5",
+      "page": 9,
+      "caption_y": 605.2
+    },
+    {
+      "fig_num": "5",
+      "page": 11,
+      "caption_y": 477.1
+    }
+  ],
+  "files": [
+    {
+      "page": 6,
+      "file": "temp_page6_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 7,
+      "file": "temp_page7_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 8,
+      "file": "temp_page8_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 9,
+      "file": "temp_page9_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 11,
+      "file": "temp_page11_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; fill: #333; }
+    .label { font-size: 13px; fill: #333; }
+    .label-small { font-size: 11px; fill: #555; }
+    .formula { font-size: 13px; fill: #1565c0; font-family: "Cambria Math", serif; }
+    .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    .arrow-green { stroke: #4caf50; stroke-width: 2; fill: none; marker-end: url(#arrowhead-green); }
+    .arrow-red { stroke: #f44336; stroke-width: 2; fill: none; marker-end: url(#arrowhead-red); }
+    .box { rx: 6; ry: 6; }
+    .box-green { fill: #e8f5e9; stroke: #4caf50; stroke-width: 2; }
+    .box-red { fill: #ffebee; stroke: #f44336; stroke-width: 2; }
+    .box-blue { fill: #e3f2fd; stroke: #2196f3; stroke-width: 2; }
+    .box-gray { fill: #f5f5f5; stroke: #999; stroke-width: 2; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4caf50"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f44336"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" class="title">BatchNorm 梯度反向传播流程</text>
+
+  <!-- Loss at top -->
+  <rect x="250" y="50" width="200" height="45" class="box box-red"/>
+  <text x="350" y="78" text-anchor="middle" class="label">损失 L (来自上一层)</text>
+
+  <path d="M350 95 L350 115" class="arrow-red"/>
+
+  <!-- Gradient to gamma and beta -->
+  <rect x="250" y="115" width="200" height="50" class="box box-green"/>
+  <text x="350" y="137" text-anchor="middle" class="label">∂L/∂γ = Σ (∂L/∂y_i · x̂_i)</text>
+  <text x="350" y="155" text-anchor="middle" class="label">∂L/∂β = Σ (∂L/∂y_i)</text>
+
+  <path d="M350 165 L350 185" class="arrow"/>
+
+  <!-- Gradient to normalized x -->
+  <rect x="250" y="185" width="200" height="50" class="box box-blue"/>
+  <text x="350" y="207" text-anchor="middle" class="label">∂L/∂x̂_i = (∂L/∂y_i) · γ</text>
+  <text x="350" y="225" text-anchor="middle" class="label-small">梯度经过 γ 缩放</text>
+
+  <path d="M350 235 L350 255" class="arrow"/>
+
+  <!-- Gradient through normalization -->
+  <rect x="250" y="255" width="200" height="60" class="box box-blue"/>
+  <text x="350" y="277" text-anchor="middle" class="label">∂L/∂x_i 通过链式法则:</text>
+  <text x="350" y="295" text-anchor="middle" class="formula">∂L/∂x_i = ∂L/∂x̂_i · ∂x̂_i/∂x_i</text>
+  <text x="350" y="310" text-anchor="middle" class="label-small">涉及 μ_B 和 σ²_B 的导数</text>
+
+  <path d="M350 315 L350 335" class="arrow"/>
+
+  <!-- Gradient to previous layer -->
+  <rect x="250" y="335" width="200" height="45" class="box box-gray"/>
+  <text x="350" y="363" text-anchor="middle" class="label">梯度 → 前一层网络参数</text>
+
+  <!-- Side annotations: What gets updated -->
+  <rect x="480" y="115" width="190" height="120" rx="8" ry="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+  <text x="575" y="140" text-anchor="middle" font-size="13" font-weight="bold" fill="#2e7d32">可训练参数 (有梯度)</text>
+  <text x="495" y="165" class="label-small">✓ γ (缩放参数)</text>
+  <text x="495" y="185" class="label-small">✓ β (平移参数)</text>
+  <text x="495" y="205" class="label-small">✓ W (前层权重)</text>
+  <text x="495" y="225" class="label-small">✓ 前层偏置 (如有)</text>
+
+  <!-- Side annotations: What does NOT get updated -->
+  <rect x="480" y="260" width="190" height="100" rx="8" ry="8" fill="#ffebee" stroke="#f44336" stroke-width="2"/>
+  <text x="575" y="285" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828">不可训练 (无梯度)</text>
+  <text x="495" y="310" class="label-small">✗ μ_B (当前 batch 均值)</text>
+  <text x="495" y="330" class="label-small">✗ σ²_B (当前 batch 方差)</text>
+  <text x="495" y="350" class="label-small">  它们是统计量, 不是参数</text>
+
+  <!-- Key insight -->
+  <rect x="30" y="115" width="190" height="200" rx="8" ry="8" fill="#fff8e1" stroke="#ff9800" stroke-width="2"/>
+  <text x="125" y="140" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">为什么梯度稳定?</text>
+  <text x="40" y="170" class="label-small">• 归一化后激活值</text>
+  <text x="40" y="190" class="label-small">  分布在 N(0,1) 附近</text>
+  <text x="40" y="220" class="label-small">• 不会进入饱和区</text>
+  <text x="40" y="240" class="label-small">• 梯度不会消失</text>
+  <text x="40" y="270" class="label-small">• 参数尺度不影响</text>
+  <text x="40" y="290" class="label-small">  梯度大小</text>
+  <text x="40" y="310" class="label-small">• 可用更大学习率</text>
+</svg>

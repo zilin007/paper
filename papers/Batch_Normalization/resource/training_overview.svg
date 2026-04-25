@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; fill: #333; }
+    .label { font-size: 12px; fill: #333; }
+    .label-small { font-size: 10px; fill: #555; }
+    .arrow { stroke: #333; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+    .arrow-green { stroke: #4caf50; stroke-width: 2; fill: none; marker-end: url(#arrowhead-green); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4caf50"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" class="title">BatchNorm 训练迭代全景：多轮参数更新</text>
+
+  <!-- Iteration 1 -->
+  <rect x="20" y="50" width="130" height="280" rx="8" ry="8" fill="#fafafa" stroke="#ccc" stroke-width="1"/>
+  <text x="85" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">第 1 轮</text>
+
+  <rect x="30" y="90" width="110" height="30" rx="4" ry="4" fill="#e3f2fd" stroke="#2196f3"/>
+  <text x="85" y="110" text-anchor="middle" class="label">γ=1.000, β=0.000</text>
+
+  <rect x="30" y="130" width="110" height="30" rx="4" ry="4" fill="#fff3e0" stroke="#ff9800"/>
+  <text x="85" y="145" text-anchor="middle" class="label-small">μ_B=4.0, σ²=2.667</text>
+
+  <rect x="30" y="170" width="110" height="30" rx="4" ry="4" fill="#e8f5e9" stroke="#4caf50"/>
+  <text x="85" y="185" text-anchor="middle" class="label-small">∂L/∂γ=-0.613</text>
+  <text x="85" y="200" text-anchor="middle" class="label-small">∂L/∂β=0.200</text>
+
+  <rect x="30" y="210" width="110" height="30" rx="4" ry="4" fill="#f3e5f5" stroke="#9c27b0"/>
+  <text x="85" y="230" text-anchor="middle" class="label">损失 L=0.520</text>
+
+  <rect x="30" y="250" width="110" height="30" rx="4" ry="4" fill="#ffebee" stroke="#f44336"/>
+  <text x="85" y="270" text-anchor="middle" class="label-small">η=0.1</text>
+  <text x="85" y="285" text-anchor="middle" class="label-small">更新参数</text>
+
+  <rect x="30" y="290" width="110" height="30" rx="4" ry="4" fill="#e8f5e9" stroke="#4caf50"/>
+  <text x="85" y="310" text-anchor="middle" class="label">γ=1.061, β=-0.020</text>
+
+  <!-- Arrow -->
+  <path d="M150 190 L170 190" class="arrow"/>
+
+  <!-- Iteration 2 -->
+  <rect x="170" y="50" width="130" height="280" rx="8" ry="8" fill="#fafafa" stroke="#ccc" stroke-width="1"/>
+  <text x="235" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">第 2 轮</text>
+
+  <rect x="180" y="90" width="110" height="30" rx="4" ry="4" fill="#e3f2fd" stroke="#2196f3"/>
+  <text x="235" y="110" text-anchor="middle" class="label">γ=1.061, β=-0.020</text>
+
+  <rect x="180" y="130" width="110" height="30" rx="4" ry="4" fill="#fff3e0" stroke="#ff9800"/>
+  <text x="235" y="145" text-anchor="middle" class="label-small">μ_B=4.0, σ²=2.667</text>
+
+  <rect x="180" y="170" width="110" height="30" rx="4" ry="4" fill="#e8f5e9" stroke="#4caf50"/>
+  <text x="235" y="185" text-anchor="middle" class="label-small">∂L/∂γ=-0.580</text>
+  <text x="235" y="200" text-anchor="middle" class="label-small">∂L/∂β=0.185</text>
+
+  <rect x="180" y="210" width="110" height="30" rx="4" ry="4" fill="#f3e5f5" stroke="#9c27b0"/>
+  <text x="235" y="230" text-anchor="middle" class="label">损失 L=0.485</text>
+
+  <rect x="180" y="250" width="110" height="30" rx="4" ry="4" fill="#ffebee" stroke="#f44336"/>
+  <text x="235" y="270" text-anchor="middle" class="label-small">η=0.1</text>
+  <text x="235" y="285" text-anchor="middle" class="label-small">更新参数</text>
+
+  <rect x="180" y="290" width="110" height="30" rx="4" ry="4" fill="#e8f5e9" stroke="#4caf50"/>
+  <text x="235" y="310" text-anchor="middle" class="label">γ=1.119, β=-0.039</text>
+
+  <!-- Arrow -->
+  <path d="M300 190 L320 190" class="arrow"/>
+
+  <!-- Iteration 3 -->
+  <rect x="320" y="50" width="130" height="280" rx="8" ry="8" fill="#fafafa" stroke="#ccc" stroke-width="1"/>
+  <text x="385" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">第 3 轮</text>
+
+  <rect x="330" y="90" width="110" height="30" rx="4" ry="4" fill="#e3f2fd" stroke="#2196f3"/>
+  <text x="385" y="110" text-anchor="middle" class="label">γ=1.119, β=-0.039</text>
+
+  <rect x="330" y="130" width="110" height="30" rx="4" ry="4" fill="#fff3e0" stroke="#ff9800"/>
+  <text x="385" y="145" text-anchor="middle" class="label-small">μ_B≈4.0, σ²≈2.6</text>
+
+  <rect x="330" y="170" width="110" height="30" rx="4" ry="4" fill="#e8f5e9" stroke="#4caf50"/>
+  <text x="385" y="185" text-anchor="middle" class="label-small">∂L/∂γ=-0.540</text>
+  <text x="385" y="200" text-anchor="middle" class="label-small">∂L/∂β=0.170</text>
+
+  <rect x="330" y="210" width="110" height="30" rx="4" ry="4" fill="#f3e5f5" stroke="#9c27b0"/>
+  <text x="385" y="230" text-anchor="middle" class="label">损失 L=0.452</text>
+
+  <rect x="330" y="250" width="110" height="30" rx="4" ry="4" fill="#ffebee" stroke="#f44336"/>
+  <text x="385" y="270" text-anchor="middle" class="label-small">η=0.1</text>
+  <text x="385" y="285" text-anchor="middle" class="label-small">更新参数</text>
+
+  <rect x="330" y="290" width="110" height="30" rx="4" ry="4" fill="#e8f5e9" stroke="#4caf50"/>
+  <text x="385" y="310" text-anchor="middle" class="label">γ=1.173, β=-0.056</text>
+
+  <!-- Arrow -->
+  <path d="M450 190 L470 190" class="arrow"/>
+
+  <!-- Iteration N -->
+  <rect x="470" y="50" width="130" height="280" rx="8" ry="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+  <text x="535" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#2e7d32">第 N 轮 (收敛)</text>
+
+  <rect x="480" y="90" width="110" height="30" rx="4" ry="4" fill="#e3f2fd" stroke="#2196f3"/>
+  <text x="535" y="110" text-anchor="middle" class="label">γ=1.150, β=-0.050</text>
+
+  <rect x="480" y="130" width="110" height="30" rx="4" ry="4" fill="#fff3e0" stroke="#ff9800"/>
+  <text x="535" y="145" text-anchor="middle" class="label-small">μ=3.8, σ²=2.5</text>
+  <text x="535" y="160" text-anchor="middle" class="label-small">(全局累积)</text>
+
+  <rect x="480" y="170" width="110" height="30" rx="4" ry="4" fill="#e8f5e9" stroke="#4caf50"/>
+  <text x="535" y="185" text-anchor="middle" class="label-small">∂L/∂γ≈0</text>
+  <text x="535" y="200" text-anchor="middle" class="label-small">∂L/∂β≈0</text>
+
+  <rect x="480" y="210" width="110" height="30" rx="4" ry="4" fill="#f3e5f5" stroke="#9c27b0"/>
+  <text x="535" y="230" text-anchor="middle" class="label">损失 L=0.320</text>
+
+  <rect x="480" y="250" width="110" height="60" rx="4" ry="4" fill="#e8f5e9" stroke="#4caf50"/>
+  <text x="535" y="270" text-anchor="middle" class="label-small" font-weight="bold">✓ 梯度接近0</text>
+  <text x="535" y="285" text-anchor="middle" class="label-small">✓ 损失不再下降</text>
+  <text x="535" y="300" text-anchor="middle" class="label-small">✓ 训练完成!</text>
+
+  <!-- Loss curve at bottom -->
+  <rect x="610" y="50" width="70" height="280" rx="8" ry="8" fill="#fafafa" stroke="#ccc" stroke-width="1"/>
+  <text x="645" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">损失曲线</text>
+
+  <!-- Simple loss curve -->
+  <path d="M620 100 L630 140 L640 170 L650 195 L660 210 L665 220" stroke="#f44336" stroke-width="2" fill="none"/>
+  <circle cx="620" cy="100" r="3" fill="#f44336"/>
+  <circle cx="630" cy="140" r="3" fill="#f44336"/>
+  <circle cx="640" cy="170" r="3" fill="#f44336"/>
+  <circle cx="650" cy="195" r="3" fill="#f44336"/>
+  <circle cx="660" cy="210" r="3" fill="#f44336"/>
+  <circle cx="665" cy="220" r="3" fill="#f44336"/>
+
+  <text x="645" y="250" text-anchor="middle" class="label-small">0.52 → 0.32</text>
+  <text x="645" y="265" text-anchor="middle" class="label-small">损失下降38%</text>
+
+  <text x="645" y="300" text-anchor="middle" class="label-small" fill="#4caf50" font-weight="bold">BN 让损失</text>
+  <text x="645" y="315" text-anchor="middle" class="label-small" fill="#4caf50" font-weight="bold">快速下降!</text>
+</svg>
