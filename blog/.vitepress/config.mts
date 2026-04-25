@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { adminApiPlugin } from './plugins/adminApi.mjs'
 
 export default defineConfig({
   title: 'Paper Reading',
@@ -26,6 +27,11 @@ export default defineConfig({
     ['meta', { property: 'og:title', content: 'Paper Reading' }],
     ['meta', { property: 'og:description', content: '论文精读博客 — 用通俗的语言解读前沿 AI 论文' }],
   ],
+
+  // 注册 Vite 插件（admin API 仅在 dev 模式生效）
+  vite: {
+    plugins: [adminApiPlugin()],
+  },
 
   themeConfig: {
     logo: '/logo.svg',

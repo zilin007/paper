@@ -6,18 +6,11 @@ const route = useRoute()
 const { isDark } = useData()
 const container = ref(null)
 
-/**
- * Giscus 配置说明：
- * 1. 前往 https://giscus.app/zh-CN 完成配置
- * 2. 在你的 GitHub 仓库启用 Discussions 功能
- * 3. 安装 Giscus App: https://github.com/apps/giscus
- * 4. 将下方 TODO 标记的值替换为你的实际配置
- */
 const GISCUS_CONFIG = {
-  repo: 'zilin007/paper',          // TODO: 确认仓库名
-  repoId: '',                       // TODO: 从 giscus.app 获取
+  repo: 'zilin007/paper',
+  repoId: 'R_kgDOSJtdHA',
   category: 'Announcements',
-  categoryId: '',                   // TODO: 从 giscus.app 获取
+  categoryId: 'DIC_kwDOSJtdHM4C7qQI',
 }
 
 function loadGiscus() {

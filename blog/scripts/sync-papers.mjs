@@ -5,9 +5,10 @@
  * 主要工作：
  *   1. 扫描 papers/ 下所有 *_解读.md
  *   2. 提取元信息（标题、作者、日期、摘要）生成 VitePress frontmatter
- *   3. 将处理后的 Markdown 写入 blog/posts/<name>/index.md
- *   4. 将 resource/ 静态资源复制到 blog/posts/<name>/resource/
- *   5. 由于 index.md 和 resource/ 同目录，原始 ./resource/ 相对路径无需修改
+ *   3. 读取 blog-config.json 注入标签、排序、置顶信息
+ *   4. 将处理后的 Markdown 写入 blog/posts/<name>/index.md
+ *   5. 将 resource/ 静态资源复制到 blog/posts/<name>/resource/
+ *   6. 由于 index.md 和 resource/ 同目录，原始 ./resource/ 相对路径无需修改
  *
  * 用法：在 blog/ 目录下运行 node scripts/sync-papers.mjs
  */
@@ -21,6 +22,18 @@ const BLOG_DIR = join(__dirname, '..')         // blog/
 const ROOT = join(BLOG_DIR, '..')              // 项目根目录
 const PAPERS_DIR = join(ROOT, 'papers')
 const POSTS_DIR = join(BLOG_DIR, 'posts')
+const CONFIG_PATH = join(BLOG_DIR, 'blog-config.json')
+
+// ─────────────────── 配置加载 ───────────────────
+
+async function loadConfig() {
+  try {
+    const raw = await readFile(CONFIG_PATH, 'utf-8')
+    return JSON.parse(raw)
+  } catch {
+    return { paperOrder: [], pinnedPapers: [], paperTags: {}, tagColors: {} }
+  }
+}
 
 // ─────────────────── 元信息提取 ───────────────────
 
@@ -59,9 +72,18 @@ function yamlStr(str) {
   return `"${str}"`
 }
 
+// YAML 数组序列化
+function yamlTags(tags) {
+  if (!tags || !tags.length) return '[]'
+  return `[${tags.map((t) => `"${t}"`).join(', ')}]`
+}
+
 // ─────────────────── 主流程 ───────────────────
 
 async function main() {
+  // 加载博客配置
+  const config = await loadConfig()
+
   // 清理旧的生成文件
   await rm(POSTS_DIR, { recursive: true, force: true })
   await mkdir(POSTS_DIR, { recursive: true })
@@ -96,6 +118,13 @@ async function main() {
     // 提取元信息
     const meta = extractMeta(content)
 
+    // 从配置获取排序、标签、置顶信息
+    const slug = dir.name
+    const orderIndex = config.paperOrder.indexOf(slug)
+    const order = orderIndex >= 0 ? orderIndex : 999
+    const pinned = (config.pinnedPapers || []).includes(slug)
+    const tags = (config.paperTags || {})[slug] || []
+
     // 生成 frontmatter
     const frontmatter = [
       '---',
@@ -105,6 +134,9 @@ async function main() {
       `date: ${meta.date}`,
       `description: ${yamlStr(meta.description)}`,
       `arxiv: ${yamlStr(meta.arxiv)}`,
+      `tags: ${yamlTags(tags)}`,
+      `order: ${order}`,
+      `pinned: ${pinned}`,
       `comment: true`,
       '---',
       '',

@@ -1,0 +1,62 @@
+{
+  "paperOrder": [
+    "Hard_Prompts_Made_Easy",
+    "A_Survey_on_In-context_Learning",
+    "Language_Models_are_Few-Shot_Learners",
+    "LoRA_Low-Rank_Adaptation_of_Large_Language_Models",
+    "The_Power_of_Scale_for_Parameter-Efficient_Prompt_Tuning",
+    "Prefix-Tuning_Optimizing_Continuous_Prompts_for_Generation",
+    "Parameter-Efficient_Transfer_Learning_for_NLP",
+    "Attention_Is_All_You_Need"
+  ],
+  "pinnedPapers": [],
+  "paperTags": {
+    "Attention_Is_All_You_Need": [
+      "Transformer",
+      "注意力机制"
+    ],
+    "LoRA_Low-Rank_Adaptation_of_Large_Language_Models": [
+      "LoRA",
+      "参数高效微调"
+    ],
+    "Prefix-Tuning_Optimizing_Continuous_Prompts_for_Generation": [
+      "Prompt Tuning",
+      "参数高效微调"
+    ],
+    "Parameter-Efficient_Transfer_Learning_for_NLP": [
+      "Adapter",
+      "参数高效微调"
+    ],
+    "The_Power_of_Scale_for_Parameter-Efficient_Prompt_Tuning": [
+      "Prompt Tuning",
+      "参数高效微调"
+    ],
+    "Hard_Prompts_Made_Easy": [
+      "Prompt",
+      "图像生成"
+    ],
+    "A_Survey_on_In-context_Learning": [
+      "ICL",
+      "综述"
+    ],
+    "Language_Models_are_Few-Shot_Learners": [
+      "LLM",
+      "ICL",
+      "GPT"
+    ]
+  },
+  "tagColors": {
+    "Transformer": "#3b82f6",
+    "注意力机制": "#8b5cf6",
+    "参数高效微调": "#10b981",
+    "LoRA": "#f59e0b",
+    "Prompt Tuning": "#06b6d4",
+    "Adapter": "#ec4899",
+    "Prompt": "#a855f7",
+    "图像生成": "#f43f5e",
+    "ICL": "#f97316",
+    "综述": "#64748b",
+    "LLM": "#6366f1",
+    "GPT": "#0ea5e9"
+  }
+}

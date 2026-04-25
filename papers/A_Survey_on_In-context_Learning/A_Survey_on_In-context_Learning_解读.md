@@ -133,7 +133,7 @@ Warmup 可以理解成“预训练和正式 ICL 之间的过渡训练”。典�
 2. **PPL（Perplexity）**：比较把候选答案填进模板后整句的困惑度。
 3. **Channel**：反过来建模 $p(x \mid y, C)$。
 
-![ICL 推理与打分流程](./resource/compute_flow.svg)
+![ICL 推理与打分流程|694](./resource/compute_flow.svg)
 
 粗暴地理解：
 
@@ -167,7 +167,7 @@ Warmup 可以理解成“预训练和正式 ICL 之间的过渡训练”。典�
 
 第二条是 **theoretical interpretation** 视角，把 ICL 看作某种隐式学习过程。简单说，虽然模型推理时没有显式改参数，但它在前向计算里，好像临时模拟了一个“小学习器”。
 
-![上下文信息如何影响预测](./resource/gradient_flow.svg)
+![上下文信息如何影响预测|697](./resource/gradient_flow.svg)
 
 这张图我没有画传统“梯度回传”，因为这篇论文讨论的是推理态 ICL。更准确地说，ICL 里发生的是**信息流**：示范样例经过注意力层影响 query token 的表示，最终改变预测结果，但模型参数本身不更新。
 
@@ -284,7 +284,7 @@ ICL 的一个巨大优点是部署简单。你不需要为每个任务保存一�
 2. 检索或挑选高质量 demonstration。
 3. 选好 scoring function。
 
-![训练增强到推理落地的全景图](./resource/training_overview.svg)
+![训练增强到推理落地的全景图|697](./resource/training_overview.svg)
 
 > **小白tips**: ICL 很像“开卷考试”，但不是把答案原样抄过去，而是先从例题里猜出老师想考什么、答案该怎么组织，再把这个临时规律用到新题上。
 
