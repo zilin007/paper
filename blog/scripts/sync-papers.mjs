@@ -45,8 +45,8 @@ function extractMeta(content) {
   const arxivMatch = content.match(/\*\*arXiv\*\*:\s*\[?([^\]\s)]+)/)
   const summaryMatch = content.match(/## 一句话总结\s*\n+(.+)/m)
 
-  // 日期来源：论文解读文件中的 **发表时间** 字段（统一格式 YYYY-MM-DD）
-  const date = extractDate(dateMatch?.[1]) || new Date().toISOString().slice(0, 10)
+  // 日期来源：优先从解读文件 **发表时间** 提取，缺失时从 arXiv ID 解析年月
+  const date = extractDate(dateMatch?.[1]) || extractDateFromArxiv(arxivMatch?.[1]) || new Date().toISOString().slice(0, 10)
 
   return {
     title: titleMatch?.[1]?.trim() || 'Untitled',
@@ -64,6 +64,17 @@ function extractDate(dateStr) {
   if (fullMatch) return fullMatch[0]
   const yearMatch = dateStr.match(/(\d{4})/)
   return yearMatch ? `${yearMatch[1]}-01-01` : null
+}
+
+// 从 arXiv ID 解析年月作为后备日期（arXiv ID 格式: YYMM.NNNNN）
+function extractDateFromArxiv(arxivId) {
+  if (!arxivId) return null
+  const match = arxivId.match(/(\d{2})(\d{2})\.\d+/)
+  if (match) {
+    const year = parseInt(match[1], 10) < 50 ? `20${match[1]}` : `19${match[1]}`
+    return `${year}-${match[2]}-01`
+  }
+  return null
 }
 
 // YAML 值安全转义

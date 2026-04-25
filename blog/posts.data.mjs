@@ -43,8 +43,19 @@ export default createContentLoader('posts/**/*.md', {
       }
     })
 
-    // 按日期降序排序（最新在前）
-    posts.sort((a, b) => +new Date(b.date) - +new Date(a.date))
+    // 从 arXiv ID 提取排序键：YYMM.NNNNN → 20YYMMNNNNN
+    // arXiv ID 本身即为时间戳（2007年4月起），按 ID 排序即按提交时间排序
+    function getSortKey(post) {
+      const arxivId = post.arxiv || ''
+      const match = arxivId.match(/(\d{2})(\d{2})\.(\d+)/)
+      if (match) {
+        return `20${match[1]}${match[2]}${match[3].padStart(5, '0')}`
+      }
+      // 非 arXiv 论文回退到 date 字段
+      return post.date ? post.date.replace(/-/g, '') : '00000000'
+    }
+
+    posts.sort((a, b) => getSortKey(b).localeCompare(getSortKey(a)))
 
     return {
       posts,
