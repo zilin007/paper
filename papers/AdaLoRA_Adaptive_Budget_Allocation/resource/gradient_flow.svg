@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500" font-family="sans-serif">
+  <!-- Title -->
+  <text x="375" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">AdaLoRA 梯度流向与参数更新</text>
+
+  <!-- Input -->
+  <rect x="20" y="180" width="100" height="50" rx="8" fill="#3498db" stroke="#2980b9"/>
+  <text x="70" y="200" text-anchor="middle" font-size="12" fill="white" font-weight="bold">输入 x</text>
+  <text x="70" y="218" text-anchor="middle" font-size="10" fill="#e8f4fd">R^(d₂×1)</text>
+
+  <!-- Frozen W0 -->
+  <rect x="160" y="120" width="120" height="70" rx="8" fill="#95a5a6" stroke="#7f8c8d"/>
+  <text x="220" y="148" text-anchor="middle" font-size="12" fill="white" font-weight="bold">W⁽⁰⁾</text>
+  <text x="220" y="165" text-anchor="middle" font-size="10" fill="#d5d8dc">预训练权重</text>
+  <text x="220" y="180" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="bold">冻结 🔒</text>
+
+  <!-- AdaLoRA Δ=PΛQ -->
+  <rect x="160" y="240" width="120" height="140" rx="8" fill="#27ae60" stroke="#1e8449"/>
+  <text x="220" y="265" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Δ = PΛQ</text>
+  <text x="220" y="285" text-anchor="middle" font-size="10" fill="#d5f5e3">AdaLoRA 增量</text>
+
+  <!-- P -->
+  <rect x="175" y="295" width="35" height="30" rx="4" fill="#2ecc71"/>
+  <text x="192" y="315" text-anchor="middle" font-size="10" fill="white" font-weight="bold">P</text>
+
+  <!-- Λ -->
+  <rect x="215" y="295" width="35" height="30" rx="4" fill="#27ae60"/>
+  <text x="232" y="315" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Λ</text>
+
+  <!-- Q -->
+  <rect x="255" y="295" width="35" height="30" rx="4" fill="#2ecc71"/>
+  <text x="272" y="315" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Q</text>
+
+  <text x="220" y="355" text-anchor="middle" font-size="10" fill="#d5f5e3">可训练 ✓</text>
+
+  <!-- Arrows from input -->
+  <line x1="120" y1="205" x2="155" y2="155" stroke="#3498db" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="120" y1="205" x2="155" y2="310" stroke="#3498db" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Sum -->
+  <circle cx="330" cy="205" r="25" fill="#f39c12" stroke="#e67e22"/>
+  <text x="330" y="210" text-anchor="middle" font-size="18" fill="white" font-weight="bold">+</text>
+
+  <!-- Arrows to sum -->
+  <line x1="280" y1="155" x2="310" y2="195" stroke="#95a5a6" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="280" y1="310" x2="310" y2="220" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Output -->
+  <rect x="380" y="180" width="100" height="50" rx="8" fill="#8e44ad" stroke="#7d3c98"/>
+  <text x="430" y="200" text-anchor="middle" font-size="12" fill="white" font-weight="bold">输出 h</text>
+  <text x="430" y="218" text-anchor="middle" font-size="10" fill="#e8daef">R^(d₁×1)</text>
+
+  <line x1="355" y1="205" x2="375" y2="205" stroke="#f39c12" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Loss -->
+  <rect x="520" y="180" width="100" height="50" rx="8" fill="#e74c3c" stroke="#c0392b"/>
+  <text x="570" y="200" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Loss L</text>
+  <text x="570" y="218" text-anchor="middle" font-size="10" fill="#fadbd8">标量</text>
+
+  <line x1="480" y1="205" x2="515" y2="205" stroke="#8e44ad" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Gradient flow arrows (dashed, going back) -->
+  <line x1="570" y1="230" x2="570" y2="280" stroke="#e74c3c" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowRed)"/>
+  <text x="580" y="260" font-size="10" fill="#e74c3c">反向传播</text>
+
+  <!-- Gradient to P, Λ, Q -->
+  <line x1="520" y1="310" x2="280" y2="310" stroke="#e74c3c" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowRed)"/>
+  <text x="400" y="305" text-anchor="middle" font-size="10" fill="#e74c3c">∂L/∂P, ∂L/∂Λ, ∂L/∂Q</text>
+
+  <!-- No gradient to W0 -->
+  <line x1="520" y1="270" x2="280" y2="155" stroke="#95a5a6" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="400" y="145" text-anchor="middle" font-size="10" fill="#95a5a6">∂L/∂W⁽⁰⁾ = 0 (冻结)</text>
+
+  <!-- Budget allocation box -->
+  <rect x="520" y="360" width="200" height="110" rx="8" fill="#fef9e7" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="620" y="385" text-anchor="middle" font-size="12" fill="#f39c12" font-weight="bold">预算调度器</text>
+
+  <rect x="540" y="395" width="160" height="25" rx="4" fill="#fdebd0"/>
+  <text x="620" y="412" text-anchor="middle" font-size="10" fill="#333">重要性评分 S = Ī × Ū</text>
+
+  <rect x="540" y="425" width="160" height="25" rx="4" fill="#fdebd0"/>
+  <text x="620" y="442" text-anchor="middle" font-size="10" fill="#333">裁剪低重要性 λᵢ</text>
+
+  <line x1="220" y1="380" x2="220" y2="415" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="220" y1="415" x2="515" y2="415" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrowGreen)"/>
+  <text x="370" y="410" text-anchor="middle" font-size="9" fill="#27ae60">三元组重要性</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+  </defs>
+</svg>

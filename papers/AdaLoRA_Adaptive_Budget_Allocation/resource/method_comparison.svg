@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" font-family="sans-serif">
+  <!-- Title -->
+  <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">LoRA vs AdaLoRA：参数分配方式对比</text>
+
+  <!-- LoRA Side -->
+  <rect x="20" y="50" width="310" height="350" rx="8" fill="#f8f8f8" stroke="#ccc" stroke-width="1.5"/>
+  <text x="175" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#c0392b">LoRA（均匀分配）</text>
+
+  <!-- LoRA diagram -->
+  <text x="175" y="105" text-anchor="middle" font-size="12" fill="#666">每个权重矩阵分配相同秩 r</text>
+
+  <!-- Layer blocks -->
+  <rect x="50" y="120" width="250" height="30" rx="4" fill="#e8e8e8" stroke="#999"/>
+  <text x="175" y="140" text-anchor="middle" font-size="11" fill="#333">Layer 1: Wq(r) Wk(r) Wv(r) Wo(r) Wf1(r) Wf2(r)</text>
+
+  <rect x="50" y="160" width="250" height="30" rx="4" fill="#e8e8e8" stroke="#999"/>
+  <text x="175" y="180" text-anchor="middle" font-size="11" fill="#333">Layer 2: Wq(r) Wk(r) Wv(r) Wo(r) Wf1(r) Wf2(r)</text>
+
+  <rect x="50" y="200" width="250" height="30" rx="4" fill="#e8e8e8" stroke="#999"/>
+  <text x="175" y="220" text-anchor="middle" font-size="11" fill="#333">Layer 3: Wq(r) Wk(r) Wv(r) Wo(r) Wf1(r) Wf2(r)</text>
+
+  <text x="175" y="255" text-anchor="middle" font-size="14" fill="#999">...</text>
+
+  <rect x="50" y="275" width="250" height="30" rx="4" fill="#e8e8e8" stroke="#999"/>
+  <text x="175" y="295" text-anchor="middle" font-size="11" fill="#333">Layer N: Wq(r) Wk(r) Wv(r) Wo(r) Wf1(r) Wf2(r)</text>
+
+  <!-- LoRA缺点 -->
+  <rect x="50" y="325" width="250" height="55" rx="6" fill="#fde8e8" stroke="#c0392b"/>
+  <text x="175" y="345" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="bold">缺点</text>
+  <text x="175" y="363" text-anchor="middle" font-size="10" fill="#666">忽略不同矩阵的重要性差异</text>
+  <text x="175" y="378" text-anchor="middle" font-size="10" fill="#666">低预算下性能次优</text>
+
+  <!-- AdaLoRA Side -->
+  <rect x="370" y="50" width="310" height="350" rx="8" fill="#f0f8f0" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="525" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#27ae60">AdaLoRA（自适应分配）</text>
+
+  <text x="525" y="105" text-anchor="middle" font-size="12" fill="#666">根据重要性动态分配秩</text>
+
+  <!-- AdaLoRA diagram -->
+  <rect x="400" y="120" width="250" height="30" rx="4" fill="#e0f0e0" stroke="#27ae60"/>
+  <text x="525" y="140" text-anchor="middle" font-size="11" fill="#333">Layer 1: Wq(2) Wk(1) Wv(2) Wo(1) Wf1(4) Wf2(4)</text>
+
+  <rect x="400" y="160" width="250" height="30" rx="4" fill="#e0f0e0" stroke="#27ae60"/>
+  <text x="525" y="180" text-anchor="middle" font-size="11" fill="#333">Layer 2: Wq(2) Wk(1) Wv(2) Wo(2) Wf1(4) Wf2(5)</text>
+
+  <rect x="400" y="200" width="250" height="30" rx="4" fill="#e0f0e0" stroke="#27ae60"/>
+  <text x="525" y="220" text-anchor="middle" font-size="11" fill="#333">Layer 3: Wq(3) Wk(2) Wv(3) Wo(2) Wf1(5) Wf2(5)</text>
+
+  <text x="525" y="255" text-anchor="middle" font-size="14" fill="#999">...</text>
+
+  <rect x="400" y="275" width="250" height="30" rx="4" fill="#e0f0e0" stroke="#27ae60"/>
+  <text x="525" y="295" text-anchor="middle" font-size="11" fill="#333">Layer N: Wq(3) Wk(2) Wv(3) Wo(3) Wf1(6) Wf2(6)</text>
+
+  <!-- AdaLoRA优点 -->
+  <rect x="400" y="325" width="250" height="55" rx="6" fill="#e0f8e0" stroke="#27ae60"/>
+  <text x="525" y="345" text-anchor="middle" font-size="11" fill="#27ae60" font-weight="bold">优点</text>
+  <text x="525" y="363" text-anchor="middle" font-size="10" fill="#666">FFN和顶层自动获得更多预算</text>
+  <text x="525" y="378" text-anchor="middle" font-size="10" fill="#666">低预算下性能显著提升</text>
+</svg>

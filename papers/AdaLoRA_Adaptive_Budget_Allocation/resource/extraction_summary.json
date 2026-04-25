@@ -1,0 +1,110 @@
+{
+  "pdf": "papers/AdaLoRA_Adaptive_Budget_Allocation/AdaLoRA_Adaptive_Budget_Allocation.pdf",
+  "total_pages": 17,
+  "embedded_images": 1,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 171.4
+    },
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 182.3
+    },
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 212.2
+    },
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 568.1
+    },
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 579.1
+    },
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 590.0
+    },
+    {
+      "fig_num": "2",
+      "page": 9,
+      "caption_y": 204.1
+    },
+    {
+      "fig_num": "2",
+      "page": 9,
+      "caption_y": 414.0
+    },
+    {
+      "fig_num": "3",
+      "page": 10,
+      "caption_y": 302.3
+    },
+    {
+      "fig_num": "1",
+      "page": 10,
+      "caption_y": 335.2
+    },
+    {
+      "fig_num": "3",
+      "page": 10,
+      "caption_y": 568.6
+    },
+    {
+      "fig_num": "4",
+      "page": 16,
+      "caption_y": 579.5
+    },
+    {
+      "fig_num": "4",
+      "page": 17,
+      "caption_y": 361.1
+    }
+  ],
+  "files": [
+    {
+      "page": 10,
+      "file": "page10_img1_1216x608.png",
+      "size": "1216x608",
+      "method": "embedded"
+    },
+    {
+      "page": 2,
+      "file": "temp_page2_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 9,
+      "file": "temp_page9_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 10,
+      "file": "temp_page10_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 16,
+      "file": "temp_page16_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 17,
+      "file": "temp_page17_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    }
+  ]
+}
