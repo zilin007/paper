@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360">
+  <rect width="960" height="360" fill="#ffffff"/>
+  <text x="36" y="42" font-family="sans-serif" font-size="24" font-weight="700" fill="#111827">ICL 中的信息流而非参数更新</text>
+
+  <rect x="40" y="110" width="200" height="120" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="72" y="150" font-family="sans-serif" font-size="18" font-weight="700" fill="#1d4ed8">示范样例</text>
+  <text x="72" y="180" font-family="sans-serif" font-size="14" fill="#111827">label / format / order</text>
+
+  <rect x="320" y="90" width="300" height="160" rx="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="396" y="130" font-family="sans-serif" font-size="20" font-weight="700" fill="#5b21b6">Transformer 注意力层</text>
+  <text x="366" y="165" font-family="sans-serif" font-size="14" fill="#111827">前面的 demonstration 通过 attention</text>
+  <text x="366" y="190" font-family="sans-serif" font-size="14" fill="#111827">改变 query token 的表示</text>
+  <text x="366" y="215" font-family="sans-serif" font-size="14" fill="#111827">参数固定，不做梯度更新</text>
+
+  <rect x="700" y="110" width="200" height="120" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="744" y="150" font-family="sans-serif" font-size="18" font-weight="700" fill="#166534">query 预测</text>
+  <text x="744" y="180" font-family="sans-serif" font-size="14" fill="#111827">输出随上下文变化</text>
+
+  <path d="M240 170 L320 170" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M620 170 L700 170" stroke="#16a34a" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <rect x="360" y="275" width="220" height="46" rx="12" fill="#f3f4f6" stroke="#9ca3af" stroke-dasharray="6 6"/>
+  <text x="385" y="304" font-family="sans-serif" font-size="14" fill="#374151">模型参数 θ 保持冻结</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+</svg>

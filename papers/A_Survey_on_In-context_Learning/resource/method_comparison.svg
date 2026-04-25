@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#ffffff"/>
+  <text x="40" y="44" font-family="sans-serif" font-size="24" font-weight="700" fill="#111827">任务适配路线对比</text>
+  <text x="40" y="72" font-family="sans-serif" font-size="14" fill="#4b5563">这张图不是论文原图，用来帮助理解 ICL 在整条适配链路中的位置</text>
+
+  <rect x="40" y="110" width="250" height="230" rx="18" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="65" y="145" font-family="sans-serif" font-size="20" font-weight="700" fill="#991b1b">全量微调</text>
+  <text x="65" y="178" font-family="sans-serif" font-size="15" fill="#7f1d1d">优点：效果常常强</text>
+  <text x="65" y="206" font-family="sans-serif" font-size="15" fill="#7f1d1d">缺点：每个任务都要训练</text>
+  <text x="65" y="234" font-family="sans-serif" font-size="15" fill="#7f1d1d">缺点：算力、显存、存储成本高</text>
+  <text x="65" y="262" font-family="sans-serif" font-size="15" fill="#7f1d1d">缺点：部署维护多套权重</text>
+
+  <rect x="325" y="110" width="250" height="230" rx="18" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="350" y="145" font-family="sans-serif" font-size="20" font-weight="700" fill="#92400e">参数高效微调</text>
+  <text x="350" y="178" font-family="sans-serif" font-size="15" fill="#78350f">优点：比全量微调便宜</text>
+  <text x="350" y="206" font-family="sans-serif" font-size="15" fill="#78350f">优点：任务专属参数更小</text>
+  <text x="350" y="234" font-family="sans-serif" font-size="15" fill="#78350f">缺点：本质上仍要训练</text>
+  <text x="350" y="262" font-family="sans-serif" font-size="15" fill="#78350f">缺点：上线前仍要做适配流程</text>
+
+  <rect x="610" y="110" width="250" height="230" rx="18" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="635" y="145" font-family="sans-serif" font-size="20" font-weight="700" fill="#166534">ICL（上下文学习）</text>
+  <text x="635" y="178" font-family="sans-serif" font-size="15" fill="#166534">优点：不更新参数，直接推理</text>
+  <text x="635" y="206" font-family="sans-serif" font-size="15" fill="#166534">优点：切换任务快，接口自然</text>
+  <text x="635" y="234" font-family="sans-serif" font-size="15" fill="#166534">难点：对示例、顺序、模板敏感</text>
+  <text x="635" y="262" font-family="sans-serif" font-size="15" fill="#166534">难点：长上下文成本高</text>
+
+  <path d="M290 225 L325 225" stroke="#9ca3af" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M575 225 L610 225" stroke="#9ca3af" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+</svg>

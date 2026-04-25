@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 300">
+  <rect width="1040" height="300" fill="#ffffff"/>
+  <text x="36" y="42" font-family="sans-serif" font-size="24" font-weight="700" fill="#111827">从训练增强到推理落地的 ICL 全景</text>
+
+  <rect x="40" y="95" width="180" height="130" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="84" y="132" font-family="sans-serif" font-size="18" font-weight="700" fill="#1d4ed8">Pretraining</text>
+  <text x="68" y="164" font-family="sans-serif" font-size="14" fill="#111827">让模型更熟悉</text>
+  <text x="68" y="188" font-family="sans-serif" font-size="14" fill="#111827">示范 + 查询格式</text>
+
+  <rect x="250" y="95" width="180" height="130" rx="18" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2"/>
+  <text x="308" y="132" font-family="sans-serif" font-size="18" font-weight="700" fill="#3730a3">Warmup</text>
+  <text x="282" y="164" font-family="sans-serif" font-size="14" fill="#111827">instruction tuning</text>
+  <text x="282" y="188" font-family="sans-serif" font-size="14" fill="#111827">symbol tuning 等</text>
+
+  <rect x="460" y="95" width="180" height="130" rx="18" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="495" y="132" font-family="sans-serif" font-size="18" font-weight="700" fill="#92400e">Prompt Design</text>
+  <text x="486" y="164" font-family="sans-serif" font-size="14" fill="#111827">选例子 / 改格式</text>
+  <text x="486" y="188" font-family="sans-serif" font-size="14" fill="#111827">调顺序 / 写指令</text>
+
+  <rect x="670" y="95" width="180" height="130" rx="18" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="709" y="132" font-family="sans-serif" font-size="18" font-weight="700" fill="#991b1b">Scoring</text>
+  <text x="718" y="164" font-family="sans-serif" font-size="14" fill="#111827">Direct / PPL</text>
+  <text x="718" y="188" font-family="sans-serif" font-size="14" fill="#111827">Channel</text>
+
+  <rect x="880" y="95" width="120" height="130" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="906" y="132" font-family="sans-serif" font-size="18" font-weight="700" fill="#166534">应用</text>
+  <text x="902" y="164" font-family="sans-serif" font-size="14" fill="#111827">NLP</text>
+  <text x="902" y="188" font-family="sans-serif" font-size="14" fill="#111827">多模态</text>
+
+  <path d="M220 160 L250 160" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M430 160 L460 160" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M640 160 L670 160" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M850 160 L880 160" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+</svg>

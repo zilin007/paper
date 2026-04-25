@@ -1,0 +1,510 @@
+{
+  "pdf": "papers/A_Survey_on_In-context_Learning/A_Survey_on_In-context_Learning.pdf",
+  "total_pages": 22,
+  "embedded_images": 70,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 1,
+      "caption_y": 693.8
+    },
+    {
+      "fig_num": "1",
+      "page": 1,
+      "caption_y": 324.1
+    },
+    {
+      "fig_num": "2",
+      "page": 2,
+      "caption_y": 454.2
+    },
+    {
+      "fig_num": "2",
+      "page": 2,
+      "caption_y": 501.5
+    },
+    {
+      "fig_num": "3",
+      "page": 3,
+      "caption_y": 163.0
+    },
+    {
+      "fig_num": "4",
+      "page": 6,
+      "caption_y": 764.6
+    },
+    {
+      "fig_num": "4",
+      "page": 7,
+      "caption_y": 168.6
+    },
+    {
+      "fig_num": "5",
+      "page": 21,
+      "caption_y": 215.0
+    },
+    {
+      "fig_num": "5",
+      "page": 21,
+      "caption_y": 114.2
+    }
+  ],
+  "files": [
+    {
+      "page": 1,
+      "file": "page1_img1_300x155.png",
+      "size": "300x155",
+      "method": "embedded"
+    },
+    {
+      "page": 1,
+      "file": "page1_img2_300x154.png",
+      "size": "300x154",
+      "method": "embedded"
+    },
+    {
+      "page": 1,
+      "file": "page1_img3_301x153.png",
+      "size": "301x153",
+      "method": "embedded"
+    },
+    {
+      "page": 1,
+      "file": "page1_img4_2000x2000.png",
+      "size": "2000x2000",
+      "method": "embedded"
+    },
+    {
+      "page": 1,
+      "file": "page1_img5_301x152.png",
+      "size": "301x152",
+      "method": "embedded"
+    },
+    {
+      "page": 3,
+      "file": "page3_img1_1823x1513.png",
+      "size": "1823x1513",
+      "method": "embedded"
+    },
+    {
+      "page": 3,
+      "file": "page3_img2_386x153.jpeg",
+      "size": "386x153",
+      "method": "embedded"
+    },
+    {
+      "page": 3,
+      "file": "page3_img3_1786x1476.png",
+      "size": "1786x1476",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img1_288x373.jpeg",
+      "size": "288x373",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img2_250x250.png",
+      "size": "250x250",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img4_863x120.png",
+      "size": "863x120",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img5_839x164.jpeg",
+      "size": "839x164",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img6_875x144.png",
+      "size": "875x144",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img7_753x182.jpeg",
+      "size": "753x182",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img8_1018x151.png",
+      "size": "1018x151",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img9_800x182.jpeg",
+      "size": "800x182",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img10_863x134.png",
+      "size": "863x134",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img11_674x173.jpeg",
+      "size": "674x173",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img15_128x128.png",
+      "size": "128x128",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img1_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img2_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img3_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img4_366x366.png",
+      "size": "366x366",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img5_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img6_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img7_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img8_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img9_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img10_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img11_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img12_366x366.png",
+      "size": "366x366",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img13_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img14_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img15_366x366.png",
+      "size": "366x366",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img16_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img17_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img18_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img19_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img20_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img21_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img22_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img23_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img24_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img25_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img26_366x366.png",
+      "size": "366x366",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img27_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img28_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img29_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img30_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img31_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img32_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img33_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img34_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img35_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img36_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img37_366x366.png",
+      "size": "366x366",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img38_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img39_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img40_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img41_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img42_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img43_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img44_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img45_112x112.png",
+      "size": "112x112",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img46_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img47_176x180.jpeg",
+      "size": "176x180",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img48_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img49_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img50_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 21,
+      "file": "page21_img51_224x224.png",
+      "size": "224x224",
+      "method": "embedded"
+    },
+    {
+      "page": 1,
+      "file": "temp_page1_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    },
+    {
+      "page": 2,
+      "file": "temp_page2_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    },
+    {
+      "page": 3,
+      "file": "temp_page3_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    },
+    {
+      "page": 6,
+      "file": "temp_page6_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    },
+    {
+      "page": 7,
+      "file": "temp_page7_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    },
+    {
+      "page": 21,
+      "file": "temp_page21_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    }
+  ]
+}
