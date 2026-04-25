@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="sans-serif">
+  <style>
+    .title { font-size: 18px; font-weight: bold; fill: #333; }
+    .label { font-size: 12px; fill: #666; }
+    .box { rx: 6; ry: 6; }
+    .phase1 { fill: #E3F2FD; stroke: #2196F3; stroke-width: 2; }
+    .phase2 { fill: #FFCDD2; stroke: #E53935; stroke-width: 2; }
+    .phase3 { fill: #C8E6C9; stroke: #4CAF50; stroke-width: 2; }
+    .arrow { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="title">SRLoRA 多轮训练全景图</text>
+  
+  <!-- Timeline -->
+  <path d="M 100 80 L 700 80" stroke="#666" stroke-width="3"/>
+  <text x="710" y="85" font-size="12" fill="#666">时间 →</text>
+  
+  <!-- Phase 1: Initial Training -->
+  <rect x="100" y="100" width="200" height="120" class="box phase1"/>
+  <text x="200" y="125" text-anchor="middle" font-size="14" font-weight="bold" fill="#1976D2">阶段 1: 初始训练</text>
+  <text x="200" y="145" text-anchor="middle" font-size="11" fill="#333">使用 SVD 前 r 个方向</text>
+  <text x="200" y="165" text-anchor="middle" font-size="11" fill="#333">初始化 B, A</text>
+  <text x="200" y="190" text-anchor="middle" font-size="11" fill="#333">计算重要性分数</text>
+  <text x="200" y="210" text-anchor="middle" font-size="11" fill="#333">更新可训练参数</text>
+  
+  <!-- Arrow -->
+  <path d="M 300 160 L 340 160" class="arrow"/>
+  
+  <!-- Phase 2: Fusion -->
+  <rect x="340" y="100" width="160" height="120" class="box phase2"/>
+  <text x="420" y="125" text-anchor="middle" font-size="14" font-weight="bold" fill="#C62828">阶段 2: 融合</text>
+  <text x="420" y="145" text-anchor="middle" font-size="11" fill="#333">排序重要性分数</text>
+  <text x="420" y="165" text-anchor="middle" font-size="11" fill="#333">选择最低 γ·r 个分量</text>
+  <text x="420" y="190" text-anchor="middle" font-size="11" fill="#333">融合到冻结权重 W</text>
+  <text x="420" y="210" text-anchor="middle" font-size="11" fill="#333">丢弃低重要性参数</text>
+  
+  <!-- Arrow -->
+  <path d="M 500 160 L 540 160" class="arrow"/>
+  
+  <!-- Phase 3: Reinitialization -->
+  <rect x="540" y="100" width="160" height="120" class="box phase3"/>
+  <text x="620" y="125" text-anchor="middle" font-size="14" font-weight="bold" fill="#2E7D32">阶段 3: 重新初始化</text>
+  <text x="620" y="145" text-anchor="middle" font-size="11" fill="#333">用未使用 SVD 方向</text>
+  <text x="620" y="165" text-anchor="middle" font-size="11" fill="#333">初始化新 B, A</text>
+  <text x="620" y="190" text-anchor="middle" font-size="11" fill="#333">调整 W 避免重复</text>
+  <text x="620" y="210" text-anchor="middle" font-size="11" fill="#333">重置重要性分数</text>
+  
+  <!-- Loop back -->
+  <path d="M 620 220 L 620 260 L 200 260 L 200 220" class="arrow" stroke-dasharray="5,5"/>
+  <text x="410" y="275" text-anchor="middle" font-size="12" fill="#666">循环执行直到训练结束</text>
+  
+  <!-- Subspace Visualization -->
+  <text x="400" y="320" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">子空间演化示意</text>
+  
+  <!-- Initial Subspace -->
+  <g transform="translate(100, 340)">
+    <text x="100" y="20" text-anchor="middle" font-size="12" fill="#333">t=0: 初始子空间</text>
+    <rect x="20" y="30" width="160" height="80" fill="#E3F2FD" stroke="#2196F3" stroke-width="2" rx="8"/>
+    <rect x="30" y="40" width="60" height="60" fill="#4CAF50" stroke="#388E3C" stroke-width="1" rx="4"/>
+    <text x="60" y="75" text-anchor="middle" font-size="10" fill="white">秩 1</text>
+    <rect x="110" y="40" width="60" height="60" fill="#4CAF50" stroke="#388E3C" stroke-width="1" rx="4"/>
+    <text x="140" y="75" text-anchor="middle" font-size="10" fill="white">秩 2</text>
+  </g>
+  
+  <!-- After Fusion -->
+  <g transform="translate(320, 340)">
+    <text x="100" y="20" text-anchor="middle" font-size="12" fill="#333">t=T₁: 融合后</text>
+    <rect x="20" y="30" width="160" height="80" fill="#E3F2FD" stroke="#2196F3" stroke-width="2" rx="8"/>
+    <rect x="30" y="40" width="60" height="60" fill="#4CAF50" stroke="#388E3C" stroke-width="1" rx="4"/>
+    <text x="60" y="75" text-anchor="middle" font-size="10" fill="white">秩 1</text>
+    <rect x="110" y="40" width="60" height="60" fill="#FFCDD2" stroke="#E53935" stroke-width="1" rx="4"/>
+    <text x="140" y="75" text-anchor="middle" font-size="10" fill="#333">已融合</text>
+  </g>
+  
+  <!-- After Reinit -->
+  <g transform="translate(540, 340)">
+    <text x="100" y="20" text-anchor="middle" font-size="12" fill="#333">t=T₁+1: 重新初始化</text>
+    <rect x="20" y="30" width="160" height="80" fill="#E3F2FD" stroke="#2196F3" stroke-width="2" rx="8"/>
+    <rect x="30" y="40" width="60" height="60" fill="#4CAF50" stroke="#388E3C" stroke-width="1" rx="4"/>
+    <text x="60" y="75" text-anchor="middle" font-size="10" fill="white">秩 1</text>
+    <rect x="110" y="40" width="60" height="60" fill="#2196F3" stroke="#1976D2" stroke-width="1" rx="4"/>
+    <text x="140" y="75" text-anchor="middle" font-size="10" fill="white">秩 3*</text>
+  </g>
+  
+  <!-- Legend -->
+  <rect x="600" y="380" width="180" height="100" class="box" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+  <text x="690" y="405" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">图例</text>
+  
+  <rect x="620" y="420" width="20" height="20" fill="#4CAF50" stroke="#388E3C" stroke-width="1" rx="4"/>
+  <text x="650" y="435" font-size="11" fill="#333">高重要性 (保留)</text>
+  
+  <rect x="620" y="450" width="20" height="20" fill="#FFCDD2" stroke="#E53935" stroke-width="1" rx="4"/>
+  <text x="650" y="465" font-size="11" fill="#333">低重要性 (融合)</text>
+  
+  <rect x="620" y="480" width="20" height="20" fill="#2196F3" stroke="#1976D2" stroke-width="1" rx="4"/>
+  <text x="650" y="495" font-size="11" fill="#333">新初始化方向</text>
+</svg>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" font-family="sans-serif">
+  <style>
+    .title { font-size: 18px; font-weight: bold; fill: #333; }
+    .label { font-size: 14px; fill: #666; }
+    .box { rx: 8; ry: 8; }
+    .frozen { fill: #e0e0e0; stroke: #999; stroke-width: 2; }
+    .trainable { fill: #4CAF50; stroke: #388E3C; stroke-width: 2; }
+    .merged { fill: #9C27B0; stroke: #7B1FA2; stroke-width: 2; }
+    .arrow { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="title">训练时 vs 部署时</text>
+  
+  <!-- Training Phase -->
+  <g transform="translate(50, 60)">
+    <text x="150" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#2196F3">训练阶段</text>
+    
+    <!-- Frozen W -->
+    <rect x="20" y="40" width="120" height="80" class="box frozen"/>
+    <text x="80" y="75" text-anchor="middle" font-size="13" fill="#333">W₀ (冻结)</text>
+    <text x="80" y="95" text-anchor="middle" font-size="11" fill="#666">+ 融合分量</text>
+    
+    <!-- LoRA B -->
+    <rect x="20" y="150" width="50" height="80" class="box trainable"/>
+    <text x="45" y="195" text-anchor="middle" font-size="14" fill="white">B</text>
+    
+    <!-- LoRA A -->
+    <rect x="90" y="150" width="50" height="80" class="box trainable"/>
+    <text x="115" y="195" text-anchor="middle" font-size="14" fill="white">A</text>
+    
+    <!-- Add -->
+    <circle cx="200" cy="120" r="25" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+    <text x="200" y="125" text-anchor="middle" font-size="18" fill="#FF9800">+</text>
+    
+    <!-- Arrows -->
+    <path d="M 140 80 L 175 115" class="arrow"/>
+    <path d="M 140 190 L 175 125" class="arrow"/>
+    <path d="M 70 120 L 70 150" class="arrow"/>
+    
+    <!-- Note -->
+    <text x="150" y="260" text-anchor="middle" font-size="12" fill="#666">可训练: B, A</text>
+    <text x="150" y="280" text-anchor="middle" font-size="12" fill="#666">冻结: W₀</text>
+    <text x="150" y="300" text-anchor="middle" font-size="12" fill="#E53935">定期重组子空间</text>
+  </g>
+  
+  <!-- Arrow between phases -->
+  <path d="M 380 180 L 420 180" class="arrow" stroke="#9C27B0" stroke-width="3"/>
+  <text x="400" y="170" text-anchor="middle" font-size="12" fill="#9C27B0">合并权重</text>
+  
+  <!-- Deployment Phase -->
+  <g transform="translate(450, 60)">
+    <text x="150" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#9C27B0">部署阶段</text>
+    
+    <!-- Merged W -->
+    <rect x="50" y="40" width="200" height="100" class="box merged"/>
+    <text x="150" y="75" text-anchor="middle" font-size="14" fill="white">W_final = W₀ + BA</text>
+    <text x="150" y="95" text-anchor="middle" font-size="12" fill="#E1BEE7">单一权重矩阵</text>
+    <text x="150" y="115" text-anchor="middle" font-size="12" fill="#E1BEE7">无额外开销</text>
+    
+    <!-- Input/Output -->
+    <rect x="50" y="170" width="80" height="50" class="box" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+    <text x="90" y="200" text-anchor="middle" font-size="12" fill="white">输入 x</text>
+    
+    <rect x="220" y="170" width="80" height="50" class="box" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+    <text x="260" y="200" text-anchor="middle" font-size="12" fill="white">输出 h</text>
+    
+    <!-- Arrow -->
+    <path d="M 130 195 L 220 195" class="arrow"/>
+    
+    <!-- Note -->
+    <text x="150" y="260" text-anchor="middle" font-size="12" fill="#666">可训练: 无</text>
+    <text x="150" y="280" text-anchor="middle" font-size="12" fill="#666">冻结: W_final</text>
+    <text x="150" y="300" text-anchor="middle" font-size="12" fill="#4CAF50">推理效率 = 标准模型</text>
+  </g>
+  
+  <!-- Key insight box -->
+  <rect x="250" y="310" width="300" height="30" class="box" fill="#FFF9C4" stroke="#FBC02D" stroke-width="2"/>
+  <text x="400" y="330" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">训练时动态重组，部署时完全等价于标准模型</text>
+</svg>

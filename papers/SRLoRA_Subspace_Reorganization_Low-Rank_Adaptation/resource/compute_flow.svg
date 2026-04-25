@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="sans-serif">
+  <style>
+    .title { font-size: 18px; font-weight: bold; fill: #333; }
+    .label { font-size: 13px; fill: #666; }
+    .box { rx: 8; ry: 8; }
+    .frozen { fill: #e0e0e0; stroke: #999; stroke-width: 2; }
+    .trainable { fill: #4CAF50; stroke: #388E3C; stroke-width: 2; }
+    .process { fill: #2196F3; stroke: #1976D2; stroke-width: 2; }
+    .arrow { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    .arrow-green { stroke: #4CAF50; stroke-width: 2; fill: none; marker-end: url(#arrowhead-green); }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4CAF50"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="title">SRLoRA 计算流向图</text>
+  
+  <!-- Input -->
+  <rect x="50" y="80" width="100" height="60" class="box" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+  <text x="100" y="115" text-anchor="middle" font-size="14" fill="white">输入 x</text>
+  
+  <!-- Frozen Weight W0 -->
+  <rect x="250" y="60" width="150" height="80" class="box frozen"/>
+  <text x="325" y="95" text-anchor="middle" font-size="14" fill="#333">W₀ (冻结)</text>
+  <text x="325" y="115" text-anchor="middle" font-size="11" fill="#666">预训练权重</text>
+  
+  <!-- LoRA B -->
+  <rect x="250" y="180" width="70" height="80" class="box trainable"/>
+  <text x="285" y="225" text-anchor="middle" font-size="14" fill="white">B</text>
+  
+  <!-- LoRA A -->
+  <rect x="340" y="180" width="70" height="80" class="box trainable"/>
+  <text x="375" y="225" text-anchor="middle" font-size="14" fill="white">A</text>
+  
+  <!-- Add -->
+  <circle cx="500" cy="120" r="30" class="box" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+  <text x="500" y="125" text-anchor="middle" font-size="20" fill="#FF9800">+</text>
+  
+  <!-- Output -->
+  <rect x="600" y="80" width="120" height="60" class="box" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+  <text x="660" y="115" text-anchor="middle" font-size="14" fill="white">输出 h</text>
+  
+  <!-- Arrows -->
+  <path d="M 150 110 L 250 110" class="arrow"/>
+  <path d="M 400 100 L 470 115" class="arrow"/>
+  <path d="M 530 120 L 600 110" class="arrow"/>
+  <path d="M 100 140 L 100 220 L 250 220" class="arrow"/>
+  <path d="M 320 220 L 340 220" class="arrow"/>
+  <path d="M 375 180 L 375 150 L 470 125" class="arrow"/>
+  
+  <!-- SRLoRA Process Box -->
+  <rect x="50" y="300" width="700" height="180" class="box" fill="#E3F2FD" stroke="#2196F3" stroke-width="2"/>
+  <text x="400" y="330" text-anchor="middle" class="title">SRLoRA 子空间重组流程 (周期性执行)</text>
+  
+  <!-- Step 1: Importance Scoring -->
+  <rect x="80" y="350" width="150" height="100" class="box process"/>
+  <text x="155" y="380" text-anchor="middle" font-size="13" fill="white">1. 重要性评分</text>
+  <text x="155" y="400" text-anchor="middle" font-size="11" fill="#E3F2FD">I(w) = |w · ∇L|</text>
+  <text x="155" y="420" text-anchor="middle" font-size="11" fill="#E3F2FD">EMA 平滑</text>
+  
+  <!-- Arrow -->
+  <path d="M 230 400 L 280 400" class="arrow-green"/>
+  
+  <!-- Step 2: Fusion -->
+  <rect x="280" y="350" width="150" height="100" class="box" fill="#FFCDD2" stroke="#E53935" stroke-width="2"/>
+  <text x="355" y="380" text-anchor="middle" font-size="13" fill="#333">2. 低重要性融合</text>
+  <text x="355" y="400" text-anchor="middle" font-size="11" fill="#E53935">W ← W + Σ(B·k · A_k·)</text>
+  <text x="355" y="420" text-anchor="middle" font-size="11" fill="#E53935">丢弃低重要性参数</text>
+  
+  <!-- Arrow -->
+  <path d="M 430 400 L 480 400" class="arrow-green"/>
+  
+  <!-- Step 3: Reinitialization -->
+  <rect x="480" y="350" width="150" height="100" class="box" fill="#C8E6C9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="555" y="380" text-anchor="middle" font-size="13" fill="#333">3. 重新初始化</text>
+  <text x="555" y="400" text-anchor="middle" font-size="11" fill="#2E7D32">用未使用 SVD 方向</text>
+  <text x="555" y="420" text-anchor="middle" font-size="11" fill="#2E7D32">W ← W - B_new·A_new</text>
+  
+  <!-- Arrow -->
+  <path d="M 630 400 L 680 400" class="arrow-green"/>
+  
+  <!-- Step 4: Continue Training -->
+  <rect x="680" y="350" width="60" height="100" class="box" fill="#4CAF50" stroke="#388E3C" stroke-width="2"/>
+  <text x="710" y="405" text-anchor="middle" font-size="12" fill="white">继续</text>
+  <text x="710" y="425" text-anchor="middle" font-size="12" fill="white">训练</text>
+  
+  <!-- Feedback arrow -->
+  <path d="M 710 350 L 710 280 L 400 280 L 400 260" class="arrow-green" stroke-dasharray="5,5"/>
+  <text x="555" y="275" text-anchor="middle" font-size="11" fill="#4CAF50">循环执行</text>
+</svg>

@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; fill: #333; }
+    .label { font-size: 12px; fill: #666; }
+    .box { rx: 8; ry: 8; }
+    .frozen { fill: #e0e0e0; stroke: #999; stroke-width: 2; }
+    .trainable { fill: #4CAF50; stroke: #388E3C; stroke-width: 2; }
+    .problem { fill: #FFCDD2; stroke: #E53935; stroke-width: 2; }
+    .arrow { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="title">现有 LoRA 改进方案对比</text>
+  
+  <!-- Standard LoRA -->
+  <g transform="translate(50, 60)">
+    <text x="100" y="20" text-anchor="middle" class="label">标准 LoRA</text>
+    <rect x="20" y="30" width="160" height="60" class="box frozen"/>
+    <text x="100" y="65" text-anchor="middle" font-size="14" fill="#333">W₀ (冻结)</text>
+    
+    <rect x="20" y="110" width="70" height="60" class="box trainable"/>
+    <text x="55" y="145" text-anchor="middle" font-size="14" fill="white">B</text>
+    
+    <rect x="110" y="110" width="70" height="60" class="box trainable"/>
+    <text x="145" y="145" text-anchor="middle" font-size="14" fill="white">A</text>
+    
+    <text x="100" y="200" text-anchor="middle" class="label" fill="#E53935">❌ 子空间固定</text>
+  </g>
+  
+  <!-- AdaLoRA -->
+  <g transform="translate(280, 60)">
+    <text x="100" y="20" text-anchor="middle" class="label">AdaLoRA</text>
+    <rect x="20" y="30" width="160" height="60" class="box frozen"/>
+    <text x="100" y="65" text-anchor="middle" font-size="14" fill="#333">W₀ (冻结)</text>
+    
+    <rect x="20" y="110" width="50" height="60" class="box trainable"/>
+    <text x="45" y="145" text-anchor="middle" font-size="14" fill="white">B₁</text>
+    
+    <rect x="85" y="110" width="30" height="60" class="box trainable"/>
+    <text x="100" y="145" text-anchor="middle" font-size="14" fill="white">B₂</text>
+    
+    <rect x="130" y="110" width="50" height="60" class="box trainable"/>
+    <text x="155" y="145" text-anchor="middle" font-size="14" fill="white">A</text>
+    
+    <text x="100" y="200" text-anchor="middle" class="label" fill="#E53935">❌ 方向不变</text>
+  </g>
+  
+  <!-- PiSSA -->
+  <g transform="translate(510, 60)">
+    <text x="100" y="20" text-anchor="middle" class="label">PiSSA</text>
+    <rect x="20" y="30" width="160" height="60" class="box frozen"/>
+    <text x="100" y="65" text-anchor="middle" font-size="14" fill="#333">W₀ (冻结)</text>
+    
+    <rect x="20" y="110" width="70" height="60" class="box trainable"/>
+    <text x="55" y="145" text-anchor="middle" font-size="14" fill="white">B*</text>
+    
+    <rect x="110" y="110" width="70" height="60" class="box trainable"/>
+    <text x="145" y="145" text-anchor="middle" font-size="14" fill="white">A*</text>
+    
+    <text x="100" y="200" text-anchor="middle" class="label" fill="#E53935">❌ 初始化后固定</text>
+  </g>
+  
+  <!-- SRLoRA (Ours) -->
+  <g transform="translate(50, 280)">
+    <text x="100" y="20" text-anchor="middle" class="label" font-weight="bold">SRLoRA (本文)</text>
+    <rect x="20" y="30" width="160" height="60" class="box frozen"/>
+    <text x="100" y="65" text-anchor="middle" font-size="14" fill="#333">W (动态吸收)</text>
+    
+    <rect x="20" y="110" width="70" height="60" class="box trainable"/>
+    <text x="55" y="145" text-anchor="middle" font-size="14" fill="white">B</text>
+    
+    <rect x="110" y="110" width="70" height="60" class="box trainable"/>
+    <text x="145" y="145" text-anchor="middle" font-size="14" fill="white">A</text>
+    
+    <path d="M 190 140 Q 210 140 210 120" class="arrow"/>
+    <text x="210" y="115" font-size="11" fill="#4CAF50">重组</text>
+    
+    <text x="100" y="200" text-anchor="middle" class="label" fill="#4CAF50">✓ 动态子空间</text>
+  </g>
+  
+  <!-- Arrow showing evolution -->
+  <path d="M 250 370 L 750 370" class="arrow" stroke-dasharray="5,5"/>
+  <text x="500" y="395" text-anchor="middle" class="label">时间 →</text>
+  
+  <!-- SRLoRA evolution stages -->
+  <g transform="translate(450, 280)">
+    <text x="100" y="20" text-anchor="middle" class="label">SRLoRA 训练过程</text>
+    
+    <rect x="20" y="30" width="60" height="50" class="box" fill="#4CAF50" stroke="#388E3C" stroke-width="2"/>
+    <text x="50" y="60" text-anchor="middle" font-size="11" fill="white">高重要</text>
+    
+    <rect x="90" y="30" width="60" height="50" class="box" fill="#FFCDD2" stroke="#E53935" stroke-width="2"/>
+    <text x="120" y="60" text-anchor="middle" font-size="11" fill="#333">低重要→融合</text>
+    
+    <rect x="20" y="100" width="60" height="50" class="box" fill="#4CAF50" stroke="#388E3C" stroke-width="2"/>
+    <text x="50" y="130" text-anchor="middle" font-size="11" fill="white">高重要</text>
+    
+    <rect x="90" y="100" width="60" height="50" class="box" fill="#2196F3" stroke="#1976D2" stroke-width="2"/>
+    <text x="120" y="130" text-anchor="middle" font-size="11" fill="white">新方向</text>
+    
+    <text x="100" y="180" text-anchor="middle" class="label">t → t+1: 淘汰+重生</text>
+  </g>
+</svg>

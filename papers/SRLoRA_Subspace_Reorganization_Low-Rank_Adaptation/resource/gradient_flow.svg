@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="sans-serif">
+  <style>
+    .title { font-size: 18px; font-weight: bold; fill: #333; }
+    .label { font-size: 13px; fill: #666; }
+    .box { rx: 8; ry: 8; }
+    .frozen { fill: #e0e0e0; stroke: #999; stroke-width: 2; }
+    .trainable { fill: #4CAF50; stroke: #388E3C; stroke-width: 2; }
+    .gradient { stroke: #E53935; stroke-width: 2; fill: none; marker-end: url(#arrowhead-red); }
+    .arrow { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#E53935"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="title">梯度流向图 (简化示例)</text>
+  
+  <!-- Forward Pass -->
+  <text x="100" y="70" class="label" font-weight="bold">前向传播</text>
+  
+  <!-- Input -->
+  <rect x="50" y="90" width="80" height="50" class="box" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+  <text x="90" y="120" text-anchor="middle" font-size="12" fill="white">x</text>
+  
+  <!-- W0 (Frozen) -->
+  <rect x="180" y="80" width="100" height="60" class="box frozen"/>
+  <text x="230" y="115" text-anchor="middle" font-size="12" fill="#333">W₀ (冻结)</text>
+  <text x="230" y="130" text-anchor="middle" font-size="10" fill="#999">∇W₀ = 0</text>
+  
+  <!-- B (Trainable) -->
+  <rect x="180" y="180" width="60" height="60" class="box trainable"/>
+  <text x="210" y="215" text-anchor="middle" font-size="14" fill="white">B</text>
+  
+  <!-- A (Trainable) -->
+  <rect x="260" y="180" width="60" height="60" class="box trainable"/>
+  <text x="290" y="215" text-anchor="middle" font-size="14" fill="white">A</text>
+  
+  <!-- Add -->
+  <circle cx="360" cy="110" r="25" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+  <text x="360" y="115" text-anchor="middle" font-size="16" fill="#FF9800">+</text>
+  
+  <!-- Output -->
+  <rect x="430" y="85" width="80" height="50" class="box" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+  <text x="470" y="115" text-anchor="middle" font-size="12" fill="white">h</text>
+  
+  <!-- Loss -->
+  <rect x="550" y="85" width="80" height="50" class="box" fill="#E53935" stroke="#C62828" stroke-width="2"/>
+  <text x="590" y="115" text-anchor="middle" font-size="12" fill="white">L</text>
+  
+  <!-- Forward arrows -->
+  <path d="M 130 115 L 180 110" class="arrow"/>
+  <path d="M 280 110 L 335 110" class="arrow"/>
+  <path d="M 385 110 L 430 110" class="arrow"/>
+  <path d="M 510 110 L 550 110" class="arrow"/>
+  <path d="M 130 115 L 130 210 L 180 210" class="arrow"/>
+  <path d="M 240 210 L 260 210" class="arrow"/>
+  <path d="M 290 180 L 290 135 L 335 115" class="arrow"/>
+  
+  <!-- Backward Pass -->
+  <text x="100" y="280" class="label" font-weight="bold">反向传播 (梯度流向)</text>
+  
+  <!-- Gradient from Loss -->
+  <rect x="550" y="300" width="80" height="50" class="box" fill="#E53935" stroke="#C62828" stroke-width="2"/>
+  <text x="590" y="330" text-anchor="middle" font-size="12" fill="white">∂L/∂h</text>
+  
+  <!-- Gradient to B -->
+  <rect x="180" y="300" width="60" height="60" class="box trainable"/>
+  <text x="210" y="335" text-anchor="middle" font-size="11" fill="white">∂L/∂B</text>
+  <text x="210" y="350" text-anchor="middle" font-size="9" fill="#E3F2FD">≠ 0 ✓</text>
+  
+  <!-- Gradient to A -->
+  <rect x="260" y="300" width="60" height="60" class="box trainable"/>
+  <text x="290" y="335" text-anchor="middle" font-size="11" fill="white">∂L/∂A</text>
+  <text x="290" y="350" text-anchor="middle" font-size="9" fill="#E3F2FD">≠ 0 ✓</text>
+  
+  <!-- Gradient to W0 (Frozen) -->
+  <rect x="180" y="200" width="100" height="60" class="box frozen"/>
+  <text x="230" y="235" text-anchor="middle" font-size="12" fill="#333">∂L/∂W₀</text>
+  <text x="230" y="250" text-anchor="middle" font-size="10" fill="#E53935">= 0 ✗</text>
+  
+  <!-- Gradient arrows -->
+  <path d="M 550 325 L 470 325" class="gradient"/>
+  <path d="M 430 325 L 320 330" class="gradient"/>
+  <path d="M 320 330 L 240 330" class="gradient"/>
+  
+  <!-- Frozen gradient blocked -->
+  <path d="M 230 280 L 230 260" class="arrow" stroke="#999" stroke-dasharray="3,3"/>
+  <text x="250" y="275" font-size="10" fill="#999">梯度阻断</text>
+  
+  <!-- Legend -->
+  <rect x="600" y="250" width="180" height="130" class="box" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+  <text x="690" y="275" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">图例</text>
+  
+  <rect x="620" y="290" width="20" height="20" class="box trainable"/>
+  <text x="650" y="305" font-size="11" fill="#333">可训练参数 (有梯度)</text>
+  
+  <rect x="620" y="320" width="20" height="20" class="box frozen"/>
+  <text x="650" y="335" font-size="11" fill="#333">冻结参数 (无梯度)</text>
+  
+  <path d="M 620 355 L 640 355" class="gradient"/>
+  <text x="650" y="360" font-size="11" fill="#333">梯度流向</text>
+</svg>

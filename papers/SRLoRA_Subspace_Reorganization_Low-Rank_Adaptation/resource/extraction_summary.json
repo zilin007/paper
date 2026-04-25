@@ -1,0 +1,143 @@
+{
+  "pdf": "papers/SRLoRA_Subspace_Reorganization_Low-Rank_Adaptation/SRLoRA_Subspace_Reorganization_Low-Rank_Adaptation.pdf",
+  "total_pages": 14,
+  "embedded_images": 10,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 178.1
+    },
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 400.0
+    },
+    {
+      "fig_num": "2",
+      "page": 4,
+      "caption_y": 118.4
+    },
+    {
+      "fig_num": "2",
+      "page": 4,
+      "caption_y": 322.7
+    },
+    {
+      "fig_num": "3",
+      "page": 10,
+      "caption_y": 305.5
+    },
+    {
+      "fig_num": "4",
+      "page": 10,
+      "caption_y": 504.6
+    },
+    {
+      "fig_num": "5",
+      "page": 11,
+      "caption_y": 201.3
+    },
+    {
+      "fig_num": "3",
+      "page": 11,
+      "caption_y": 316.0
+    },
+    {
+      "fig_num": "4",
+      "page": 11,
+      "caption_y": 436.7
+    },
+    {
+      "fig_num": "5",
+      "page": 11,
+      "caption_y": 460.7
+    }
+  ],
+  "files": [
+    {
+      "page": 2,
+      "file": "page2_img1_1208x1058.png",
+      "size": "1208x1058",
+      "method": "embedded"
+    },
+    {
+      "page": 2,
+      "file": "page2_img2_1208x1058.png",
+      "size": "1208x1058",
+      "method": "embedded"
+    },
+    {
+      "page": 4,
+      "file": "page4_img1_2034x592.png",
+      "size": "2034x592",
+      "method": "embedded"
+    },
+    {
+      "page": 4,
+      "file": "page4_img2_2040x676.png",
+      "size": "2040x676",
+      "method": "embedded"
+    },
+    {
+      "page": 10,
+      "file": "page10_img1_1000x600.png",
+      "size": "1000x600",
+      "method": "embedded"
+    },
+    {
+      "page": 10,
+      "file": "page10_img2_1000x600.png",
+      "size": "1000x600",
+      "method": "embedded"
+    },
+    {
+      "page": 10,
+      "file": "page10_img3_1000x600.png",
+      "size": "1000x600",
+      "method": "embedded"
+    },
+    {
+      "page": 10,
+      "file": "page10_img4_1000x600.png",
+      "size": "1000x600",
+      "method": "embedded"
+    },
+    {
+      "page": 10,
+      "file": "page10_img5_3622x1256.png",
+      "size": "3622x1256",
+      "method": "embedded"
+    },
+    {
+      "page": 11,
+      "file": "page11_img1_3412x1502.png",
+      "size": "3412x1502",
+      "method": "embedded"
+    },
+    {
+      "page": 2,
+      "file": "temp_page2_full_300dpi.png",
+      "size": "1702x2574",
+      "method": "page_render"
+    },
+    {
+      "page": 4,
+      "file": "temp_page4_full_300dpi.png",
+      "size": "1702x2574",
+      "method": "page_render"
+    },
+    {
+      "page": 10,
+      "file": "temp_page10_full_300dpi.png",
+      "size": "1702x2574",
+      "method": "page_render"
+    },
+    {
+      "page": 11,
+      "file": "temp_page11_full_300dpi.png",
+      "size": "1702x2574",
+      "method": "page_render"
+    }
+  ]
+}
