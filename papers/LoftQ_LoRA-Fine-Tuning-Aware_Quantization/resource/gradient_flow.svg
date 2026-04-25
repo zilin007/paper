@@ -1,57 +1,84 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" font-family="sans-serif">
-  <!-- Background -->
-  <rect width="700" height="350" fill="#f8f9fa" rx="8"/>
-  
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 420" font-family="sans-serif">
   <!-- Title -->
-  <text x="350" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">LoftQ 微调阶段梯度流向</text>
-  
-  <!-- Input -->
-  <rect x="20" y="70" width="120" height="50" fill="#e3f2fd" rx="6" stroke="#1976d2" stroke-width="2"/>
-  <text x="80" y="100" text-anchor="middle" font-size="13" fill="#333">输入 x</text>
-  
-  <!-- Dequantize -->
-  <rect x="180" y="70" width="130" height="50" fill="#fff3e0" rx="6" stroke="#f57c00" stroke-width="2"/>
-  <text x="245" y="92" text-anchor="middle" font-size="12" fill="#333">反量化</text>
-  <text x="245" y="108" text-anchor="middle" font-size="11" fill="#666">M → Q (冻结)</text>
-  
-  <!-- Matrix multiply -->
-  <rect x="350" y="70" width="130" height="50" fill="#fff3e0" rx="6" stroke="#f57c00" stroke-width="2"/>
-  <text x="415" y="100" text-anchor="middle" font-size="12" fill="#333">x·Q (冻结)</text>
-  
-  <!-- LoRA branch -->
-  <rect x="350" y="160" width="130" height="50" fill="#e8f5e9" rx="6" stroke="#2e7d32" stroke-width="2"/>
-  <text x="415" y="182" text-anchor="middle" font-size="12" fill="#333">x·A·Bᵀ</text>
-  <text x="415" y="198" text-anchor="middle" font-size="11" fill="#2e7d32">(可训练)</text>
-  
-  <!-- Add -->
-  <circle cx="530" cy="115" r="20" fill="#fff" stroke="#333" stroke-width="2"/>
-  <text x="530" y="120" text-anchor="middle" font-size="18" fill="#333">+</text>
-  
+  <text x="325" y="30" text-anchor="middle" font-size="16" font-weight="bold">LoftQ 微调阶段梯度流向图</text>
+
+  <!-- Input X -->
+  <rect x="30" y="70" width="100" height="50" rx="8" fill="#ebf5fb" stroke="#2980b9" stroke-width="2"/>
+  <text x="80" y="95" text-anchor="middle" font-size="13">输入 X</text>
+  <text x="80" y="110" text-anchor="middle" font-size="10" fill="#7f8c8d">(n × d₁)</text>
+
+  <!-- Arrow to branches -->
+  <line x1="130" y1="95" x2="180" y2="95" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="180" y1="95" x2="180" y2="170" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="180" y1="95" x2="180" y2="280" stroke="#2c3e50" stroke-width="2"/>
+
+  <!-- Branch 1: Quantized Weight (Frozen) -->
+  <rect x="180" y="60" width="150" height="70" rx="8" fill="#f2f3f4" stroke="#95a5a6" stroke-width="2"/>
+  <text x="255" y="85" text-anchor="middle" font-size="12">量化权重 Q_T</text>
+  <text x="255" y="100" text-anchor="middle" font-size="10" fill="#95a5a6">(冻结, 无梯度)</text>
+  <text x="255" y="115" text-anchor="middle" font-size="10" fill="#e74c3c">❌ ∂L/∂Q = 0</text>
+
+  <!-- Branch 2: LoRA A (Trainable) -->
+  <rect x="180" y="150" width="150" height="70" rx="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+  <text x="255" y="175" text-anchor="middle" font-size="12">LoRA 矩阵 A</text>
+  <text x="255" y="190" text-anchor="middle" font-size="10" fill="#27ae60">(可训练, 有梯度)</text>
+  <text x="255" y="205" text-anchor="middle" font-size="10" fill="#27ae60">✓ ∂L/∂A ≠ 0</text>
+
+  <!-- Branch 3: LoRA B (Trainable) -->
+  <rect x="180" y="250" width="150" height="70" rx="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+  <text x="255" y="275" text-anchor="middle" font-size="12">LoRA 矩阵 B</text>
+  <text x="255" y="290" text-anchor="middle" font-size="10" fill="#27ae60">(可训练, 有梯度)</text>
+  <text x="255" y="305" text-anchor="middle" font-size="10" fill="#27ae60">✓ ∂L/∂B ≠ 0</text>
+
+  <!-- Arrows to output -->
+  <line x1="330" y1="95" x2="400" y2="170" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="330" y1="185" x2="400" y2="180" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="330" y1="285" x2="400" y2="190" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+
   <!-- Output -->
-  <rect x="580" y="85" width="100" height="50" fill="#e3f2fd" rx="6" stroke="#1976d2" stroke-width="2"/>
-  <text x="630" y="115" text-anchor="middle" font-size="13" fill="#333">输出 y</text>
-  
-  <!-- Arrows -->
-  <line x1="140" y1="95" x2="180" y2="95" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="310" y1="95" x2="350" y2="95" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="415" y1="120" x2="415" y2="160" stroke="#2e7d32" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowGreen)"/>
-  <line x1="480" y1="95" x2="510" y2="95" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="480" y1="185" x2="515" y2="130" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowGreen)"/>
-  <line x1="550" y1="115" x2="580" y2="115" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
-  
-  <!-- Gradient flow annotation -->
-  <rect x="20" y="240" width="660" height="95" fill="#fff" rx="6" stroke="#666" stroke-width="1"/>
-  <text x="40" y="265" font-size="13" font-weight="bold" fill="#333">梯度流向（反向传播）：</text>
-  <text x="40" y="290" font-size="12" fill="#d32f2f">✗ 量化权重 Q（整数存储）：无梯度，不更新</text>
-  <text x="40" y="315" font-size="12" fill="#2e7d32">✓ LoRA 参数 A, B（FP16）：有梯度，AdamW 优化</text>
-  
+  <rect x="400" y="140" width="120" height="70" rx="8" fill="#ebf5fb" stroke="#2980b9" stroke-width="2"/>
+  <text x="460" y="165" text-anchor="middle" font-size="12">输出 Y</text>
+  <text x="460" y="180" text-anchor="middle" font-size="10">Y = XQ_T + XABᵀ</text>
+  <text x="460" y="195" text-anchor="middle" font-size="10" fill="#7f8c8d">(n × d₂)</text>
+
+  <!-- Arrow to Loss -->
+  <line x1="520" y1="175" x2="560" y2="175" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Loss -->
+  <rect x="560" y="140" width="80" height="70" rx="8" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/>
+  <text x="600" y="165" text-anchor="middle" font-size="12">损失 L</text>
+  <text x="600" y="180" text-anchor="middle" font-size="10">CrossEntropy</text>
+  <text x="600" y="195" text-anchor="middle" font-size="10">(标量)</text>
+
+  <!-- Gradient flow arrows back -->
+  <line x1="560" y1="175" x2="520" y2="175" stroke="#e74c3c" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowRed)"/>
+  <text x="540" y="165" text-anchor="middle" font-size="9" fill="#e74c3c">梯度反向</text>
+
+  <!-- Gradient only flows to A and B -->
+  <line x1="400" y1="180" x2="330" y2="185" stroke="#27ae60" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowGreen)"/>
+  <line x1="400" y1="190" x2="330" y2="285" stroke="#27ae60" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowGreen)"/>
+
+  <!-- Legend -->
+  <rect x="30" y="350" width="590" height="60" rx="8" fill="#f8f9f9" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="50" y="372" font-size="11">图例:</text>
+  <rect x="100" y="363" width="20" height="14" rx="3" fill="#d5f5e3" stroke="#27ae60"/>
+  <text x="125" y="374" font-size="11">可训练参数 (有梯度)</text>
+  <rect x="300" y="363" width="20" height="14" rx="3" fill="#f2f3f4" stroke="#95a5a6"/>
+  <text x="325" y="374" font-size="11">冻结参数 (无梯度)</text>
+  <line x1="480" y1="370" x2="500" y2="370" stroke="#27ae60" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="505" y="374" font-size="11">梯度流向</text>
+  <text x="50" y="395" font-size="11">LoRA 初始化: A₀ = U√Σ, B₀ = V√Σ (来自 SVD, 非零!)</text>
+
   <!-- Arrow markers -->
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
     </marker>
-    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#2e7d32"/>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
     </marker>
   </defs>
 </svg>

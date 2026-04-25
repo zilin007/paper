@@ -1,48 +1,82 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 350" font-family="sans-serif">
-  <!-- Background -->
-  <rect width="750" height="350" fill="#f8f9fa" rx="8"/>
-  
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" font-family="sans-serif">
   <!-- Title -->
-  <text x="375" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">训练时 vs 部署时</text>
-  
-  <!-- Training side -->
-  <rect x="30" y="55" width="330" height="270" fill="#e3f2fd" rx="8" stroke="#1976d2" stroke-width="2"/>
-  <text x="195" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#1976d2">训练阶段 (Fine-tuning)</text>
-  
-  <!-- Training components -->
-  <rect x="60" y="105" width="270" height="45" fill="#fff3e0" rx="6" stroke="#f57c00" stroke-width="2"/>
-  <text x="195" y="133" text-anchor="middle" font-size="12" fill="#333">量化权重 Q (INT4/INT2) — 冻结</text>
-  
-  <text x="195" y="170" text-anchor="middle" font-size="18" fill="#666">+</text>
-  
-  <rect x="60" y="185" width="270" height="45" fill="#e8f5e9" rx="6" stroke="#2e7d32" stroke-width="2"/>
-  <text x="195" y="213" text-anchor="middle" font-size="12" fill="#333">LoRA 参数 A, B (FP16) — 可训练</text>
-  
-  <text x="195" y="250" text-anchor="middle" font-size="12" fill="#666">前向: y = x·Q + x·A·Bᵀ</text>
-  <text x="195" y="270" text-anchor="middle" font-size="12" fill="#2e7d32">反向: 梯度仅流向 A, B</text>
-  
-  <rect x="60" y="285" width="270" height="30" fill="#bbdefb" rx="4"/>
-  <text x="195" y="305" text-anchor="middle" font-size="11" fill="#1976d2">优化器: AdamW 更新 A, B</text>
-  
-  <!-- Deployment side -->
-  <rect x="390" y="55" width="330" height="270" fill="#e8f5e9" rx="8" stroke="#2e7d32" stroke-width="2"/>
-  <text x="555" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">部署阶段 (Inference)</text>
-  
-  <!-- Deployment components -->
-  <rect x="420" y="105" width="270" height="45" fill="#fff3e0" rx="6" stroke="#f57c00" stroke-width="2"/>
-  <text x="555" y="133" text-anchor="middle" font-size="12" fill="#333">量化权重 Q (INT4/INT2)</text>
-  
-  <text x="555" y="170" text-anchor="middle" font-size="18" fill="#666">+</text>
-  
-  <rect x="420" y="185" width="270" height="45" fill="#e8f5e9" rx="6" stroke="#2e7d32" stroke-width="2"/>
-  <text x="555" y="213" text-anchor="middle" font-size="12" fill="#333">LoRA 参数 A, B (训练后的值)</text>
-  
-  <text x="555" y="250" text-anchor="middle" font-size="12" fill="#666">前向: y = x·Q + x·A·Bᵀ</text>
-  <text x="555" y="270" text-anchor="middle" font-size="12" fill="#2e7d32">无反向传播</text>
-  
-  <rect x="420" y="285" width="270" height="30" fill="#c8e6c9" rx="4"/>
-  <text x="555" y="305" text-anchor="middle" font-size="11" fill="#2e7d32">显存占用: Q(低比特) + A,B(小秩)</text>
-  
-  <!-- Arrow between -->
-  <text x="375" y="190" text-anchor="middle" font-size="24" fill="#666">⟹</text>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold">训练时 vs 推理时结构对比</text>
+
+  <!-- Training Phase (Left) -->
+  <text x="175" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#2980b9">训练阶段 (Fine-tuning)</text>
+
+  <!-- Input -->
+  <rect x="30" y="95" width="80" height="40" rx="6" fill="#ebf5fb" stroke="#2980b9" stroke-width="2"/>
+  <text x="70" y="120" text-anchor="middle" font-size="12">输入 X</text>
+
+  <!-- Arrows -->
+  <line x1="110" y1="115" x2="150" y2="115" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="150" y1="115" x2="150" y2="170" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="150" y1="115" x2="150" y2="230" stroke="#2c3e50" stroke-width="2"/>
+
+  <!-- Quantized Weight (Frozen) -->
+  <rect x="150" y="90" width="140" height="50" rx="6" fill="#f2f3f4" stroke="#95a5a6" stroke-width="2"/>
+  <text x="220" y="110" text-anchor="middle" font-size="11">Q_T (INT4/INT2)</text>
+  <text x="220" y="125" text-anchor="middle" font-size="10" fill="#e74c3c">冻结 ❌</text>
+
+  <!-- LoRA A (Trainable) -->
+  <rect x="150" y="150" width="140" height="50" rx="6" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+  <text x="220" y="170" text-anchor="middle" font-size="11">A (FP16)</text>
+  <text x="220" y="185" text-anchor="middle" font-size="10" fill="#27ae60">可训练 ✓</text>
+
+  <!-- LoRA B (Trainable) -->
+  <rect x="150" y="210" width="140" height="50" rx="6" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+  <text x="220" y="230" text-anchor="middle" font-size="11">B (FP16)</text>
+  <text x="220" y="245" text-anchor="middle" font-size="10" fill="#27ae60">可训练 ✓</text>
+
+  <!-- Merge -->
+  <line x1="290" y1="115" x2="330" y2="165" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="290" y1="175" x2="330" y2="170" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="290" y1="235" x2="330" y2="175" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Add -->
+  <circle cx="345" cy="170" r="20" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <text x="345" y="175" text-anchor="middle" font-size="16" font-weight="bold">+</text>
+
+  <!-- Output -->
+  <line x1="365" y1="170" x2="400" y2="170" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="400" y="145" width="80" height="50" rx="6" fill="#ebf5fb" stroke="#2980b9" stroke-width="2"/>
+  <text x="440" y="165" text-anchor="middle" font-size="11">输出 Y</text>
+  <text x="440" y="180" text-anchor="middle" font-size="10">Y = XQ_T + XABᵀ</text>
+
+  <!-- Arrow to loss -->
+  <line x1="480" y1="170" x2="510" y2="170" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="510" y="145" width="80" height="50" rx="6" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/>
+  <text x="550" y="165" text-anchor="middle" font-size="11">损失 L</text>
+  <text x="550" y="180" text-anchor="middle" font-size="10">反向传播</text>
+
+  <!-- Inference Phase (Right) -->
+  <text x="175" y="290" text-anchor="middle" font-size="14" font-weight="bold" fill="#8e44ad">推理阶段 (Inference)</text>
+
+  <!-- Simplified structure -->
+  <rect x="30" y="315" width="80" height="40" rx="6" fill="#ebf5fb" stroke="#2980b9" stroke-width="2"/>
+  <text x="70" y="340" text-anchor="middle" font-size="12">输入 X</text>
+
+  <line x1="110" y1="335" x2="150" y2="335" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Merged weight -->
+  <rect x="150" y="310" width="200" height="50" rx="6" fill="#e8daef" stroke="#8e44ad" stroke-width="2"/>
+  <text x="250" y="330" text-anchor="middle" font-size="11">W' = Q_T + A*B*ᵀ</text>
+  <text x="250" y="345" text-anchor="middle" font-size="10" fill="#8e44ad">合并后的权重 (一次性计算)</text>
+
+  <line x1="350" y1="335" x2="390" y2="335" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="390" y="310" width="80" height="50" rx="6" fill="#ebf5fb" stroke="#2980b9" stroke-width="2"/>
+  <text x="430" y="330" text-anchor="middle" font-size="11">输出 Y</text>
+  <text x="430" y="345" text-anchor="middle" font-size="10">Y = XW'</text>
+
+  <!-- Key difference note -->
+  <rect x="20" y="370" width="660" height="0" rx="0" fill="none" stroke="none"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+    </marker>
+  </defs>
 </svg>

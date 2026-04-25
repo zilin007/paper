@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" font-family="sans-serif">
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold">QLoRA vs LoftQ 初始化方式对比</text>
+
+  <!-- QLoRA Side (Left) -->
+  <text x="175" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#c0392b">QLoRA 方式</text>
+
+  <!-- QLoRA Step 1: Quantize -->
+  <rect x="50" y="85" width="250" height="50" rx="8" fill="#ecf0f1" stroke="#7f8c8d" stroke-width="2"/>
+  <text x="175" y="105" text-anchor="middle" font-size="12">预训练权重 W (FP16)</text>
+  <text x="175" y="122" text-anchor="middle" font-size="11" fill="#7f8c8d">↓ 直接量化</text>
+
+  <rect x="50" y="145" width="250" height="50" rx="8" fill="#fadbd8" stroke="#c0392b" stroke-width="2"/>
+  <text x="175" y="165" text-anchor="middle" font-size="12">量化权重 Q (INT4/INT2)</text>
+  <text x="175" y="182" text-anchor="middle" font-size="11" fill="#c0392b">量化误差 = W - Q (被丢弃!)</text>
+
+  <!-- QLoRA Step 2: LoRA init -->
+  <rect x="50" y="210" width="250" height="50" rx="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+  <text x="175" y="230" text-anchor="middle" font-size="12">LoRA 适配器 A, B</text>
+  <text x="175" y="247" text-anchor="middle" font-size="11" fill="#27ae60">A ~ N(0,σ²), B = 0 (从零开始)</text>
+
+  <!-- QLoRA Problem -->
+  <rect x="50" y="280" width="250" height="60" rx="8" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/>
+  <text x="175" y="300" text-anchor="middle" font-size="12" font-weight="bold">问题:</text>
+  <text x="175" y="318" text-anchor="middle" font-size="11">量化误差未被补偿, 2-bit 时</text>
+  <text x="175" y="332" text-anchor="middle" font-size="11">模型严重退化, 无法收敛</text>
+
+  <!-- LoftQ Side (Right) -->
+  <text x="525" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">LoftQ 方式</text>
+
+  <!-- LoftQ Step 1: Quantize residual -->
+  <rect x="400" y="85" width="250" height="50" rx="8" fill="#ecf0f1" stroke="#7f8c8d" stroke-width="2"/>
+  <text x="525" y="105" text-anchor="middle" font-size="12">预训练权重 W (FP16)</text>
+  <text x="525" y="122" text-anchor="middle" font-size="11" fill="#7f8c8d">↓ 量化残差 W - ABᵀ</text>
+
+  <rect x="400" y="145" width="250" height="50" rx="8" fill="#d4efdf" stroke="#27ae60" stroke-width="2"/>
+  <text x="525" y="165" text-anchor="middle" font-size="12">量化权重 Q (INT4/INT2)</text>
+  <text x="525" y="182" text-anchor="middle" font-size="11" fill="#27ae60">量化更精准!</text>
+
+  <!-- LoftQ Step 2: SVD -->
+  <rect x="400" y="210" width="250" height="50" rx="8" fill="#d6eaf8" stroke="#2980b9" stroke-width="2"/>
+  <text x="525" y="230" text-anchor="middle" font-size="12">SVD 分解残差 W - Q</text>
+  <text x="525" y="247" text-anchor="middle" font-size="11" fill="#2980b9">提取 top-r 奇异向量 → A, B</text>
+
+  <!-- LoftQ Result -->
+  <rect x="400" y="280" width="250" height="60" rx="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+  <text x="525" y="300" text-anchor="middle" font-size="12" font-weight="bold">优势:</text>
+  <text x="525" y="318" text-anchor="middle" font-size="11">量化误差被低秩矩阵补偿,</text>
+  <text x="525" y="332" text-anchor="middle" font-size="11">2-bit 也能正常工作!</text>
+
+  <!-- Arrow between sides -->
+  <text x="350" y="200" text-anchor="middle" font-size="24">→</text>
+
+  <!-- Key Formula -->
+  <rect x="100" y="370" width="500" height="60" rx="8" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <text x="350" y="395" text-anchor="middle" font-size="13" font-weight="bold">核心目标: min ||W - Q - ABᵀ||_F</text>
+  <text x="350" y="415" text-anchor="middle" font-size="11">QLoRA: 先定 Q, 再令 A=0,B=0 → 误差大</text>
+  <text x="350" y="430" text-anchor="middle" font-size="11">LoftQ: 交替优化 Q, A, B → 误差小</text>
+
+  <!-- Bottom summary -->
+  <rect x="100" y="450" width="500" height="55" rx="8" fill="#e8f8f5" stroke="#1abc9c" stroke-width="2"/>
+  <text x="350" y="472" text-anchor="middle" font-size="12" font-weight="bold">关键区别</text>
+  <text x="350" y="492" text-anchor="middle" font-size="11">QLoRA 把量化和低秩初始化分开处理; LoftQ 把它们联合优化</text>
+</svg>
