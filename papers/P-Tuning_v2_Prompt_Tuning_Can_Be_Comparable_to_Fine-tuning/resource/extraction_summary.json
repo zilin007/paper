@@ -1,0 +1,120 @@
+{
+  "pdf": "papers/P-Tuning_v2_Prompt_Tuning_Can_Be_Comparable_to_Fine-tuning/P-Tuning_v2_Prompt_Tuning_Can_Be_Comparable_to_Fine-tuning.pdf",
+  "total_pages": 8,
+  "embedded_images": 6,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 1,
+      "caption_y": 312.7
+    },
+    {
+      "fig_num": "2",
+      "page": 2,
+      "caption_y": 223.0
+    },
+    {
+      "fig_num": "2",
+      "page": 3,
+      "caption_y": 179.9
+    },
+    {
+      "fig_num": "2",
+      "page": 3,
+      "caption_y": 225.6
+    },
+    {
+      "fig_num": "2",
+      "page": 3,
+      "caption_y": 597.3
+    },
+    {
+      "fig_num": "3",
+      "page": 5,
+      "caption_y": 193.0
+    },
+    {
+      "fig_num": "3",
+      "page": 5,
+      "caption_y": 432.1
+    },
+    {
+      "fig_num": "4",
+      "page": 8,
+      "caption_y": 182.9
+    },
+    {
+      "fig_num": "4",
+      "page": 8,
+      "caption_y": 475.1
+    }
+  ],
+  "files": [
+    {
+      "page": 5,
+      "file": "page5_img1_370x320.png",
+      "size": "370x320",
+      "method": "embedded"
+    },
+    {
+      "page": 5,
+      "file": "page5_img2_368x320.png",
+      "size": "368x320",
+      "method": "embedded"
+    },
+    {
+      "page": 8,
+      "file": "page8_img1_370x270.png",
+      "size": "370x270",
+      "method": "embedded"
+    },
+    {
+      "page": 8,
+      "file": "page8_img2_383x270.png",
+      "size": "383x270",
+      "method": "embedded"
+    },
+    {
+      "page": 8,
+      "file": "page8_img3_370x270.png",
+      "size": "370x270",
+      "method": "embedded"
+    },
+    {
+      "page": 8,
+      "file": "page8_img4_370x270.png",
+      "size": "370x270",
+      "method": "embedded"
+    },
+    {
+      "page": 1,
+      "file": "temp_page1_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    },
+    {
+      "page": 2,
+      "file": "temp_page2_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    },
+    {
+      "page": 3,
+      "file": "temp_page3_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    },
+    {
+      "page": 5,
+      "file": "temp_page5_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    },
+    {
+      "page": 8,
+      "file": "temp_page8_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    }
+  ]
+}

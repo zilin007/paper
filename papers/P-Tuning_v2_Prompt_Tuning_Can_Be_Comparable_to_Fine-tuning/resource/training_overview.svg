@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" font-family="sans-serif">
+  <!-- 标题 -->
+  <text x="400" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">P-Tuning v2 多轮训练迭代全景图</text>
+  
+  <!-- 坐标轴 -->
+  <line x1="80" y1="280" x2="750" y2="280" stroke="#495057" stroke-width="2"/>
+  <line x1="80" y1="50" x2="80" y2="280" stroke="#495057" stroke-width="2"/>
+  
+  <!-- Y轴标签 -->
+  <text x="70" y="285" text-anchor="end" font-size="11" fill="#495057">0.69</text>
+  <text x="70" y="220" text-anchor="end" font-size="11" fill="#495057">0.50</text>
+  <text x="70" y="155" text-anchor="end" font-size="11" fill="#495057">0.30</text>
+  <text x="70" y="90" text-anchor="end" font-size="11" fill="#495057">0.10</text>
+  <text x="70" y="55" text-anchor="end" font-size="11" fill="#495057">0</text>
+  
+  <!-- Y轴标题 -->
+  <text x="25" y="165" text-anchor="middle" font-size="12" fill="#495057" transform="rotate(-90, 25, 165)">损失值 L</text>
+  
+  <!-- X轴标签 -->
+  <text x="80" y="300" text-anchor="middle" font-size="10" fill="#868e96">0</text>
+  <text x="200" y="300" text-anchor="middle" font-size="10" fill="#868e96">200</text>
+  <text x="320" y="300" text-anchor="middle" font-size="10" fill="#868e96">400</text>
+  <text x="440" y="300" text-anchor="middle" font-size="10" fill="#868e96">600</text>
+  <text x="560" y="300" text-anchor="middle" font-size="10" fill="#868e96">800</text>
+  <text x="680" y="300" text-anchor="middle" font-size="10" fill="#868e96">1000</text>
+  <text x="400" y="320" text-anchor="middle" font-size="12" fill="#495057">训练步数 (Steps)</text>
+  
+  <!-- 网格线 -->
+  <line x1="80" y1="220" x2="750" y2="220" stroke="#dee2e6" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="80" y1="155" x2="750" y2="155" stroke="#dee2e6" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="80" y1="90" x2="750" y2="90" stroke="#dee2e6" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- Fine-tuning 损失曲线 (蓝色) -->
+  <path d="M 80 60 Q 140 80 200 100 Q 320 130 440 145 Q 560 152 680 155" fill="none" stroke="#1971c2" stroke-width="3"/>
+  
+  <!-- P-Tuning v2 损失曲线 (绿色) -->
+  <path d="M 80 65 Q 140 90 200 115 Q 320 140 440 150 Q 560 155 680 157" fill="none" stroke="#2b8a3e" stroke-width="3"/>
+  
+  <!-- Prompt Tuning (之前) 损失曲线 (红色) -->
+  <path d="M 80 120 Q 140 140 200 155 Q 320 165 440 170 Q 560 172 680 173" fill="none" stroke="#e03131" stroke-width="3" stroke-dasharray="8,4"/>
+  
+  <!-- 标注点 -->
+  <!-- 初始点 -->
+  <circle cx="80" cy="60" r="5" fill="#1971c2"/>
+  <circle cx="80" cy="65" r="5" fill="#2b8a3e"/>
+  <circle cx="80" cy="120" r="5" fill="#e03131"/>
+  <text x="95" y="55" font-size="10" fill="#495057">← 初始损失</text>
+  
+  <!-- 收敛点 -->
+  <circle cx="680" cy="155" r="5" fill="#1971c2"/>
+  <circle cx="680" cy="157" r="5" fill="#2b8a3e"/>
+  <circle cx="680" cy="173" r="5" fill="#e03131"/>
+  <text x="695" y="150" font-size="10" fill="#495057">← 收敛损失</text>
+  
+  <!-- 图例 -->
+  <rect x="530" y="40" width="220" height="85" rx="6" fill="white" stroke="#dee2e6"/>
+  <line x1="545" y1="58" x2="575" y2="58" stroke="#1971c2" stroke-width="3"/>
+  <text x="585" y="62" font-size="11" fill="#495057">Fine-tuning (全参数)</text>
+  <line x1="545" y1="78" x2="575" y2="78" stroke="#2b8a3e" stroke-width="3"/>
+  <text x="585" y="82" font-size="11" fill="#495057">P-Tuning v2 (0.1-3%参数)</text>
+  <line x1="545" y1="98" x2="575" y2="98" stroke="#e03131" stroke-width="3" stroke-dasharray="8,4"/>
+  <text x="585" y="102" font-size="11" fill="#495057">Prompt Tuning (之前)</text>
+  <text x="545" y="118" font-size="10" fill="#868e96">P-Tuning v2 几乎追平 Fine-tuning</text>
+  
+  <!-- 关键阶段标注 -->
+  <rect x="130" y="175" width="100" height="25" rx="4" fill="#fff3bf" stroke="#fcc419"/>
+  <text x="180" y="192" text-anchor="middle" font-size="10" fill="#e67700">快速下降期</text>
+  
+  <rect x="400" y="175" width="100" height="25" rx="4" fill="#e7f5ff" stroke="#4dabf7"/>
+  <text x="450" y="192" text-anchor="middle" font-size="10" fill="#1971c2">缓慢收敛期</text>
+  
+  <!-- 底部说明 -->
+  <text x="400" y="345" text-anchor="middle" font-size="10" fill="#868e96">P-Tuning v2 用极少的可调参数，在训练过程中损失下降曲线与全参数微调几乎重合</text>
+</svg>

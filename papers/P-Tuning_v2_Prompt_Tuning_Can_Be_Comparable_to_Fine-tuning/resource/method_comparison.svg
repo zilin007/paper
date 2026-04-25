@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" font-family="sans-serif">
+  <!-- 标题 -->
+  <text x="400" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">Prompt Tuning 方法演进对比</text>
+  
+  <!-- 方案 1: Lester et al. / 单提示层 -->
+  <rect x="20" y="50" width="230" height="250" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  <text x="135" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#495057">Lester et al. / P-tuning</text>
+  
+  <!-- 模型主体 -->
+  <rect x="40" y="90" width="190" height="120" rx="6" fill="#e9ecef" stroke="#adb5bd"/>
+  <text x="135" y="115" text-anchor="middle" font-size="12" fill="#495057">预训练语言模型</text>
+  <text x="135" y="135" text-anchor="middle" font-size="11" fill="#868e96">（所有参数冻结）</text>
+  <text x="135" y="155" text-anchor="middle" font-size="11" fill="#868e96">Transformer × L 层</text>
+  <text x="135" y="175" text-anchor="middle" font-size="11" fill="#868e96">仅输入层加提示</text>
+  
+  <!-- 提示位置 -->
+  <rect x="50" y="220" width="170" height="25" rx="4" fill="#4dabf7" opacity="0.7"/>
+  <text x="135" y="237" text-anchor="middle" font-size="11" fill="white">可学习提示 (仅输入层)</text>
+  
+  <!-- 分类头 -->
+  <rect x="60" y="255" width="150" height="25" rx="4" fill="#51cf66" opacity="0.7"/>
+  <text x="135" y="272" text-anchor="middle" font-size="11" fill="white">LM Head + Verbalizer</text>
+  
+  <!-- 缺点标注 -->
+  <text x="135" y="295" text-anchor="middle" font-size="10" fill="#e03131">✗ 仅大模型有效  ✗ 序列标注差</text>
+  
+  <!-- 箭头 -->
+  <text x="265" y="175" text-anchor="middle" font-size="24" fill="#868e96">→</text>
+  
+  <!-- 方案 2: P-Tuning v2 -->
+  <rect x="290" y="50" width="230" height="250" rx="8" fill="#e7f5ff" stroke="#4dabf7" stroke-width="2"/>
+  <text x="405" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#1971c2">P-Tuning v2 (本文)</text>
+  
+  <!-- 模型主体 -->
+  <rect x="310" y="90" width="190" height="120" rx="6" fill="#e9ecef" stroke="#adb5bd"/>
+  <text x="405" y="115" text-anchor="middle" font-size="12" fill="#495057">预训练语言模型</text>
+  <text x="405" y="135" text-anchor="middle" font-size="11" fill="#868e96">（所有参数冻结）</text>
+  <text x="405" y="155" text-anchor="middle" font-size="11" fill="#868e96">Transformer × L 层</text>
+  <text x="405" y="175" text-anchor="middle" font-size="11" fill="#868e96">每层都加提示</text>
+  
+  <!-- 提示位置 - 多层 -->
+  <rect x="320" y="220" width="80" height="20" rx="3" fill="#4dabf7" opacity="0.9"/>
+  <text x="360" y="234" text-anchor="middle" font-size="9" fill="white">Layer 1</text>
+  <rect x="320" y="242" width="80" height="20" rx="3" fill="#4dabf7" opacity="0.7"/>
+  <text x="360" y="256" text-anchor="middle" font-size="9" fill="white">Layer ...</text>
+  <rect x="320" y="264" width="80" height="20" rx="3" fill="#4dabf7" opacity="0.5"/>
+  <text x="360" y="278" text-anchor="middle" font-size="9" fill="white">Layer L</text>
+  
+  <!-- 分类头 -->
+  <rect x="420" y="220" width="70" height="64" rx="4" fill="#51cf66" opacity="0.7"/>
+  <text x="455" y="245" text-anchor="middle" font-size="10" fill="white">线性</text>
+  <text x="455" y="260" text-anchor="middle" font-size="10" fill="white">分类头</text>
+  <text x="455" y="275" text-anchor="middle" font-size="9" fill="white">(可训练)</text>
+  
+  <!-- 优点标注 -->
+  <text x="405" y="295" text-anchor="middle" font-size="10" fill="#2b8a3e">✓ 全规模有效  ✓ 全任务通用</text>
+  
+  <!-- 箭头 -->
+  <text x="535" y="175" text-anchor="middle" font-size="24" fill="#868e96">→</text>
+  
+  <!-- 方案 3: Fine-tuning 对比 -->
+  <rect x="560" y="50" width="220" height="250" rx="8" fill="#fff3bf" stroke="#fcc419" stroke-width="2"/>
+  <text x="670" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#e67700">Fine-tuning (基线)</text>
+  
+  <!-- 模型主体 -->
+  <rect x="580" y="90" width="180" height="120" rx="6" fill="#ffe066" stroke="#fcc419"/>
+  <text x="670" y="115" text-anchor="middle" font-size="12" fill="#495057">预训练语言模型</text>
+  <text x="670" y="135" text-anchor="middle" font-size="11" fill="#868e96">（所有参数可训练）</text>
+  <text x="670" y="155" text-anchor="middle" font-size="11" fill="#868e96">Transformer × L 层</text>
+  <text x="670" y="175" text-anchor="middle" font-size="11" fill="#868e96">全部参数更新</text>
+  
+  <!-- 分类头 -->
+  <rect x="600" y="225" width="140" height="30" rx="4" fill="#51cf66" opacity="0.7"/>
+  <text x="670" y="245" text-anchor="middle" font-size="11" fill="white">任务特定分类头</text>
+  
+  <!-- 缺点标注 -->
+  <text x="670" y="270" text-anchor="middle" font-size="10" fill="#e03131">✗ 100% 参数存储</text>
+  <text x="670" y="285" text-anchor="middle" font-size="10" fill="#e03131">✗ 训练内存占用大</text>
+  
+  <!-- 底部说明 -->
+  <text x="400" y="315" text-anchor="middle" font-size="10" fill="#868e96">蓝色 = 可训练提示向量 | 绿色 = 可训练分类头 | 灰色 = 冻结参数 | 黄色 = 全参数可训练</text>
+</svg>

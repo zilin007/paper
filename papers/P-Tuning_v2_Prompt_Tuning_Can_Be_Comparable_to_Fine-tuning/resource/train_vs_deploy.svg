@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="sans-serif">
+  <!-- 标题 -->
+  <text x="400" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">训练时 vs 推理时：参数存储对比</text>
+  
+  <!-- 左侧：训练时 -->
+  <rect x="20" y="50" width="360" height="330" rx="8" fill="#e7f5ff" stroke="#4dabf7" stroke-width="2"/>
+  <text x="200" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#1971c2">训练阶段</text>
+  
+  <!-- 模型主体 -->
+  <rect x="40" y="100" width="320" height="100" rx="6" fill="#e9ecef" stroke="#adb5bd"/>
+  <text x="200" y="130" text-anchor="middle" font-size="13" font-weight="bold" fill="#495057">预训练语言模型</text>
+  <text x="200" y="150" text-anchor="middle" font-size="11" fill="#868e96">BERT-large: 335M 参数</text>
+  <text x="200" y="170" text-anchor="middle" font-size="11" fill="#868e96">状态：冻结（不更新）</text>
+  <text x="200" y="190" text-anchor="middle" font-size="11" fill="#868e96">存储：~1.3 GB (FP32)</text>
+  
+  <!-- 可训练参数 -->
+  <rect x="40" y="215" width="320" height="70" rx="6" fill="#d3f9d8" stroke="#2b8a3e"/>
+  <text x="200" y="240" text-anchor="middle" font-size="13" font-weight="bold" fill="#2b8a3e">可训练参数（仅占 0.1%-3%）</text>
+  
+  <!-- 提示向量 -->
+  <rect x="55" y="255" width="140" height="22" rx="4" fill="#51cf66"/>
+  <text x="125" y="270" text-anchor="middle" font-size="10" fill="white">多层提示向量 P⁽ˡ⁾</text>
+  
+  <!-- 分类头 -->
+  <rect x="210" y="255" width="135" height="22" rx="4" fill="#51cf66"/>
+  <text x="278" y="270" text-anchor="middle" font-size="10" fill="white">线性分类头 W_cls</text>
+  
+  <!-- 存储对比 -->
+  <rect x="40" y="300" width="320" height="65" rx="6" fill="#fff9db" stroke="#fcc419"/>
+  <text x="200" y="322" text-anchor="middle" font-size="12" font-weight="bold" fill="#e67700">每任务存储成本</text>
+  <text x="200" y="342" text-anchor="middle" font-size="11" fill="#495057">P-Tuning v2: ~0.1-3 MB (仅提示+分类头)</text>
+  <text x="200" y="358" text-anchor="middle" font-size="11" fill="#495057">Fine-tuning: ~1.3 GB (完整模型副本)</text>
+  
+  <!-- 右侧：推理时 -->
+  <rect x="420" y="50" width="360" height="330" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  <text x="600" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#495057">推理阶段</text>
+  
+  <!-- 共享模型 -->
+  <rect x="440" y="100" width="320" height="80" rx="6" fill="#e9ecef" stroke="#adb5bd"/>
+  <text x="600" y="130" text-anchor="middle" font-size="13" font-weight="bold" fill="#495057">共享模型主体（加载一次）</text>
+  <text x="600" y="150" text-anchor="middle" font-size="11" fill="#868e96">~1.3 GB，所有任务共用</text>
+  <text x="600" y="170" text-anchor="middle" font-size="11" fill="#868e96">无需为每个任务复制</text>
+  
+  <!-- 任务切换 -->
+  <rect x="440" y="195" width="320" height="100" rx="6" fill="#d3f9d8" stroke="#2b8a3e"/>
+  <text x="600" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#2b8a3e">任务切换 = 仅切换提示向量</text>
+  
+  <!-- 任务 A -->
+  <rect x="455" y="235" width="90" height="22" rx="4" fill="#4dabf7"/>
+  <text x="500" y="250" text-anchor="middle" font-size="10" fill="white">任务 A 提示</text>
+  
+  <!-- 任务 B -->
+  <rect x="555" y="235" width="90" height="22" rx="4" fill="#cc5de8"/>
+  <text x="600" y="250" text-anchor="middle" font-size="10" fill="white">任务 B 提示</text>
+  
+  <!-- 任务 C -->
+  <rect x="655" y="235" width="90" height="22" rx="4" fill="#ff922b"/>
+  <text x="700" y="250" text-anchor="middle" font-size="10" fill="white">任务 C 提示</text>
+  
+  <text x="600" y="280" text-anchor="middle" font-size="10" fill="#868e96">每个任务仅 ~1-3 MB，可快速切换</text>
+  
+  <!-- 优势总结 -->
+  <rect x="440" y="310" width="320" height="55" rx="6" fill="#fff9db" stroke="#fcc419"/>
+  <text x="600" y="332" text-anchor="middle" font-size="11" font-weight="bold" fill="#e67700">部署优势</text>
+  <text x="600" y="350" text-anchor="middle" font-size="10" fill="#495057">100 个任务：Fine-tuning 需 130 GB</text>
+  <text x="600" y="365" text-anchor="middle" font-size="10" fill="#495057">P-Tuning v2 仅需 1.3 GB + 300 MB</text>
+  
+  <!-- 中间箭头 -->
+  <text x="400" y="200" text-anchor="middle" font-size="30" fill="#868e96">→</text>
+</svg>
