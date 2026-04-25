@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 350" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="325" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#2c3e50">假设条件放宽对比</text>
+
+  <!-- Left: Previous work -->
+  <rect x="20" y="50" width="290" height="280" rx="8" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/>
+  <text x="165" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#e67e22">之前工作 (Mertikopoulos et al.)</text>
+
+  <!-- Assumptions list -->
+  <rect x="35" y="95" width="260" height="30" rx="4" fill="#fadbd8"/>
+  <text x="45" y="115" font-size="12" fill="#c0392b">✗ 损失函数全局 Lipschitz 连续</text>
+
+  <rect x="35" y="135" width="260" height="30" rx="4" fill="#fadbd8"/>
+  <text x="45" y="155" font-size="12" fill="#c0392b">✗ 梯度二阶矩全局有界</text>
+
+  <rect x="35" y="175" width="260" height="30" rx="4" fill="#fadbd8"/>
+  <text x="45" y="195" font-size="12" fill="#c0392b">✗ 梯度高阶矩全局有界</text>
+
+  <rect x="35" y="215" width="260" height="30" rx="4" fill="#d5f5e3"/>
+  <text x="45" y="235" font-size="12" fill="#27ae60">✓ Lipschitz 光滑梯度</text>
+
+  <rect x="35" y="255" width="260" height="30" rx="4" fill="#d5f5e3"/>
+  <text x="45" y="275" font-size="12" fill="#27ae60">✓ 损失函数强制性</text>
+
+  <rect x="35" y="295" width="260" height="25" rx="4" fill="#d5f5e3"/>
+  <text x="45" y="312" font-size="12" fill="#27ae60">✓ 梯度无偏性</text>
+
+  <!-- Right: This paper -->
+  <rect x="340" y="50" width="290" height="280" rx="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+  <text x="485" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">本文 (Jin et al., 2025)</text>
+
+  <rect x="355" y="95" width="260" height="30" rx="4" fill="#d5f5e3"/>
+  <text x="365" y="115" font-size="12" fill="#27ae60">✓ 不需要全局 Lipschitz</text>
+
+  <rect x="355" y="135" width="260" height="30" rx="4" fill="#d5f5e3"/>
+  <text x="365" y="155" font-size="12" fill="#27ae60">✓ 弱增长条件（更弱）</text>
+
+  <rect x="355" y="175" width="260" height="30" rx="4" fill="#d5f5e3"/>
+  <text x="365" y="195" font-size="12" fill="#27ae60">✓ 局部有界（更弱）</text>
+
+  <rect x="355" y="215" width="260" height="30" rx="4" fill="#d5f5e3"/>
+  <text x="365" y="235" font-size="12" fill="#27ae60">✓ Lipschitz 光滑梯度</text>
+
+  <rect x="355" y="255" width="260" height="30" rx="4" fill="#d5f5e3"/>
+  <text x="365" y="275" font-size="12" fill="#27ae60">✓ 损失函数强制性</text>
+
+  <rect x="355" y="295" width="260" height="25" rx="4" fill="#d5f5e3"/>
+  <text x="365" y="312" font-size="12" fill="#27ae60">✓ 梯度无偏性</text>
+
+  <!-- Arrow between -->
+  <line x1="310" y1="190" x2="340" y2="190" stroke="#27ae60" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="325" y="180" text-anchor="middle" font-size="10" font-weight="bold" fill="#27ae60">放宽</text>
+
+  <!-- Legend -->
+  <rect x="20" y="340" width="12" height="12" rx="2" fill="#fadbd8"/>
+  <text x="38" y="350" font-size="10" fill="#666">强假设（限制适用性）</text>
+  <rect x="180" y="340" width="12" height="12" rx="2" fill="#d5f5e3"/>
+  <text x="198" y="350" font-size="10" fill="#666">合理假设（广泛适用）</text>
+</svg>
