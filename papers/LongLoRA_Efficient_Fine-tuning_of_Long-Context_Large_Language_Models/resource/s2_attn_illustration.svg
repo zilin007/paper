@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; }
+    .label { font-size: 12px; }
+    .small { font-size: 11px; }
+    .token { fill: #3498db; }
+    .shifted { fill: #e67e22; }
+    .group { fill: #ecf0f1; stroke: #bdc3c7; stroke-width: 1; }
+    .arrow { stroke: #333; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333"/>
+    </marker>
+  </defs>
+
+  <text x="400" y="30" text-anchor="middle" class="title">S²-Attn (移位稀疏注意力) 工作原理</text>
+  <text x="400" y="52" text-anchor="middle" class="small">以 N=16 个 token, 分组大小 G=4 为例</text>
+
+  <!-- Step 1 -->
+  <text x="130" y="90" text-anchor="middle" class="title" fill="#333">Step 1: 分割</text>
+  <text x="130" y="108" text-anchor="middle" class="small">沿注意力头维度分成两组</text>
+
+  <!-- Tokens row 1 (Pattern 1 - no shift) -->
+  <text x="40" y="145" class="small">组1 (不移位):</text>
+  <rect x="150" y="130" width="40" height="30" rx="3" class="token"/>
+  <text x="170" y="150" text-anchor="middle" class="label" fill="white">1-4</text>
+  <rect x="200" y="130" width="40" height="30" rx="3" class="token"/>
+  <text x="220" y="150" text-anchor="middle" class="label" fill="white">5-8</text>
+  <rect x="250" y="130" width="40" height="30" rx="3" class="token"/>
+  <text x="270" y="150" text-anchor="middle" class="label" fill="white">9-12</text>
+  <rect x="300" y="130" width="40" height="30" rx="3" class="token"/>
+  <text x="320" y="150" text-anchor="middle" class="label" fill="white">13-16</text>
+
+  <!-- Attention blocks for Pattern 1 -->
+  <rect x="150" y="175" width="90" height="25" rx="3" fill="#27ae60"/>
+  <text x="195" y="192" text-anchor="middle" class="small" fill="white">Attn(1-4)</text>
+  <rect x="250" y="175" width="90" height="25" rx="3" fill="#27ae60"/>
+  <text x="295" y="192" text-anchor="middle" class="small" fill="white">Attn(5-8)</text>
+  <rect x="150" y="210" width="90" height="25" rx="3" fill="#27ae60"/>
+  <text x="195" y="227" text-anchor="middle" class="small" fill="white">Attn(9-12)</text>
+  <rect x="250" y="210" width="90" height="25" rx="3" fill="#27ae60"/>
+  <text x="295" y="227" text-anchor="middle" class="small" fill="white">Attn(13-16)</text>
+
+  <!-- Step 2 -->
+  <text x="530" y="90" text-anchor="middle" class="title" fill="#333">Step 2: 移位</text>
+  <text x="530" y="108" text-anchor="middle" class="small">组2 的 token 向后移动 G/2=2</text>
+
+  <!-- Tokens row 2 (Pattern 2 - shifted) -->
+  <text x="420" y="145" class="small">组2 (移位):</text>
+  <rect x="530" y="130" width="40" height="30" rx="3" class="shifted"/>
+  <text x="550" y="150" text-anchor="middle" class="label" fill="white">3-6</text>
+  <rect x="580" y="130" width="40" height="30" rx="3" class="shifted"/>
+  <text x="600" y="150" text-anchor="middle" class="label" fill="white">7-10</text>
+  <rect x="630" y="130" width="40" height="30" rx="3" class="shifted"/>
+  <text x="650" y="150" text-anchor="middle" class="label" fill="white">11-14</text>
+  <rect x="680" y="130" width="40" height="30" rx="3" class="shifted"/>
+  <text x="700" y="150" text-anchor="middle" class="label" fill="white">15,16,1,2</text>
+
+  <!-- Attention blocks for Pattern 2 -->
+  <rect x="530" y="175" width="90" height="25" rx="3" fill="#e67e22"/>
+  <text x="575" y="192" text-anchor="middle" class="small" fill="white">Attn(3-6)</text>
+  <rect x="630" y="175" width="90" height="25" rx="3" fill="#e67e22"/>
+  <text x="675" y="192" text-anchor="middle" class="small" fill="white">Attn(7-10)</text>
+  <rect x="530" y="210" width="90" height="25" rx="3" fill="#e67e22"/>
+  <text x="575" y="227" text-anchor="middle" class="small" fill="white">Attn(11-14)</text>
+  <rect x="630" y="210" width="90" height="25" rx="3" fill="#e67e22"/>
+  <text x="675" y="227" text-anchor="middle" class="small" fill="white">Attn(15-2)</text>
+
+  <!-- Step 3: Merge -->
+  <text x="400" y="280" text-anchor="middle" class="title" fill="#333">Step 3: 合并输出</text>
+  <text x="400" y="298" text-anchor="middle" class="small">将两组输出拼接，反向移位恢复原顺序</text>
+
+  <!-- Merged output -->
+  <rect x="100" y="320" width="600" height="40" rx="5" fill="#1abc9c"/>
+  <text x="400" y="345" text-anchor="middle" class="label" fill="white">输出 = [组1输出, 组2输出反向移位后拼接]</text>
+
+  <!-- Why it works box -->
+  <rect x="100" y="385" width="600" height="100" rx="8" fill="#f8f9fa" stroke="#333" stroke-width="1"/>
+  <text x="400" y="410" text-anchor="middle" class="title" fill="#333">为什么移位有效？</text>
+
+  <text x="120" y="435" class="label">• 不移位时：每个 token 只能看到组内 token，组间信息完全隔离</text>
+  <text x="120" y="455" class="label">• 移位后：相邻组之间有 G/2 个 token 重叠，信息可以跨组流动</text>
+  <text x="120" y="475" class="label">• 类比：就像两个人各看一半的书，但中间有几页重叠，合起来就能理解全书</text>
+</svg>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 450" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; }
+    .label { font-size: 12px; }
+    .small { font-size: 11px; }
+    .train { fill: #e8f8f5; stroke: #27ae60; stroke-width: 2; }
+    .deploy { fill: #fef9e7; stroke: #f39c12; stroke-width: 2; }
+    .block { fill: #3498db; }
+    .lora { fill: #27ae60; }
+    .frozen { fill: #bdc3c7; }
+    .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Training side -->
+  <rect x="20" y="50" width="380" height="380" rx="10" class="train"/>
+  <text x="210" y="85" text-anchor="middle" class="title" fill="#27ae60">训练阶段 (Training)</text>
+
+  <!-- Training components -->
+  <rect x="60" y="110" width="300" height="35" rx="5" class="block"/>
+  <text x="210" y="133" text-anchor="middle" class="label" fill="white">输入 Token → Embedding (可训练)</text>
+
+  <rect x="60" y="165" width="300" height="55" rx="5" fill="#1abc9c"/>
+  <text x="210" y="187" text-anchor="middle" class="label" fill="white">S²-Attn 移位稀疏注意力</text>
+  <text x="210" y="205" text-anchor="middle" class="small" fill="white">Group size G = N/4, 只计算组内注意力</text>
+
+  <rect x="60" y="240" width="140" height="35" rx="5" class="lora"/>
+  <text x="130" y="263" text-anchor="middle" class="label" fill="white">LoRA (B, A)</text>
+  <rect x="220" y="240" width="140" height="35" rx="5" class="frozen"/>
+  <text x="290" y="263" text-anchor="middle" class="label" fill="#333">W (冻结)</text>
+
+  <rect x="60" y="295" width="300" height="35" rx="5" class="block"/>
+  <text x="210" y="318" text-anchor="middle" class="label" fill="white">FFN + LoRA (可训练)</text>
+
+  <rect x="60" y="350" width="300" height="35" rx="5" class="block"/>
+  <text x="210" y="373" text-anchor="middle" class="label" fill="white">RMSNorm (可训练) → Loss 计算</text>
+
+  <text x="210" y="415" text-anchor="middle" class="small" fill="#27ae60">✓ 仅两行代码实现 S²-Attn</text>
+
+  <!-- Deploy side -->
+  <rect x="450" y="50" width="380" height="380" rx="10" class="deploy"/>
+  <text x="640" y="85" text-anchor="middle" class="title" fill="#f39c12">推理阶段 (Inference)</text>
+
+  <!-- Deploy components -->
+  <rect x="490" y="110" width="300" height="35" rx="5" class="block"/>
+  <text x="640" y="133" text-anchor="middle" class="label" fill="white">输入 Token → Embedding (已更新)</text>
+
+  <rect x="490" y="165" width="300" height="55" rx="5" fill="#e67e22"/>
+  <text x="640" y="187" text-anchor="middle" class="label" fill="white">标准全局注意力 (原始架构)</text>
+  <text x="640" y="205" text-anchor="middle" class="small" fill="white">不再使用 S²-Attn，恢复完整注意力</text>
+
+  <rect x="490" y="240" width="300" height="35" rx="5" fill="#27ae60"/>
+  <text x="640" y="263" text-anchor="middle" class="label" fill="white">W + BA 合并后的权重</text>
+
+  <rect x="490" y="295" width="300" height="35" rx="5" class="block"/>
+  <text x="640" y="318" text-anchor="middle" class="label" fill="white">FFN (原始架构不变)</text>
+
+  <rect x="490" y="350" width="300" height="35" rx="5" class="block"/>
+  <text x="640" y="373" text-anchor="middle" class="label" fill="white">RMSNorm (已更新) → 生成输出</text>
+
+  <text x="640" y="415" text-anchor="middle" class="small" fill="#f39c12">✓ 架构不变，兼容 Flash-Attention2</text>
+
+  <!-- Arrow between -->
+  <line x1="400" y1="240" x2="448" y2="240" class="arrow"/>
+  <text x="425" y="230" text-anchor="middle" class="small">合并权重</text>
+</svg>

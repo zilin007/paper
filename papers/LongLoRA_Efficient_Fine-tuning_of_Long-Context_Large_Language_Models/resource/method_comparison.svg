@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; }
+    .label { font-size: 12px; }
+    .small { font-size: 11px; fill: #555; }
+    .red { fill: #e74c3c; }
+    .green { fill: #27ae60; }
+    .blue { fill: #2980b9; }
+    .gray { fill: #95a5a6; }
+    .orange { fill: #e67e22; }
+  </style>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="title">上下文扩展方案对比</text>
+
+  <!-- Full Fine-tuning -->
+  <rect x="30" y="60" width="220" height="320" rx="8" fill="#f8f9fa" stroke="#333" stroke-width="2"/>
+  <text x="140" y="90" text-anchor="middle" class="title" fill="#333">全量微调</text>
+  <text x="140" y="110" text-anchor="middle" class="small">(Full Fine-tuning)</text>
+
+  <!-- Architecture blocks -->
+  <rect x="60" y="130" width="160" height="35" rx="5" fill="#3498db"/>
+  <text x="140" y="153" text-anchor="middle" class="label" fill="white">Embedding (可训练)</text>
+
+  <rect x="60" y="180" width="160" height="35" rx="5" fill="#9b59b6"/>
+  <text x="140" y="203" text-anchor="middle" class="label" fill="white">Attention 层 (全量可训练)</text>
+
+  <rect x="60" y="230" width="160" height="35" rx="5" fill="#9b59b6"/>
+  <text x="140" y="253" text-anchor="middle" class="label" fill="white">FFN 层 (全量可训练)</text>
+
+  <rect x="60" y="280" width="160" height="35" rx="5" fill="#3498db"/>
+  <text x="140" y="303" text-anchor="middle" class="label" fill="white">Norm + LM Head (可训练)</text>
+
+  <!-- Pros/Cons -->
+  <text x="140" y="350" text-anchor="middle" class="label green">✓ 效果最好</text>
+  <text x="140" y="370" text-anchor="middle" class="label red">✗ 显存巨大，极慢</text>
+
+  <!-- LoRA -->
+  <rect x="290" y="60" width="220" height="320" rx="8" fill="#f8f9fa" stroke="#333" stroke-width="2"/>
+  <text x="400" y="90" text-anchor="middle" class="title" fill="#333">标准 LoRA</text>
+  <text x="400" y="110" text-anchor="middle" class="small">(Low-Rank Adaptation)</text>
+
+  <rect x="320" y="130" width="160" height="35" rx="5" fill="#bdc3c7"/>
+  <text x="400" y="153" text-anchor="middle" class="label" fill="#333">Embedding (冻结)</text>
+
+  <rect x="320" y="180" width="160" height="35" rx="5" fill="#27ae60"/>
+  <text x="400" y="203" text-anchor="middle" class="label" fill="white">LoRA 低秩矩阵 (可训练)</text>
+
+  <rect x="320" y="230" width="160" height="35" rx="5" fill="#bdc3c7"/>
+  <text x="400" y="253" text-anchor="middle" class="label" fill="#333">FFN 层 (冻结)</text>
+
+  <rect x="320" y="280" width="160" height="35" rx="5" fill="#bdc3c7"/>
+  <text x="400" y="303" text-anchor="middle" class="label" fill="#333">Norm + LM Head (冻结)</text>
+
+  <text x="400" y="350" text-anchor="middle" class="label green">✓ 参数量极少</text>
+  <text x="400" y="370" text-anchor="middle" class="label red">✗ 上下文扩展效果差</text>
+
+  <!-- LongLoRA (本文) -->
+  <rect x="550" y="60" width="220" height="320" rx="8" fill="#e8f8f5" stroke="#27ae60" stroke-width="3"/>
+  <text x="660" y="90" text-anchor="middle" class="title" fill="#27ae60">LongLoRA (本文)</text>
+  <text x="660" y="110" text-anchor="middle" class="small">(LoRA⁺ + S²-Attn)</text>
+
+  <rect x="580" y="130" width="160" height="35" rx="5" fill="#3498db"/>
+  <text x="660" y="153" text-anchor="middle" class="label" fill="white">Embedding (可训练)</text>
+
+  <rect x="580" y="180" width="160" height="35" rx="5" fill="#27ae60"/>
+  <text x="660" y="203" text-anchor="middle" class="label" fill="white">LoRA + S²-Attn (可训练)</text>
+
+  <rect x="580" y="230" width="160" height="35" rx="5" fill="#27ae60"/>
+  <text x="660" y="253" text-anchor="middle" class="label" fill="white">FFN + LoRA (可训练)</text>
+
+  <rect x="580" y="280" width="160" height="35" rx="5" fill="#3498db"/>
+  <text x="660" y="303" text-anchor="middle" class="label" fill="white">Norm (可训练)</text>
+
+  <text x="660" y="350" text-anchor="middle" class="label green">✓ 效果接近全量微调</text>
+  <text x="660" y="370" text-anchor="middle" class="label green">✓ 显存减半，速度翻倍</text>
+</svg>

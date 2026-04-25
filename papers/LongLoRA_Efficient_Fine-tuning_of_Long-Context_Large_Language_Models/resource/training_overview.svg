@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; }
+    .label { font-size: 12px; }
+    .small { font-size: 11px; }
+    .axis { stroke: #333; stroke-width: 1.5; }
+    .grid { stroke: #ecf0f1; stroke-width: 0.5; }
+    .curve-ft { stroke: #3498db; stroke-width: 2.5; fill: none; }
+    .curve-lora { stroke: #e74c3c; stroke-width: 2.5; fill: none; }
+    .curve-longlora { stroke: #27ae60; stroke-width: 2.5; fill: none; }
+  </style>
+
+  <text x="400" y="30" text-anchor="middle" class="title">训练迭代收敛过程对比</text>
+
+  <!-- Axes -->
+  <line x1="100" y1="60" x2="100" y2="330" class="axis"/>
+  <line x1="100" y1="330" x2="720" y2="330" class="axis"/>
+
+  <!-- Y axis labels -->
+  <text x="85" y="75" text-anchor="end" class="small">12</text>
+  <text x="85" y="130" text-anchor="end" class="small">10</text>
+  <text x="85" y="185" text-anchor="end" class="small">9</text>
+  <text x="85" y="240" text-anchor="end" class="small">8.5</text>
+  <text x="85" y="295" text-anchor="end" class="small">8.0</text>
+
+  <!-- X axis labels -->
+  <text x="100" y="350" text-anchor="middle" class="small">0</text>
+  <text x="250" y="350" text-anchor="middle" class="small">200</text>
+  <text x="400" y="350" text-anchor="middle" class="small">400</text>
+  <text x="550" y="350" text-anchor="middle" class="small">600</text>
+  <text x="700" y="350" text-anchor="middle" class="small">800</text>
+  <text x="410" y="375" text-anchor="middle" class="label">训练步数 (Steps)</text>
+  <text x="40" y="200" text-anchor="middle" class="label" transform="rotate(-90, 40, 200)">困惑度 (PPL)</text>
+
+  <!-- Grid lines -->
+  <line x1="100" y1="70" x2="720" y2="70" class="grid"/>
+  <line x1="100" y1="125" x2="720" y2="125" class="grid"/>
+  <line x1="100" y1="180" x2="720" y2="180" class="grid"/>
+  <line x1="100" y1="235" x2="720" y2="235" class="grid"/>
+  <line x1="100" y1="290" x2="720" y2="290" class="grid"/>
+
+  <!-- Full FT curve (blue) - fast convergence -->
+  <path d="M 100,70 Q 150,100 200,180 Q 250,240 300,275 Q 350,288 400,290 Q 500,291 600,291 L 700,291" class="curve-ft"/>
+
+  <!-- LoRA curve (red) - slow start, catches up -->
+  <path d="M 100,100 Q 150,120 200,170 Q 280,220 350,260 Q 420,280 500,288 Q 580,291 650,292 L 700,292" class="curve-lora"/>
+
+  <!-- LongLoRA curve (green) - between FT and LoRA -->
+  <path d="M 100,85 Q 160,115 220,185 Q 280,235 340,270 Q 400,285 460,289 Q 540,291 620,291 L 700,291" class="curve-longlora"/>
+
+  <!-- Annotations -->
+  <text x="180" y="90" class="label" fill="#3498db">全量微调</text>
+  <text x="180" y="105" class="small" fill="#3498db">(收敛最快)</text>
+
+  <text x="420" y="140" class="label" fill="#e74c3c">标准 LoRA</text>
+  <text x="420" y="155" class="small" fill="#e74c3c">(起步慢，后期追上)</text>
+
+  <text x="520" y="210" class="label" fill="#27ae60">LongLoRA</text>
+  <text x="520" y="225" class="small" fill="#27ae60">(折中，效率最高)</text>
+
+  <!-- Convergence zone -->
+  <rect x="580" y="275" width="120" height="30" rx="5" fill="#f8f9fa" stroke="#27ae60" stroke-width="1"/>
+  <text x="640" y="295" text-anchor="middle" class="small" fill="#27ae60">三者收敛到相近值</text>
+
+  <!-- Legend -->
+  <rect x="120" y="385" width="20" height="3" fill="#3498db"/>
+  <text x="145" y="392" class="small">全量微调</text>
+  <rect x="240" y="385" width="20" height="3" fill="#e74c3c"/>
+  <text x="265" y="392" class="small">标准 LoRA</text>
+  <rect x="360" y="385" width="20" height="3" fill="#27ae60"/>
+  <text x="385" y="392" class="small">LongLoRA</text>
+</svg>
