@@ -2,7 +2,7 @@
 
 > **原文**: LoRA: Low-Rank Adaptation of Large Language Models
 > **作者**: Edward Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, Weizhu Chen (Microsoft)
-> **发表时间**: 2021
+> **发表时间**: 2021-06-17
 > **arXiv**: https://arxiv.org/abs/2106.09685
 
 ---

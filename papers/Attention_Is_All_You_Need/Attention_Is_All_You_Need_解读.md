@@ -2,7 +2,7 @@
 
 > **原文**: Attention Is All You Need
 > **作者**: Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, Illia Polosukhin
-> **发表时间**: 2017 年（NeurIPS 2017）
+> **发表时间**: 2017-06-12
 > **arXiv**: [https://arxiv.org/abs/1706.03762](https://arxiv.org/abs/1706.03762)
 
 ---

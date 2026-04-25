@@ -2,7 +2,7 @@
 
 > **原文**: LoftQ: LoRA-Fine-Tuning-Aware Quantization for Large Language Models
 > **作者**: Yixiao Li, Yifan Yu, Chen Liang, Pengcheng He, Nikos Karampatziakis, Weizhu Chen, Tuo Zhao (佐治亚理工学院 & 微软 Azure)
-> **发表时间**: 2023年10月
+> **发表时间**: 2023-10-12
 > **arXiv**: https://arxiv.org/abs/2310.08659
 
 ---

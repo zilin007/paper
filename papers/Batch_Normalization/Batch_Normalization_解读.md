@@ -2,7 +2,7 @@
 
 > **原文**: Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
 > **作者**: Sergey Ioffe, Christian Szegedy (Google)
-> **发表时间**: 2015年2月
+> **发表时间**: 2015-02-11
 > **arXiv**: https://arxiv.org/abs/1502.03167
 
 ---

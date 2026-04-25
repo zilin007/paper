@@ -10,8 +10,6 @@ import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PAPERS_DIR = join(__dirname, '..', '..', 'papers')
-const BLOG_DIR = join(__dirname, '..')
-const CONFIG_PATH = join(BLOG_DIR, 'blog-config.json')
 
 // 从 Markdown 内容提取 arXiv ID
 function extractArxivId(content) {
@@ -67,29 +65,24 @@ async function main() {
   const dates = await fetchDates(arxivIds)
 
   // 生成结果
-  const publishedDates = {}
+  const results = []
   for (const p of papers) {
     const date = dates[p.arxivId]
     if (date) {
-      publishedDates[p.slug] = date
+      results.push({ slug: p.slug, arxivId: p.arxivId, date })
       console.log(`  ✓ ${p.slug}: ${date}`)
     } else {
       console.log(`  ✗ ${p.slug}: 未获取到日期`)
     }
   }
 
-  // 写入 blog-config.json
-  let config = {}
-  try {
-    config = JSON.parse(await readFile(CONFIG_PATH, 'utf-8'))
-  } catch {
-    config = {}
+  console.log(`\n共 ${results.length} 条精确日期。`)
+  console.log('\n如需更新解读文件中的日期，请在各 *_解读.md 中写入：')
+  console.log('> **发表时间**: YYYY-MM-DD')
+  console.log('\n各论文日期如下（可直接复制）：\n')
+  for (const r of results) {
+    console.log(`${r.slug}: ${r.date}`)
   }
-
-  config.publishedDates = publishedDates
-  await writeFile(CONFIG_PATH, JSON.stringify(config, null, 2) + '\n', 'utf-8')
-
-  console.log(`\n已写入 blog-config.json，共 ${Object.keys(publishedDates).length} 条精确日期`)
 }
 
 main().catch((err) => {

@@ -31,13 +31,13 @@ async function loadConfig() {
     const raw = await readFile(CONFIG_PATH, 'utf-8')
     return JSON.parse(raw)
   } catch {
-    return { paperTags: {}, tagColors: {}, publishedDates: {} }
+    return { paperTags: {}, tagColors: {} }
   }
 }
 
 // ─────────────────── 元信息提取 ───────────────────
 
-function extractMeta(content, preciseDate) {
+function extractMeta(content) {
   const titleMatch = content.match(/^# (.+)$/m)
   const originalMatch = content.match(/\*\*原文\*\*:\s*(.+)$/m)
   const authorsMatch = content.match(/\*\*作者\*\*:\s*(.+)$/m)
@@ -45,8 +45,8 @@ function extractMeta(content, preciseDate) {
   const arxivMatch = content.match(/\*\*arXiv\*\*:\s*\[?([^\]\s)]+)/)
   const summaryMatch = content.match(/## 一句话总结\s*\n+(.+)/m)
 
-  // 优先使用精确日期（来自 blog-config.json 或 arXiv API）
-  const date = preciseDate || extractDate(dateMatch?.[1]) || new Date().toISOString().slice(0, 10)
+  // 日期来源：论文解读文件中的 **发表时间** 字段（统一格式 YYYY-MM-DD）
+  const date = extractDate(dateMatch?.[1]) || new Date().toISOString().slice(0, 10)
 
   return {
     title: titleMatch?.[1]?.trim() || 'Untitled',
@@ -118,13 +118,12 @@ async function main() {
     const mdPath = join(paperPath, readingFile)
     const content = await readFile(mdPath, 'utf-8')
 
-    // 从配置获取标签和精确日期
+    // 从配置获取标签
     const slug = dir.name
     const tags = (config.paperTags || {})[slug] || []
-    const preciseDate = (config.publishedDates || {})[slug] || null
 
-    // 提取元信息（优先使用精确日期）
-    const meta = extractMeta(content, preciseDate)
+    // 提取元信息（日期统一从解读文件 **发表时间** 字段获取）
+    const meta = extractMeta(content)
 
     // 生成 frontmatter
     const frontmatter = [

@@ -3,7 +3,7 @@
 > **论文信息**
 > - **标题**: Layer Normalization
 > - **作者**: Jimmy Lei Ba, Jamie Ryan Kiros, Geoffrey E. Hinton（多伦多大学 & Google）
-> - **发表**: arXiv, 2016-07-21
+> **发表时间**: 2016-07-21
 > - **arXiv ID**: 1607.06450
 > - **链接**: https://arxiv.org/abs/1607.06450
 

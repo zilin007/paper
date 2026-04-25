@@ -2,7 +2,7 @@
 
 > **原文**: AdaLoRA: Adaptive Budget Allocation for Parameter-Efficient Fine-Tuning
 > **作者**: Qingru Zhang, Minshuo Chen, Alexander Bukharin, Nikos Karampatziakis, Pengcheng He, Yu Cheng, Weizhu Chen, Tuo Zhao
-> **发表时间**: 2023年3月
+> **发表时间**: 2023-03-18
 > **arXiv**: https://arxiv.org/abs/2303.10512
 
 ---

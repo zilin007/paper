@@ -2,7 +2,7 @@
 
 > **原文**: P-Tuning v2: Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks
 > **作者**: Xiao Liu, Kaixuan Ji, Yicheng Fu, Weng Lam Tam, Zhengxiao Du, Zhilin Yang, Jie Tang（清华大学、北京智源人工智能研究院）
-> **发表时间**: 2021年（arXiv: 2110.07602）
+> **发表时间**: 2021-10-14
 > **arXiv**: https://arxiv.org/abs/2110.07602
 
 ---

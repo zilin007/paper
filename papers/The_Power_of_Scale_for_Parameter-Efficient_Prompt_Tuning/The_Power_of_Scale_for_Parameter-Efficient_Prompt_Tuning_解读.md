@@ -2,7 +2,7 @@
 
 > **原文**: The Power of Scale for Parameter-Efficient Prompt Tuning
 > **作者**: Brian Lester, Rami Al-Rfou, Noah Constant (Google Research)
-> **发表时间**: 2021
+> **发表时间**: 2021-04-18
 > **arXiv**: https://arxiv.org/abs/2104.08691
 
 ---

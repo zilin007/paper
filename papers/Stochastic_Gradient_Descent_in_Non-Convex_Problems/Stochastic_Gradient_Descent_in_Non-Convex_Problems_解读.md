@@ -2,7 +2,7 @@
 
 > **原文**: Stochastic Gradient Descent in Non-Convex Problems: Asymptotic Convergence with Relaxed Step-Size via Stopping Time Methods
 > **作者**: Ruinan Jin, Difei Cheng, Hong Qiao, Xin Shi, Shaodong Liu, Bo Zhang
-> **发表时间**: 2025
+> **发表时间**: 2025-04-17
 > **arXiv**: https://arxiv.org/abs/2504.12601
 
 ---

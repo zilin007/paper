@@ -2,7 +2,7 @@
 
 > **原文**: Hard Prompts Made Easy: Gradient-Based Discrete Optimization for Prompt Tuning and Discovery
 > **作者**: Yuxin Wen, Neel Jain, John Kirchenbauer, Micah Goldblum, Jonas Geiping, Tom Goldstein (University of Maryland)
-> **发表时间**: 2023 (NeurIPS 2023)
+> **发表时间**: 2023-02-07
 > **arXiv**: [https://arxiv.org/abs/2302.03668](https://arxiv.org/abs/2302.03668)
 
 ---

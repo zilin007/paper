@@ -2,7 +2,7 @@
 
 > **原文**: LongLoRA: Efficient Fine-tuning of Long-Context Large Language Models
 > **作者**: Yukang Chen, Shengju Qian, Haotian Tang, Xin Lai, Zhijian Liu, Song Han, Jiaya Jia
-> **发表时间**: 2024年3月（arXiv 2023年9月首次提交）
+> **发表时间**: 2023-09-21
 > **arXiv**: https://arxiv.org/abs/2309.12307
 
 ---

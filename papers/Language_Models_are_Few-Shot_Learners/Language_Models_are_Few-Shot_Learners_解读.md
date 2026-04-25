@@ -2,7 +2,7 @@
 
 > **原文**: Language Models are Few-Shot Learners
 > **作者**: Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal 等 (OpenAI 团队)
-> **发表时间**: 2020年5月
+> **发表时间**: 2020-05-28
 > **arXiv**: [2005.14165](https://arxiv.org/abs/2005.14165)
 
 ---

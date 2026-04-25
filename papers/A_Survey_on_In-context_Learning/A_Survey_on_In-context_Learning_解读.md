@@ -2,7 +2,7 @@
 
 > **原文**: A Survey on In-context Learning
 > **作者**: Qingxiu Dong, Lei Li, Damai Dai, Ce Zheng, Jingyuan Ma, Rui Li, Heming Xia, Jingjing Xu, Zhiyong Wu, Tianyu Liu, Baobao Chang, Xu Sun, Lei Li, Zhifang Sui
-> **发表时间**: 2022 年首版，2024 年 EMNLP 发表版本
+> **发表时间**: 2022-12-31
 > **arXiv**: [https://arxiv.org/abs/2301.00234](https://arxiv.org/abs/2301.00234)
 
 ---

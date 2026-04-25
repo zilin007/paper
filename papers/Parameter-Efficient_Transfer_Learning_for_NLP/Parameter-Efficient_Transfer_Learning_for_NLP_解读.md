@@ -2,7 +2,7 @@
 
 > **原文**: Parameter-Efficient Transfer Learning for NLP
 > **作者**: Neil Houlsby, Andrei Giurgiu, Stanislaw Jastrzebski, Bruna Morrone, Quentin de Laroussilhe, Andrea Gesmundo, Mona Attariyan, Sylvain Gelly (Google Research)
-> **发表时间**: 2019 年 (ICML 2019)
+> **发表时间**: 2019-02-02
 > **arXiv**: [https://arxiv.org/abs/1902.00751](https://arxiv.org/abs/1902.00751)
 
 ---

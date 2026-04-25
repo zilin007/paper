@@ -2,7 +2,7 @@
 
 > **原文**: Prefix-Tuning: Optimizing Continuous Prompts for Generation
 > **作者**: Xiang Lisa Li, Percy Liang (Stanford University)
-> **发表时间**: 2021
+> **发表时间**: 2021-01-01
 > **arXiv**: [https://arxiv.org/abs/2101.00190](https://arxiv.org/abs/2101.00190)
 
 ---
