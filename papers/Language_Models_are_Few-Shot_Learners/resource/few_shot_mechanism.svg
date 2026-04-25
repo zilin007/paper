@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" font-family="sans-serif">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">Few-Shot Learning 工作原理</text>
+
+  <!-- Input prompt box -->
+  <rect x="30" y="55" width="220" height="290" rx="8" fill="#eaf2f8" stroke="#3498db" stroke-width="2"/>
+  <text x="140" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#2980b9">输入 Prompt</text>
+
+  <!-- Task description -->
+  <rect x="50" y="95" width="180" height="45" rx="4" fill="#fff" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="140" y="112" text-anchor="middle" font-size="10" font-weight="bold" fill="#555">任务描述</text>
+  <text x="140" y="128" text-anchor="middle" font-size="9" fill="#777">"将英文翻译为法文"</text>
+
+  <!-- Examples -->
+  <text x="50" y="158" font-size="10" font-weight="bold" fill="#2980b9">示例 1:</text>
+  <text x="50" y="172" font-size="9" fill="#555">en: Hello → fr: Bonjour</text>
+
+  <text x="50" y="192" font-size="10" font-weight="bold" fill="#2980b9">示例 2:</text>
+  <text x="50" y="206" font-size="9" fill="#555">en: Goodbye → fr: Au revoir</text>
+
+  <text x="50" y="226" font-size="10" font-weight="bold" fill="#2980b9">示例 3:</text>
+  <text x="50" y="240" font-size="9" fill="#555">en: Thank you → fr: Merci</text>
+
+  <!-- Query -->
+  <rect x="50" y="260" width="180" height="40" rx="4" fill="#f9e79f" stroke="#f39c12" stroke-width="1"/>
+  <text x="140" y="277" text-anchor="middle" font-size="10" font-weight="bold" fill="#d68910">待预测 (Query)</text>
+  <text x="140" y="293" text-anchor="middle" font-size="9" fill="#777">en: Good morning → fr: ?</text>
+
+  <!-- Arrow -->
+  <line x1="250" y1="200" x2="320" y2="200" stroke="#333" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="285" y="190" text-anchor="middle" font-size="10" fill="#555">输入</text>
+
+  <!-- GPT-3 Model -->
+  <rect x="320" y="80" width="180" height="240" rx="8" fill="#e8f8f5" stroke="#27ae60" stroke-width="2"/>
+  <text x="410" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e8449">GPT-3 模型</text>
+  <text x="410" y="130" text-anchor="middle" font-size="11" fill="#555">1750 亿参数</text>
+
+  <!-- Frozen parameters -->
+  <rect x="340" y="145" width="140" height="60" rx="6" fill="#95a5a6" opacity="0.2" stroke="#7f8c8d" stroke-width="1"/>
+  <text x="410" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#7f8c8d">参数完全冻结</text>
+  <text x="410" y="185" text-anchor="middle" font-size="10" fill="#555">无梯度更新</text>
+  <text x="410" y="200" text-anchor="middle" font-size="10" fill="#555">ΔW = 0</text>
+
+  <!-- In-context learning -->
+  <rect x="340" y="220" width="140" height="70" rx="6" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="1"/>
+  <text x="410" y="243" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e8449">上下文学习</text>
+  <text x="410" y="260" text-anchor="middle" font-size="10" fill="#555">通过注意力机制</text>
+  <text x="410" y="275" text-anchor="middle" font-size="10" fill="#555">理解任务模式</text>
+
+  <!-- Arrow -->
+  <line x1="500" y1="200" x2="570" y2="200" stroke="#333" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="535" y="190" text-anchor="middle" font-size="10" fill="#555">输出</text>
+
+  <!-- Output -->
+  <rect x="570" y="120" width="200" height="160" rx="8" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <text x="670" y="150" text-anchor="middle" font-size="13" font-weight="bold" fill="#d68910">模型输出</text>
+
+  <rect x="590" y="165" width="160" height="50" rx="4" fill="#fff" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="670" y="185" text-anchor="middle" font-size="10" fill="#555">生成的概率分布:</text>
+  <text x="670" y="202" text-anchor="middle" font-size="10" fill="#555">P("Bonjour" | context) = 0.85</text>
+
+  <rect x="590" y="225" width="160" height="40" rx="4" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="1"/>
+  <text x="670" y="243" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e8449">→ "Bonjour"</text>
+  <text x="670" y="258" text-anchor="middle" font-size="9" fill="#555">(最高概率词)</text>
+
+  <!-- Key insight box -->
+  <rect x="30" y="350" width="740" height="25" rx="4" fill="#f8f8f8" stroke="#ccc" stroke-width="1"/>
+  <text x="400" y="367" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">核心洞察: 模型不是"学会"了翻译，而是从上下文中识别出"这是一个翻译任务"的模式，利用预训练中学到的双语知识生成答案</text>
+
+</svg>

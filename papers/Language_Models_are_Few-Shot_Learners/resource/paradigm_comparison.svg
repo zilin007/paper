@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">传统微调 vs Few-Shot 学习范式对比</text>
+
+  <!-- Left: Traditional Fine-tuning -->
+  <rect x="30" y="55" width="340" height="440" rx="8" fill="#f8f8f8" stroke="#ccc" stroke-width="1"/>
+  <text x="200" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#c0392b">传统范式：预训练 + 微调</text>
+
+  <!-- Pre-training box -->
+  <rect x="60" y="100" width="280" height="80" rx="6" fill="#3498db" opacity="0.15" stroke="#3498db" stroke-width="2"/>
+  <text x="200" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#2980b9">预训练阶段</text>
+  <text x="200" y="145" text-anchor="middle" font-size="11" fill="#555">海量无标注文本 → 学习语言规律</text>
+  <text x="200" y="162" text-anchor="middle" font-size="11" fill="#555">优化目标: 下一个词预测 (P(w_t | w_{&lt;t}))</text>
+
+  <!-- Arrow -->
+  <line x1="200" y1="180" x2="200" y2="210" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Fine-tuning box -->
+  <rect x="60" y="215" width="280" height="80" rx="6" fill="#e74c3c" opacity="0.15" stroke="#e74c3c" stroke-width="2"/>
+  <text x="200" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#c0392b">微调阶段 (每个任务都需要)</text>
+  <text x="200" y="260" text-anchor="middle" font-size="11" fill="#555">任务特定标注数据 (数千~数万条)</text>
+  <text x="200" y="277" text-anchor="middle" font-size="11" fill="#555">更新全部模型参数 → 适配该任务</text>
+
+  <!-- Arrow -->
+  <line x1="200" y1="295" x2="200" y2="325" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Inference box -->
+  <rect x="60" y="330" width="280" height="55" rx="6" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="2"/>
+  <text x="200" y="355" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">推理: 仅能执行微调过的任务</text>
+  <text x="200" y="372" text-anchor="middle" font-size="11" fill="#555">每个新任务 = 重新收集数据 + 重新微调</text>
+
+  <!-- Disadvantages -->
+  <rect x="60" y="405" width="280" height="75" rx="6" fill="#e74c3c" opacity="0.08" stroke="#e74c3c" stroke-width="1" stroke-dasharray="4"/>
+  <text x="200" y="425" text-anchor="middle" font-size="11" font-weight="bold" fill="#c0392b">缺点</text>
+  <text x="80" y="445" font-size="10" fill="#555">• 每个任务需要大量标注数据</text>
+  <text x="80" y="462" font-size="10" fill="#555">• 微调计算成本高</text>
+  <text x="80" y="479" font-size="10" fill="#555">• 容易过拟合到训练数据分布</text>
+
+  <!-- Right: Few-Shot Learning -->
+  <rect x="430" y="55" width="340" height="440" rx="8" fill="#f8f8f8" stroke="#ccc" stroke-width="1"/>
+  <text x="600" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">GPT-3 范式：Few-Shot 学习</text>
+
+  <!-- Pre-training box -->
+  <rect x="460" y="100" width="280" height="80" rx="6" fill="#3498db" opacity="0.15" stroke="#3498db" stroke-width="2"/>
+  <text x="600" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#2980b9">预训练阶段 (相同)</text>
+  <text x="600" y="145" text-anchor="middle" font-size="11" fill="#555">海量无标注文本 → 学习语言规律</text>
+  <text x="600" y="162" text-anchor="middle" font-size="11" fill="#555">优化目标: 下一个词预测 (P(w_t | w_{&lt;t}))</text>
+
+  <!-- Arrow -->
+  <line x1="600" y1="180" x2="600" y2="210" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Few-shot box -->
+  <rect x="460" y="215" width="280" height="100" rx="6" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="2"/>
+  <text x="600" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">推理阶段 (无需微调!)</text>
+  <text x="600" y="260" text-anchor="middle" font-size="11" fill="#555">输入 = 任务描述 + 少量示例 (K=1~100)</text>
+  <text x="600" y="277" text-anchor="middle" font-size="11" fill="#555">模型参数完全冻结，不更新任何权重</text>
+  <text x="600" y="294" text-anchor="middle" font-size="11" fill="#555">通过上下文理解任务并生成答案</text>
+
+  <!-- Arrow -->
+  <line x1="600" y1="315" x2="600" y2="345" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Inference box -->
+  <rect x="460" y="350" width="280" height="55" rx="6" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="2"/>
+  <text x="600" y="375" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">推理: 一个模型应对任意任务</text>
+  <text x="600" y="392" text-anchor="middle" font-size="11" fill="#555">换任务 = 换 prompt，无需重新训练</text>
+
+  <!-- Advantages -->
+  <rect x="460" y="420" width="280" height="60" rx="6" fill="#27ae60" opacity="0.08" stroke="#27ae60" stroke-width="1" stroke-dasharray="4"/>
+  <text x="600" y="440" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e8449">优势</text>
+  <text x="480" y="460" font-size="10" fill="#555">• 无需标注数据，几个示例即可</text>
+  <text x="480" y="477" font-size="10" fill="#555">• 一个模型通用所有任务</text>
+
+</svg>

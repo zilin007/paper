@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" font-family="sans-serif">
+  <defs>
+    <marker id="arrow3" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">Few-Shot 学习 ≠ 传统训练 (无参数更新)</text>
+
+  <!-- Left: Traditional Training -->
+  <rect x="30" y="50" width="350" height="230" rx="8" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/>
+  <text x="205" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#d35400">传统训练流程</text>
+
+  <!-- Steps -->
+  <rect x="50" y="95" width="100" height="50" rx="6" fill="#3498db" opacity="0.2" stroke="#3498db" stroke-width="1"/>
+  <text x="100" y="115" text-anchor="middle" font-size="10" font-weight="bold" fill="#2980b9">前向传播</text>
+  <text x="100" y="132" text-anchor="middle" font-size="9" fill="#555">计算预测输出</text>
+
+  <line x1="150" y1="120" x2="190" y2="120" stroke="#333" stroke-width="2" marker-end="url(#arrow3)"/>
+
+  <rect x="190" y="95" width="100" height="50" rx="6" fill="#e74c3c" opacity="0.2" stroke="#e74c3c" stroke-width="1"/>
+  <text x="240" y="115" text-anchor="middle" font-size="10" font-weight="bold" fill="#c0392b">计算损失</text>
+  <text x="240" y="132" text-anchor="middle" font-size="9" fill="#555">L = -log P(y|x)</text>
+
+  <line x1="290" y1="120" x2="330" y2="120" stroke="#333" stroke-width="2" marker-end="url(#arrow3)"/>
+
+  <rect x="330" y="95" width="40" height="50" rx="6" fill="#f39c12" opacity="0.2" stroke="#f39c12" stroke-width="1"/>
+  <text x="350" y="115" text-anchor="middle" font-size="10" font-weight="bold" fill="#d68910">...</text>
+
+  <!-- Backward arrow -->
+  <line x1="240" y1="145" x2="240" y2="175" stroke="#333" stroke-width="2" marker-end="url(#arrow3)"/>
+
+  <rect x="180" y="175" width="120" height="50" rx="6" fill="#9b59b6" opacity="0.2" stroke="#9b59b6" stroke-width="1"/>
+  <text x="240" y="195" text-anchor="middle" font-size="10" font-weight="bold" fill="#8e44ad">反向传播</text>
+  <text x="240" y="212" text-anchor="middle" font-size="9" fill="#555">计算梯度 ∇L/∇θ</text>
+
+  <line x1="240" y1="225" x2="240" y2="250" stroke="#333" stroke-width="2" marker-end="url(#arrow3)"/>
+
+  <rect x="180" y="250" width="120" height="25" rx="6" fill="#27ae60" opacity="0.2" stroke="#27ae60" stroke-width="1"/>
+  <text x="240" y="267" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e8449">θ ← θ - η·∇L/∇θ</text>
+
+  <!-- Right: Few-Shot Inference -->
+  <rect x="420" y="50" width="350" height="230" rx="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+  <text x="595" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e8449">GPT-3 Few-Shot 推理</text>
+
+  <rect x="440" y="95" width="120" height="50" rx="6" fill="#3498db" opacity="0.2" stroke="#3498db" stroke-width="1"/>
+  <text x="500" y="115" text-anchor="middle" font-size="10" font-weight="bold" fill="#2980b9">构造 Prompt</text>
+  <text x="500" y="132" text-anchor="middle" font-size="9" fill="#555">任务描述 + 示例</text>
+
+  <line x1="560" y1="120" x2="600" y2="120" stroke="#333" stroke-width="2" marker-end="url(#arrow3)"/>
+
+  <rect x="600" y="95" width="150" height="50" rx="6" fill="#27ae60" opacity="0.2" stroke="#27ae60" stroke-width="1"/>
+  <text x="675" y="115" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e8449">自回归生成</text>
+  <text x="675" y="132" text-anchor="middle" font-size="9" fill="#555">P(w_t | w_{&lt;t}, prompt)</text>
+
+  <!-- No backward! -->
+  <rect x="500" y="175" width="190" height="80" rx="6" fill="#e74c3c" opacity="0.1" stroke="#e74c3c" stroke-width="1" stroke-dasharray="4"/>
+  <text x="595" y="200" text-anchor="middle" font-size="11" font-weight="bold" fill="#c0392b">无反向传播!</text>
+  <text x="595" y="220" text-anchor="middle" font-size="10" fill="#555">∇L/∇θ 不计算</text>
+  <text x="595" y="238" text-anchor="middle" font-size="10" fill="#555">参数 θ 完全冻结</text>
+
+  <!-- Bottom insight -->
+  <rect x="30" y="285" width="740" height="15" rx="4" fill="#f8f8f8" stroke="#ccc" stroke-width="1"/>
+  <text x="400" y="296" text-anchor="middle" font-size="10" font-weight="bold" fill="#333">Few-Shot 学习本质: 利用预训练知识 + 上下文模式识别，而非参数优化</text>
+
+</svg>

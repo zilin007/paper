@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" font-family="sans-serif">
+  <defs>
+    <marker id="arrow4" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">涌现能力: 为什么 175B 是质变点?</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="300" x2="720" y2="300" stroke="#333" stroke-width="2"/>
+  <line x1="80" y1="50" x2="80" y2="300" stroke="#333" stroke-width="2"/>
+
+  <text x="400" y="335" text-anchor="middle" font-size="12" fill="#333">模型参数量 (对数尺度)</text>
+  <text x="25" y="175" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90, 25, 175)">任务准确率</text>
+
+  <!-- X axis ticks -->
+  <text x="120" y="318" text-anchor="middle" font-size="10" fill="#555">125M</text>
+  <text x="220" y="318" text-anchor="middle" font-size="10" fill="#555">1.3B</text>
+  <text x="340" y="318" text-anchor="middle" font-size="10" fill="#555">6.7B</text>
+  <text x="470" y="318" text-anchor="middle" font-size="10" fill="#555">13B</text>
+  <text x="620" y="318" text-anchor="middle" font-size="10" fill="#555">175B</text>
+
+  <!-- Grid -->
+  <line x1="120" y1="50" x2="120" y2="300" stroke="#eee" stroke-width="1"/>
+  <line x1="220" y1="50" x2="220" y2="300" stroke="#eee" stroke-width="1"/>
+  <line x1="340" y1="50" x2="340" y2="300" stroke="#eee" stroke-width="1"/>
+  <line x1="470" y1="50" x2="470" y2="300" stroke="#eee" stroke-width="1"/>
+  <line x1="620" y1="50" x2="620" y2="300" stroke="#eee" stroke-width="1"/>
+
+  <!-- Y axis -->
+  <text x="70" y="300" text-anchor="end" font-size="10" fill="#555">0%</text>
+  <text x="70" y="238" text-anchor="end" font-size="10" fill="#555">25%</text>
+  <text x="70" y="175" text-anchor="end" font-size="10" fill="#555">50%</text>
+  <text x="70" y="113" text-anchor="end" font-size="10" fill="#555">75%</text>
+  <text x="70" y="50" text-anchor="end" font-size="10" fill="#555">100%</text>
+
+  <!-- Translation task (smooth curve) -->
+  <polyline points="120,270 220,245 340,215 470,185 620,140" fill="none" stroke="#3498db" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="120" cy="270" r="4" fill="#3498db"/>
+  <circle cx="220" cy="245" r="4" fill="#3498db"/>
+  <circle cx="340" cy="215" r="4" fill="#3498db"/>
+  <circle cx="470" cy="185" r="4" fill="#3498db"/>
+  <circle cx="620" cy="140" r="4" fill="#3498db"/>
+
+  <!-- Arithmetic task (emergent - sudden jump at 175B) -->
+  <polyline points="120,290 220,288 340,285 470,280 620,150" fill="none" stroke="#e74c3c" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="120" cy="290" r="4" fill="#e74c3c"/>
+  <circle cx="220" cy="288" r="4" fill="#e74c3c"/>
+  <circle cx="340" cy="285" r="4" fill="#e74c3c"/>
+  <circle cx="470" cy="280" r="4" fill="#e74c3c"/>
+  <circle cx="620" cy="150" r="5" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+
+  <!-- Word unscramble (emergent) -->
+  <polyline points="120,285 220,282 340,278 470,270 620,170" fill="none" stroke="#f39c12" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="120" cy="285" r="4" fill="#f39c12"/>
+  <circle cx="220" cy="282" r="4" fill="#f39c12"/>
+  <circle cx="340" cy="278" r="4" fill="#f39c12"/>
+  <circle cx="470" cy="270" r="4" fill="#f39c12"/>
+  <circle cx="620" cy="170" r="5" fill="#f39c12" stroke="#d68910" stroke-width="2"/>
+
+  <!-- Legend -->
+  <rect x="540" y="60" width="170" height="80" rx="6" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <line x1="555" y1="80" x2="585" y2="80" stroke="#3498db" stroke-width="3"/>
+  <text x="595" y="84" font-size="10" fill="#333">翻译 (平滑提升)</text>
+  <line x1="555" y1="102" x2="585" y2="102" stroke="#e74c3c" stroke-width="3"/>
+  <text x="595" y="106" font-size="10" fill="#333">算术 (涌现能力)</text>
+  <line x1="555" y1="124" x2="585" y2="124" stroke="#f39c12" stroke-width="3"/>
+  <text x="595" y="128" font-size="10" fill="#333">词重组 (涌现能力)</text>
+
+  <!-- Emergence annotation -->
+  <rect x="470" y="155" width="160" height="55" rx="4" fill="#f9e79f" stroke="#f39c12" stroke-width="1"/>
+  <text x="550" y="173" text-anchor="middle" font-size="10" font-weight="bold" fill="#d68910">质变区域</text>
+  <text x="550" y="190" text-anchor="middle" font-size="9" fill="#555">13B → 175B</text>
+  <text x="550" y="205" text-anchor="middle" font-size="9" fill="#555">能力突然涌现!</text>
+
+  <!-- Arrow to emergence -->
+  <line x1="545" y1="210" x2="620" y2="155" stroke="#f39c12" stroke-width="1.5" marker-end="url(#arrow4)"/>
+
+</svg>
