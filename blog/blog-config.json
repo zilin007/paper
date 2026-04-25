@@ -7,7 +7,9 @@
     "The_Power_of_Scale_for_Parameter-Efficient_Prompt_Tuning",
     "Prefix-Tuning_Optimizing_Continuous_Prompts_for_Generation",
     "Parameter-Efficient_Transfer_Learning_for_NLP",
-    "Attention_Is_All_You_Need"
+    "Attention_Is_All_You_Need",
+    "LoftQ_LoRA-Fine-Tuning-Aware_Quantization",
+    "SRLoRA_Subspace_Reorganization_Low-Rank_Adaptation"
   ],
   "pinnedPapers": [],
   "paperTags": {

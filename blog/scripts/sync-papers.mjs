@@ -100,6 +100,7 @@ async function main() {
   const paperDirs = entries.filter((e) => e.isDirectory() && !e.name.startsWith('.'))
 
   let count = 0
+  const processedSlugs = []
 
   for (const dir of paperDirs) {
     const paperPath = join(PAPERS_DIR, dir.name)
@@ -160,8 +161,19 @@ async function main() {
       // resource 目录不存在，跳过
     }
 
+    processedSlugs.push(slug)
     count++
     console.log(`  ✓ ${dir.name} → posts/${dir.name}/index.md`)
+  }
+
+  // ── 自动追加新论文到 paperOrder（兜底）──
+  const missingSlugs = processedSlugs.filter((s) => !config.paperOrder.includes(s))
+  if (missingSlugs.length > 0) {
+    config.paperOrder.push(...missingSlugs)
+    await writeFile(CONFIG_PATH, JSON.stringify(config, null, 2) + '\n', 'utf-8')
+    console.log(`\n  ⚠ 以下论文未在 blog-config.json 中配置，已自动追加到 paperOrder 末尾：`)
+    missingSlugs.forEach((s) => console.log(`     - ${s}`))
+    console.log('    建议通过管理后台调整顺序和标签。')
   }
 
   console.log(`\n同步完成：共 ${count} 篇论文解读 → blog/posts/`)
