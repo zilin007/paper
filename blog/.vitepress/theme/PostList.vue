@@ -57,8 +57,7 @@ function toggleTag(tag) {
 
   <!-- 论文列表 -->
   <div class="paper-list">
-    <div v-for="post in filteredPosts" :key="post.url" class="paper-card" :class="{ pinned: post.pinned }">
-      <div v-if="post.pinned" class="pin-badge">置顶</div>
+    <div v-for="post in filteredPosts" :key="post.url" class="paper-card">
       <h3>
         <a :href="withBase(post.url)">{{ post.title }}</a>
       </h3>

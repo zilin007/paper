@@ -1,17 +1,4 @@
 {
-  "paperOrder": [
-    "Hard_Prompts_Made_Easy",
-    "A_Survey_on_In-context_Learning",
-    "Language_Models_are_Few-Shot_Learners",
-    "LoRA_Low-Rank_Adaptation_of_Large_Language_Models",
-    "The_Power_of_Scale_for_Parameter-Efficient_Prompt_Tuning",
-    "Prefix-Tuning_Optimizing_Continuous_Prompts_for_Generation",
-    "Parameter-Efficient_Transfer_Learning_for_NLP",
-    "Attention_Is_All_You_Need",
-    "LoftQ_LoRA-Fine-Tuning-Aware_Quantization",
-    "SRLoRA_Subspace_Reorganization_Low-Rank_Adaptation"
-  ],
-  "pinnedPapers": [],
   "paperTags": {
     "Attention_Is_All_You_Need": [
       "Transformer",
@@ -60,5 +47,23 @@
     "综述": "#64748b",
     "LLM": "#6366f1",
     "GPT": "#0ea5e9"
+  },
+  "publishedDates": {
+    "AdaLoRA_Adaptive_Budget_Allocation": "2023-03-18",
+    "Attention_Is_All_You_Need": "2017-06-12",
+    "A_Survey_on_In-context_Learning": "2022-12-31",
+    "Batch_Normalization": "2015-02-11",
+    "Hard_Prompts_Made_Easy": "2023-02-07",
+    "Language_Models_are_Few-Shot_Learners": "2020-05-28",
+    "Layer_Normalization": "2016-07-21",
+    "LoftQ_LoRA-Fine-Tuning-Aware_Quantization": "2023-10-12",
+    "LongLoRA_Efficient_Fine-tuning_of_Long-Context_Large_Language_Models": "2023-09-21",
+    "LoRA_Low-Rank_Adaptation_of_Large_Language_Models": "2021-06-17",
+    "P-Tuning_v2_Prompt_Tuning_Can_Be_Comparable_to_Fine-tuning": "2021-10-14",
+    "Parameter-Efficient_Transfer_Learning_for_NLP": "2019-02-02",
+    "Prefix-Tuning_Optimizing_Continuous_Prompts_for_Generation": "2021-01-01",
+    "SRLoRA_Subspace_Reorganization_Low-Rank_Adaptation": "2025-05-18",
+    "Stochastic_Gradient_Descent_in_Non-Convex_Problems": "2025-04-17",
+    "The_Power_of_Scale_for_Parameter-Efficient_Prompt_Tuning": "2021-04-18"
   }
 }

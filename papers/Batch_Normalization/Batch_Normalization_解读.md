@@ -272,7 +272,7 @@ $$y = \frac{\gamma}{\sqrt{\sigma^2 + \epsilon}} \cdot x + \left(\beta - \frac{\g
 
 作者先用一个简单的3层全连接网络（每层100个Sigmoid神经元）在 MNIST 手写数字数据集上验证了 BN 的效果。
 
-![Figure 1: BN 让网络训练更快、精度更高](./resource/figure1a_accuracy_curve.png)
+![Figure 1: BN 让网络训练更快、精度更高](./resource/figure1_accuracy_curve.png)
 
 **关键发现**：
 - 使用 BN 的网络收敛更快，最终测试精度更高

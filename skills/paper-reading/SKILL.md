@@ -62,6 +62,7 @@ ls papers/*/_解读.md 2>/dev/null  # 查看已有解读文件
 
 2. **已知 arXiv ID**：直接使用 `mcp__arxiv__get_abstract` 获取元信息
    - 返回：标题、作者、摘要、分类、发表日期、PDF URL
+   - **重要**：`get_abstract` 返回的 `published` 字段包含精确发表日期（如 `"2017-06-12T17:57:34Z"`），**必须记录这个精确日期**。后续生成解读时，`发表时间` 字段使用 `YYYY-MM-DD` 格式（如 `2017-06-12`），不要只写年份。
    
 ### Step 3: 下载论文
 
@@ -255,8 +256,6 @@ rm papers/<论文简称>/resource/temp_*
 
 ```json
 {
-  "paperOrder": ["新论文slug", "其他论文", "..."],
-  "pinnedPapers": [],
   "paperTags": {
     "新论文slug": ["标签1", "标签2"],
     "...": "..."
@@ -268,7 +267,6 @@ rm papers/<论文简称>/resource/temp_*
 }
 ```
 
-- `paperOrder`：将新论文的 slug **插入到数组开头**，使新论文默认排在最前面
 - `paperTags`：为新论文 slug 添加生成的标签数组
 - `tagColors`：若使用了新标签，为其分配颜色；已有标签的颜色保持不变
 
@@ -276,7 +274,6 @@ rm papers/<论文简称>/resource/temp_*
 - 分析后确定标签：`["RLHF", "LLM", "对齐"]`
 - 其中 `LLM` 已存在于 `tagColors`，复用 `#6366f1`
 - `RLHF` 和 `对齐` 是新建标签，分别取 `#14b8a6` 和 `#84cc16`
-- 更新后的 `paperOrder`：`["RLHF_Paper_Title", "Hard_Prompts_Made_Easy", "..."]`
 
 > **权限说明**：此步骤自动执行，无需询问用户。标签后续可通过博客管理后台（`/admin`）手动调整。
 

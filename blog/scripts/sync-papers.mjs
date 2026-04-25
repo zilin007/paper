@@ -5,7 +5,7 @@
  * 主要工作：
  *   1. 扫描 papers/ 下所有 *_解读.md
  *   2. 提取元信息（标题、作者、日期、摘要）生成 VitePress frontmatter
- *   3. 读取 blog-config.json 注入标签、排序、置顶信息
+ *   3. 读取 blog-config.json 注入标签
  *   4. 将处理后的 Markdown 写入 blog/posts/<name>/index.md
  *   5. 将 resource/ 静态资源复制到 blog/posts/<name>/resource/
  *   6. 由于 index.md 和 resource/ 同目录，原始 ./resource/ 相对路径无需修改
@@ -31,13 +31,13 @@ async function loadConfig() {
     const raw = await readFile(CONFIG_PATH, 'utf-8')
     return JSON.parse(raw)
   } catch {
-    return { paperOrder: [], pinnedPapers: [], paperTags: {}, tagColors: {} }
+    return { paperTags: {}, tagColors: {}, publishedDates: {} }
   }
 }
 
 // ─────────────────── 元信息提取 ───────────────────
 
-function extractMeta(content) {
+function extractMeta(content, preciseDate) {
   const titleMatch = content.match(/^# (.+)$/m)
   const originalMatch = content.match(/\*\*原文\*\*:\s*(.+)$/m)
   const authorsMatch = content.match(/\*\*作者\*\*:\s*(.+)$/m)
@@ -45,11 +45,14 @@ function extractMeta(content) {
   const arxivMatch = content.match(/\*\*arXiv\*\*:\s*\[?([^\]\s)]+)/)
   const summaryMatch = content.match(/## 一句话总结\s*\n+(.+)/m)
 
+  // 优先使用精确日期（来自 blog-config.json 或 arXiv API）
+  const date = preciseDate || extractDate(dateMatch?.[1]) || new Date().toISOString().slice(0, 10)
+
   return {
     title: titleMatch?.[1]?.trim() || 'Untitled',
     originalTitle: originalMatch?.[1]?.trim() || '',
     authors: authorsMatch?.[1]?.trim() || '',
-    date: extractDate(dateMatch?.[1]) || new Date().toISOString().slice(0, 10),
+    date,
     arxiv: arxivMatch?.[1]?.trim() || '',
     description: summaryMatch?.[1]?.trim().replace(/\*\*/g, '') || '',
   }
@@ -100,7 +103,6 @@ async function main() {
   const paperDirs = entries.filter((e) => e.isDirectory() && !e.name.startsWith('.'))
 
   let count = 0
-  const processedSlugs = []
 
   for (const dir of paperDirs) {
     const paperPath = join(PAPERS_DIR, dir.name)
@@ -116,15 +118,13 @@ async function main() {
     const mdPath = join(paperPath, readingFile)
     const content = await readFile(mdPath, 'utf-8')
 
-    // 提取元信息
-    const meta = extractMeta(content)
-
-    // 从配置获取排序、标签、置顶信息
+    // 从配置获取标签和精确日期
     const slug = dir.name
-    const orderIndex = config.paperOrder.indexOf(slug)
-    const order = orderIndex >= 0 ? orderIndex : 999
-    const pinned = (config.pinnedPapers || []).includes(slug)
     const tags = (config.paperTags || {})[slug] || []
+    const preciseDate = (config.publishedDates || {})[slug] || null
+
+    // 提取元信息（优先使用精确日期）
+    const meta = extractMeta(content, preciseDate)
 
     // 生成 frontmatter
     const frontmatter = [
@@ -136,8 +136,6 @@ async function main() {
       `description: ${yamlStr(meta.description)}`,
       `arxiv: ${yamlStr(meta.arxiv)}`,
       `tags: ${yamlTags(tags)}`,
-      `order: ${order}`,
-      `pinned: ${pinned}`,
       `comment: true`,
       '---',
       '',
@@ -161,19 +159,8 @@ async function main() {
       // resource 目录不存在，跳过
     }
 
-    processedSlugs.push(slug)
     count++
     console.log(`  ✓ ${dir.name} → posts/${dir.name}/index.md`)
-  }
-
-  // ── 自动追加新论文到 paperOrder（兜底）──
-  const missingSlugs = processedSlugs.filter((s) => !config.paperOrder.includes(s))
-  if (missingSlugs.length > 0) {
-    config.paperOrder.push(...missingSlugs)
-    await writeFile(CONFIG_PATH, JSON.stringify(config, null, 2) + '\n', 'utf-8')
-    console.log(`\n  ⚠ 以下论文未在 blog-config.json 中配置，已自动追加到 paperOrder 末尾：`)
-    missingSlugs.forEach((s) => console.log(`     - ${s}`))
-    console.log('    建议通过管理后台调整顺序和标签。')
   }
 
   console.log(`\n同步完成：共 ${count} 篇论文解读 → blog/posts/`)

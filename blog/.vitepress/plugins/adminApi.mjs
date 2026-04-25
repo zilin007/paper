@@ -26,7 +26,7 @@ async function readConfig() {
     const raw = await readFile(CONFIG_PATH, 'utf-8')
     return JSON.parse(raw)
   } catch {
-    return { paperOrder: [], pinnedPapers: [], paperTags: {}, tagColors: {} }
+    return { paperTags: {}, tagColors: {} }
   }
 }
 
