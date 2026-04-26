@@ -61,6 +61,14 @@
     ],
     "Stochastic_Gradient_Descent_in_Non-Convex_Problems": [
       "LLM"
+    ],
+    "Optimal_Brain_Damage": [
+      "网络剪枝",
+      "二阶优化"
+    ],
+    "Optimal_Brain_Surgeon": [
+      "网络剪枝",
+      "二阶优化"
     ]
   },
   "tagColors": {
@@ -75,6 +83,8 @@
     "ICL": "#f97316",
     "综述": "#64748b",
     "LLM": "#6366f1",
-    "GPT": "#0ea5e9"
+    "GPT": "#0ea5e9",
+    "网络剪枝": "#14b8a6",
+    "二阶优化": "#84cc16"
   }
 }

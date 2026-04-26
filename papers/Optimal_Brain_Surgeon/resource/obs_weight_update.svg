@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" font-family="sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#495057"/>
+    </marker>
+  </defs>
+
+  <rect width="820" height="380" rx="12" ry="12" fill="#f8f9fa" stroke="#dee2e6"/>
+  <text x="410" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#212529">OBD vs OBS: 删除权重后的处理方式</text>
+
+  <!-- Left: OBD approach -->
+  <g transform="translate(20, 50)">
+    <rect x="0" y="0" width="380" height="36" rx="6" ry="6" fill="#fd7e14"/>
+    <text x="190" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="white">OBD: 只删除，不调整</text>
+
+    <!-- Before -->
+    <text x="15" y="65" font-size="13" font-weight="bold" fill="#495057">删除前:</text>
+    <rect x="15" y="75" width="350" height="50" rx="6" ry="6" fill="white" stroke="#dee2e6"/>
+    <text x="30" y="97" font-size="14" fill="#495057">w = [</text>
+    <text x="65" y="97" font-size="14" fill="#0d6efd" font-weight="bold">1.0</text>
+    <text x="100" y="97" font-size="14" fill="#495057">,</text>
+    <text x="120" y="97" font-size="14" fill="#dc3545" font-weight="bold">0.5</text>
+    <text x="155" y="97" font-size="14" fill="#495057">,</text>
+    <text x="175" y="97" font-size="14" fill="#0d6efd" font-weight="bold">0.3</text>
+    <text x="210" y="97" font-size="14" fill="#495057">]</text>
+    <text x="240" y="97" font-size="12" fill="#6c757d">( 删 w2 )</text>
+
+    <!-- Arrow -->
+    <line x1="190" y1="130" x2="190" y2="155" stroke="#fd7e14" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="200" y="148" font-size="12" fill="#fd7e14">w2 -> 0</text>
+
+    <!-- After -->
+    <text x="15" y="175" font-size="13" font-weight="bold" fill="#495057">删除后:</text>
+    <rect x="15" y="185" width="350" height="50" rx="6" ry="6" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="30" y="207" font-size="14" fill="#495057">w = [</text>
+    <text x="65" y="207" font-size="14" fill="#0d6efd" font-weight="bold">1.0</text>
+    <text x="100" y="207" font-size="14" fill="#495057">,</text>
+    <text x="120" y="207" font-size="14" fill="#dc3545" font-weight="bold" text-decoration="line-through">0.0</text>
+    <text x="155" y="207" font-size="14" fill="#495057">,</text>
+    <text x="175" y="207" font-size="14" fill="#0d6efd" font-weight="bold">0.3</text>
+    <text x="210" y="207" font-size="14" fill="#495057">]</text>
+    <text x="240" y="207" font-size="12" fill="#fd7e14">不变    不变</text>
+
+    <!-- Result -->
+    <rect x="15" y="250" width="350" height="60" rx="6" ry="6" fill="#fff5f5" stroke="#fecaca"/>
+    <text x="190" y="275" text-anchor="middle" font-size="13" fill="#dc3545" font-weight="bold">误差增量较大</text>
+    <text x="190" y="298" text-anchor="middle" font-size="12" fill="#6c757d">其余权重没有补偿，通常需要重训练</text>
+  </g>
+
+  <!-- Right: OBS approach -->
+  <g transform="translate(420, 50)">
+    <rect x="0" y="0" width="380" height="36" rx="6" ry="6" fill="#198754"/>
+    <text x="190" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="white">OBS: 删除 + 最优调整</text>
+
+    <!-- Before -->
+    <text x="15" y="65" font-size="13" font-weight="bold" fill="#495057">删除前:</text>
+    <rect x="15" y="75" width="350" height="50" rx="6" ry="6" fill="white" stroke="#dee2e6"/>
+    <text x="30" y="97" font-size="14" fill="#495057">w = [</text>
+    <text x="65" y="97" font-size="14" fill="#0d6efd" font-weight="bold">1.0</text>
+    <text x="100" y="97" font-size="14" fill="#495057">,</text>
+    <text x="120" y="97" font-size="14" fill="#dc3545" font-weight="bold">0.5</text>
+    <text x="155" y="97" font-size="14" fill="#495057">,</text>
+    <text x="175" y="97" font-size="14" fill="#0d6efd" font-weight="bold">0.3</text>
+    <text x="210" y="97" font-size="14" fill="#495057">]</text>
+    <text x="240" y="97" font-size="12" fill="#6c757d">( 删 w2 )</text>
+
+    <!-- Arrow -->
+    <line x1="190" y1="130" x2="190" y2="155" stroke="#198754" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="200" y="148" font-size="12" fill="#198754">dw = -w2/[H^-1]_22 * H^-1 * e2</text>
+
+    <!-- After -->
+    <text x="15" y="175" font-size="13" font-weight="bold" fill="#495057">删除后:</text>
+    <rect x="15" y="185" width="350" height="50" rx="6" ry="6" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="30" y="207" font-size="14" fill="#495057">w = [</text>
+    <text x="65" y="207" font-size="14" fill="#198754" font-weight="bold">1.12</text>
+    <text x="105" y="207" font-size="14" fill="#495057">,</text>
+    <text x="125" y="207" font-size="14" fill="#dc3545" font-weight="bold">0.0</text>
+    <text x="160" y="207" font-size="14" fill="#495057">,</text>
+    <text x="180" y="207" font-size="14" fill="#198754" font-weight="bold">0.22</text>
+    <text x="220" y="207" font-size="14" fill="#495057">]</text>
+    <text x="260" y="207" font-size="12" fill="#198754">已调整  已调整</text>
+
+    <!-- Result -->
+    <rect x="15" y="250" width="350" height="60" rx="6" ry="6" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="190" y="275" text-anchor="middle" font-size="13" fill="#198754" font-weight="bold">误差增量最小</text>
+    <text x="190" y="298" text-anchor="middle" font-size="12" fill="#6c757d">其余权重已最优补偿，通常不需重训练</text>
+  </g>
+
+  <!-- Bottom comparison -->
+  <rect x="200" y="340" width="420" height="30" rx="6" ry="6" fill="#e9ecef"/>
+  <text x="410" y="360" text-anchor="middle" font-size="13" fill="#495057">关键区别: OBS 通过 H^-1 计算出删除后所有权重的最优调整量</text>
+</svg>

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 620" font-family="sans-serif">
+  <defs>
+    <marker id="arw" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#495057"/>
+    </marker>
+  </defs>
+
+  <rect width="480" height="620" rx="12" ry="12" fill="#f8f9fa" stroke="#dee2e6"/>
+  <text x="240" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#212529">OBS 算法流程</text>
+
+  <!-- Step 1 -->
+  <rect x="115" y="48" width="250" height="42" rx="6" ry="6" fill="#3b82f6"/>
+  <text x="240" y="64" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Step 1: 训练大网络</text>
+  <text x="240" y="81" text-anchor="middle" font-size="11" fill="#dbeafe">训练到局部最小值 (误差收敛)</text>
+
+  <!-- Arrow -->
+  <line x1="240" y1="90" x2="240" y2="110" stroke="#495057" stroke-width="1.5" marker-end="url(#arw)"/>
+
+  <!-- Step 2 -->
+  <rect x="115" y="112" width="250" height="42" rx="6" ry="6" fill="#8b5cf6"/>
+  <text x="240" y="128" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Step 2: 计算 H^-1</text>
+  <text x="240" y="145" text-anchor="middle" font-size="11" fill="#ede9fe">矩阵求逆引理递推计算</text>
+
+  <!-- Arrow -->
+  <line x1="240" y1="154" x2="240" y2="174" stroke="#495057" stroke-width="1.5" marker-end="url(#arw)"/>
+
+  <!-- Step 3 -->
+  <rect x="80" y="176" width="320" height="56" rx="6" ry="6" fill="#f59e0b"/>
+  <text x="240" y="196" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Step 3: 找最小 Saliency 权重 q</text>
+  <text x="240" y="213" text-anchor="middle" font-size="11" fill="white">L_q = w_q^2 / (2 * [H^-1]_qq)</text>
+  <text x="240" y="228" text-anchor="middle" font-size="11" fill="#fef3c7">遍历所有权重，找 L_q 最小的</text>
+
+  <!-- Arrow to diamond -->
+  <line x1="240" y1="232" x2="240" y2="255" stroke="#495057" stroke-width="1.5" marker-end="url(#arw)"/>
+
+  <!-- Decision diamond -->
+  <polygon points="240,258 340,298 240,338 140,298" fill="#e9ecef" stroke="#6c757d" stroke-width="1.5"/>
+  <text x="240" y="293" text-anchor="middle" font-size="12" fill="#495057" font-weight="bold">L_q 远小于 E ?</text>
+  <text x="240" y="308" text-anchor="middle" font-size="11" fill="#6c757d">(删了影响小?)</text>
+
+  <!-- Yes arrow (down) -->
+  <line x1="240" y1="338" x2="240" y2="368" stroke="#198754" stroke-width="1.5" marker-end="url(#arw)"/>
+  <text x="252" y="358" font-size="12" fill="#198754" font-weight="bold">是</text>
+
+  <!-- No arrow (right) -->
+  <line x1="340" y1="298" x2="420" y2="298" stroke="#dc3545" stroke-width="1.5" marker-end="url(#arw)"/>
+  <text x="370" y="290" font-size="12" fill="#dc3545" font-weight="bold">否</text>
+
+  <!-- Step 5 (right, stop) -->
+  <rect x="422" y="278" width="48" height="42" rx="6" ry="6" fill="#dc3545"/>
+  <text x="446" y="296" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Step</text>
+  <text x="446" y="312" text-anchor="middle" font-size="11" font-weight="bold" fill="white">5</text>
+
+  <!-- Step 5 label -->
+  <text x="446" y="338" text-anchor="middle" font-size="10" fill="#dc3545">停止剪枝</text>
+  <text x="446" y="352" text-anchor="middle" font-size="10" fill="#6c757d">(可重训练)</text>
+
+  <!-- Step 4 -->
+  <rect x="80" y="370" width="320" height="56" rx="6" ry="6" fill="#198754"/>
+  <text x="240" y="390" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Step 4: 删除 w_q 并更新所有权重</text>
+  <text x="240" y="407" text-anchor="middle" font-size="11" fill="#d1fae5">dw = -(w_q / [H^-1]_qq) * H^-1 * e_q</text>
+  <text x="240" y="422" text-anchor="middle" font-size="11" fill="#d1fae5">所有权重同步最优调整</text>
+
+  <!-- Loop arrow back to Step 2 -->
+  <line x1="80" y1="398" x2="50" y2="398" stroke="#495057" stroke-width="1.5"/>
+  <line x1="50" y1="398" x2="50" y2="133" stroke="#495057" stroke-width="1.5"/>
+  <line x1="50" y1="133" x2="115" y2="133" stroke="#495057" stroke-width="1.5" marker-end="url(#arw)"/>
+  <text x="40" y="270" font-size="11" fill="#6c757d" transform="rotate(-90,40,270)">回到 Step 2</text>
+
+  <!-- Legend -->
+  <rect x="60" y="450" width="360" height="155" rx="8" ry="8" fill="white" stroke="#dee2e6"/>
+  <text x="240" y="475" text-anchor="middle" font-size="13" font-weight="bold" fill="#495057">OBS vs OBD 关键区别</text>
+  <rect x="80" y="490" width="14" height="14" rx="2" ry="2" fill="#198754"/>
+  <text x="102" y="502" font-size="12" fill="#495057">OBS: 用 H^-1 (完整逆Hessian) 计算</text>
+  <rect x="80" y="514" width="14" height="14" rx="2" ry="2" fill="#fd7e14"/>
+  <text x="102" y="526" font-size="12" fill="#495057">OBD: 用 h_kk (仅对角) 计算</text>
+  <line x1="80" y1="542" x2="400" y2="542" stroke="#e9ecef" stroke-width="1"/>
+  <text x="80" y="562" font-size="12" fill="#198754">OBS Step 4: 更新所有权重 (核心创新)</text>
+  <text x="80" y="582" font-size="12" fill="#fd7e14">OBD Step 5: 只删除，不更新其余权重</text>
+  <text x="80" y="598" font-size="11" fill="#6c757d">因此 OBS 通常不需要重训练!</text>
+</svg>

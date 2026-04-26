@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 720" font-family="sans-serif">
+  <defs>
+    <marker id="flowArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#6c757d"/>
+    </marker>
+    <linearGradient id="bgG3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8f9fa"/>
+      <stop offset="100%" stop-color="#e9ecef"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="720" rx="12" ry="12" fill="url(#bgG3)" stroke="#dee2e6" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="200" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#212529">OBD 算法流程</text>
+  <text x="200" y="55" text-anchor="middle" font-size="13" fill="#6c757d">Optimal Brain Damage 六步法</text>
+
+  <!-- Step 1 -->
+  <rect x="60" y="75" width="280" height="52" rx="6" ry="6" fill="#0d6efd" opacity="0.9" filter="url(#shadow)"/>
+  <text x="42" y="97" font-size="18" font-weight="bold" fill="#0d6efd">1</text>
+  <text x="200" y="97" text-anchor="middle" font-size="14" font-weight="bold" fill="white">选择网络架构</text>
+  <text x="200" y="117" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)">确定层数、神经元数量、连接方式</text>
+
+  <!-- Arrow 1->2 -->
+  <line x1="200" y1="127" x2="200" y2="148" stroke="#6c757d" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 2 -->
+  <rect x="60" y="155" width="280" height="52" rx="6" ry="6" fill="#0d6efd" opacity="0.9" filter="url(#shadow)"/>
+  <text x="42" y="177" font-size="18" font-weight="bold" fill="#0d6efd">2</text>
+  <text x="200" y="177" text-anchor="middle" font-size="14" font-weight="bold" fill="white">训练网络至收敛</text>
+  <text x="200" y="197" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)">用反向传播等方法最小化目标函数</text>
+
+  <!-- Arrow 2->3 -->
+  <line x1="200" y1="207" x2="200" y2="228" stroke="#6c757d" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 3 -->
+  <rect x="60" y="235" width="280" height="52" rx="6" ry="6" fill="#6610f2" opacity="0.85" filter="url(#shadow)"/>
+  <text x="42" y="257" font-size="18" font-weight="bold" fill="#6610f2">3</text>
+  <text x="200" y="257" text-anchor="middle" font-size="14" font-weight="bold" fill="white">计算对角 Hessian h_kk</text>
+  <text x="200" y="277" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)">用反向传播计算每个参数的二阶导数</text>
+
+  <!-- Arrow 3->4 -->
+  <line x1="200" y1="287" x2="200" y2="308" stroke="#6c757d" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 4 -->
+  <rect x="60" y="315" width="280" height="52" rx="6" ry="6" fill="#6610f2" opacity="0.85" filter="url(#shadow)"/>
+  <text x="42" y="337" font-size="18" font-weight="bold" fill="#6610f2">4</text>
+  <text x="200" y="337" text-anchor="middle" font-size="14" font-weight="bold" fill="white">计算 Saliency</text>
+  <text x="200" y="357" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)">s_k = h_kk * w_k^2 / 2</text>
+
+  <!-- Arrow 4->5 -->
+  <line x1="200" y1="367" x2="200" y2="388" stroke="#6c757d" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 5 -->
+  <rect x="60" y="395" width="280" height="52" rx="6" ry="6" fill="#dc3545" opacity="0.85" filter="url(#shadow)"/>
+  <text x="42" y="417" font-size="18" font-weight="bold" fill="#dc3545">5</text>
+  <text x="200" y="417" text-anchor="middle" font-size="14" font-weight="bold" fill="white">删除低 Saliency 参数</text>
+  <text x="200" y="437" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)">设为 0 并冻结（不再更新）</text>
+
+  <!-- Arrow 5->6 -->
+  <line x1="200" y1="447" x2="200" y2="468" stroke="#6c757d" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 6: Decision -->
+  <!-- Diamond shape -->
+  <polygon points="200,478 310,520 200,562 90,520" fill="#198754" opacity="0.85" filter="url(#shadow)"/>
+  <text x="200" y="516" text-anchor="middle" font-size="13" font-weight="bold" fill="white">精度是否</text>
+  <text x="200" y="534" text-anchor="middle" font-size="13" font-weight="bold" fill="white">满足要求?</text>
+
+  <!-- Arrow: No -> loop back to step 2 -->
+  <line x1="90" y1="520" x2="30" y2="520" stroke="#dc3545" stroke-width="2"/>
+  <line x1="30" y1="520" x2="30" y2="181" stroke="#dc3545" stroke-width="2"/>
+  <line x1="30" y1="181" x2="56" y2="181" stroke="#dc3545" stroke-width="2" marker-end="url(#flowArrow)"/>
+  <rect x="8" y="480" width="44" height="22" rx="4" ry="4" fill="white" stroke="#dc3545" stroke-width="1"/>
+  <text x="30" y="496" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc3545">否</text>
+  <text x="16" y="464" font-size="10" fill="#dc3545">重训练</text>
+  <text x="10" y="476" font-size="10" fill="#dc3545">继续剪枝</text>
+
+  <!-- Arrow: Yes -> Done -->
+  <line x1="200" y1="562" x2="200" y2="590" stroke="#198754" stroke-width="2" marker-end="url(#flowArrow)"/>
+  <text x="216" y="580" font-size="12" font-weight="bold" fill="#198754">是</text>
+
+  <!-- Done box -->
+  <rect x="110" y="598" width="180" height="44" rx="22" ry="22" fill="#198754" opacity="0.9" filter="url(#shadow)"/>
+  <text x="200" y="625" text-anchor="middle" font-size="15" font-weight="bold" fill="white">完成!</text>
+
+  <!-- Legend -->
+  <rect x="100" y="660" width="200" height="46" rx="6" ry="6" fill="white" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="110" y="670" width="14" height="10" rx="2" ry="2" fill="#0d6efd" opacity="0.9"/>
+  <text x="130" y="679" font-size="10" fill="#495057">训练阶段</text>
+  <rect x="185" y="670" width="14" height="10" rx="2" ry="2" fill="#6610f2" opacity="0.85"/>
+  <text x="205" y="679" font-size="10" fill="#495057">分析阶段</text>
+  <rect x="110" y="688" width="14" height="10" rx="2" ry="2" fill="#dc3545" opacity="0.85"/>
+  <text x="130" y="697" font-size="10" fill="#495057">剪枝阶段</text>
+  <rect x="185" y="688" width="14" height="10" rx="2" ry="2" fill="#198754" opacity="0.85"/>
+  <text x="205" y="697" font-size="10" fill="#495057">评估阶段</text>
+</svg>

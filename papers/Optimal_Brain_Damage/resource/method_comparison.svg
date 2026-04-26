@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#666"/>
+    </marker>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8f9fa"/>
+      <stop offset="100%" stop-color="#e9ecef"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" rx="12" ry="12" fill="url(#bgGrad)" stroke="#dee2e6" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#212529">三种剪枝策略对比</text>
+
+  <!-- ===== Column 1: Random ===== -->
+  <g transform="translate(20, 60)">
+    <!-- Header -->
+    <rect x="0" y="0" width="270" height="40" rx="6" ry="6" fill="#dc3545" opacity="0.9"/>
+    <text x="135" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Random 随机删除</text>
+
+    <!-- Network diagram -->
+    <rect x="10" y="55" width="250" height="180" rx="8" ry="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+
+    <!-- Input layer -->
+    <circle cx="60" cy="100" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="60" cy="145" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="60" cy="190" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+
+    <!-- Hidden layer -->
+    <circle cx="145" cy="100" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="145" cy="145" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="145" cy="190" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+
+    <!-- Output layer -->
+    <circle cx="220" cy="145" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+
+    <!-- Active connections (gray) -->
+    <line x1="74" y1="100" x2="131" y2="100" stroke="#adb5bd" stroke-width="1.5"/>
+    <line x1="74" y1="190" x2="131" y2="145" stroke="#adb5bd" stroke-width="1.5"/>
+    <line x1="159" y1="100" x2="206" y2="145" stroke="#adb5bd" stroke-width="1.5"/>
+    <line x1="159" y1="190" x2="206" y2="145" stroke="#adb5bd" stroke-width="1.5"/>
+
+    <!-- Deleted connections (red dashed) -->
+    <line x1="74" y1="100" x2="131" y2="145" stroke="#dc3545" stroke-width="2" stroke-dasharray="5,3" opacity="0.7"/>
+    <text x="90" y="116" font-size="14" fill="#dc3545" font-weight="bold">X</text>
+    <line x1="74" y1="145" x2="131" y2="100" stroke="#dc3545" stroke-width="2" stroke-dasharray="5,3" opacity="0.7"/>
+    <text x="95" y="136" font-size="14" fill="#dc3545" font-weight="bold">X</text>
+    <line x1="74" y1="145" x2="131" y2="145" stroke="#dc3545" stroke-width="2" stroke-dasharray="5,3" opacity="0.7"/>
+    <line x1="74" y1="145" x2="131" y2="190" stroke="#dc3545" stroke-width="2" stroke-dasharray="5,3" opacity="0.7"/>
+    <line x1="74" y1="190" x2="131" y2="190" stroke="#dc3545" stroke-width="2" stroke-dasharray="5,3" opacity="0.7"/>
+    <line x1="159" y1="145" x2="206" y2="145" stroke="#dc3545" stroke-width="2" stroke-dasharray="5,3" opacity="0.7"/>
+    <text x="170" y="139" font-size="14" fill="#dc3545" font-weight="bold">X</text>
+
+    <!-- Labels -->
+    <text x="135" y="248" text-anchor="middle" font-size="13" fill="#495057">随机选择权重删除</text>
+
+    <!-- Pros/Cons -->
+    <rect x="0" y="268" width="270" height="168" rx="6" ry="6" fill="white" stroke="#dee2e6" stroke-width="1"/>
+    <text x="14" y="290" font-size="13" fill="#6c757d" font-weight="bold">特点：</text>
+    <text x="14" y="312" font-size="12" fill="#495057">- 完全不考虑权重的重要性</text>
+    <text x="14" y="332" font-size="12" fill="#495057">- 可能删掉关键连接</text>
+    <text x="14" y="352" font-size="12" fill="#495057">- 性能下降最快</text>
+    <rect x="14" y="370" width="242" height="28" rx="4" ry="4" fill="#dc3545" opacity="0.1"/>
+    <text x="135" y="389" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc3545">效果最差</text>
+    <text x="14" y="424" font-size="12" fill="#6c757d">判断依据: 无（盲目删除）</text>
+  </g>
+
+  <!-- ===== Column 2: Magnitude-based ===== -->
+  <g transform="translate(310, 60)">
+    <!-- Header -->
+    <rect x="0" y="0" width="270" height="40" rx="6" ry="6" fill="#fd7e14" opacity="0.9"/>
+    <text x="135" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Magnitude 按大小删</text>
+
+    <!-- Network diagram -->
+    <rect x="10" y="55" width="250" height="180" rx="8" ry="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+
+    <!-- Input layer -->
+    <circle cx="60" cy="100" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="60" cy="145" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="60" cy="190" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+
+    <!-- Hidden layer -->
+    <circle cx="145" cy="100" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="145" cy="145" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="145" cy="190" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+
+    <!-- Output layer -->
+    <circle cx="220" cy="145" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+
+    <!-- Bold (large weight) connections -->
+    <line x1="74" y1="100" x2="131" y2="100" stroke="#495057" stroke-width="3"/>
+    <line x1="74" y1="145" x2="131" y2="145" stroke="#495057" stroke-width="3"/>
+    <line x1="74" y1="190" x2="131" y2="190" stroke="#495057" stroke-width="2.5"/>
+    <line x1="159" y1="100" x2="206" y2="145" stroke="#495057" stroke-width="3"/>
+    <line x1="159" y1="190" x2="206" y2="145" stroke="#495057" stroke-width="2"/>
+
+    <!-- Thin (small weight) deleted connections (orange dashed) -->
+    <line x1="74" y1="100" x2="131" y2="145" stroke="#fd7e14" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.8"/>
+    <text x="82" y="130" font-size="10" fill="#fd7e14">|w|=0.02</text>
+    <line x1="74" y1="145" x2="131" y2="190" stroke="#fd7e14" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.8"/>
+    <text x="82" y="178" font-size="10" fill="#fd7e14">|w|=0.05</text>
+    <line x1="159" y1="145" x2="206" y2="145" stroke="#fd7e14" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.8"/>
+    <text x="163" y="139" font-size="10" fill="#fd7e14">|w|=0.01</text>
+
+    <!-- Labels -->
+    <text x="135" y="248" text-anchor="middle" font-size="13" fill="#495057">删除绝对值最小的权重</text>
+
+    <!-- Pros/Cons -->
+    <rect x="0" y="268" width="270" height="168" rx="6" ry="6" fill="white" stroke="#dee2e6" stroke-width="1"/>
+    <text x="14" y="290" font-size="13" fill="#6c757d" font-weight="bold">特点：</text>
+    <text x="14" y="312" font-size="12" fill="#495057">- 假设"小权重 = 不重要"</text>
+    <text x="14" y="332" font-size="12" fill="#495057">- 简单直观，计算快</text>
+    <text x="14" y="352" font-size="12" fill="#495057">- 会误删"小但关键"的权重</text>
+    <rect x="14" y="370" width="242" height="28" rx="4" ry="4" fill="#fd7e14" opacity="0.1"/>
+    <text x="135" y="389" text-anchor="middle" font-size="13" font-weight="bold" fill="#fd7e14">效果一般</text>
+    <text x="14" y="424" font-size="12" fill="#6c757d">判断依据: |w| 权重绝对值</text>
+  </g>
+
+  <!-- ===== Column 3: OBD ===== -->
+  <g transform="translate(600, 60)">
+    <!-- Header -->
+    <rect x="0" y="0" width="280" height="40" rx="6" ry="6" fill="#198754" opacity="0.9"/>
+    <text x="140" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="white">OBD 基于二阶导数</text>
+
+    <!-- Network diagram -->
+    <rect x="10" y="55" width="260" height="180" rx="8" ry="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+
+    <!-- Input layer -->
+    <circle cx="65" cy="100" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="65" cy="145" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="65" cy="190" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+
+    <!-- Hidden layer -->
+    <circle cx="150" cy="100" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="150" cy="145" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+    <circle cx="150" cy="190" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+
+    <!-- Output layer -->
+    <circle cx="225" cy="145" r="14" fill="#adb5bd" stroke="#6c757d" stroke-width="1.5"/>
+
+    <!-- Active connections with varying weights -->
+    <line x1="79" y1="100" x2="136" y2="100" stroke="#495057" stroke-width="3"/>
+    <line x1="79" y1="145" x2="136" y2="145" stroke="#495057" stroke-width="2"/>
+    <line x1="79" y1="100" x2="136" y2="145" stroke="#495057" stroke-width="1.5"/>
+    <line x1="79" y1="190" x2="136" y2="190" stroke="#495057" stroke-width="1.5"/>
+    <line x1="164" y1="100" x2="211" y2="145" stroke="#495057" stroke-width="3"/>
+    <line x1="164" y1="145" x2="211" y2="145" stroke="#495057" stroke-width="2"/>
+
+    <!-- Deleted: large weight but low saliency (green dashed) -->
+    <line x1="79" y1="190" x2="136" y2="145" stroke="#198754" stroke-width="2.5" stroke-dasharray="5,3" opacity="0.8"/>
+    <text x="82" y="178" font-size="9" fill="#198754">|w|大,h小</text>
+    <line x1="164" y1="190" x2="211" y2="145" stroke="#198754" stroke-width="2.5" stroke-dasharray="5,3" opacity="0.8"/>
+    <text x="170" y="178" font-size="9" fill="#198754">s=0.02</text>
+
+    <!-- Labels -->
+    <text x="140" y="248" text-anchor="middle" font-size="13" fill="#495057">综合权重大小与曲率信息</text>
+
+    <!-- Pros/Cons -->
+    <rect x="0" y="268" width="280" height="168" rx="6" ry="6" fill="white" stroke="#dee2e6" stroke-width="1"/>
+    <text x="14" y="290" font-size="13" fill="#6c757d" font-weight="bold">特点：</text>
+    <text x="14" y="312" font-size="12" fill="#495057">- 用 s = h w^2 / 2 衡量重要性</text>
+    <text x="14" y="332" font-size="12" fill="#495057">- 考虑误差曲面的"曲率"</text>
+    <text x="14" y="352" font-size="12" fill="#495057">- 精准找到真正不重要的权重</text>
+    <rect x="14" y="370" width="252" height="28" rx="4" ry="4" fill="#198754" opacity="0.1"/>
+    <text x="140" y="389" text-anchor="middle" font-size="13" font-weight="bold" fill="#198754">效果最好</text>
+    <text x="14" y="424" font-size="12" fill="#6c757d">判断依据: s = h_kk * w^2 / 2</text>
+  </g>
+
+  <!-- Bottom arrow showing improvement -->
+  <line x1="130" y1="500" x2="740" y2="500" stroke="#6c757d" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="450" y="515" text-anchor="middle" font-size="13" fill="#6c757d" font-style="italic">剪枝精度提升</text>
+</svg>

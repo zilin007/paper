@@ -1,0 +1,89 @@
+{
+  "pdf": "papers/Optimal_Brain_Damage/Optimal_Brain_Damage.pdf",
+  "total_pages": 8,
+  "embedded_images": 8,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 5,
+      "caption_y": 600.6
+    },
+    {
+      "fig_num": "1",
+      "page": 6,
+      "caption_y": 123.0
+    },
+    {
+      "fig_num": "2",
+      "page": 6,
+      "caption_y": 453.5
+    },
+    {
+      "fig_num": "2",
+      "page": 6,
+      "caption_y": 513.3
+    }
+  ],
+  "files": [
+    {
+      "page": 1,
+      "file": "page1_img1_1279x1653.jpeg",
+      "size": "1279x1653",
+      "method": "embedded"
+    },
+    {
+      "page": 2,
+      "file": "page2_img1_1279x1653.jpeg",
+      "size": "1279x1653",
+      "method": "embedded"
+    },
+    {
+      "page": 3,
+      "file": "page3_img1_1282x1656.jpeg",
+      "size": "1282x1656",
+      "method": "embedded"
+    },
+    {
+      "page": 4,
+      "file": "page4_img1_1282x1655.jpeg",
+      "size": "1282x1655",
+      "method": "embedded"
+    },
+    {
+      "page": 5,
+      "file": "page5_img1_1275x1650.jpeg",
+      "size": "1275x1650",
+      "method": "embedded"
+    },
+    {
+      "page": 6,
+      "file": "page6_img1_1275x1650.jpeg",
+      "size": "1275x1650",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img1_1282x1656.jpeg",
+      "size": "1282x1656",
+      "method": "embedded"
+    },
+    {
+      "page": 8,
+      "file": "page8_img1_1278x1653.jpeg",
+      "size": "1278x1653",
+      "method": "embedded"
+    },
+    {
+      "page": 5,
+      "file": "temp_page5_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 6,
+      "file": "temp_page6_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    }
+  ]
+}

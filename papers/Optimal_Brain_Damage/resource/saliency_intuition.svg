@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 500" font-family="sans-serif">
+  <defs>
+    <marker id="arrowBlack" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#333"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#dc3545"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#198754"/>
+    </marker>
+    <linearGradient id="bgG2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8f9fa"/>
+      <stop offset="100%" stop-color="#e9ecef"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="500" rx="12" ry="12" fill="url(#bgG2)" stroke="#dee2e6" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="410" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#212529">Saliency 直觉: 为什么不能只看权重大小?</text>
+  <text x="410" y="56" text-anchor="middle" font-size="14" fill="#6c757d">s_k = 1/2 * h_kk * w_k^2   (综合考虑"曲率"和"距离")</text>
+
+  <!-- ===== Left Panel: High curvature, small weight ===== -->
+  <g transform="translate(30, 80)">
+    <rect x="0" y="0" width="360" height="390" rx="8" ry="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+    <rect x="0" y="0" width="360" height="36" rx="8" ry="8" fill="#dc3545" opacity="0.1"/>
+    <rect x="0" y="18" width="360" height="18" fill="#dc3545" opacity="0.1"/>
+    <text x="180" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#dc3545">权重 w_A: 绝对值小, 曲率 h 大</text>
+
+    <!-- Axes -->
+    <line x1="50" y1="320" x2="330" y2="320" stroke="#333" stroke-width="1.5" marker-end="url(#arrowBlack)"/>
+    <line x1="180" y1="330" x2="180" y2="70" stroke="#333" stroke-width="1.5" marker-end="url(#arrowBlack)"/>
+    <text x="340" y="325" font-size="12" fill="#333">w</text>
+    <text x="185" y="68" font-size="12" fill="#333">E(w)</text>
+
+    <!-- Steep parabola: E = 50*(w-w0)^2, w0 at x=180 -->
+    <path d="M80,280 Q110,140 130,100 Q150,68 180,60 Q210,68 230,100 Q250,140 280,280" 
+          fill="none" stroke="#dc3545" stroke-width="2.5"/>
+    <text x="285" y="275" font-size="12" fill="#dc3545" font-weight="bold">陡峭!</text>
+
+    <!-- Current weight position (small offset from minimum) -->
+    <circle cx="205" cy="72" r="5" fill="#dc3545"/>
+    <text x="212" y="68" font-size="12" fill="#dc3545" font-weight="bold">w_A</text>
+
+    <!-- Minimum point -->
+    <circle cx="180" cy="60" r="3" fill="#333"/>
+
+    <!-- |w| annotation - horizontal -->
+    <line x1="180" y1="340" x2="205" y2="340" stroke="#0d6efd" stroke-width="1.5"/>
+    <line x1="180" y1="336" x2="180" y2="344" stroke="#0d6efd" stroke-width="1.5"/>
+    <line x1="205" y1="336" x2="205" y2="344" stroke="#0d6efd" stroke-width="1.5"/>
+    <text x="192" y="358" text-anchor="middle" font-size="12" fill="#0d6efd" font-weight="bold">|w| 小</text>
+
+    <!-- Delta E annotation - vertical -->
+    <line x1="215" y1="60" x2="215" y2="72" stroke="#dc3545" stroke-width="2" stroke-dasharray="3,2"/>
+    <line x1="211" y1="60" x2="219" y2="60" stroke="#dc3545" stroke-width="1.5"/>
+    <line x1="211" y1="72" x2="219" y2="72" stroke="#dc3545" stroke-width="1.5"/>
+    <text x="230" y="70" font-size="12" fill="#dc3545" font-weight="bold">Delta E 大!</text>
+
+    <!-- Explanation box -->
+    <rect x="30" y="368" width="300" height="16" rx="3" ry="3" fill="none"/>
+    <text x="180" y="380" text-anchor="middle" font-size="12" fill="#dc3545">Magnitude 说"删!", OBD 说"留!"</text>
+  </g>
+
+  <!-- ===== Right Panel: Low curvature, large weight ===== -->
+  <g transform="translate(430, 80)">
+    <rect x="0" y="0" width="360" height="390" rx="8" ry="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+    <rect x="0" y="0" width="360" height="36" rx="8" ry="8" fill="#198754" opacity="0.1"/>
+    <rect x="0" y="18" width="360" height="18" fill="#198754" opacity="0.1"/>
+    <text x="180" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#198754">权重 w_B: 绝对值大, 曲率 h 小</text>
+
+    <!-- Axes -->
+    <line x1="50" y1="320" x2="330" y2="320" stroke="#333" stroke-width="1.5" marker-end="url(#arrowBlack)"/>
+    <line x1="130" y1="330" x2="130" y2="70" stroke="#333" stroke-width="1.5" marker-end="url(#arrowBlack)"/>
+    <text x="340" y="325" font-size="12" fill="#333">w</text>
+    <text x="135" y="68" font-size="12" fill="#333">E(w)</text>
+
+    <!-- Flat parabola: very gentle curve -->
+    <path d="M50,290 Q80,270 110,260 Q130,255 160,253 Q200,252 240,260 Q280,270 320,290" 
+          fill="none" stroke="#198754" stroke-width="2.5"/>
+    <text x="290" y="280" font-size="12" fill="#198754" font-weight="bold">平坦</text>
+
+    <!-- Current weight position (large offset from minimum) -->
+    <circle cx="270" cy="268" r="5" fill="#198754"/>
+    <text x="277" y="264" font-size="12" fill="#198754" font-weight="bold">w_B</text>
+
+    <!-- Minimum point -->
+    <circle cx="160" cy="253" r="3" fill="#333"/>
+
+    <!-- |w| annotation - horizontal -->
+    <line x1="160" y1="340" x2="270" y2="340" stroke="#0d6efd" stroke-width="1.5"/>
+    <line x1="160" y1="336" x2="160" y2="344" stroke="#0d6efd" stroke-width="1.5"/>
+    <line x1="270" y1="336" x2="270" y2="344" stroke="#0d6efd" stroke-width="1.5"/>
+    <text x="215" y="358" text-anchor="middle" font-size="12" fill="#0d6efd" font-weight="bold">|w| 大</text>
+
+    <!-- Delta E annotation - vertical -->
+    <line x1="280" y1="253" x2="280" y2="268" stroke="#198754" stroke-width="2" stroke-dasharray="3,2"/>
+    <line x1="276" y1="253" x2="284" y2="253" stroke="#198754" stroke-width="1.5"/>
+    <line x1="276" y1="268" x2="284" y2="268" stroke="#198754" stroke-width="1.5"/>
+    <text x="300" y="264" font-size="12" fill="#198754" font-weight="bold">Delta E 小</text>
+
+    <!-- Explanation box -->
+    <rect x="30" y="368" width="300" height="16" rx="3" ry="3" fill="none"/>
+    <text x="180" y="380" text-anchor="middle" font-size="12" fill="#198754">Magnitude 说"留!", OBD 说"删!"</text>
+  </g>
+
+  <!-- Bottom summary -->
+  <rect x="160" y="478" width="500" height="18" rx="4" ry="4" fill="none"/>
+  <text x="410" y="493" text-anchor="middle" font-size="14" fill="#495057" font-weight="bold">
+    OBD 的核心: 不看水平距离 |w|, 而看垂直距离 Delta E = 1/2 * h * w^2
+  </text>
+</svg>
