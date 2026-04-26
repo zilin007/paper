@@ -43,7 +43,7 @@
 - 但计算复杂度是$O(d^4)$,$d$是参数数量
 - 对于百万级参数的网络,需要计算$10^{24}$次操作,完全不现实
 
-![现有方案对比](./resource/method_comparison.svg)
+![现有方案对比|629](./resource/method_comparison.svg)
 
 ## 核心思路:这篇论文的"大招"是什么?
 
