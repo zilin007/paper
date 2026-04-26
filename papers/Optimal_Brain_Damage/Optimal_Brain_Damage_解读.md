@@ -32,7 +32,7 @@
 
 3. **骨架化（Skeletonization）**：Mozer 和 Smolensky 在同年提出，按"对输出的影响"来衡量，但计算成本较高。
 
-![现有方案对比](./resource/method_comparison.svg)
+![现有方案对比|697](./resource/method_comparison.svg)
 
 ## 核心思路：这篇论文的"大招"是什么？
 
@@ -53,7 +53,7 @@ $$s_k = \frac{1}{2} h_{kk} \cdot w_k^2$$
 - $h_{kk}$ 衡量的是"误差函数在这个方向上有多陡"（即曲率）
 - 两者相乘再除以 2，就是"把这个权重设为零后，误差会增加多少"的近似估计
 
-![Saliency 直觉](./resource/saliency_intuition.svg)
+![Saliency 直觉|697](./resource/saliency_intuition.svg)
 
 **打个比方**：想象你站在一个山谷底部（训练好的最优点），现在要沿着某个方向走一步。如果这个方向的坡度很陡（$h_{kk}$ 大），走一小步就会爬升很高（误差增大）；如果坡度很平（$h_{kk}$ 小），即使走很远也不会爬升多少。OBD 的智慧在于：它看的不是你要"走多远"（$|w|$），而是你会"爬升多高"（$\Delta E$）。
 

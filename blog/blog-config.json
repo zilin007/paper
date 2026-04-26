@@ -57,18 +57,39 @@
     ],
     "SRLoRA_Subspace_Reorganization_Low-Rank_Adaptation": [
       "参数高效微调",
-      "Prompt Tuning"
+      "LoRA"
     ],
     "Stochastic_Gradient_Descent_in_Non-Convex_Problems": [
       "LLM"
     ],
     "Optimal_Brain_Damage": [
       "网络剪枝",
-      "二阶优化"
+      "二阶优化",
+      "量化"
     ],
     "Optimal_Brain_Surgeon": [
       "网络剪枝",
-      "二阶优化"
+      "二阶优化",
+      "量化"
+    ],
+    "AWQ": [
+      "参数高效微调",
+      "LoRA"
+    ],
+    "BiLLM": [
+      "量化"
+    ],
+    "GPTQ": [
+      "量化"
+    ],
+    "Optimal_Brain_Compression": [
+      "量化"
+    ],
+    "QuaRot": [
+      "量化"
+    ],
+    "SmoothQuant": [
+      "量化"
     ]
   },
   "tagColors": {
@@ -85,6 +106,7 @@
     "LLM": "#6366f1",
     "GPT": "#0ea5e9",
     "网络剪枝": "#14b8a6",
-    "二阶优化": "#84cc16"
+    "二阶优化": "#84cc16",
+    "量化": "#3bf77a"
   }
 }
