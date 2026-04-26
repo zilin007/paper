@@ -51,8 +51,8 @@ export default createContentLoader('posts/**/*.md', {
       if (match) {
         return `20${match[1]}${match[2]}${match[3].padStart(5, '0')}`
       }
-      // 非 arXiv 论文回退到 date 字段
-      return post.date ? post.date.replace(/-/g, '') : '00000000'
+      // 非 arXiv 论文回退到 date 字段，统一补齐到 11 位与 arXiv key 对齐
+      return post.date ? String(post.date).replace(/\D/g, '').padEnd(11, '0') : '00000000000'
     }
 
     posts.sort((a, b) => getSortKey(b).localeCompare(getSortKey(a)))
