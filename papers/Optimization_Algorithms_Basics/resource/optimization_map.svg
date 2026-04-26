@@ -1,0 +1,36 @@
+<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="360" fill="#fcfcfd"/>
+  <text x="450" y="42" text-anchor="middle" font-size="28" font-weight="700" fill="#111827">最优化算法全景图</text>
+  <text x="450" y="72" text-anchor="middle" font-size="15" fill="#4b5563">同一个目标：找到更优解；不同的方法：走路、看曲率、进化、试错</text>
+
+  <rect x="60" y="120" width="160" height="80" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="140" y="150" text-anchor="middle" font-size="20" font-weight="700" fill="#1d4ed8">梯度下降法</text>
+  <text x="140" y="178" text-anchor="middle" font-size="13" fill="#1f2937">顺着最陡下坡走</text>
+
+  <rect x="260" y="120" width="160" height="80" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="340" y="150" text-anchor="middle" font-size="20" font-weight="700" fill="#15803d">牛顿法</text>
+  <text x="340" y="178" text-anchor="middle" font-size="13" fill="#1f2937">坡度 + 曲率</text>
+
+  <rect x="460" y="120" width="160" height="80" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="540" y="150" text-anchor="middle" font-size="20" font-weight="700" fill="#6d28d9">拟牛顿法</text>
+  <text x="540" y="178" text-anchor="middle" font-size="13" fill="#1f2937">边走边估计曲率</text>
+
+  <rect x="170" y="240" width="160" height="80" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="250" y="270" text-anchor="middle" font-size="20" font-weight="700" fill="#b45309">遗传算法</text>
+  <text x="250" y="298" text-anchor="middle" font-size="13" fill="#1f2937">一群解一起进化</text>
+
+  <rect x="430" y="240" width="180" height="80" rx="16" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="520" y="270" text-anchor="middle" font-size="20" font-weight="700" fill="#b91c1c">模拟退火算法</text>
+  <text x="520" y="298" text-anchor="middle" font-size="13" fill="#1f2937">前期敢试错，后期再收敛</text>
+
+  <line x1="220" y1="160" x2="260" y2="160" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="420" y1="160" x2="460" y2="160" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="200" x2="270" y2="240" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="540" y1="200" x2="520" y2="240" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>

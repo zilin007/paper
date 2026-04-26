@@ -1,0 +1,27 @@
+<svg width="920" height="360" viewBox="0 0 920 360" xmlns="http://www.w3.org/2000/svg">
+  <rect width="920" height="360" fill="#ffffff"/>
+  <text x="460" y="36" text-anchor="middle" font-size="24" font-weight="700" fill="#111827">模拟退火：允许短暂上坡，避免困在局部小坑</text>
+  <path d="M60 210 C140 130, 220 250, 300 190 S450 90, 560 190 S740 280, 860 120" fill="none" stroke="#dc2626" stroke-width="4"/>
+  <circle cx="300" cy="190" r="8" fill="#ef4444"/>
+  <circle cx="430" cy="125" r="8" fill="#f59e0b"/>
+  <circle cx="560" cy="190" r="8" fill="#10b981"/>
+  <text x="255" y="216" font-size="15" fill="#111827">局部低点</text>
+  <text x="386" y="112" font-size="15" fill="#111827">先接受变差</text>
+  <text x="520" y="216" font-size="15" fill="#111827">跳到更好区域</text>
+  <path d="M308 186 L422 129" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M438 129 L552 186" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="690" y="76" width="170" height="160" rx="16" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="775" y="108" text-anchor="middle" font-size="18" font-weight="700" fill="#b91c1c">接受概率</text>
+  <text x="775" y="140" text-anchor="middle" font-size="16" fill="#111827">P = exp(-Δ / T)</text>
+  <text x="775" y="172" text-anchor="middle" font-size="14" fill="#111827">温度高：更敢试错</text>
+  <text x="775" y="198" text-anchor="middle" font-size="14" fill="#111827">温度低：更谨慎</text>
+  <text x="775" y="224" text-anchor="middle" font-size="14" fill="#111827">这就是“先探索，后收敛”</text>
+
+  <text x="460" y="320" text-anchor="middle" font-size="14" fill="#4b5563">最大特点：短期允许变差，长期追求更稳定的低能量状态</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4b5563"/>
+    </marker>
+  </defs>
+</svg>

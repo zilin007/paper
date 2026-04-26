@@ -1,0 +1,40 @@
+<svg width="920" height="360" viewBox="0 0 920 360" xmlns="http://www.w3.org/2000/svg">
+  <rect width="920" height="360" fill="#ffffff"/>
+  <text x="460" y="36" text-anchor="middle" font-size="24" font-weight="700" fill="#111827">遗传算法：一群解一起进化</text>
+
+  <rect x="40" y="86" width="160" height="180" rx="16" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="120" y="116" text-anchor="middle" font-size="18" font-weight="700" fill="#c2410c">初始种群</text>
+  <text x="70" y="148" font-size="16" fill="#111827">001  ->  1</text>
+  <text x="70" y="176" font-size="16" fill="#111827">011  ->  3</text>
+  <text x="70" y="204" font-size="16" fill="#111827">100  ->  4</text>
+  <text x="70" y="232" font-size="16" fill="#111827">110  ->  6</text>
+
+  <rect x="250" y="86" width="150" height="180" rx="16" fill="#ecfccb" stroke="#65a30d" stroke-width="2"/>
+  <text x="325" y="116" text-anchor="middle" font-size="18" font-weight="700" fill="#4d7c0f">选择</text>
+  <text x="282" y="160" font-size="16" fill="#111827">保留更强个体</text>
+  <text x="282" y="192" font-size="16" fill="#111827">011, 110</text>
+
+  <rect x="450" y="86" width="180" height="180" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="540" y="116" text-anchor="middle" font-size="18" font-weight="700" fill="#6d28d9">交叉</text>
+  <text x="495" y="156" font-size="16" fill="#111827">011</text>
+  <text x="495" y="182" font-size="16" fill="#111827">110</text>
+  <line x1="545" y1="142" x2="545" y2="194" stroke="#6d28d9" stroke-dasharray="5 4" stroke-width="2"/>
+  <text x="500" y="224" font-size="16" fill="#111827">-> 010, 111</text>
+
+  <rect x="690" y="86" width="180" height="180" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="780" y="116" text-anchor="middle" font-size="18" font-weight="700" fill="#1d4ed8">下一代</text>
+  <text x="730" y="152" font-size="16" fill="#111827">111  ->  7</text>
+  <text x="730" y="180" font-size="16" fill="#111827">100  ->  4</text>
+  <text x="730" y="208" font-size="16" fill="#111827">110  ->  6</text>
+  <text x="730" y="236" font-size="16" fill="#111827">011  ->  3</text>
+
+  <line x1="200" y1="176" x2="250" y2="176" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="400" y1="176" x2="450" y2="176" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="630" y1="176" x2="690" y2="176" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="460" y="320" text-anchor="middle" font-size="14" fill="#4b5563">关键思想：不是一个解反复改，而是很多解一起竞争、交叉、变异</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4b5563"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,18 @@
+<svg width="840" height="320" viewBox="0 0 840 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="840" height="320" fill="#ffffff"/>
+  <text x="420" y="34" text-anchor="middle" font-size="24" font-weight="700" fill="#111827">牛顿法：不仅看坡度，还看曲率</text>
+  <line x1="80" y1="260" x2="760" y2="260" stroke="#374151" stroke-width="2"/>
+  <line x1="420" y1="60" x2="420" y2="275" stroke="#374151" stroke-width="2"/>
+  <path d="M120 100 Q420 260 720 100" fill="none" stroke="#16a34a" stroke-width="4"/>
+  <circle cx="630" cy="146" r="7" fill="#ef4444"/>
+  <circle cx="420" cy="260" r="8" fill="#2563eb"/>
+  <path d="M623 152 L430 254" stroke="#ef4444" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="644" y="144" font-size="14" fill="#111827">起点 x₀ = 4</text>
+  <text x="436" y="252" font-size="14" fill="#111827">x₁ = 0</text>
+  <text x="100" y="74" font-size="15" fill="#4b5563">对二次函数，牛顿法常能一步到位，因为它已经利用了抛物线的弯曲信息</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4b5563"/>
+    </marker>
+  </defs>
+</svg>

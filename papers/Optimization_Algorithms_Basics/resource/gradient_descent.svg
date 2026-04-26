@@ -1,0 +1,26 @@
+<svg width="840" height="320" viewBox="0 0 840 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="840" height="320" fill="#ffffff"/>
+  <text x="420" y="34" text-anchor="middle" font-size="24" font-weight="700" fill="#111827">梯度下降法：每次都往最陡下坡方向走</text>
+  <line x1="80" y1="260" x2="760" y2="260" stroke="#374151" stroke-width="2"/>
+  <line x1="420" y1="60" x2="420" y2="275" stroke="#374151" stroke-width="2"/>
+  <path d="M120 100 Q420 260 720 100" fill="none" stroke="#2563eb" stroke-width="4"/>
+  <circle cx="630" cy="146" r="6" fill="#ef4444"/>
+  <circle cx="525" cy="202" r="6" fill="#f59e0b"/>
+  <circle cx="472.5" cy="231" r="6" fill="#10b981"/>
+  <circle cx="446" cy="245" r="6" fill="#8b5cf6"/>
+  <text x="644" y="144" font-size="14" fill="#111827">x₀ = 4</text>
+  <text x="538" y="198" font-size="14" fill="#111827">x₁ = 2</text>
+  <text x="486" y="228" font-size="14" fill="#111827">x₂ = 1</text>
+  <text x="458" y="242" font-size="14" fill="#111827">x₃ = 0.5</text>
+  <path d="M624 154 L556 188" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M520 209 L486 227" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M468 236 L452 244" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="120" y="292" font-size="14" fill="#374151">横轴：位置 x</text>
+  <text x="430" y="82" font-size="14" fill="#374151">纵轴：函数值 f(x)</text>
+  <text x="110" y="64" font-size="15" fill="#4b5563">步长太大可能跳过谷底，步长太小又会走得很慢</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4b5563"/>
+    </marker>
+  </defs>
+</svg>

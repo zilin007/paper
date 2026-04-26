@@ -1,0 +1,27 @@
+<svg width="900" height="320" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="320" fill="#ffffff"/>
+  <text x="450" y="34" text-anchor="middle" font-size="24" font-weight="700" fill="#111827">拟牛顿法：不直接算曲率，而是边走边学</text>
+  <path d="M90 210 C180 100, 280 100, 360 210 S520 310, 660 130" fill="none" stroke="#7c3aed" stroke-width="4"/>
+  <circle cx="130" cy="170" r="7" fill="#ef4444"/>
+  <circle cx="295" cy="117" r="7" fill="#f59e0b"/>
+  <circle cx="430" cy="250" r="7" fill="#10b981"/>
+  <circle cx="590" cy="205" r="7" fill="#2563eb"/>
+  <text x="112" y="160" font-size="14" fill="#111827">看梯度</text>
+  <text x="275" y="105" font-size="14" fill="#111827">走一步</text>
+  <text x="392" y="242" font-size="14" fill="#111827">比较梯度变化</text>
+  <text x="565" y="195" font-size="14" fill="#111827">修正曲率估计</text>
+  <path d="M138 166 L286 121" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M302 123 L420 243" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M438 246 L578 206" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="690" y="94" width="160" height="104" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="770" y="124" text-anchor="middle" font-size="16" font-weight="700" fill="#6d28d9">关键量</text>
+  <text x="770" y="152" text-anchor="middle" font-size="14" fill="#111827">sₖ = xₖ₊₁ - xₖ</text>
+  <text x="770" y="176" text-anchor="middle" font-size="14" fill="#111827">yₖ = gₖ₊₁ - gₖ</text>
+  <text x="770" y="198" text-anchor="middle" font-size="13" fill="#4b5563">用位移变化和梯度变化</text>
+  <text x="770" y="216" text-anchor="middle" font-size="13" fill="#4b5563">去推测曲率</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4b5563"/>
+    </marker>
+  </defs>
+</svg>
