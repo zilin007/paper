@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" font-family="sans-serif">
+  <rect width="700" height="400" fill="#fafafa"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">双重量化 (Double Quantization) 原理</text>
+
+  <!-- 第一步量化 -->
+  <rect x="30" y="60" width="300" height="120" rx="10" fill="#eaf2f8" stroke="#3498db" stroke-width="2"/>
+  <text x="180" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#2980b9">第一步: 量化模型权重</text>
+
+  <rect x="50" y="100" width="260" height="30" rx="4" fill="#3498db"/>
+  <text x="180" y="120" text-anchor="middle" font-size="12" fill="white">W^(FP32) → W^(NF4) + c₂^(FP32)</text>
+
+  <rect x="50" y="140" width="260" height="30" rx="4" fill="#d4e6f1"/>
+  <text x="180" y="160" text-anchor="middle" font-size="11" fill="#2c3e50">c₂: 每 64 个参数的量化常数 (32-bit FP)</text>
+
+  <!-- 箭头 -->
+  <line x1="330" y1="120" x2="370" y2="120" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 第二步量化 -->
+  <rect x="370" y="60" width="300" height="120" rx="10" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <text x="520" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#d68910">第二步: 量化量化常数</text>
+
+  <rect x="390" y="100" width="260" height="30" rx="4" fill="#f39c12"/>
+  <text x="520" y="120" text-anchor="middle" font-size="12" fill="white">c₂^(FP32) → c₂^(FP8) + c₁^(FP32)</text>
+
+  <rect x="390" y="140" width="260" height="30" rx="4" fill="#fdebd0"/>
+  <text x="520" y="160" text-anchor="middle" font-size="11" fill="#2c3e50">c₁: 每 256 个 c₂ 的量化常数 (32-bit FP)</text>
+
+  <!-- 内存对比 -->
+  <rect x="30" y="210" width="640" height="170" rx="10" fill="#f8f9f9" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="350" y="235" text-anchor="middle" font-size="13" font-weight="bold" fill="#2c3e50">内存节省计算 (以 blocksize=64 为例)</text>
+
+  <!-- 无双重量化 -->
+  <rect x="50" y="255" width="280" height="50" rx="6" fill="#fee"/>
+  <text x="190" y="275" text-anchor="middle" font-size="11" fill="#c0392b">无双重量化:</text>
+  <text x="190" y="295" text-anchor="middle" font-size="11" fill="#333">32/64 = 0.500 bits/参数</text>
+
+  <!-- 有双重量化 -->
+  <rect x="370" y="255" width="280" height="50" rx="6" fill="#eafaf1"/>
+  <text x="510" y="275" text-anchor="middle" font-size="11" fill="#1e8449">有双重量化:</text>
+  <text x="510" y="295" text-anchor="middle" font-size="11" fill="#333">8/64 + 32/(64×256) = 0.127 bits/参数</text>
+
+  <!-- 节省 -->
+  <rect x="190" y="320" width="320" height="45" rx="8" fill="#27ae60"/>
+  <text x="350" y="340" text-anchor="middle" font-size="12" fill="white">节省: 0.373 bits/参数</text>
+  <text x="350" y="357" text-anchor="middle" font-size="11" fill="#d5f5e3">65B 模型节省约 3 GB 内存</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#666"/>
+    </marker>
+  </defs>
+</svg>

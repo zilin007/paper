@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" font-family="sans-serif">
+  <rect width="700" height="450" fill="#fafafa"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">训练时 vs 部署时: QLoRA 的优势</text>
+
+  <!-- 训练时 -->
+  <rect x="20" y="55" width="320" height="370" rx="10" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+  <text x="180" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#e74c3c">训练时 (单张 GPU)</text>
+
+  <!-- 训练组件 -->
+  <rect x="40" y="100" width="280" height="40" rx="6" fill="#8e44ad"/>
+  <text x="180" y="125" text-anchor="middle" font-size="12" fill="white">4-bit NF4 基座模型 (冻结)</text>
+
+  <rect x="40" y="150" width="280" height="40" rx="6" fill="#27ae60"/>
+  <text x="180" y="175" text-anchor="middle" font-size="12" fill="white">LoRA 适配器 (可训练, 所有层)</text>
+
+  <rect x="40" y="200" width="280" height="40" rx="6" fill="#f39c12"/>
+  <text x="180" y="225" text-anchor="middle" font-size="12" fill="white">Adam 优化器状态 (分页)</text>
+
+  <rect x="40" y="250" width="280" height="40" rx="6" fill="#3498db"/>
+  <text x="180" y="275" text-anchor="middle" font-size="12" fill="white">激活梯度 (梯度检查点)</text>
+
+  <rect x="40" y="310" width="280" height="50" rx="6" fill="#fee"/>
+  <text x="180" y="335" text-anchor="middle" font-size="12" fill="#c0392b">LLaMA 65B: &lt;48GB GPU 内存</text>
+  <text x="180" y="355" text-anchor="middle" font-size="11" fill="#666">单张 A6000 (48GB) 即可训练</text>
+
+  <!-- 部署时 -->
+  <rect x="360" y="55" width="320" height="370" rx="10" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <text x="520" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#27ae60">部署时 (推理)</text>
+
+  <rect x="380" y="100" width="280" height="40" rx="6" fill="#8e44ad"/>
+  <text x="520" y="125" text-anchor="middle" font-size="12" fill="white">4-bit NF4 基座模型 (冻结)</text>
+
+  <rect x="380" y="150" width="280" height="40" rx="6" fill="#27ae60"/>
+  <text x="520" y="175" text-anchor="middle" font-size="12" fill="white">LoRA 适配器 (合并或独立)</text>
+
+  <rect x="380" y="200" width="280" height="40" rx="6" fill="#95a5a6"/>
+  <text x="520" y="225" text-anchor="middle" font-size="12" fill="white">无需优化器状态</text>
+
+  <rect x="380" y="250" width="280" height="40" rx="6" fill="#95a5a6"/>
+  <text x="520" y="275" text-anchor="middle" font-size="12" fill="white">无需激活梯度</text>
+
+  <rect x="380" y="310" width="280" height="50" rx="6" fill="#eafaf1"/>
+  <text x="520" y="335" text-anchor="middle" font-size="12" fill="#1e8449">LLaMA 65B: ~41GB 内存</text>
+  <text x="520" y="355" text-anchor="middle" font-size="11" fill="#666">LLaMA 7B: 仅 ~5GB (可跑在手机)</text>
+
+  <!-- 中间箭头 -->
+  <line x1="340" y1="240" x2="360" y2="240" stroke="#27ae60" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="350" y="230" text-anchor="middle" font-size="10" fill="#27ae60">保存</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#27ae60"/>
+    </marker>
+  </defs>
+</svg>

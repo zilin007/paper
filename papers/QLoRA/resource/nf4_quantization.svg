@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" font-family="sans-serif">
+  <rect width="700" height="500" fill="#fafafa"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">4-bit NormalFloat (NF4) 量化原理</text>
+
+  <!-- 正态分布曲线 -->
+  <text x="100" y="70" font-size="12" fill="#555">标准正态分布 N(0,1) 的概率密度函数:</text>
+
+  <path d="M 80 200 Q 120 200 160 195 Q 200 180 240 140 Q 280 80 320 60 Q 360 80 400 140 Q 440 180 480 195 Q 520 200 560 200" fill="none" stroke="#3498db" stroke-width="2"/>
+  <line x1="80" y1="200" x2="560" y2="200" stroke="#999" stroke-width="1"/>
+  <line x1="320" y1="60" x2="320" y2="200" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+  <text x="320" y="220" text-anchor="middle" font-size="11" fill="#666">μ = 0</text>
+
+  <text x="100" y="250" font-size="11" fill="#555">预训练模型权重通常服从零中心正态分布</text>
+
+  <!-- 量化 bins 示意 -->
+  <text x="100" y="290" font-size="12" fill="#555">NF4 量化: 根据正态分布的分位数划分 16 个 bin</text>
+
+  <!-- 16 个 bin -->
+  <rect x="80" y="310" width="25" height="40" rx="2" fill="#e8daef"/>
+  <rect x="105" y="310" width="25" height="40" rx="2" fill="#d7bde2"/>
+  <rect x="130" y="310" width="25" height="40" rx="2" fill="#c39bd3"/>
+  <rect x="155" y="310" width="25" height="40" rx="2" fill="#af7ac5"/>
+  <rect x="180" y="310" width="25" height="40" rx="2" fill="#9b59b6"/>
+  <rect x="205" y="310" width="25" height="40" rx="2" fill="#8e44ad"/>
+  <rect x="230" y="310" width="25" height="40" rx="2" fill="#7d3c98"/>
+  <rect x="255" y="310" width="25" height="40" rx="2" fill="#6c3483"/>
+
+  <rect x="280" y="310" width="25" height="40" rx="2" fill="#6c3483"/>
+  <rect x="305" y="310" width="25" height="40" rx="2" fill="#7d3c98"/>
+  <rect x="330" y="310" width="25" height="40" rx="2" fill="#8e44ad"/>
+  <rect x="355" y="310" width="25" height="40" rx="2" fill="#9b59b6"/>
+  <rect x="380" y="310" width="25" height="40" rx="2" fill="#af7ac5"/>
+  <rect x="405" y="310" width="25" height="40" rx="2" fill="#c39bd3"/>
+  <rect x="430" y="310" width="25" height="40" rx="2" fill="#d7bde2"/>
+  <rect x="455" y="310" width="25" height="40" rx="2" fill="#e8daef"/>
+
+  <!-- 零值标注 -->
+  <text x="267" y="370" text-anchor="middle" font-size="10" fill="#6c3483" font-weight="bold">0 (精确表示)</text>
+  <line x1="267" y1="350" x2="267" y2="355" stroke="#6c3483" stroke-width="2"/>
+
+  <!-- NF4 值列表 -->
+  <rect x="80" y="390" width="540" height="90" rx="8" fill="#f8f0ff" stroke="#8e44ad" stroke-width="1"/>
+  <text x="350" y="410" text-anchor="middle" font-size="11" font-weight="bold" fill="#6c3483">NF4 的 16 个精确值 (非对称, 包含精确零):</text>
+  <text x="350" y="435" text-anchor="middle" font-size="10" fill="#333">[-1.0, -0.696, -0.525, -0.390, -0.272, -0.167, -0.071, 0.0,</text>
+  <text x="350" y="455" text-anchor="middle" font-size="10" fill="#333">0.071, 0.167, 0.272, 0.390, 0.525, 0.696, 1.0]</text>
+  <text x="350" y="475" text-anchor="middle" font-size="10" fill="#6c3483">注: 实际为 16 个值, 负侧 7 个 + 零 + 正侧 8 个 (非对称设计确保精确零)</text>
+
+  <!-- 关键优势 -->
+  <rect x="80" y="100" width="200" height="100" rx="8" fill="#eafaf1" stroke="#27ae60" stroke-width="1"/>
+  <text x="180" y="120" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e8449">为什么 NF4 比 FP4/Int4 好?</text>
+  <text x="180" y="145" text-anchor="middle" font-size="10" fill="#333">• Int4: 均匀分箱, 浪费</text>
+  <text x="180" y="162" text-anchor="middle" font-size="10" fill="#333">• FP4: 指数分箱, 不匹配</text>
+  <text x="180" y="179" text-anchor="middle" font-size="10" fill="#333">• NF4: 按正态分位数,</text>
+  <text x="180" y="196" text-anchor="middle" font-size="10" fill="#333">  信息论最优</text>
+</svg>

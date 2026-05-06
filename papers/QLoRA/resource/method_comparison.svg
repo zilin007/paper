@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 520" font-family="sans-serif">
+  <rect width="750" height="520" fill="#fafafa"/>
+  <text x="375" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">大模型微调方案对比：从全量微调到 QLoRA</text>
+
+  <!-- 方案1: 全量微调 -->
+  <rect x="20" y="55" width="220" height="440" rx="8" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+  <text x="130" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#e74c3c">全量微调 (16-bit)</text>
+
+  <rect x="40" y="100" width="180" height="50" rx="6" fill="#3498db"/>
+  <text x="130" y="120" text-anchor="middle" font-size="12" fill="white">预训练模型权重</text>
+  <text x="130" y="137" text-anchor="middle" font-size="10" fill="#d4e6f1">(全部可训练, 16-bit)</text>
+
+  <rect x="40" y="170" width="180" height="50" rx="6" fill="#e74c3c"/>
+  <text x="130" y="190" text-anchor="middle" font-size="12" fill="white">优化器状态 (Adam)</text>
+  <text x="130" y="207" text-anchor="middle" font-size="10" fill="#fadbd8">(每参数 2×4 字节)</text>
+
+  <rect x="40" y="240" width="180" height="50" rx="6" fill="#f39c12"/>
+  <text x="130" y="260" text-anchor="middle" font-size="12" fill="white">激活梯度</text>
+  <text x="130" y="277" text-anchor="middle" font-size="10" fill="#fdebd0">(梯度检查点)</text>
+
+  <rect x="40" y="310" width="180" height="80" rx="6" fill="#fee"/>
+  <text x="130" y="335" text-anchor="middle" font-size="11" fill="#c0392b">✗ LLaMA 65B 需 &gt;780GB</text>
+  <text x="130" y="355" text-anchor="middle" font-size="11" fill="#c0392b">✗ 需要多张 A100 80GB</text>
+  <text x="130" y="375" text-anchor="middle" font-size="11" fill="#c0392b">✗ 成本极高</text>
+
+  <text x="130" y="420" text-anchor="middle" font-size="12" font-weight="bold" fill="#e74c3c">内存: 780GB+ (65B)</text>
+  <text x="130" y="445" text-anchor="middle" font-size="11" fill="#666">可训练参数: 65B</text>
+  <text x="130" y="465" text-anchor="middle" font-size="11" fill="#666">精度: BF16</text>
+
+  <!-- 方案2: LoRA -->
+  <rect x="265" y="55" width="220" height="440" rx="8" fill="#fff" stroke="#f39c12" stroke-width="2"/>
+  <text x="375" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#f39c12">LoRA (16-bit)</text>
+
+  <rect x="285" y="100" width="180" height="50" rx="6" fill="#95a5a6"/>
+  <text x="375" y="120" text-anchor="middle" font-size="12" fill="white">预训练模型权重</text>
+  <text x="375" y="137" text-anchor="middle" font-size="10" fill="#ecf0f1">(冻结, 16-bit)</text>
+
+  <rect x="285" y="170" width="180" height="50" rx="6" fill="#27ae60"/>
+  <text x="375" y="190" text-anchor="middle" font-size="12" fill="white">LoRA 适配器 (可训练)</text>
+  <text x="375" y="207" text-anchor="middle" font-size="10" fill="#d5f5e3">(低秩矩阵, 16-bit)</text>
+
+  <rect x="285" y="240" width="180" height="50" rx="6" fill="#e74c3c"/>
+  <text x="375" y="260" text-anchor="middle" font-size="12" fill="white">优化器状态</text>
+  <text x="375" y="277" text-anchor="middle" font-size="10" fill="#fadbd8">(仅 LoRA 参数)</text>
+
+  <rect x="285" y="310" width="180" height="80" rx="6" fill="#fef9e7"/>
+  <text x="375" y="335" text-anchor="middle" font-size="11" fill="#d68910">△ 模型仍需 16-bit 加载</text>
+  <text x="375" y="355" text-anchor="middle" font-size="11" fill="#d68910">△ LLaMA 65B 需 ~130GB</text>
+  <text x="375" y="375" text-anchor="middle" font-size="11" fill="#d68910">△ 单卡仍不够</text>
+
+  <text x="375" y="420" text-anchor="middle" font-size="12" font-weight="bold" fill="#f39c12">内存: ~130GB (65B)</text>
+  <text x="375" y="445" text-anchor="middle" font-size="11" fill="#666">可训练参数: ~0.1% (百万级)</text>
+  <text x="375" y="465" text-anchor="middle" font-size="11" fill="#666">精度: BF16</text>
+
+  <!-- 方案3: QLoRA -->
+  <rect x="510" y="55" width="220" height="440" rx="8" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <text x="620" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">QLoRA (4-bit + LoRA)</text>
+
+  <rect x="530" y="100" width="180" height="50" rx="6" fill="#8e44ad"/>
+  <text x="620" y="120" text-anchor="middle" font-size="12" fill="white">预训练模型权重</text>
+  <text x="620" y="137" text-anchor="middle" font-size="10" fill="#e8daef">(冻结, 4-bit NF4)</text>
+
+  <rect x="530" y="170" width="180" height="50" rx="6" fill="#27ae60"/>
+  <text x="620" y="190" text-anchor="middle" font-size="12" fill="white">LoRA 适配器 (可训练)</text>
+  <text x="620" y="207" text-anchor="middle" font-size="10" fill="#d5f5e3">(低秩矩阵, 16-bit)</text>
+
+  <rect x="530" y="240" width="180" height="50" rx="6" fill="#e74c3c"/>
+  <text x="620" y="260" text-anchor="middle" font-size="12" fill="white">优化器状态 + 分页</text>
+  <text x="620" y="277" text-anchor="middle" font-size="10" fill="#fadbd8">(NVIDIA 统一内存)</text>
+
+  <rect x="530" y="310" width="180" height="80" rx="6" fill="#eafaf1"/>
+  <text x="620" y="335" text-anchor="middle" font-size="11" fill="#1e8449">✓ 4-bit 量化基座模型</text>
+  <text x="620" y="355" text-anchor="middle" font-size="11" fill="#1e8449">✓ LLaMA 65B 仅需 48GB</text>
+  <text x="620" y="375" text-anchor="middle" font-size="11" fill="#1e8449">✓ 单张 A6000 即可训练</text>
+
+  <text x="620" y="420" text-anchor="middle" font-size="12" font-weight="bold" fill="#27ae60">内存: &lt;48GB (65B)</text>
+  <text x="620" y="445" text-anchor="middle" font-size="11" fill="#666">可训练参数: ~0.1% (百万级)</text>
+  <text x="620" y="465" text-anchor="middle" font-size="11" fill="#666">精度: 4-bit NF4 + BF16 计算</text>
+
+  <!-- 箭头 -->
+  <line x1="240" y1="275" x2="265" y2="275" stroke="#999" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="485" y1="275" x2="510" y2="275" stroke="#999" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#999"/>
+    </marker>
+  </defs>
+</svg>
