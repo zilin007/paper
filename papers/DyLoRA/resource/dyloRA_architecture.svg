@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" font-family="sans-serif">
+  <rect width="700" height="520" fill="#fafafa"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">DyLoRA 核心架构：动态秩低秩适配器</text>
+
+  <!-- 输入 -->
+  <rect x="250" y="55" width="200" height="45" rx="8" fill="#3498db"/>
+  <text x="350" y="83" text-anchor="middle" font-size="13" fill="white">输入 x</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="100" x2="350" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 分支：两条路径 -->
+  <!-- 左路径：冻结的预训练权重 -->
+  <rect x="40" y="140" width="280" height="80" rx="10" fill="#f8f0ff" stroke="#95a5a6" stroke-width="2"/>
+  <text x="180" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#7f8c8d">路径 1: 冻结的预训练权重</text>
+
+  <rect x="60" y="180" width="240" height="30" rx="6" fill="#95a5a6"/>
+  <text x="180" y="200" text-anchor="middle" font-size="12" fill="white">W₀ (冻结，不更新)</text>
+
+  <!-- 右路径：DyLoRA 适配器 -->
+  <rect x="380" y="140" width="280" height="180" rx="10" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
+  <text x="520" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#27ae60">路径 2: DyLoRA 动态适配器</text>
+
+  <!-- 采样秩 -->
+  <rect x="400" y="180" width="240" height="30" rx="6" fill="#f39c12"/>
+  <text x="520" y="200" text-anchor="middle" font-size="11" fill="white">采样秩: b ~ p_B(.), b ∈ [r_min, r_max]</text>
+
+  <!-- 截断矩阵 -->
+  <rect x="400" y="220" width="240" height="30" rx="6" fill="#e74c3c"/>
+  <text x="520" y="240" text-anchor="middle" font-size="11" fill="white">截断: W_up↓b = W_up[:, :b]</text>
+
+  <rect x="400" y="260" width="240" height="30" rx="6" fill="#e74c3c"/>
+  <text x="520" y="280" text-anchor="middle" font-size="11" fill="white">截断: W_dw↓b = W_dw[:b, :]</text>
+
+  <!-- 合并 -->
+  <rect x="250" y="340" width="200" height="50" rx="8" fill="#f39c12"/>
+  <text x="350" y="360" text-anchor="middle" font-size="12" fill="white">h = W₀x + (α/b)·W_up↓b·W_dw↓b·x</text>
+  <text x="350" y="378" text-anchor="middle" font-size="11" fill="#fef9e7">(动态秩输出)</text>
+
+  <!-- 箭头到合并 -->
+  <line x1="180" y1="220" x2="180" y2="365" stroke="#95a5a6" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="380" y1="320" x2="450" y2="320" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="450" y1="320" x2="450" y2="365" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 180 365 L 250 365" stroke="#95a5a6" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 450 365 L 450 365" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 输出 -->
+  <line x1="350" y1="390" x2="350" y2="420" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="420" width="200" height="45" rx="8" fill="#e74c3c"/>
+  <text x="350" y="448" text-anchor="middle" font-size="13" fill="white">输出 h</text>
+
+  <!-- 底部说明 -->
+  <rect x="30" y="480" width="640" height="30" rx="6" fill="#f8f9f9" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="350" y="500" text-anchor="middle" font-size="11" fill="#555">关键：每次训练步随机采样不同秩 b，截断对应矩阵行/列，使模型学会在任意秩下工作</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#666"/>
+    </marker>
+  </defs>
+</svg>

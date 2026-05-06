@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 480" font-family="sans-serif">
+  <rect width="750" height="480" fill="#fafafa"/>
+  <text x="375" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">LoRA 的秩选择困境 vs DyLoRA 的动态方案</text>
+
+  <!-- 左侧：LoRA 问题 -->
+  <rect x="20" y="55" width="340" height="400" rx="10" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+  <text x="190" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#e74c3c">LoRA：静态秩，需要搜索</text>
+
+  <!-- 问题 1 -->
+  <rect x="40" y="100" width="300" height="80" rx="8" fill="#fee"/>
+  <text x="190" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#c0392b">问题 1: 秩大小需要手动调优</text>
+  <text x="190" y="148" text-anchor="middle" font-size="11" fill="#333">不同任务最优秩不同：</text>
+  <text x="190" y="168" text-anchor="middle" font-size="11" fill="#333">SST-2: rank=8 最优, MRPC: rank=32 最优</text>
+
+  <!-- 问题 2 -->
+  <rect x="40" y="200" width="300" height="80" rx="8" fill="#fee"/>
+  <text x="190" y="225" text-anchor="middle" font-size="12" font-weight="bold" fill="#c0392b">问题 2: 训练后秩固定，无法修改</text>
+  <text x="190" y="248" text-anchor="middle" font-size="11" fill="#333">rank=8 训练的模型在 rank=1 时性能崩溃</text>
+  <text x="190" y="268" text-anchor="middle" font-size="11" fill="#333">换秩需要从头重新训练</text>
+
+  <!-- 搜索成本 -->
+  <rect x="40" y="300" width="300" height="70" rx="8" fill="#fdebd0"/>
+  <text x="190" y="325" text-anchor="middle" font-size="12" font-weight="bold" fill="#d68910">搜索成本：需要训练多个模型</text>
+  <text x="190" y="348" text-anchor="middle" font-size="11" fill="#333">测试 rank ∈ {1,2,4,8,16,32} 需要训练 6 次</text>
+  <text x="190" y="365" text-anchor="middle" font-size="11" fill="#333">时间成本: 6x</text>
+
+  <!-- 文本 x="190" y="395" text-anchor="middle" font-size="11" fill="#666">训练 6 个独立模型，选最好的</text> -->
+
+  <!-- 右侧：DyLoRA 方案 -->
+  <rect x="390" y="55" width="340" height="400" rx="10" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <text x="560" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#27ae60">DyLoRA：动态秩，无需搜索</text>
+
+  <!-- 解决方案 1 -->
+  <rect x="410" y="100" width="300" height="80" rx="8" fill="#eafaf1"/>
+  <text x="560" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">解决 1: 一次训练，覆盖所有秩</text>
+  <text x="560" y="148" text-anchor="middle" font-size="11" fill="#333">训练时随机采样秩 b ∈ [r_min, r_max]</text>
+  <text x="560" y="168" text-anchor="middle" font-size="11" fill="#333">模型学会在任意秩下工作</text>
+
+  <!-- 解决方案 2 -->
+  <rect x="410" y="200" width="300" height="80" rx="8" fill="#eafaf1"/>
+  <text x="560" y="225" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">解决 2: 推理时可动态切换秩</text>
+  <text x="560" y="248" text-anchor="middle" font-size="11" fill="#333">同一个模型可以用 rank=1,2,4,8...</text>
+  <text x="560" y="268" text-anchor="middle" font-size="11" fill="#333">无需重新训练，直接截断矩阵</text>
+
+  <!-- 速度优势 -->
+  <rect x="410" y="300" width="300" height="70" rx="8" fill="#d5f5e3"/>
+  <text x="560" y="325" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">速度优势：只需训练一次</text>
+  <text x="560" y="348" text-anchor="middle" font-size="11" fill="#333">覆盖 rank ∈ [1, 8] 只需训练 1 次</text>
+  <text x="560" y="365" text-anchor="middle" font-size="11" fill="#333">时间成本: 1x (比 LoRA 快 6-7 倍)</text>
+
+  <!-- 中间箭头 -->
+  <line x1="360" y1="255" x2="390" y2="255" stroke="#27ae60" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="375" y="245" text-anchor="middle" font-size="10" fill="#27ae60">改进</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#27ae60"/>
+    </marker>
+  </defs>
+</svg>

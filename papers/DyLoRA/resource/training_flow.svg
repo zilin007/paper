@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" font-family="sans-serif">
+  <rect width="700" height="450" fill="#fafafa"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">DyLoRA 训练流程：动态秩采样与截断</text>
+
+  <!-- 步骤 1: 采样秩 -->
+  <rect x="250" y="55" width="200" height="50" rx="8" fill="#f39c12"/>
+  <text x="350" y="75" text-anchor="middle" font-size="13" fill="white">Step 1: 采样秩 b</text>
+  <text x="350" y="92" text-anchor="middle" font-size="11" fill="#fef9e7">b ~ Uniform(r_min, r_max)</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="105" x2="350" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤 2: 截断矩阵 -->
+  <rect x="250" y="130" width="200" height="50" rx="8" fill="#e74c3c"/>
+  <text x="350" y="150" text-anchor="middle" font-size="13" fill="white">Step 2: 截断矩阵</text>
+  <text x="350" y="167" text-anchor="middle" font-size="11" fill="#fadbd8">W_up↓b, W_dw↓b</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="180" x2="350" y2="205" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤 3: 前向传播 -->
+  <rect x="250" y="205" width="200" height="50" rx="8" fill="#3498db"/>
+  <text x="350" y="225" text-anchor="middle" font-size="13" fill="white">Step 3: 前向传播</text>
+  <text x="350" y="242" text-anchor="middle" font-size="11" fill="#d4e6f1">h = W₀x + (α/b)·W_up↓b·W_dw↓b·x</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="255" x2="350" y2="280" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤 4: 计算损失 -->
+  <rect x="250" y="280" width="200" height="50" rx="8" fill="#9b59b6"/>
+  <text x="350" y="300" text-anchor="middle" font-size="13" fill="white">Step 4: 计算损失 L_DY↓b</text>
+  <text x="350" y="317" text-anchor="middle" font-size="11" fill="#e8daef">仅基于当前秩 b 的损失</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="330" x2="350" y2="355" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤 5: 反向传播与更新 -->
+  <rect x="250" y="355" width="200" height="50" rx="8" fill="#27ae60"/>
+  <text x="350" y="375" text-anchor="middle" font-size="13" fill="white">Step 5: 更新参数</text>
+  <text x="350" y="392" text-anchor="middle" font-size="11" fill="#d5f5e3">Frozen 模式: 仅更新第 b 行/列</text>
+
+  <!-- 循环箭头 -->
+  <path d="M 450 380 Q 520 380 520 305 Q 520 230 450 230" fill="none" stroke="#9b59b6" stroke-width="2" stroke-dasharray="6" marker-end="url(#arrow)"/>
+  <text x="530" y="305" font-size="11" fill="#9b59b6">迭代循环</text>
+  <text x="530" y="325" font-size="10" fill="#666">每次采样不同 b</text>
+
+  <!-- 底部说明 -->
+  <rect x="30" y="420" width="640" height="25" rx="6" fill="#f8f9f9" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="350" y="437" text-anchor="middle" font-size="11" fill="#555">训练结束时，模型在所有秩 [r_min, r_max] 上都有良好的性能，推理时可自由切换</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#666"/>
+    </marker>
+  </defs>
+</svg>

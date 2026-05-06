@@ -1,0 +1,37 @@
+{
+  "pdf": "papers/DyLoRA/DyLoRA.pdf",
+  "total_pages": 14,
+  "embedded_images": 1,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 261.1
+    },
+    {
+      "fig_num": "1",
+      "page": 4,
+      "caption_y": 515.1
+    }
+  ],
+  "files": [
+    {
+      "page": 2,
+      "file": "page2_img1_1920x1920.jpeg",
+      "size": "1920x1920",
+      "method": "embedded"
+    },
+    {
+      "page": 2,
+      "file": "temp_page2_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    },
+    {
+      "page": 4,
+      "file": "temp_page4_full_300dpi.png",
+      "size": "2481x3508",
+      "method": "page_render"
+    }
+  ]
+}

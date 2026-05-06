@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" font-family="sans-serif">
+  <rect width="700" height="350" fill="#fafafa"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">训练时 vs 推理时：DyLoRA 的动态特性</text>
+
+  <!-- 训练时 -->
+  <rect x="20" y="55" width="320" height="270" rx="10" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+  <text x="180" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#e74c3c">训练时 (一次训练)</text>
+
+  <!-- 训练流程 -->
+  <rect x="40" y="100" width="280" height="40" rx="6" fill="#f39c12"/>
+  <text x="180" y="125" text-anchor="middle" font-size="12" fill="white">随机采样秩 b ∈ [r_min, r_max]</text>
+
+  <rect x="40" y="150" width="280" height="40" rx="6" fill="#e74c3c"/>
+  <text x="180" y="175" text-anchor="middle" font-size="12" fill="white">截断矩阵到秩 b: W_up↓b, W_dw↓b</text>
+
+  <rect x="40" y="200" width="280" height="40" rx="6" fill="#3498db"/>
+  <text x="180" y="225" text-anchor="middle" font-size="12" fill="white">前向 + 反向 + 更新参数</text>
+
+  <rect x="40" y="250" width="280" height="50" rx="6" fill="#fee"/>
+  <text x="180" y="275" text-anchor="middle" font-size="12" fill="#c0392b">训练 1 次，覆盖所有秩 [1, 8]</text>
+  <text x="180" y="295" text-anchor="middle" font-size="11" fill="#666">时间成本: 1x (与训练单个 LoRA 相当)</text>
+
+  <!-- 推理时 -->
+  <rect x="360" y="55" width="320" height="270" rx="10" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <text x="520" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#27ae60">推理时 (动态切换)</text>
+
+  <rect x="380" y="100" width="280" height="40" rx="6" fill="#27ae60"/>
+  <text x="520" y="125" text-anchor="middle" font-size="12" fill="white">选择任意秩 b ∈ [r_min, r_max]</text>
+
+  <rect x="380" y="150" width="280" height="40" rx="6" fill="#2ecc71"/>
+  <text x="520" y="175" text-anchor="middle" font-size="12" fill="white">截断矩阵: W_up↓b, W_dw↓b</text>
+
+  <rect x="380" y="200" width="280" height="40" rx="6" fill="#3498db"/>
+  <text x="520" y="225" text-anchor="middle" font-size="12" fill="white">前向传播: h = W₀x + (α/b)·W_up↓b·W_dw↓b·x</text>
+
+  <rect x="380" y="250" width="280" height="50" rx="6" fill="#eafaf1"/>
+  <text x="520" y="275" text-anchor="middle" font-size="12" fill="#1e8449">同一模型，不同秩，无需重训练</text>
+  <text x="520" y="295" text-anchor="middle" font-size="11" fill="#666">可根据资源/需求动态调整模型大小</text>
+
+  <!-- 中间箭头 -->
+  <line x1="340" y1="190" x2="360" y2="190" stroke="#27ae60" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="350" y="180" text-anchor="middle" font-size="10" fill="#27ae60">保存</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#27ae60"/>
+    </marker>
+  </defs>
+</svg>
