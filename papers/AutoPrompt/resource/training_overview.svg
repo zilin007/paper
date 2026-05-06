@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" font-family="sans-serif">
+  <rect width="700" height="400" fill="#fafafa"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">AutoPrompt 多轮迭代训练全景</text>
+
+  <!-- X轴: 迭代轮次 -->
+  <line x1="80" y1="320" x2="650" y2="320" stroke="#333" stroke-width="2"/>
+  <text x="365" y="350" text-anchor="middle" font-size="13" fill="#555">迭代轮次</text>
+
+  <!-- Y轴: 损失 -->
+  <line x1="80" y1="50" x2="80" y2="320" stroke="#333" stroke-width="2"/>
+  <text x="30" y="185" text-anchor="middle" font-size="12" fill="#555" transform="rotate(-90, 30, 185)">损失 L</text>
+
+  <!-- Y轴刻度 -->
+  <text x="70" y="323" text-anchor="end" font-size="11" fill="#999">0.0</text>
+  <text x="70" y="278" text-anchor="end" font-size="11" fill="#999">0.3</text>
+  <text x="70" y="233" text-anchor="end" font-size="11" fill="#999">0.6</text>
+  <text x="70" y="188" text-anchor="end" font-size="11" fill="#999">0.9</text>
+  <text x="70" y="143" text-anchor="end" font-size="11" fill="#999">1.2</text>
+  <text x="70" y="98" text-anchor="end" font-size="11" fill="#999">1.5</text>
+
+  <!-- X轴刻度 -->
+  <text x="120" y="340" text-anchor="middle" font-size="11" fill="#999">0</text>
+  <text x="230" y="340" text-anchor="middle" font-size="11" fill="#999">1</text>
+  <text x="340" y="340" text-anchor="middle" font-size="11" fill="#999">2</text>
+  <text x="450" y="340" text-anchor="middle" font-size="11" fill="#999">3</text>
+  <text x="560" y="340" text-anchor="middle" font-size="11" fill="#999">4</text>
+
+  <!-- 网格线 -->
+  <line x1="80" y1="278" x2="650" y2="278" stroke="#eee" stroke-width="1"/>
+  <line x1="80" y1="233" x2="650" y2="233" stroke="#eee" stroke-width="1"/>
+  <line x1="80" y1="188" x2="650" y2="188" stroke="#eee" stroke-width="1"/>
+  <line x1="80" y1="143" x2="650" y2="143" stroke="#eee" stroke-width="1"/>
+  <line x1="80" y1="98" x2="650" y2="98" stroke="#eee" stroke-width="1"/>
+
+  <!-- 损失曲线 -->
+  <polyline points="120,188 230,263 340,293 450,305 560,312" fill="none" stroke="#e74c3c" stroke-width="3"/>
+
+  <!-- 数据点 -->
+  <circle cx="120" cy="188" r="6" fill="#e74c3c"/>
+  <text x="120" y="175" text-anchor="middle" font-size="11" fill="#e74c3c">0.94</text>
+
+  <circle cx="230" cy="263" r="6" fill="#e74c3c"/>
+  <text x="230" y="250" text-anchor="middle" font-size="11" fill="#e74c3c">0.42</text>
+
+  <circle cx="340" cy="293" r="6" fill="#e74c3c"/>
+  <text x="340" y="280" text-anchor="middle" font-size="11" fill="#e74c3c">0.22</text>
+
+  <circle cx="450" cy="305" r="6" fill="#e74c3c"/>
+  <text x="450" y="292" text-anchor="middle" font-size="11" fill="#e74c3c">0.12</text>
+
+  <circle cx="560" cy="312" r="6" fill="#e74c3c"/>
+  <text x="560" y="299" text-anchor="middle" font-size="11" fill="#e74c3c">0.07</text>
+
+  <!-- 触发词标注 -->
+  <rect x="100" y="60" width="100" height="30" rx="4" fill="#ecf0f1" stroke="#95a5a6" stroke-width="1"/>
+  <text x="150" y="80" text-anchor="middle" font-size="11" fill="#7f8c8d">T₁ = [MASK]</text>
+
+  <rect x="210" y="60" width="80" height="30" rx="4" fill="#d5f5e3" stroke="#27ae60" stroke-width="1"/>
+  <text x="250" y="80" text-anchor="middle" font-size="11" fill="#1e8449">T₁ = 好</text>
+
+  <rect x="320" y="60" width="80" height="30" rx="4" fill="#d5f5e3" stroke="#27ae60" stroke-width="1"/>
+  <text x="360" y="80" text-anchor="middle" font-size="11" fill="#1e8449">T₁ = 棒</text>
+
+  <rect x="430" y="60" width="80" height="30" rx="4" fill="#d5f5e3" stroke="#27ae60" stroke-width="1"/>
+  <text x="470" y="80" text-anchor="middle" font-size="11" fill="#1e8449">T₁ = 精彩</text>
+
+  <rect x="540" y="60" width="80" height="30" rx="4" fill="#d5f5e3" stroke="#27ae60" stroke-width="1"/>
+  <text x="580" y="80" text-anchor="middle" font-size="11" fill="#1e8449">T₁ = 优秀</text>
+
+  <!-- 箭头连接触发词 -->
+  <line x1="200" y1="75" x2="210" y2="75" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="290" y1="75" x2="320" y2="75" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="400" y1="75" x2="430" y2="75" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="510" y1="75" x2="540" y2="75" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 正面概率曲线 -->
+  <polyline points="120,233 230,173 340,128 450,98 560,83" fill="none" stroke="#27ae60" stroke-width="2" stroke-dasharray="6"/>
+
+  <circle cx="120" cy="233" r="4" fill="#27ae60"/>
+  <text x="105" y="228" text-anchor="end" font-size="10" fill="#27ae60">39%</text>
+
+  <circle cx="230" cy="173" r="4" fill="#27ae60"/>
+  <text x="215" y="168" text-anchor="end" font-size="10" fill="#27ae60">66%</text>
+
+  <circle cx="340" cy="128" r="4" fill="#27ae60"/>
+  <text x="325" y="123" text-anchor="end" font-size="10" fill="#27ae60">78%</text>
+
+  <circle cx="450" cy="98" r="4" fill="#27ae60"/>
+  <text x="435" y="93" text-anchor="end" font-size="10" fill="#27ae60">88%</text>
+
+  <circle cx="560" cy="83" r="4" fill="#27ae60"/>
+  <text x="545" y="78" text-anchor="end" font-size="10" fill="#27ae60">93%</text>
+
+  <!-- 图例 -->
+  <line x1="480" y1="370" x2="510" y2="370" stroke="#e74c3c" stroke-width="3"/>
+  <text x="515" y="374" font-size="11" fill="#555">损失 L</text>
+
+  <line x1="570" y1="370" x2="600" y2="370" stroke="#27ae60" stroke-width="2" stroke-dasharray="6"/>
+  <text x="605" y="374" font-size="11" fill="#555">正面概率 p(pos)</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#27ae60"/>
+    </marker>
+  </defs>
+</svg>

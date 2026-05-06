@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" font-family="sans-serif">
+  <rect width="700" height="500" fill="#fafafa"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">AutoPrompt 梯度搜索触发词流程</text>
+
+  <!-- 步骤1: 初始化 -->
+  <rect x="250" y="55" width="200" height="50" rx="8" fill="#3498db"/>
+  <text x="350" y="75" text-anchor="middle" font-size="13" fill="white">初始化: T = [MASK, MASK, ...]</text>
+  <text x="350" y="92" text-anchor="middle" font-size="11" fill="#d4e6f1">触发词全部设为 [MASK]</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="105" x2="350" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤2: 前向传播 -->
+  <rect x="250" y="130" width="200" height="50" rx="8" fill="#2ecc71"/>
+  <text x="350" y="150" text-anchor="middle" font-size="13" fill="white">前向传播: 计算 p(y|x_prompt)</text>
+  <text x="350" y="167" text-anchor="middle" font-size="11" fill="#d5f5e3">将输入+触发词送入MLM</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="180" x2="350" y2="205" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤3: 计算梯度 -->
+  <rect x="250" y="205" width="200" height="50" rx="8" fill="#e74c3c"/>
+  <text x="350" y="225" text-anchor="middle" font-size="13" fill="white">反向传播: 计算梯度</text>
+  <text x="350" y="242" text-anchor="middle" font-size="11" fill="#fadbd8">∂log p(y)/∂x_trig^(j)</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="255" x2="350" y2="280" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤4: 候选词选择 -->
+  <rect x="250" y="280" width="200" height="50" rx="8" fill="#f39c12"/>
+  <text x="350" y="300" text-anchor="middle" font-size="13" fill="white">选候选词: top-k 对齐梯度</text>
+  <text x="350" y="317" text-anchor="middle" font-size="11" fill="#fdebd0">V_cand = top-k {w_in · ∂L/∂x}</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="330" x2="350" y2="355" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤5: 评估替换 -->
+  <rect x="250" y="355" width="200" height="50" rx="8" fill="#9b59b6"/>
+  <text x="350" y="375" text-anchor="middle" font-size="13" fill="white">评估: 对每个候选词前向传播</text>
+  <text x="350" y="392" text-anchor="middle" font-size="11" fill="#e8daef">选使 p(y) 最大的词替换</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="405" x2="350" y2="430" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤6: 判断收敛 -->
+  <rect x="250" y="430" width="200" height="50" rx="8" fill="#1abc9c"/>
+  <text x="350" y="450" text-anchor="middle" font-size="13" fill="white">收敛? → 是: 输出触发词</text>
+  <text x="350" y="467" text-anchor="middle" font-size="11" fill="#d1f2eb">否: 回到步骤2继续迭代</text>
+
+  <!-- 循环箭头 -->
+  <path d="M 450 455 Q 520 455 520 380 Q 520 305 450 305" fill="none" stroke="#9b59b6" stroke-width="2" stroke-dasharray="6" marker-end="url(#arrow)"/>
+  <text x="530" y="380" font-size="11" fill="#9b59b6">迭代循环</text>
+
+  <!-- 箭头定义 -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+  </defs>
+</svg>
