@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" font-family="sans-serif">
+  <rect width="700" height="520" fill="#fafafa"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">PiSSA 核心架构：SVD 分解与主成分适配</text>
+
+  <!-- 原始权重矩阵 -->
+  <rect x="250" y="55" width="200" height="50" rx="8" fill="#3498db"/>
+  <text x="350" y="75" text-anchor="middle" font-size="13" fill="white">预训练权重 W ∈ R^(m×n)</text>
+  <text x="350" y="92" text-anchor="middle" font-size="11" fill="#d4e6f1">(冻结，不直接更新)</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="105" x2="350" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- SVD 分解 -->
+  <rect x="250" y="130" width="200" height="50" rx="8" fill="#8e44ad"/>
+  <text x="350" y="150" text-anchor="middle" font-size="13" fill="white">SVD 分解: W = USV^T</text>
+  <text x="350" y="167" text-anchor="middle" font-size="11" fill="#e8daef">(快速 SVD，仅需几秒)</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="180" x2="350" y2="210" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 分支：主成分和残差 -->
+  <!-- 主成分 -->
+  <rect x="30" y="220" width="300" height="140" rx="10" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
+  <text x="180" y="245" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">主成分 W^pri (可训练)</text>
+
+  <rect x="50" y="260" width="260" height="35" rx="6" fill="#27ae60"/>
+  <text x="180" y="282" text-anchor="middle" font-size="12" fill="white">A = U[:,:r] · S[:r,:r]^(1/2) ∈ R^(m×r)</text>
+
+  <rect x="50" y="305" width="260" height="35" rx="6" fill="#2ecc71"/>
+  <text x="180" y="327" text-anchor="middle" font-size="12" fill="white">B = S[:r,:r]^(1/2) · V[:,:r]^T ∈ R^(r×n)</text>
+
+  <text x="180" y="350" text-anchor="middle" font-size="11" fill="#1e8449">W^pri = AB ≈ 最重要的 r 个方向</text>
+
+  <!-- 残差 -->
+  <rect x="370" y="220" width="300" height="140" rx="10" fill="#f8f0ff" stroke="#95a5a6" stroke-width="2"/>
+  <text x="520" y="245" text-anchor="middle" font-size="14" font-weight="bold" fill="#7f8c8d">残差 W^res (冻结)</text>
+
+  <rect x="390" y="260" width="260" height="35" rx="6" fill="#95a5a6"/>
+  <text x="520" y="282" text-anchor="middle" font-size="12" fill="white">W^res = U[:,r:] · S[r:,r:] · V[:,r:]^T</text>
+
+  <rect x="390" y="305" width="260" height="35" rx="6" fill="#bdc3c7"/>
+  <text x="520" y="327" text-anchor="middle" font-size="12" fill="white">∈ R^(m×n) (与原矩阵同形状)</text>
+
+  <text x="520" y="350" text-anchor="middle" font-size="11" fill="#7f8c8d">包含剩余的小奇异值方向</text>
+
+  <!-- 合并 -->
+  <rect x="250" y="380" width="200" height="50" rx="8" fill="#f39c12"/>
+  <text x="350" y="400" text-anchor="middle" font-size="12" fill="white">Y = X(W^res + AB)</text>
+  <text x="350" y="418" text-anchor="middle" font-size="11" fill="#fef9e7">(前向传播)</text>
+
+  <!-- 箭头到合并 -->
+  <line x1="180" y1="360" x2="180" y2="405" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="520" y1="360" x2="520" y2="405" stroke="#95a5a6" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 180 405 L 250 405" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 520 405 L 450 405" stroke="#95a5a6" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 输出 -->
+  <line x1="350" y1="430" x2="350" y2="460" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="460" width="200" height="45" rx="8" fill="#e74c3c"/>
+  <text x="350" y="488" text-anchor="middle" font-size="13" fill="white">输出 Y</text>
+
+  <!-- 底部说明 -->
+  <rect x="30" y="500" width="640" height="15" rx="4" fill="#f8f9f9"/>
+  <text x="350" y="512" text-anchor="middle" font-size="10" fill="#555">关键：训练时只更新 A 和 B（主成分），W^res 保持冻结 — 与 LoRA 架构完全相同</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#666"/>
+    </marker>
+  </defs>
+</svg>

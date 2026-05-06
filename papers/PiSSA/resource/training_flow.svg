@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" font-family="sans-serif">
+  <rect width="700" height="500" fill="#fafafa"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">PiSSA 训练流程与梯度传播</text>
+
+  <!-- 步骤 1: SVD 初始化 -->
+  <rect x="250" y="55" width="200" height="50" rx="8" fill="#8e44ad"/>
+  <text x="350" y="75" text-anchor="middle" font-size="13" fill="white">Step 1: SVD 初始化</text>
+  <text x="350" y="92" text-anchor="middle" font-size="11" fill="#e8daef">A = U[:,:r]·S^(1/2), B = S^(1/2)·V^T</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="105" x2="350" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤 2: 前向传播 -->
+  <rect x="250" y="130" width="200" height="50" rx="8" fill="#3498db"/>
+  <text x="350" y="150" text-anchor="middle" font-size="13" fill="white">Step 2: 前向传播</text>
+  <text x="350" y="167" text-anchor="middle" font-size="11" fill="#d4e6f1">Y = X(W^res + AB)</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="180" x2="350" y2="205" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤 3: 计算损失 -->
+  <rect x="250" y="205" width="200" height="50" rx="8" fill="#e74c3c"/>
+  <text x="350" y="225" text-anchor="middle" font-size="13" fill="white">Step 3: 计算损失 L</text>
+  <text x="350" y="242" text-anchor="middle" font-size="11" fill="#fadbd8">交叉熵损失</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="255" x2="350" y2="280" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤 4: 反向传播 -->
+  <rect x="250" y="280" width="200" height="50" rx="8" fill="#f39c12"/>
+  <text x="350" y="300" text-anchor="middle" font-size="13" fill="white">Step 4: 反向传播</text>
+  <text x="350" y="317" text-anchor="middle" font-size="11" fill="#fdebd0">∂L/∂A, ∂L/∂B (主方向)</text>
+
+  <!-- 箭头 -->
+  <line x1="350" y1="330" x2="350" y2="355" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤 5: 更新参数 -->
+  <rect x="250" y="355" width="200" height="50" rx="8" fill="#27ae60"/>
+  <text x="350" y="375" text-anchor="middle" font-size="13" fill="white">Step 5: 更新 A 和 B</text>
+  <text x="350" y="392" text-anchor="middle" font-size="11" fill="#d5f5e3">W^res 保持冻结</text>
+
+  <!-- 循环箭头 -->
+  <path d="M 450 380 Q 520 380 520 305 Q 520 230 450 230" fill="none" stroke="#9b59b6" stroke-width="2" stroke-dasharray="6" marker-end="url(#arrow)"/>
+  <text x="530" y="305" font-size="11" fill="#9b59b6">迭代训练</text>
+
+  <!-- 底部对比 -->
+  <rect x="30" y="420" width="310" height="65" rx="8" fill="#fee" stroke="#e74c3c" stroke-width="1"/>
+  <text x="185" y="440" text-anchor="middle" font-size="12" font-weight="bold" fill="#c0392b">LoRA 初始梯度:</text>
+  <text x="185" y="460" text-anchor="middle" font-size="11" fill="#333">∂L/∂A → 0 (B=0)</text>
+  <text x="185" y="478" text-anchor="middle" font-size="11" fill="#333">∂L/∂B → 随机方向 (A=噪声)</text>
+
+  <rect x="360" y="420" width="310" height="65" rx="8" fill="#eafaf1" stroke="#27ae60" stroke-width="1"/>
+  <text x="515" y="440" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">PiSSA 初始梯度:</text>
+  <text x="515" y="460" text-anchor="middle" font-size="11" fill="#333">∂L/∂A → 主方向 (B=主成分)</text>
+  <text x="515" y="478" text-anchor="middle" font-size="11" fill="#333">∂L/∂B → 主方向 (A=主成分)</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#666"/>
+    </marker>
+  </defs>
+</svg>
