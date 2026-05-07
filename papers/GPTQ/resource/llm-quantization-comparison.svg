@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" font-family="sans-serif">
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold">LLM量化方法对比(2022年)</text>
+  
+  <!-- 方法1: RTN -->
+  <rect x="20" y="60" width="220" height="150" rx="10" fill="#ffcccc" stroke="#cc0000" stroke-width="2"/>
+  <text x="130" y="90" text-anchor="middle" font-size="14" font-weight="bold">舍入到最近(RTN)</text>
+  
+  <rect x="40" y="110" width="180" height="40" rx="5" fill="#ff9999"/>
+  <text x="130" y="135" text-anchor="middle" font-size="12">直接四舍五入到INT</text>
+  
+  <text x="130" y="180" text-anchor="middle" font-size="20">❌</text>
+  <text x="130" y="200" text-anchor="middle" font-size="11" fill="#cc0000">3-4bit时精度崩溃</text>
+  
+  <!-- 方法2: 小模型PTQ -->
+  <rect x="290" y="60" width="220" height="150" rx="10" fill="#ffffcc" stroke="#cc9900" stroke-width="2"/>
+  <text x="400" y="90" text-anchor="middle" font-size="14" font-weight="bold">小模型PTQ (AdaRound等)</text>
+  
+  <rect x="310" y="110" width="180" height="40" rx="5" fill="#ffff99"/>
+  <text x="400" y="135" text-anchor="middle" font-size="12">逐层优化量化</text>
+  
+  <text x="400" y="180" text-anchor="middle" font-size="20">⚠️</text>
+  <text x="400" y="200" text-anchor="middle" font-size="11" fill="#cc9900">只能处理~1亿参数</text>
+  <text x="400" y="220" text-anchor="middle" font-size="11" fill="#cc9900">扩展到175B需数百年!</text>
+  
+  <!-- 方法3: GPTQ -->
+  <rect x="560" y="60" width="220" height="150" rx="10" fill="#ccffcc" stroke="#006600" stroke-width="3"/>
+  <text x="670" y="90" text-anchor="middle" font-size="14" font-weight="bold">GPTQ (本文)</text>
+  
+  <rect x="580" y="110" width="180" height="40" rx="5" fill="#99ff99"/>
+  <text x="670" y="135" text-anchor="middle" font-size="12">二阶信息指导量化</text>
+  
+  <text x="670" y="180" text-anchor="middle" font-size="20">✓</text>
+  <text x="670" y="200" text-anchor="middle" font-size="11" fill="#006600">4小时量化175B模型</text>
+  <text x="670" y="220" text-anchor="middle" font-size="11" fill="#006600">3-4bit精度几乎无损</text>
+  
+  <!-- 核心问题 -->
+  <rect x="20" y="240" width="760" height="90" rx="10" fill="#f0f0f0" stroke="#666" stroke-width="2"/>
+  <text x="400" y="270" text-anchor="middle" font-size="14" font-weight="bold">核心挑战: 如何高效利用二阶信息?</text>
+  <text x="400" y="295" text-anchor="middle" font-size="12">OBQ算法复杂度O(d_row · d_col³), 对175B模型需要10¹⁵次操作</text>
+  <text x="400" y="315" text-anchor="middle" font-size="12">GPTQ通过三大优化将实际运行时间缩短到4小时</text>
+</svg>

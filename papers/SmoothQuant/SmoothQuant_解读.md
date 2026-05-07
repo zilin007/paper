@@ -31,85 +31,7 @@
 
 ### 现有方案的问题
 
-```svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
-  <!-- 标题 -->
-  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold">大模型量化方案对比</text>
-  
-  <!-- 方案1: W8A8直接量化 -->
-  <rect x="20" y="60" width="220" height="200" rx="10" fill="#ffcccc" stroke="#cc0000" stroke-width="2"/>
-  <text x="130" y="90" text-anchor="middle" font-size="14" font-weight="bold">方案1: W8A8直接量化</text>
-  
-  <rect x="40" y="110" width="180" height="40" rx="5" fill="#ff9999"/>
-  <text x="130" y="135" text-anchor="middle" font-size="12">权重量化到INT8</text>
-  
-  <rect x="40" y="160" width="180" height="40" rx="5" fill="#ff6666"/>
-  <text x="130" y="185" text-anchor="middle" font-size="12">激活量化到INT8</text>
-  
-  <text x="130" y="230" text-anchor="middle" font-size="20">❌</text>
-  <text x="130" y="250" text-anchor="middle" font-size="11" fill="#cc0000">异常值导致精度崩溃</text>
-  
-  <!-- 方案2: LLM.int8() -->
-  <rect x="290" y="60" width="220" height="200" rx="10" fill="#ffffcc" stroke="#cc9900" stroke-width="2"/>
-  <text x="400" y="90" text-anchor="middle" font-size="14" font-weight="bold">方案2: LLM.int8()</text>
-  
-  <rect x="310" y="110" width="180" height="40" rx="5" fill="#ffff99"/>
-  <text x="400" y="135" text-anchor="middle" font-size="12">正常值用INT8</text>
-  
-  <rect x="310" y="160" width="180" height="40" rx="5" fill="#ffcc00"/>
-  <text x="400" y="185" text-anchor="middle" font-size="12">异常值保持FP16</text>
-  
-  <text x="400" y="230" text-anchor="middle" font-size="20">⚠️</text>
-  <text x="400" y="250" text-anchor="middle" font-size="11" fill="#cc9900">混合精度,硬件不友好</text>
-  <text x="400" y="270" text-anchor="middle" font-size="11" fill="#cc9900">甚至比FP16还慢!</text>
-  
-  <!-- 方案3: SmoothQuant -->
-  <rect x="560" y="60" width="220" height="200" rx="10" fill="#ccffcc" stroke="#006600" stroke-width="3"/>
-  <text x="670" y="90" text-anchor="middle" font-size="14" font-weight="bold">方案3: SmoothQuant</text>
-  
-  <rect x="580" y="110" width="180" height="40" rx="5" fill="#99ff99"/>
-  <text x="670" y="135" text-anchor="middle" font-size="12">平滑异常值到权重</text>
-  
-  <rect x="580" y="160" width="180" height="40" rx="5" fill="#99ff99"/>
-  <text x="670" y="185" text-anchor="middle" font-size="12">全INT8计算</text>
-  
-  <text x="670" y="230" text-anchor="middle" font-size="20">✓</text>
-  <text x="670" y="250" text-anchor="middle" font-size="11" fill="#006600">精度无损,硬件友好</text>
-  <text x="670" y="270" text-anchor="middle" font-size="11" fill="#006600">1.56x加速,2x内存节省</text>
-  
-  <!-- 问题描述 -->
-  <rect x="20" y="300" width="760" height="130" rx="10" fill="#f0f0f0" stroke="#666" stroke-width="2"/>
-  <text x="400" y="330" text-anchor="middle" font-size="14" font-weight="bold">核心问题: 激活异常值</text>
-  
-  <!-- 异常值示意图 -->
-  <rect x="40" y="350" width="340" height="60" rx="5" fill="white" stroke="#333"/>
-  <text x="210" y="370" text-anchor="middle" font-size="11">正常激活分布:</text>
-  <line x1="60" y1="390" x2="360" y2="390" stroke="#333" stroke-width="2"/>
-  <rect x="80" y="375" width="20" height="15" fill="#4CAF50"/>
-  <rect x="110" y="370" width="20" height="20" fill="#4CAF50"/>
-  <rect x="140" y="372" width="20" height="18" fill="#4CAF50"/>
-  <rect x="170" y="368" width="20" height="22" fill="#4CAF50"/>
-  <rect x="200" y="370" width="20" height="20" fill="#4CAF50"/>
-  <rect x="230" y="373" width="20" height="17" fill="#4CAF50"/>
-  <rect x="260" y="371" width="20" height="19" fill="#4CAF50"/>
-  <rect x="290" y="369" width="20" height="21" fill="#4CAF50"/>
-  <rect x="320" y="372" width="20" height="18" fill="#4CAF50"/>
-  
-  <rect x="420" y="350" width="340" height="60" rx="5" fill="white" stroke="#333"/>
-  <text x="590" y="370" text-anchor="middle" font-size="11">有异常值的激活分布:</text>
-  <line x1="440" y1="390" x2="740" y2="390" stroke="#333" stroke-width="2"/>
-  <rect x="460" y="385" width="20" height="5" fill="#4CAF50"/>
-  <rect x="490" y="383" width="20" height="7" fill="#4CAF50"/>
-  <rect x="520" y="384" width="20" height="6" fill="#4CAF50"/>
-  <rect x="550" y="382" width="20" height="8" fill="#4CAF50"/>
-  <rect x="580" y="383" width="20" height="7" fill="#4CAF50"/>
-  <rect x="610" y="350" width="20" height="40" fill="#f44336"/>
-  <text x="620" y="405" text-anchor="middle" font-size="9" fill="#f44336">异常值</text>
-  <rect x="640" y="384" width="20" height="6" fill="#4CAF50"/>
-  <rect x="670" y="382" width="20" height="8" fill="#4CAF50"/>
-  <rect x="700" y="385" width="20" height="5" fill="#4CAF50"/>
-</svg>
-```
+![大模型量化方案对比](resource/quantization-scheme-comparison.svg)
 
 **关键发现**: 异常值不是随机出现的,而是**持久出现在固定的通道**中。这意味着我们可以离线处理它们!
 
@@ -196,57 +118,7 @@ $$\hat{\mathbf{W}} = \text{diag}(\mathbf{s}) \cdot \mathbf{W}$$
 
 ### 3. Transformer块量化
 
-```svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="sans-serif">
-  <!-- 标题 -->
-  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold">SmoothQuant量化Transformer块</text>
-  
-  <!-- 整体框 -->
-  <rect x="20" y="50" width="760" height="430" rx="10" fill="#f0f8ff" stroke="#333" stroke-width="2"/>
-  
-  <!-- 自注意力部分 -->
-  <rect x="40" y="70" width="340" height="180" rx="10" fill="white" stroke="#666" stroke-width="2"/>
-  <text x="210" y="95" text-anchor="middle" font-size="14" font-weight="bold">自注意力 (Self-Attention)</text>
-  
-  <rect x="60" y="110" width="140" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
-  <text x="130" y="135" text-anchor="middle" font-size="11">Q = XW_Q (INT8)</text>
-  
-  <rect x="220" y="110" width="140" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
-  <text x="290" y="135" text-anchor="middle" font-size="11">K = XW_K (INT8)</text>
-  
-  <rect x="60" y="160" width="140" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
-  <text x="130" y="185" text-anchor="middle" font-size="11">V = XW_V (INT8)</text>
-  
-  <rect x="220" y="160" width="140" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
-  <text x="290" y="185" text-anchor="middle" font-size="11">Attention(Q,K,V) (INT8)</text>
-  
-  <!-- 前馈网络部分 -->
-  <rect x="420" y="70" width="340" height="180" rx="10" fill="white" stroke="#666" stroke-width="2"/>
-  <text x="590" y="95" text-anchor="middle" font-size="14" font-weight="bold">前馈网络 (FFN)</text>
-  
-  <rect x="440" y="110" width="300" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
-  <text x="590" y="135" text-anchor="middle" font-size="11">FC1: ReLU(XW_1 + b_1) (INT8)</text>
-  
-  <rect x="440" y="160" width="300" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
-  <text x="590" y="185" text-anchor="middle" font-size="11">FC2: XW_2 + b_2 (INT8)</text>
-  
-  <!-- LayerNorm部分 -->
-  <rect x="40" y="270" width="720" height="80" rx="10" fill="#ffffcc" stroke="#cc9900" stroke-width="2"/>
-  <text x="400" y="295" text-anchor="middle" font-size="14" font-weight="bold">LayerNorm &amp; 轻量级操作 (保持FP16)</text>
-  <text x="400" y="320" text-anchor="middle" font-size="11">LayerNorm, Softmax, ReLU, 残差连接等计算量小的操作保持FP16精度</text>
-  
-  <!-- 量化粒度说明 -->
-  <rect x="40" y="370" width="340" height="90" rx="10" fill="#e6ffe6" stroke="#006600" stroke-width="2"/>
-  <text x="210" y="395" text-anchor="middle" font-size="12" font-weight="bold">权重量化</text>
-  <text x="210" y="415" text-anchor="middle" font-size="11">Per-channel (每通道独立)</text>
-  <text x="210" y="435" text-anchor="middle" font-size="11">INT8, 静态, per-tensor</text>
-  
-  <rect x="420" y="370" width="340" height="90" rx="10" fill="#e6ffe6" stroke="#006600" stroke-width="2"/>
-  <text x="590" y="395" text-anchor="middle" font-size="12" font-weight="bold">激活量化</text>
-  <text x="590" y="415" text-anchor="middle" font-size="11">Per-token (每token独立)</text>
-  <text x="590" y="435" text-anchor="middle" font-size="11">INT8, 动态/静态可选</text>
-</svg>
-```
+![SmoothQuant量化Transformer块](resource/transformer-quantization.svg)
 
 **量化策略**:
 - **计算密集型操作**(线性层、矩阵乘法): **INT8**

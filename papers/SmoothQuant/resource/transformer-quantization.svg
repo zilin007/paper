@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="sans-serif">
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold">SmoothQuant量化Transformer块</text>
+  
+  <!-- 整体框 -->
+  <rect x="20" y="50" width="760" height="430" rx="10" fill="#f0f8ff" stroke="#333" stroke-width="2"/>
+  
+  <!-- 自注意力部分 -->
+  <rect x="40" y="70" width="340" height="180" rx="10" fill="white" stroke="#666" stroke-width="2"/>
+  <text x="210" y="95" text-anchor="middle" font-size="14" font-weight="bold">自注意力 (Self-Attention)</text>
+  
+  <rect x="60" y="110" width="140" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
+  <text x="130" y="135" text-anchor="middle" font-size="11">Q = XW_Q (INT8)</text>
+  
+  <rect x="220" y="110" width="140" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
+  <text x="290" y="135" text-anchor="middle" font-size="11">K = XW_K (INT8)</text>
+  
+  <rect x="60" y="160" width="140" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
+  <text x="130" y="185" text-anchor="middle" font-size="11">V = XW_V (INT8)</text>
+  
+  <rect x="220" y="160" width="140" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
+  <text x="290" y="185" text-anchor="middle" font-size="11">Attention(Q,K,V) (INT8)</text>
+  
+  <!-- 前馈网络部分 -->
+  <rect x="420" y="70" width="340" height="180" rx="10" fill="white" stroke="#666" stroke-width="2"/>
+  <text x="590" y="95" text-anchor="middle" font-size="14" font-weight="bold">前馈网络 (FFN)</text>
+  
+  <rect x="440" y="110" width="300" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
+  <text x="590" y="135" text-anchor="middle" font-size="11">FC1: ReLU(XW_1 + b_1) (INT8)</text>
+  
+  <rect x="440" y="160" width="300" height="40" rx="5" fill="#ccffcc" stroke="#006600"/>
+  <text x="590" y="185" text-anchor="middle" font-size="11">FC2: XW_2 + b_2 (INT8)</text>
+  
+  <!-- LayerNorm部分 -->
+  <rect x="40" y="270" width="720" height="80" rx="10" fill="#ffffcc" stroke="#cc9900" stroke-width="2"/>
+  <text x="400" y="295" text-anchor="middle" font-size="14" font-weight="bold">LayerNorm &amp; 轻量级操作 (保持FP16)</text>
+  <text x="400" y="320" text-anchor="middle" font-size="11">LayerNorm, Softmax, ReLU, 残差连接等计算量小的操作保持FP16精度</text>
+  
+  <!-- 量化粒度说明 -->
+  <rect x="40" y="370" width="340" height="90" rx="10" fill="#e6ffe6" stroke="#006600" stroke-width="2"/>
+  <text x="210" y="395" text-anchor="middle" font-size="12" font-weight="bold">权重量化</text>
+  <text x="210" y="415" text-anchor="middle" font-size="11">Per-channel (每通道独立)</text>
+  <text x="210" y="435" text-anchor="middle" font-size="11">INT8, 静态, per-tensor</text>
+  
+  <rect x="420" y="370" width="340" height="90" rx="10" fill="#e6ffe6" stroke="#006600" stroke-width="2"/>
+  <text x="590" y="395" text-anchor="middle" font-size="12" font-weight="bold">激活量化</text>
+  <text x="590" y="415" text-anchor="middle" font-size="11">Per-token (每token独立)</text>
+  <text x="590" y="435" text-anchor="middle" font-size="11">INT8, 动态/静态可选</text>
+</svg>
