@@ -20,6 +20,9 @@ __pycache__/
 .cursor/
 .vscode/mcp.json
 
+# 技能目录（本地开发用，不提交）
+skills/resume-renderer/
+
 # arXiv MCP server 缓存（由 arxiv-mcp-server 自动管理）
 .arxiv-cache/
 
