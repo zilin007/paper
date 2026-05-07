@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; fill: #333; }
+    .label { font-size: 13px; fill: #555; }
+    .desc { font-size: 11px; fill: #777; }
+    .pros { font-size: 11px; fill: #2d7d32; }
+    .cons { font-size: 11px; fill: #c62828; }
+  </style>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" class="title">主流量化方案对比</text>
+
+  <!-- RTN Box -->
+  <rect x="20" y="50" width="200" height="310" rx="8" fill="#e8f5e9" stroke="#2d7d32" stroke-width="2"/>
+  <text x="120" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#2d7d32">RTN（四舍五入）</text>
+  <line x1="40" y1="95" x2="200" y2="95" stroke="#2d7d32" stroke-width="1"/>
+  <text x="35" y="120" class="label">📌 原理：</text>
+  <text x="35" y="140" class="desc">权重除以缩放因子S，</text>
+  <text x="35" y="158" class="desc">四舍五入取整后截断</text>
+  <text x="35" y="190" class="label">✅ 优点：</text>
+  <text x="35" y="210" class="pros">• 无需校准数据（data-free）</text>
+  <text x="35" y="230" class="pros">• 速度极快（毫秒级）</text>
+  <text x="35" y="250" class="pros">• 可在线应用（加载时量化）</text>
+  <text x="35" y="270" class="pros">• 不需要完整加载原模型</text>
+  <text x="35" y="302" class="label">❌ 缺点：</text>
+  <text x="35" y="322" class="cons">• 4bit 时小模型精度下降明显</text>
+  <text x="35" y="342" class="cons">• 对异常值（outliers）敏感</text>
+
+  <!-- GPTQ/AWQ Box -->
+  <rect x="250" y="50" width="200" height="310" rx="8" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="350" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#e65100">GPTQ / AWQ</text>
+  <line x1="270" y1="95" x2="430" y2="95" stroke="#e65100" stroke-width="1"/>
+  <text x="265" y="120" class="label">📌 原理：</text>
+  <text x="265" y="140" class="desc">使用校准数据优化量化参数</text>
+  <text x="265" y="158" class="desc">（GPTQ用Hessian矩阵，AWQ找显著权重）</text>
+  <text x="265" y="190" class="label">✅ 优点：</text>
+  <text x="265" y="210" class="pros">• 4bit 精度恢复较好</text>
+  <text x="265" y="230" class="pros">• 有理论保证</text>
+  <text x="265" y="270" class="label">❌ 缺点：</text>
+  <text x="265" y="290" class="cons">• 需要校准数据</text>
+  <text x="265" y="310" class="cons">• 量化过程耗时（小时~天级GPU）</text>
+  <text x="265" y="330" class="cons">• 需要足够显存加载原模型</text>
+  <text x="265" y="350" class="cons">• 有过拟合校准数据的风险</text>
+
+  <!-- BitsAndBytes Box -->
+  <rect x="480" y="50" width="200" height="310" rx="8" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+  <text x="580" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#c62828">BitsAndBytes</text>
+  <line x1="500" y1="95" x2="660" y2="95" stroke="#c62828" stroke-width="1"/>
+  <text x="495" y="120" class="label">📌 原理：</text>
+  <text x="495" y="140" class="desc">分离异常值（保持全精度）</text>
+  <text x="495" y="158" class="desc">其余权重用非均匀量化</text>
+  <text x="495" y="190" class="label">✅ 优点：</text>
+  <text x="495" y="210" class="pros">• 无需校准数据（data-free）</text>
+  <text x="495" y="230" class="pros">• 精度恢复不错</text>
+  <text x="495" y="270" class="label">❌ 缺点：</text>
+  <text x="495" y="290" class="cons">• 异常值处理增加计算开销</text>
+  <text x="495" y="310" class="cons">• 推理延迟明显增加</text>
+  <text x="495" y="330" class="cons">• 吞吐量比RTN慢2-6倍</text>
+
+  <!-- Arrow connections -->
+  <text x="350" y="375" text-anchor="middle" font-size="12" fill="#666" font-style="italic">本文观点：RTN + 选择性量化 + Marlin内核 = 简单且高效</text>
+</svg>

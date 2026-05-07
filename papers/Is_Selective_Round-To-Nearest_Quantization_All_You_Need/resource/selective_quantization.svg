@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; fill: #333; }
+    .label { font-size: 12px; fill: #555; }
+    .layer8 { fill: #ffcc80; stroke: #e65100; stroke-width: 2; }
+    .layer4 { fill: #a5d6a7; stroke: #2d7d32; stroke-width: 2; }
+    .module { font-size: 10px; fill: #333; }
+  </style>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" class="title">选择性量化（Selective Quantization）</text>
+
+  <!-- Horizontal Selection -->
+  <text x="175" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#1565c0">水平选择（Horizontal）</text>
+  <text x="175" y="82" text-anchor="middle" font-size="11" fill="#777">选择哪些层保持高精度</text>
+
+  <!-- Layer stack - horizontal -->
+  <rect x="50" y="100" width="250" height="30" rx="4" class="layer8"/>
+  <text x="175" y="120" text-anchor="middle" class="label">第 1 层 → 保持 8bit</text>
+  <rect x="50" y="135" width="250" height="30" rx="4" class="layer8"/>
+  <text x="175" y="155" text-anchor="middle" class="label">第 2 层 → 保持 8bit</text>
+  <rect x="50" y="170" width="250" height="30" rx="4" class="layer8"/>
+  <text x="175" y="190" text-anchor="middle" class="label">第 3 层 → 保持 8bit</text>
+  <text x="175" y="220" text-anchor="middle" font-size="16" fill="#999">⋮</text>
+  <rect x="50" y="240" width="250" height="30" rx="4" class="layer4"/>
+  <text x="175" y="260" text-anchor="middle" class="label">第 N-1 层 → 量化到 4bit</text>
+  <rect x="50" y="275" width="250" height="30" rx="4" class="layer4"/>
+  <text x="175" y="295" text-anchor="middle" class="label">第 N 层 → 量化到 4bit</text>
+
+  <!-- Legend for horizontal -->
+  <rect x="310" y="140" width="15" height="15" class="layer8"/>
+  <text x="330" y="153" class="label">8bit（高精度）</text>
+  <rect x="310" y="165" width="15" height="15" class="layer4"/>
+  <text x="330" y="178" class="label">4bit（低精度）</text>
+
+  <!-- Vertical Selection -->
+  <text x="525" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#1565c0">垂直选择（Vertical）</text>
+  <text x="525" y="82" text-anchor="middle" font-size="11" fill="#777">选择层内哪些模块保持高精度</text>
+
+  <!-- Single layer with 4 modules -->
+  <rect x="400" y="100" width="250" height="200" rx="8" fill="#f5f5f5" stroke="#999"/>
+  <text x="525" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">单个 Transformer 层</text>
+
+  <!-- Attention block -->
+  <rect x="415" y="140" width="220" height="70" rx="6" fill="#e3f2fd" stroke="#1565c0"/>
+  <text x="525" y="160" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565c0">Attention 组件</text>
+  <rect x="425" y="170" width="95" height="30" rx="4" class="layer8"/>
+  <text x="472" y="190" text-anchor="middle" class="module">模块1: QKV投影</text>
+  <rect x="530" y="170" width="95" height="30" rx="4" class="layer4"/>
+  <text x="577" y="190" text-anchor="middle" class="module">模块2: 输出投影</text>
+
+  <!-- FFN block -->
+  <rect x="415" y="220" width="220" height="70" rx="6" fill="#e8f5e9" stroke="#2d7d32"/>
+  <text x="525" y="240" text-anchor="middle" font-size="11" font-weight="bold" fill="#2d7d32">FFN 组件</text>
+  <rect x="425" y="250" width="95" height="30" rx="4" class="layer8"/>
+  <text x="472" y="270" text-anchor="middle" class="module">模块3: 上投影</text>
+  <rect x="530" y="250" width="95" height="30" rx="4" class="layer8"/>
+  <text x="577" y="270" text-anchor="middle" class="module">模块4: 下投影</text>
+
+  <!-- Hybrid Selection -->
+  <text x="350" y="340" text-anchor="middle" font-size="14" font-weight="bold" fill="#6a1b9a">混合选择（Hybrid）= 水平 + 垂直</text>
+
+  <!-- Hybrid illustration -->
+  <rect x="50" y="360" width="600" height="120" rx="8" fill="#f3e5f5" stroke="#6a1b9a"/>
+
+  <!-- Hybrid layer 1 -->
+  <rect x="70" y="380" width="100" height="80" rx="4" fill="#ffcc80" stroke="#e65100"/>
+  <text x="120" y="400" text-anchor="middle" font-size="10" font-weight="bold" fill="#e65100">第 1 层</text>
+  <rect x="78" y="408" width="38" height="20" rx="3" fill="#ffcc80" stroke="#e65100"/>
+  <text x="97" y="422" text-anchor="middle" font-size="8">M1:8bit</text>
+  <rect x="120" y="408" width="38" height="20" rx="3" fill="#a5d6a7" stroke="#2d7d32"/>
+  <text x="139" y="422" text-anchor="middle" font-size="8">M2:4bit</text>
+  <rect x="78" y="432" width="38" height="20" rx="3" fill="#ffcc80" stroke="#e65100"/>
+  <text x="97" y="446" text-anchor="middle" font-size="8">M3:8bit</text>
+  <rect x="120" y="432" width="38" height="20" rx="3" fill="#ffcc80" stroke="#e65100"/>
+  <text x="139" y="446" text-anchor="middle" font-size="8">M4:8bit</text>
+
+  <text x="195" y="425" font-size="18" fill="#999">...</text>
+
+  <!-- Hybrid layer N -->
+  <rect x="250" y="380" width="100" height="80" rx="4" fill="#a5d6a7" stroke="#2d7d32"/>
+  <text x="300" y="400" text-anchor="middle" font-size="10" font-weight="bold" fill="#2d7d32">第 N 层</text>
+  <rect x="258" y="408" width="38" height="20" rx="3" fill="#a5d6a7" stroke="#2d7d32"/>
+  <text x="277" y="422" text-anchor="middle" font-size="8">M1:4bit</text>
+  <rect x="300" y="408" width="38" height="20" rx="3" fill="#a5d6a7" stroke="#2d7d32"/>
+  <text x="319" y="422" text-anchor="middle" font-size="8">M2:4bit</text>
+  <rect x="258" y="432" width="38" height="20" rx="3" fill="#a5d6a7" stroke="#2d7d32"/>
+  <text x="277" y="446" text-anchor="middle" font-size="8">M3:4bit</text>
+  <rect x="300" y="432" width="38" height="20" rx="3" fill="#a5d6a7" stroke="#2d7d32"/>
+  <text x="319" y="446" text-anchor="middle" font-size="8">M4:4bit</text>
+
+  <!-- Result box -->
+  <rect x="380" y="375" width="250" height="90" rx="8" fill="#fff" stroke="#6a1b9a" stroke-width="2"/>
+  <text x="505" y="400" text-anchor="middle" font-size="12" font-weight="bold" fill="#6a1b9a">RTN-5̃ 效果</text>
+  <text x="400" y="425" font-size="11" fill="#333">• 平均精度 ≈ 5bit（部分8bit + 部分4bit）</text>
+  <text x="400" y="445" font-size="11" fill="#333">• 仅增加 &lt;0.05 bits/权重</text>
+  <text x="400" y="465" font-size="11" fill="#333">• 精度接近 GPTQ/AWQ，但无需校准数据</text>
+
+  <!-- Key insight -->
+  <rect x="50" y="490" width="600" height="0" rx="4" fill="#e8f5e9" stroke="#2d7d32"/>
+</svg>

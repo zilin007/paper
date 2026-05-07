@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; fill: #333; }
+    .step { font-size: 13px; font-weight: bold; fill: #1565c0; }
+    .val { font-size: 12px; fill: #333; font-family: monospace; }
+    .note { font-size: 11px; fill: #777; font-style: italic; }
+    .arrow { stroke: #555; stroke-width: 2; marker-end: url(#arrow); }
+  </style>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" class="title">RTN 量化数值示例（INT4，group_size=4）</text>
+
+  <!-- Step 1: Original weights -->
+  <text x="30" y="70" class="step">Step 1: 原始 FP16 权重（一组 4 个值）</text>
+  <rect x="30" y="85" width="640" height="45" rx="6" fill="#e3f2fd" stroke="#1565c0"/>
+  <text x="60" y="113" class="val">r = [1.23,  -0.87,  2.45,  -1.98]</text>
+
+  <!-- Step 2: Find max absolute value -->
+  <text x="30" y="160" class="step">Step 2: 计算缩放因子 S</text>
+  <rect x="30" y="175" width="300" height="45" rx="6" fill="#fff3e0" stroke="#e65100"/>
+  <text x="50" y="203" class="val">max(|r|) = max(1.23, 0.87, 2.45, 1.98) = 2.45</text>
+
+  <rect x="350" y="175" width="320" height="45" rx="6" fill="#fff3e0" stroke="#e65100"/>
+  <text x="370" y="195" class="val">S = max(|r|) / (2^(4-1) - 0.5)</text>
+  <text x="370" y="213" class="val">  = 2.45 / (8 - 0.5) = 2.45 / 7.5 ≈ 0.3267</text>
+
+  <!-- Step 3: Divide by S -->
+  <text x="30" y="250" class="step">Step 3: 每个值除以 S</text>
+  <rect x="30" y="265" width="640" height="45" rx="6" fill="#f3e5f5" stroke="#6a1b9a"/>
+  <text x="50" y="293" class="val">r/S = [1.23/0.3267, -0.87/0.3267, 2.45/0.3267, -1.98/0.3267]</text>
+  <text x="50" y="325" class="val" fill="#6a1b9a" font-weight="bold">     = [3.765,  -2.663,  7.500,  -6.061]</text>
+
+  <!-- Step 4: Round to nearest integer -->
+  <text x="30" y="355" class="step">Step 4: 四舍五入取整</text>
+  <rect x="30" y="370" width="640" height="45" rx="6" fill="#e8f5e9" stroke="#2d7d32"/>
+  <text x="50" y="398" class="val">Int(r/S) = [round(3.765), round(-2.663), round(7.500), round(-6.061)]</text>
+  <text x="50" y="430" class="val" fill="#2d7d32" font-weight="bold">         = [4,  -3,  8,  -6]</text>
+
+  <!-- Step 5: Truncate to INT4 range [-8, 7] -->
+  <text x="30" y="455" class="step">Step 5: 截断到 INT4 范围 [-8, 7]</text>
+
+  <!-- Truncate annotation -->
+  <rect x="340" y="370" width="100" height="45" rx="6" fill="#ffcdd2" stroke="#c62828"/>
+  <text x="355" y="390" font-size="10" fill="#c62828" font-weight="bold">⚠ 超出范围!</text>
+  <text x="355" y="408" font-size="10" fill="#c62828">8 → 截断为 7</text>
+
+  <!-- Final result -->
+  <rect x="30" y="470" width="640" height="0" rx="6" fill="#e8f5e9" stroke="#2d7d32"/>
+</svg>

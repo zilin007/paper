@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 320" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; fill: #333; }
+    .label { font-size: 12px; fill: #555; }
+    .fast { fill: #c8e6c9; stroke: #2d7d32; stroke-width: 2; }
+    .slow { fill: #ffcdd2; stroke: #c62828; stroke-width: 2; }
+    .note { font-size: 11px; fill: #777; font-style: italic; }
+  </style>
+
+  <!-- Title -->
+  <text x="325" y="30" text-anchor="middle" class="title">Marlin 双路径推理优化</text>
+
+  <!-- Input -->
+  <rect x="20" y="70" width="120" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="80" y="95" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">激活张量</text>
+  <text x="80" y="115" text-anchor="middle" class="label">输入维度 = batch × seq_len</text>
+
+  <!-- Decision diamond -->
+  <polygon points="200,50 310,100 200,150 90,100" fill="#fff9c4" stroke="#f9a825" stroke-width="2"/>
+  <text x="200" y="95" text-anchor="middle" font-size="11" font-weight="bold" fill="#f57f17">输入维度</text>
+  <text x="200" y="112" text-anchor="middle" font-size="11" font-weight="bold" fill="#f57f17">≥ 1024?</text>
+
+  <!-- Arrow from input to decision -->
+  <line x1="140" y1="100" x2="185" y2="100" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Fast path (No) -->
+  <line x1="200" y1="150" x2="200" y2="200" stroke="#2d7d32" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="215" y="180" font-size="11" fill="#2d7d32" font-weight="bold">否（小输入）</text>
+
+  <rect x="110" y="200" width="180" height="90" rx="8" class="fast"/>
+  <text x="200" y="225" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d7d32">Marlin 内核路径</text>
+  <text x="200" y="248" text-anchor="middle" class="label">• 直接在 4bit/8bit 上计算</text>
+  <text x="200" y="266" text-anchor="middle" class="label">• 异步内存访问优化</text>
+  <text x="200" y="284" text-anchor="middle" class="label">• 速度提升最高 37%</text>
+
+  <!-- Slow path (Yes) -->
+  <line x1="310" y1="100" x2="380" y2="100" stroke="#c62828" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="340" y="90" font-size="11" fill="#c62828" font-weight="bold">是（大输入）</text>
+
+  <rect x="380" y="60" width="240" height="90" rx="8" class="slow"/>
+  <text x="500" y="85" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">反量化 + PyTorch GEMM 路径</text>
+  <text x="500" y="108" text-anchor="middle" class="label">• 先将权重反量化到 16bit</text>
+  <text x="500" y="126" text-anchor="middle" class="label">• 再用 PyTorch 标准矩阵乘法</text>
+  <text x="500" y="144" text-anchor="middle" class="label">• 大矩阵时反量化开销占比小</text>
+
+  <!-- Output -->
+  <rect x="380" y="200" width="240" height="90" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="500" y="225" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">输出</text>
+  <text x="500" y="248" text-anchor="middle" class="label">小输入 → Marlin 快路径</text>
+  <text x="500" y="266" text-anchor="middle" class="label">大输入 → 反量化路径（避免 Marlin 降级）</text>
+
+  <!-- Arrow from slow path to output -->
+  <line x1="500" y1="150" x2="500" y2="195" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Key insight -->
+  <text x="325" y="310" text-anchor="middle" class="note">关键洞察：Marlin 针对 batch=16-32 优化，大输入时性能反而下降，需切换路径</text>
+</svg>
