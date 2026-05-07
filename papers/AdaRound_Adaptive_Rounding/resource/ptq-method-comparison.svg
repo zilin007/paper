@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" font-family="sans-serif">
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold">后训练量化方法对比</text>
+  
+  <!-- 方法1: 最近舍入 -->
+  <rect x="20" y="60" width="220" height="150" rx="10" fill="#ffcccc" stroke="#cc0000" stroke-width="2"/>
+  <text x="130" y="90" text-anchor="middle" font-size="14" font-weight="bold">最近舍入 (RTN)</text>
+  
+  <rect x="40" y="110" width="180" height="40" rx="5" fill="#ff9999"/>
+  <text x="130" y="135" text-anchor="middle" font-size="12">每个权重独立舍入到最近值</text>
+  
+  <text x="130" y="180" text-anchor="middle" font-size="20"></text>
+  <text x="130" y="200" text-anchor="middle" font-size="11" fill="#cc0000">忽略权重间的相互影响</text>
+  <text x="130" y="220" text-anchor="middle" font-size="11" fill="#cc0000">4bit时精度大幅下降</text>
+  
+  <!-- 方法2: 量化感知训练 -->
+  <rect x="290" y="60" width="220" height="150" rx="10" fill="#ffffcc" stroke="#cc9900" stroke-width="2"/>
+  <text x="400" y="90" text-anchor="middle" font-size="14" font-weight="bold">量化感知训练 (QAT)</text>
+  
+  <rect x="310" y="110" width="180" height="40" rx="5" fill="#ffff99"/>
+  <text x="400" y="135" text-anchor="middle" font-size="12">微调网络学习舍入</text>
+  
+  <text x="400" y="180" text-anchor="middle" font-size="20">⚠️</text>
+  <text x="400" y="200" text-anchor="middle" font-size="11" fill="#cc9900">需要大量训练数据和时间</text>
+  <text x="400" y="220" text-anchor="middle" font-size="11" fill="#cc9900">可能过拟合</text>
+  
+  <!-- 方法3: AdaRound -->
+  <rect x="560" y="60" width="220" height="150" rx="10" fill="#ccffcc" stroke="#006600" stroke-width="3"/>
+  <text x="670" y="90" text-anchor="middle" font-size="14" font-weight="bold">AdaRound (本文)</text>
+  
+  <rect x="580" y="110" width="180" height="40" rx="5" fill="#99ff99"/>
+  <text x="670" y="135" text-anchor="middle" font-size="12">自适应优化舍入方向</text>
+  
+  <text x="670" y="180" text-anchor="middle" font-size="20">✓</text>
+  <text x="670" y="200" text-anchor="middle" font-size="11" fill="#006600">无需微调,只需少量数据</text>
+  <text x="670" y="220" text-anchor="middle" font-size="11" fill="#006600">4bit精度损失&lt;1%</text>
+  
+  <!-- 核心问题 -->
+  <rect x="20" y="240" width="760" height="90" rx="10" fill="#f0f0f0" stroke="#666" stroke-width="2"/>
+  <text x="400" y="270" text-anchor="middle" font-size="14" font-weight="bold">核心挑战: 如何高效找到最优舍入组合?</text>
+  <text x="400" y="295" text-anchor="middle" font-size="12">n个权重有2^n种舍入组合,暴力搜索不可行</text>
+  <text x="400" y="315" text-anchor="middle" font-size="12">AdaRound通过连续松弛+正则化,将离散优化转为连续优化</text>
+</svg>
