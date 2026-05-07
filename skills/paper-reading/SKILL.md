@@ -98,7 +98,7 @@ ls papers/*/_解读.md 2>/dev/null  # 查看已有解读文件
 - Conclusion（结论）
 - 关键图表的描述
 
-### Step 4.5: 提取论文原图
+### Step 5: 提取论文原图
 
 **原则：论文中的图优先从 PDF 提取原图使用；若原图提取失败（如矢量图裁剪不干净、PDF 加密无法提取等），则降级为自绘 SVG 图表替代。自绘图也可用于论文中没有的概念性说明。**
 
@@ -140,22 +140,7 @@ python skills/paper-reading/scripts/extract_pdf_figures.py "papers/<论文简称
 rm papers/<论文简称>/resource/temp_*
 ```
 
-### Step 4.6: 清理临时文件（自动执行）
-
-在手动裁剪完成、最终 Figure 图片已保存后，**自动删除**所有 `temp_` 前缀的临时文件。此步骤无需询问用户，因为 `temp_` 前缀已明确标识这些文件为一次性参考用途。
-
-**需清理的临时文件清单**：
-- `temp_page{N}_full_{dpi}dpi.png` —— 全页截图
-- `temp_paper_{arxiv_id}.md` —— MCP 下载的 HTML 转换全文缓存
-
-```bash
-# 自动清理该论文目录下 resource/ 中的所有临时文件
-rm papers/<论文简称>/resource/temp_*
-```
-
-**清理后 resource/ 中应仅保留**：最终 Figure 图片（`figure{N}_*.png`）、自绘 SVG、嵌入位图、`extraction_summary.json`。若某论文没有可提取的嵌入图片且所有 figure 均为自绘 SVG，则仅保留 SVG 和 `extraction_summary.json`。
-
-### Step 5: 生成论文解读
+### Step 6: 生成论文解读
 
 参照 [template.md](template.md) 的模板格式，用**中文**撰写论文解读。
 
@@ -231,7 +216,8 @@ rm papers/<论文简称>/resource/temp_*
 
 首次出现的专业缩写（如 MLP、FFN、LSTM、GRU 等）必须给出全称和通俗解释。例如 MLP 首次出现时应标注"MLP（Multi-Layer Perceptron，多层感知机）——最基础的神经网络结构，多层线性变换加激活函数"。后续可直接使用缩写。
 
-### Step 5.3: 一致性自检（必做）
+
+### Step 7: 一致性自检（必做）
 
 在保存解读文件之前，**必须**执行以下自检，确保解读忠实于论文且前后一致：
 
@@ -257,7 +243,8 @@ rm papers/<论文简称>/resource/temp_*
 
 **如果自检发现不一致，必须修正后再保存。**
 
-### Step 5.5: 生成初始标签并更新配置
+
+### Step 8: 生成初始标签并更新配置
 
 论文解读生成后，**必须根据论文内容给出初始标签**。标签存储在 `blog/blog-config.json` 中，是博客标签管理和筛选的数据来源。
 
@@ -306,7 +293,7 @@ rm papers/<论文简称>/resource/temp_*
 
 > **权限说明**：此步骤自动执行，无需询问用户。标签后续可通过博客管理后台（`/admin`）手动调整。
 
-### Step 6: 保存解读文件
+### Step 9: 保存解读文件
 
 将生成的 Markdown 保存到论文专属文件夹内，文件名格式：
 
@@ -379,6 +366,22 @@ papers/
 - **临时文件统一使用 `temp_` 前缀**（如 `temp_page5_full_300dpi.png`、`temp_paper_2309.12307.md`），仅用于中间处理，确认完成后自动代码删除
 - **保留文件命名规则**：最终 Figure 用 `figure{N}_{描述}.png`，自绘图用 `{描述}.svg`，不得使用 `temp_` 前缀
 - Git 推送后，GitHub Actions 会自动将论文解读同步发布到博客
+
+### Step 10: 清理临时文件（自动执行）
+
+在手动裁剪完成、最终 Figure 图片已保存后，**自动删除**所有 `temp_` 前缀的临时文件。此步骤无需询问用户，因为 `temp_` 前缀已明确标识这些文件为一次性参考用途。
+
+**需清理的临时文件清单**：
+- `temp_page{N}_full_{dpi}dpi.png` —— 全页截图
+- `temp_paper_{arxiv_id}.md` —— MCP 下载的 HTML 转换全文缓存
+
+```bash
+# 自动清理该论文目录下 resource/ 中的所有临时文件
+rm papers/<论文简称>/resource/temp_*
+```
+
+**清理后 resource/ 中应仅保留**：最终 Figure 图片（`figure{N}_*.png`）、自绘 SVG、嵌入位图、`extraction_summary.json`。若某论文没有可提取的嵌入图片且所有 figure 均为自绘 SVG，则仅保留 SVG 和 `extraction_summary.json`。
+
 
 ## 可用 MCP 工具速查
 
