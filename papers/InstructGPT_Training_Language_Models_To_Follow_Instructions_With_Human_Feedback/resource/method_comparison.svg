@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">现有方案 vs InstructGPT</text>
+
+  <!-- Method 1: Pre-training only -->
+  <rect x="20" y="60" width="200" height="140" rx="8" fill="#f0f0f0" stroke="#999" stroke-width="2"/>
+  <text x="120" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">方案1: 纯预训练</text>
+  <text x="120" y="105" text-anchor="middle" font-size="11" fill="#555">(GPT-3)</text>
+
+  <rect x="40" y="115" width="160" height="30" rx="4" fill="#4a90d9"/>
+  <text x="120" y="135" text-anchor="middle" font-size="11" fill="white">预训练 (预测下一个词)</text>
+
+  <rect x="40" y="155" width="160" height="30" rx="4" fill="#e74c3c"/>
+  <text x="120" y="175" text-anchor="middle" font-size="11" fill="white">✗ 不遵循指令</text>
+
+  <!-- Method 2: Prompting -->
+  <rect x="250" y="60" width="200" height="140" rx="8" fill="#f0f0f0" stroke="#999" stroke-width="2"/>
+  <text x="350" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">方案2: Prompt工程</text>
+  <text x="350" y="105" text-anchor="middle" font-size="11" fill="#555">(Few-shot GPT-3)</text>
+
+  <rect x="270" y="115" width="160" height="30" rx="4" fill="#4a90d9"/>
+  <text x="350" y="135" text-anchor="middle" font-size="11" fill="white">预训练 (预测下一个词)</text>
+
+  <rect x="270" y="155" width="160" height="30" rx="4" fill="#f39c12"/>
+  <text x="350" y="175" text-anchor="middle" font-size="11" fill="white">△ 效果不稳定</text>
+
+  <!-- Method 3: Public NLP Fine-tuning -->
+  <rect x="480" y="60" width="200" height="140" rx="8" fill="#f0f0f0" stroke="#999" stroke-width="2"/>
+  <text x="580" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">方案3: 公开NLP微调</text>
+  <text x="580" y="105" text-anchor="middle" font-size="11" fill="#555">(FLAN / T0)</text>
+
+  <rect x="500" y="115" width="160" height="30" rx="4" fill="#4a90d9"/>
+  <text x="580" y="135" text-anchor="middle" font-size="11" fill="white">预训练 (预测下一个词)</text>
+
+  <rect x="500" y="155" width="160" height="30" rx="4" fill="#f39c12"/>
+  <text x="580" y="175" text-anchor="middle" font-size="11" fill="white">△ 任务覆盖窄</text>
+
+  <!-- InstructGPT -->
+  <rect x="150" y="230" width="400" height="130" rx="8" fill="#e8f5e9" stroke="#27ae60" stroke-width="3"/>
+  <text x="350" y="255" text-anchor="middle" font-size="16" font-weight="bold" fill="#27ae60">InstructGPT (本文方法)</text>
+
+  <rect x="170" y="265" width="360" height="28" rx="4" fill="#4a90d9"/>
+  <text x="350" y="284" text-anchor="middle" font-size="12" fill="white">预训练 (预测下一个词)</text>
+
+  <rect x="170" y="300" width="110" height="28" rx="4" fill="#27ae60"/>
+  <text x="225" y="319" text-anchor="middle" font-size="11" fill="white">SFT 微调</text>
+
+  <rect x="290" y="300" width="110" height="28" rx="4" fill="#27ae60"/>
+  <text x="345" y="319" text-anchor="middle" font-size="11" fill="white">奖励模型</text>
+
+  <rect x="410" y="300" width="120" height="28" rx="4" fill="#27ae60"/>
+  <text x="470" y="319" text-anchor="middle" font-size="11" fill="white">PPO 强化学习</text>
+
+  <!-- Arrows -->
+  <line x1="120" y1="200" x2="250" y2="240" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+  <line x1="350" y1="200" x2="350" y2="230" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+  <line x1="580" y1="200" x2="450" y2="240" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+
+  <!-- Legend -->
+  <rect x="20" y="340" width="14" height="14" rx="2" fill="#e74c3c"/>
+  <text x="40" y="352" font-size="11" fill="#333">效果差</text>
+  <rect x="120" y="340" width="14" height="14" rx="2" fill="#f39c12"/>
+  <text x="140" y="352" font-size="11" fill="#333">效果一般</text>
+  <rect x="230" y="340" width="14" height="14" rx="2" fill="#27ae60"/>
+  <text x="250" y="352" font-size="11" fill="#333">效果好</text>
+  <rect x="330" y="340" width="14" height="14" rx="2" fill="#4a90d9"/>
+  <text x="350" y="352" font-size="11" fill="#333">共享预训练</text>
+</svg>

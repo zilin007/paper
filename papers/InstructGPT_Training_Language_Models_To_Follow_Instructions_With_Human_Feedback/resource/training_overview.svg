@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" font-family="sans-serif">
+  <defs>
+    <linearGradient id="loss-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">多轮训练迭代全景图</text>
+
+  <!-- Loss curve -->
+  <text x="80" y="60" font-size="12" font-weight="bold" fill="#333">损失下降曲线</text>
+
+  <!-- Chart area -->
+  <rect x="50" y="70" width="300" height="180" rx="4" fill="#fafafa" stroke="#ddd" stroke-width="1"/>
+
+  <!-- Y axis labels -->
+  <text x="45" y="85" text-anchor="end" font-size="9" fill="#666">1.4</text>
+  <text x="45" y="125" text-anchor="end" font-size="9" fill="#666">1.2</text>
+  <text x="45" y="165" text-anchor="end" font-size="9" fill="#666">1.0</text>
+  <text x="45" y="205" text-anchor="end" font-size="9" fill="#666">0.8</text>
+  <text x="45" y="245" text-anchor="end" font-size="9" fill="#666">0.6</text>
+
+  <!-- X axis labels -->
+  <text x="50" y="265" text-anchor="middle" font-size="9" fill="#666">0</text>
+  <text x="110" y="265" text-anchor="middle" font-size="9" fill="#666">5</text>
+  <text x="170" y="265" text-anchor="middle" font-size="9" fill="#666">10</text>
+  <text x="230" y="265" text-anchor="middle" font-size="9" fill="#666">15</text>
+  <text x="290" y="265" text-anchor="middle" font-size="9" fill="#666">20</text>
+  <text x="350" y="265" text-anchor="middle" font-size="9" fill="#666">轮次</text>
+
+  <!-- Loss curve points -->
+  <!-- Epoch 0: 1.328 -->
+  <circle cx="50" cy="93" r="4" fill="#e74c3c"/>
+  <text x="50" y="85" text-anchor="middle" font-size="8" fill="#e74c3c">1.328</text>
+
+  <!-- Epoch 1: 1.298 -->
+  <circle cx="65" cy="100" r="4" fill="#e67e22"/>
+  <text x="65" y="92" text-anchor="middle" font-size="8" fill="#e67e22">1.298</text>
+
+  <!-- Epoch 2: 1.250 -->
+  <circle cx="80" cy="112" r="4" fill="#e67e22"/>
+
+  <!-- Epoch 3: 1.180 -->
+  <circle cx="95" cy="129" r="4" fill="#f1c40f"/>
+
+  <!-- Epoch 5: 1.050 -->
+  <circle cx="125" cy="161" r="4" fill="#f1c40f"/>
+
+  <!-- Epoch 8: 0.900 -->
+  <circle cx="170" cy="198" r="4" fill="#2ecc71"/>
+
+  <!-- Epoch 12: 0.780 -->
+  <circle cx="230" cy="228" r="4" fill="#27ae60"/>
+
+  <!-- Epoch 16: 0.720 -->
+  <circle cx="290" cy="243" r="4" fill="#27ae60"/>
+  <text x="290" y="258" text-anchor="middle" font-size="8" fill="#27ae60">0.720</text>
+
+  <!-- Connecting line -->
+  <polyline points="50,93 65,100 80,112 95,129 125,161 170,198 230,228 290,243" fill="none" stroke="url(#loss-gradient)" stroke-width="2"/>
+
+  <!-- Probability curves -->
+  <text x="480" y="60" font-size="12" font-weight="bold" fill="#333">输出概率变化</text>
+
+  <rect x="400" y="70" width="280" height="180" rx="4" fill="#fafafa" stroke="#ddd" stroke-width="1"/>
+
+  <!-- Y axis -->
+  <text x="395" y="85" text-anchor="end" font-size="9" fill="#666">0.6</text>
+  <text x="395" y="125" text-anchor="end" font-size="9" fill="#666">0.4</text>
+  <text x="395" y="165" text-anchor="end" font-size="9" fill="#666">0.2</text>
+  <text x="395" y="205" text-anchor="end" font-size="9" fill="#666">0.0</text>
+
+  <!-- X axis -->
+  <text x="400" y="265" text-anchor="middle" font-size="9" fill="#666">0</text>
+  <text x="460" y="265" text-anchor="middle" font-size="9" fill="#666">5</text>
+  <text x="520" y="265" text-anchor="middle" font-size="9" fill="#666">10</text>
+  <text x="580" y="265" text-anchor="middle" font-size="9" fill="#666">15</text>
+  <text x="640" y="265" text-anchor="middle" font-size="9" fill="#666">20</text>
+  <text x="680" y="265" text-anchor="middle" font-size="9" fill="#666">轮次</text>
+
+  <!-- "写" curve: 0.30 → 0.60 (rising) -->
+  <polyline points="400,198 430,188 460,175 490,155 520,138 550,125 580,118 610,113 640,110" fill="none" stroke="#27ae60" stroke-width="2.5"/>
+  <text x="645" y="114" font-size="9" fill="#27ae60">"写" ↑</text>
+
+  <!-- "一" curve: 0.19 → 0.20 (stable) -->
+  <polyline points="400,225 430,224 460,222 490,220 520,219 550,218 580,218 610,217 640,217" fill="none" stroke="#4a90d9" stroke-width="2"/>
+  <text x="645" y="221" font-size="9" fill="#4a90d9">"一" →</text>
+
+  <!-- "个" curve: 0.28 → 0.10 (falling) -->
+  <polyline points="400,203 430,208 460,215 490,225 520,235 550,243 580,248 610,250 640,252" fill="none" stroke="#e74c3c" stroke-width="2"/>
+  <text x="645" y="256" font-size="9" fill="#e74c3c">"个" ↓</text>
+
+  <!-- "故事" curve: 0.23 → 0.10 (falling) -->
+  <polyline points="400,215 430,218 460,223 490,230 520,238 550,245 580,250 610,252 640,254" fill="none" stroke="#9b59b6" stroke-width="2"/>
+  <text x="645" y="260" font-size="9" fill="#9b59b6">"故事" ↓</text>
+
+  <!-- Target line -->
+  <line x1="400" y1="110" x2="680" y2="110" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="680" y="105" font-size="8" fill="#27ae60">目标=0.6</text>
+
+  <!-- Summary box -->
+  <rect x="50" y="285" width="600" height="50" rx="6" fill="#e8f5e9" stroke="#27ae60" stroke-width="1"/>
+  <text x="350" y="305" text-anchor="middle" font-size="11" fill="#333">训练效果：损失从 1.328 → 0.720（下降 46%），"写"的概率从 0.30 → 0.60（接近目标）</text>
+  <text x="350" y="322" text-anchor="middle" font-size="11" fill="#333">每一步更新幅度不大，但方向正确，持续迭代后模型越来越接近人类示范</text>
+</svg>

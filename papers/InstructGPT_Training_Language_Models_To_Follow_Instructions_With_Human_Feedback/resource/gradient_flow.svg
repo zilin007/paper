@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 400" font-family="sans-serif">
+  <defs>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+  </defs>
+
+  <text x="325" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">SFT 阶段梯度流向图</text>
+
+  <!-- Input -->
+  <rect x="30" y="70" width="120" height="50" rx="6" fill="#e3f2fd" stroke="#4a90d9" stroke-width="2"/>
+  <text x="90" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#4a90d9">输入 x</text>
+  <text x="90" y="108" text-anchor="middle" font-size="10" fill="#666">[1.0, 0.5, -0.2]</text>
+
+  <!-- Weight matrix W -->
+  <rect x="230" y="60" width="140" height="70" rx="6" fill="#fff3e0" stroke="#f39c12" stroke-width="2"/>
+  <text x="300" y="82" text-anchor="middle" font-size="12" font-weight="bold" fill="#f39c12">权重矩阵 W</text>
+  <text x="300" y="100" text-anchor="middle" font-size="10" fill="#666">4×3 可训练参数</text>
+  <text x="300" y="118" text-anchor="middle" font-size="10" fill="#27ae60">✓ 有梯度流过</text>
+
+  <!-- Output -->
+  <rect x="450" y="70" width="120" height="50" rx="6" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+  <text x="510" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#27ae60">输出 ŷ</text>
+  <text x="510" y="108" text-anchor="middle" font-size="10" fill="#666">softmax(Wx)</text>
+
+  <!-- Arrows forward -->
+  <line x1="150" y1="95" x2="230" y2="95" stroke="#4a90d9" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="190" y="85" text-anchor="middle" font-size="10" fill="#4a90d9">z = Wx</text>
+
+  <line x1="370" y1="95" x2="450" y2="95" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="410" y="85" text-anchor="middle" font-size="10" fill="#27ae60">softmax</text>
+
+  <!-- Loss -->
+  <rect x="450" y="170" width="120" height="50" rx="6" fill="#fce4ec" stroke="#e74c3c" stroke-width="2"/>
+  <text x="510" y="192" text-anchor="middle" font-size="12" font-weight="bold" fill="#e74c3c">损失 L</text>
+  <text x="510" y="208" text-anchor="middle" font-size="10" fill="#666">交叉熵 = 1.328</text>
+
+  <!-- Target -->
+  <rect x="450" y="250" width="120" height="50" rx="6" fill="#f5f5f5" stroke="#999" stroke-width="2"/>
+  <text x="510" y="272" text-anchor="middle" font-size="12" font-weight="bold" fill="#666">目标 y_target</text>
+  <text x="510" y="288" text-anchor="middle" font-size="10" fill="#666">[0.6, 0.2, 0.1, 0.1]</text>
+
+  <!-- Arrow from output to loss -->
+  <line x1="510" y1="120" x2="510" y2="170" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Arrow from target to loss -->
+  <line x1="510" y1="250" x2="510" y2="220" stroke="#999" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-red)"/>
+
+  <!-- Backward gradient arrows -->
+  <line x1="450" y1="195" x2="370" y2="130" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <text x="390" y="175" text-anchor="middle" font-size="10" fill="#e74c3c">∂L/∂ŷ</text>
+
+  <line x1="370" y1="125" x2="230" y2="125" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <text x="300" y="148" text-anchor="middle" font-size="10" fill="#e74c3c">∂L/∂W = (ŷ - y_target) · xᵀ</text>
+
+  <!-- Gradient values box -->
+  <rect x="30" y="170" width="160" height="130" rx="6" fill="#fce4ec" stroke="#e74c3c" stroke-width="1"/>
+  <text x="110" y="190" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">梯度值 ∂L/∂W</text>
+
+  <text x="45" y="210" font-size="10" fill="#333">行0 (写): [-0.30, -0.15, 0.06]</text>
+  <text x="45" y="228" font-size="10" fill="#333">行1 (一): [-0.01, -0.01, 0.002]</text>
+  <text x="45" y="246" font-size="10" fill="#333">行2 (个): [0.18, 0.09, -0.04]</text>
+  <text x="45" y="264" font-size="10" fill="#333">行3 (故事): [0.13, 0.07, -0.03]</text>
+
+  <text x="110" y="288" text-anchor="middle" font-size="10" fill="#27ae60">负梯度 → W 增大 → 概率↑</text>
+  <text x="110" y="304" text-anchor="middle" font-size="10" fill="#e74c3c">正梯度 → W 减小 → 概率↓</text>
+
+  <!-- Update direction -->
+  <rect x="230" y="200" width="180" height="100" rx="6" fill="#e8f5e9" stroke="#27ae60" stroke-width="1"/>
+  <text x="320" y="220" text-anchor="middle" font-size="11" font-weight="bold" fill="#27ae60">更新方向 (η=0.1)</text>
+
+  <text x="245" y="240" font-size="10" fill="#333">"写" 行: W[0] + 0.1×0.30 → ↑</text>
+  <text x="245" y="258" font-size="10" fill="#333">"一" 行: W[1] + 0.1×0.01 → ↑</text>
+  <text x="245" y="276" font-size="10" fill="#333">"个" 行: W[2] - 0.1×0.18 → ↓</text>
+  <text x="245" y="294" font-size="10" fill="#333">"故事"行: W[3] - 0.1×0.13 → ↓</text>
+
+  <!-- Legend -->
+  <line x1="30" y1="340" x2="60" y2="340" stroke="#27ae60" stroke-width="2"/>
+  <text x="65" y="344" font-size="11" fill="#333">前向传播</text>
+
+  <line x1="180" y1="340" x2="210" y2="340" stroke="#e74c3c" stroke-width="2"/>
+  <text x="215" y="344" font-size="11" fill="#333">反向传播（梯度）</text>
+
+  <line x1="380" y1="340" x2="410" y2="340" stroke="#999" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="415" y="344" font-size="11" fill="#333">目标参考（无梯度）</text>
+
+  <text x="325" y="375" text-anchor="middle" font-size="11" fill="#666">所有 W 的参数都有梯度流过，全部参与更新</text>
+</svg>
