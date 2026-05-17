@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <style>
+      .title { font-family: sans-serif; font-size: 16px; font-weight: bold; text-anchor: middle; }
+      .label { font-family: sans-serif; font-size: 13px; text-anchor: middle; }
+      .desc { font-family: sans-serif; font-size: 11px; fill: #666; text-anchor: middle; }
+      .arrow { stroke: #333; stroke-width: 2; marker-end: url(#arrowhead); }
+      .box { rx: 8; ry: 8; stroke-width: 2; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" class="title">现有 RL 后训练方法对比</text>
+  
+  <!-- PPO Box -->
+  <rect x="30" y="60" width="220" height="280" class="box" fill="#ffe0e0" stroke="#cc0000" />
+  <text x="140" y="90" class="title" fill="#cc0000">PPO</text>
+  <text x="140" y="120" class="label">需要奖励模型</text>
+  <text x="140" y="145" class="label">需要价值网络</text>
+  <text x="140" y="170" class="label">On-policy 采样</text>
+  <text x="140" y="195" class="label">KL 正则化</text>
+  <text x="140" y="230" class="desc" fill="#cc0000">✗ 实现复杂</text>
+  <text x="140" y="255" class="desc" fill="#cc0000">✗ 计算开销大</text>
+  <text x="140" y="280" class="desc" fill="#cc0000">✗ 训练不稳定</text>
+  <text x="140" y="310" class="desc" fill="#006600">✓ 通用性强</text>
+  
+  <!-- DPO Box -->
+  <rect x="290" y="60" width="220" height="280" class="box" fill="#e0ffe0" stroke="#006600" />
+  <text x="400" y="90" class="title" fill="#006600">DPO</text>
+  <text x="400" y="120" class="label">不需要奖励模型</text>
+  <text x="400" y="145" class="label">不需要价值网络</text>
+  <text x="400" y="170" class="label">Offline 优化</text>
+  <text x="400" y="195" class="label">直接偏好优化</text>
+  <text x="400" y="230" class="desc" fill="#006600">✓ 实现简单</text>
+  <text x="400" y="255" class="desc" fill="#006600">✓ 计算高效</text>
+  <text x="400" y="280" class="desc" fill="#006600">✓ 训练稳定</text>
+  <text x="400" y="310" class="desc" fill="#cc0000">✗ 依赖偏好数据质量</text>
+  
+  <!-- GRPO Box -->
+  <rect x="550" y="60" width="220" height="280" class="box" fill="#e0e0ff" stroke="#0000cc" />
+  <text x="660" y="90" class="title" fill="#0000cc">GRPO</text>
+  <text x="660" y="120" class="label">不需要奖励模型</text>
+  <text x="660" y="145" class="label">不需要价值网络</text>
+  <text x="660" y="170" class="label">On-policy 组采样</text>
+  <text x="660" y="195" class="label">规则验证奖励</text>
+  <text x="660" y="230" class="desc" fill="#006600">✓ 实现中等</text>
+  <text x="660" y="255" class="desc" fill="#006600">✓ 数学/代码任务强</text>
+  <text x="660" y="280" class="desc" fill="#006600">✓ 无需标注数据</text>
+  <text x="660" y="310" class="desc" fill="#cc0000">✗ 仅适用可验证任务</text>
+  
+  <!-- Arrows showing evolution -->
+  <path d="M 250 200 L 280 200" class="arrow" />
+  <path d="M 510 200 L 540 200" class="arrow" />
+  
+  <text x="265" y="190" class="desc" font-size="10">简化</text>
+  <text x="525" y="190" class="desc" font-size="10">变革</text>
+</svg>

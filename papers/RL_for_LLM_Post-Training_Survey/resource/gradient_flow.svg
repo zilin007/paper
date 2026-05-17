@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" width="700" height="350">
+  <defs>
+    <style>
+      .title { font-family: sans-serif; font-size: 15px; font-weight: bold; text-anchor: middle; }
+      .label { font-family: sans-serif; font-size: 12px; text-anchor: middle; }
+      .small { font-family: sans-serif; font-size: 10px; }
+      .frozen { fill: #999; stroke: #666; }
+      .trainable { fill: #4CAF50; stroke: #2E7D32; }
+      .gradient { stroke: #FF5722; stroke-width: 2; marker-end: url(#arrowhead); }
+      .no-gradient { stroke: #999; stroke-width: 2; stroke-dasharray: 5,5; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FF5722" />
+    </marker>
+  </defs>
+  
+  <text x="350" y="25" class="title">GRPO 梯度流向图</text>
+  
+  <!-- Input -->
+  <rect x="50" y="60" width="100" height="40" rx="5" fill="#E3F2FD" stroke="#1976D2" />
+  <text x="100" y="85" class="label">输入 x</text>
+  
+  <!-- LLM -->
+  <rect x="200" y="50" width="120" height="60" rx="5" class="trainable" />
+  <text x="260" y="75" class="label" fill="white">LLM π_θ</text>
+  <text x="260" y="95" class="small" fill="white">可训练参数 θ</text>
+  
+  <!-- Responses -->
+  <rect x="370" y="40" width="80" height="30" rx="5" fill="#C8E6C9" stroke="#388E3C" />
+  <text x="410" y="60" class="small">y₁ (正确)</text>
+  
+  <rect x="370" y="80" width="80" height="30" rx="5" fill="#C8E6C9" stroke="#388E3C" />
+  <text x="410" y="100" class="small">y₂ (正确)</text>
+  
+  <rect x="370" y="120" width="80" height="30" rx="5" fill="#FFCDD2" stroke="#D32F2F" />
+  <text x="410" y="140" class="small">y₃ (错误)</text>
+  
+  <!-- Rewards -->
+  <rect x="500" y="40" width="80" height="30" rx="5" fill="#4CAF50" />
+  <text x="540" y="60" class="small" fill="white">r₁=1</text>
+  
+  <rect x="500" y="80" width="80" height="30" rx="5" fill="#4CAF50" />
+  <text x="540" y="100" class="small" fill="white">r₂=1</text>
+  
+  <rect x="500" y="120" width="80" height="30" rx="5" fill="#F44336" />
+  <text x="540" y="140" class="small" fill="white">r₃=0</text>
+  
+  <!-- Advantage -->
+  <rect x="500" y="180" width="160" height="80" rx="5" fill="#FFF3E0" stroke="#F57C00" />
+  <text x="580" y="205" class="label">优势计算</text>
+  <text x="580" y="225" class="small">μ = 0.667, σ = 0.471</text>
+  <text x="580" y="245" class="small">A₁=A₂=+0.707, A₃=-1.414</text>
+  
+  <!-- Gradient flow arrows -->
+  <!-- From LLM to responses -->
+  <line x1="320" y1="65" x2="365" y2="55" class="gradient" />
+  <line x1="320" y1="80" x2="365" y2="95" class="gradient" />
+  <line x1="320" y1="95" x2="365" y2="135" class="gradient" />
+  
+  <!-- From responses to rewards -->
+  <line x1="450" y1="55" x2="495" y2="55" class="gradient" />
+  <line x1="450" y1="95" x2="495" y2="95" class="gradient" />
+  <line x1="450" y1="135" x2="495" y2="135" class="gradient" />
+  
+  <!-- From rewards to advantage -->
+  <line x1="540" y1="150" x2="540" y2="175" class="gradient" />
+  
+  <!-- From advantage back to LLM (gradient) -->
+  <path d="M 500 220 Q 350 280 260 120" class="gradient" fill="none" />
+  <text x="350" y="270" class="small" fill="#FF5722">梯度回传 ∇_θ log π_θ</text>
+  
+  <!-- Legend -->
+  <rect x="50" y="300" width="15" height="15" class="trainable" />
+  <text x="75" y="312" class="small">可训练参数（有梯度）</text>
+  
+  <rect x="250" y="300" width="15" height="15" class="frozen" />
+  <text x="275" y="312" class="small">冻结参数（无梯度）</text>
+  
+  <line x1="420" y1="307" x2="450" y2="307" class="gradient" />
+  <text x="460" y="312" class="small">梯度流向</text>
+</svg>

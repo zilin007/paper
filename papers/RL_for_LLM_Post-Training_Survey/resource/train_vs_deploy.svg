@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" width="700" height="350">
+  <defs>
+    <style>
+      .title { font-family: sans-serif; font-size: 15px; font-weight: bold; text-anchor: middle; }
+      .label { font-family: sans-serif; font-size: 12px; text-anchor: middle; }
+      .small { font-family: sans-serif; font-size: 10px; }
+      .round { rx: 5; ry: 5; }
+      .train-box { fill: #E3F2FD; stroke: #1976D2; }
+      .deploy-box { fill: #E8F5E9; stroke: #4CAF50; }
+    </style>
+  </defs>
+  
+  <text x="350" y="25" class="title">训练时 vs 部署时对比</text>
+  
+  <!-- Training Side -->
+  <rect x="20" y="50" width="310" height="260" class="round" fill="#FFF3E0" stroke="#F57C00" />
+  <text x="175" y="75" class="title" fill="#F57C00">训练时（复杂）</text>
+  
+  <!-- Training components -->
+  <rect x="40" y="90" width="120" height="30" class="round train-box" />
+  <text x="100" y="110" class="small">输入 Prompt</text>
+  
+  <rect x="40" y="130" width="120" height="30" class="round train-box" />
+  <text x="100" y="150" class="small">LLM 生成 G 个回答</text>
+  
+  <rect x="40" y="170" width="120" height="30" class="round train-box" />
+  <text x="100" y="190" class="small">规则验证/奖励模型</text>
+  
+  <rect x="40" y="210" width="120" height="30" class="round train-box" />
+  <text x="100" y="230" class="small">计算优势 &amp; 梯度</text>
+  
+  <rect x="40" y="250" width="120" height="30" class="round train-box" />
+  <text x="100" y="270" class="small">更新模型参数 θ</text>
+  
+  <!-- Arrows between training components -->
+  <text x="175" y="125" class="label">→</text>
+  <text x="175" y="165" class="label">→</text>
+  <text x="175" y="205" class="label">→</text>
+  <text x="175" y="245" class="label">→</text>
+  
+  <!-- Deploy Side -->
+  <rect x="370" y="50" width="310" height="260" class="round" fill="#E8F5E9" stroke="#4CAF50" />
+  <text x="525" y="75" class="title" fill="#4CAF50">部署时（简单）</text>
+  
+  <!-- Deploy components -->
+  <rect x="390" y="130" width="120" height="30" class="round deploy-box" />
+  <text x="450" y="150" class="small">输入 Prompt</text>
+  
+  <rect x="390" y="190" width="120" height="30" class="round deploy-box" />
+  <text x="450" y="210" class="small">LLM 生成 1 个回答</text>
+  
+  <rect x="390" y="250" width="120" height="30" class="round deploy-box" />
+  <text x="450" y="270" class="small">输出回答</text>
+  
+  <!-- Arrows between deploy components -->
+  <text x="525" y="175" class="label">→</text>
+  <text x="525" y="235" class="label">→</text>
+  
+  <!-- Comparison notes -->
+  <rect x="20" y="320" width="310" height="25" class="round" fill="#FFEBEE" stroke="#F44336" />
+  <text x="175" y="337" class="small" fill="#C62828">需要: 多 GPU、奖励模型、多次生成</text>
+  
+  <rect x="370" y="320" width="310" height="25" class="round" fill="#E8F5E9" stroke="#4CAF50" />
+  <text x="525" y="337" class="small" fill="#2E7D32">只需: 单个模型、一次前向传播</text>
+  
+  <!-- Big arrow showing transformation -->
+  <text x="345" y="180" class="label" font-size="24">⇒</text>
+  <text x="345" y="200" class="small">训练后</text>
+  <text x="345" y="215" class="small">丢弃</text>
+</svg>
