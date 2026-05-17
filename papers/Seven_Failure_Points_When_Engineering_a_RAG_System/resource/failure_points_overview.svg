@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="sans-serif">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#d32f2f"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a1a">RAG 系统七个失败点全景图</text>
+
+  <!-- Pipeline stages -->
+  <!-- Stage 1: 文档处理 -->
+  <rect x="30" y="70" width="130" height="80" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="95" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565c0">文档处理</text>
+  <text x="95" y="120" text-anchor="middle" font-size="11" fill="#333">分块 → 向量化</text>
+  <text x="95" y="138" text-anchor="middle" font-size="11" fill="#333">→ 存入数据库</text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="110" x2="220" y2="110" stroke="#555" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Stage 2: 查询改写 -->
+  <rect x="220" y="70" width="130" height="80" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="285" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565c0">查询改写</text>
+  <text x="285" y="120" text-anchor="middle" font-size="11" fill="#333">用户问题</text>
+  <text x="285" y="138" text-anchor="middle" font-size="11" fill="#333">→ 优化查询</text>
+
+  <!-- Arrow -->
+  <line x1="350" y1="110" x2="410" y2="110" stroke="#555" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Stage 3: 检索 -->
+  <rect x="410" y="70" width="130" height="80" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="475" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565c0">检索</text>
+  <text x="475" y="120" text-anchor="middle" font-size="11" fill="#333">向量相似度</text>
+  <text x="475" y="138" text-anchor="middle" font-size="11" fill="#333">→ Top-K 文档</text>
+
+  <!-- Arrow -->
+  <line x1="540" y1="110" x2="600" y2="110" stroke="#555" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Stage 4: 整合 -->
+  <rect x="600" y="70" width="130" height="80" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="665" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565c0">内容整合</text>
+  <text x="665" y="120" text-anchor="middle" font-size="11" fill="#333">筛选 + 压缩</text>
+  <text x="665" y="138" text-anchor="middle" font-size="11" fill="#333">→ 构建上下文</text>
+
+  <!-- Arrow -->
+  <line x1="730" y1="110" x2="790" y2="110" stroke="#555" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Stage 5: 生成 -->
+  <rect x="790" y="70" width="100" height="80" rx="8" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+  <text x="840" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">LLM 生成</text>
+  <text x="840" y="120" text-anchor="middle" font-size="11" fill="#333">基于上下文</text>
+  <text x="840" y="138" text-anchor="middle" font-size="11" fill="#333">生成答案</text>
+
+  <!-- Arrow to output -->
+  <line x1="840" y1="150" x2="840" y2="190" stroke="#555" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Output -->
+  <rect x="770" y="190" width="140" height="50" rx="8" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+  <text x="840" y="220" text-anchor="middle" font-size="13" font-weight="bold" fill="#2e7d32">输出答案</text>
+
+  <!-- Failure Points -->
+  <!-- FP1 -->
+  <rect x="30" y="200" width="200" height="55" rx="6" fill="#ffebee" stroke="#d32f2f" stroke-width="2"/>
+  <text x="40" y="220" font-size="12" font-weight="bold" fill="#d32f2f">FP1: 内容缺失</text>
+  <text x="40" y="240" font-size="11" fill="#333">文档库中没有答案</text>
+  <line x1="130" y1="200" x2="130" y2="150" stroke="#d32f2f" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-red)"/>
+
+  <!-- FP2 -->
+  <rect x="410" y="200" width="200" height="55" rx="6" fill="#ffebee" stroke="#d32f2f" stroke-width="2"/>
+  <text x="420" y="220" font-size="12" font-weight="bold" fill="#d32f2f">FP2: 遗漏排名</text>
+  <text x="420" y="240" font-size="11" fill="#333">答案在但没排进 Top-K</text>
+  <line x1="510" y1="200" x2="510" y2="150" stroke="#d32f2f" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-red)"/>
+
+  <!-- FP3 -->
+  <rect x="600" y="200" width="200" height="55" rx="6" fill="#ffebee" stroke="#d32f2f" stroke-width="2"/>
+  <text x="610" y="220" font-size="12" font-weight="bold" fill="#d32f2f">FP3: 不在上下文</text>
+  <text x="610" y="240" font-size="11" fill="#333">检索到了但整合时被丢弃</text>
+  <line x1="700" y1="200" x2="700" y2="150" stroke="#d32f2f" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-red)"/>
+
+  <!-- FP4 -->
+  <rect x="790" y="200" width="200" height="55" rx="6" fill="#ffebee" stroke="#d32f2f" stroke-width="2"/>
+  <text x="800" y="220" font-size="12" font-weight="bold" fill="#d32f2f">FP4: 未能提取</text>
+  <text x="800" y="240" font-size="11" fill="#333">答案在上下文中但没提取</text>
+  <line x1="840" y1="200" x2="840" y2="150" stroke="#d32f2f" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-red)"/>
+
+  <!-- FP5, FP6, FP7 - Output stage failures -->
+  <line x1="840" y1="240" x2="840" y2="280" stroke="#555" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- FP5 -->
+  <rect x="30" y="300" width="260" height="55" rx="6" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+  <text x="40" y="320" font-size="12" font-weight="bold" fill="#e65100">FP5: 格式错误</text>
+  <text x="40" y="340" font-size="11" fill="#333">LLM 忽略了格式指令（表格/列表）</text>
+
+  <!-- FP6 -->
+  <rect x="320" y="300" width="260" height="55" rx="6" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+  <text x="330" y="320" font-size="12" font-weight="bold" fill="#e65100">FP6: 具体度不正确</text>
+  <text x="330" y="340" font-size="11" fill="#333">答案太笼统或太具体，不匹配需求</text>
+
+  <!-- FP7 -->
+  <rect x="610" y="300" width="260" height="55" rx="6" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+  <text x="620" y="320" font-size="12" font-weight="bold" fill="#e65100">FP7: 不完整</text>
+  <text x="620" y="340" font-size="11" fill="#333">答案没错但遗漏了部分可用信息</text>
+
+  <!-- Legend -->
+  <rect x="30" y="400" width="840" height="180" rx="8" fill="#fafafa" stroke="#ccc" stroke-width="1"/>
+  <text x="450" y="425" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">失败点分类与严重程度</text>
+
+  <!-- High severity -->
+  <rect x="50" y="445" width="16" height="16" rx="3" fill="#ffebee" stroke="#d32f2f" stroke-width="2"/>
+  <text x="75" y="458" font-size="12" font-weight="bold" fill="#d32f2f">高严重度</text>
+  <text x="170" y="458" font-size="11" fill="#333">FP2（遗漏排名）、FP3（不在上下文）、FP4（未能提取）</text>
+  <text x="170" y="475" font-size="10" fill="#666">→ 答案存在但用户得不到，是最常见也最严重的问题</text>
+
+  <!-- Medium severity -->
+  <rect x="50" y="495" width="16" height="16" rx="3" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+  <text x="75" y="508" font-size="12" font-weight="bold" fill="#e65100">中严重度</text>
+  <text x="170" y="508" font-size="11" fill="#333">FP1（内容缺失）、FP6（具体度错误）、FP7（不完整）</text>
+  <text x="170" y="525" font-size="10" fill="#666">→ 影响用户体验，但系统行为可预期</text>
+
+  <!-- Low severity -->
+  <rect x="50" y="545" width="16" height="16" rx="3" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+  <text x="75" y="558" font-size="12" font-weight="bold" fill="#2e7d32">低严重度</text>
+  <text x="170" y="558" font-size="11" fill="#333">FP5（格式错误）</text>
+  <text x="170" y="575" font-size="10" fill="#666">→ 答案内容正确，只是格式不符合要求</text>
+</svg>

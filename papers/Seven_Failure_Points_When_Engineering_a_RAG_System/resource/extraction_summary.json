@@ -1,0 +1,37 @@
+{
+  "pdf": "papers/Seven_Failure_Points_When_Engineering_a_RAG_System/Seven_Failure_Points_When_Engineering_a_RAG_System.pdf",
+  "total_pages": 6,
+  "embedded_images": 1,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 174.1
+    },
+    {
+      "fig_num": "1",
+      "page": 3,
+      "caption_y": 281.8
+    }
+  ],
+  "files": [
+    {
+      "page": 3,
+      "file": "page3_img1_2573x945.png",
+      "size": "2573x945",
+      "method": "embedded"
+    },
+    {
+      "page": 2,
+      "file": "temp_page2_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 3,
+      "file": "temp_page3_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    }
+  ]
+}
