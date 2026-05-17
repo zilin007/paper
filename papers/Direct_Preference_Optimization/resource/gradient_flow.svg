@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="sans-serif">
+  <defs>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#999"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="18" font-weight="bold">DPO 梯度流向图</text>
+
+  <!-- Input -->
+  <rect x="50" y="60" width="120" height="50" rx="8" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+  <text x="110" y="85" text-anchor="middle" font-size="13" fill="#fff">输入 x</text>
+  <text x="110" y="100" text-anchor="middle" font-size="10" fill="#ecf0f1">(prompt)</text>
+
+  <!-- Arrow to LM -->
+  <line x1="170" y1="85" x2="230" y2="85" stroke="#333" stroke-width="2" marker-end="url(#arrow-gray)"/>
+
+  <!-- Language Model -->
+  <rect x="230" y="55" width="160" height="60" rx="8" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+  <text x="310" y="80" text-anchor="middle" font-size="13" fill="#fff">语言模型 πθ</text>
+  <text x="310" y="98" text-anchor="middle" font-size="10" fill="#ecf0f1">(可训练参数 θ)</text>
+
+  <!-- Outputs -->
+  <line x1="390" y1="70" x2="460" y2="50" stroke="#333" stroke-width="2" marker-end="url(#arrow-gray)"/>
+  <line x1="390" y1="100" x2="460" y2="120" stroke="#333" stroke-width="2" marker-end="url(#arrow-gray)"/>
+
+  <!-- Preferred output -->
+  <rect x="460" y="30" width="120" height="45" rx="8" fill="#27ae60" stroke="#219a52" stroke-width="2"/>
+  <text x="520" y="50" text-anchor="middle" font-size="12" fill="#fff">yw (偏好)</text>
+  <text x="520" y="65" text-anchor="middle" font-size="10" fill="#ecf0f1">πθ(yw|x) ↑</text>
+
+  <!-- Dispreferred output -->
+  <rect x="460" y="100" width="120" height="45" rx="8" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+  <text x="520" y="120" text-anchor="middle" font-size="12" fill="#fff">yl (不偏好)</text>
+  <text x="520" y="135" text-anchor="middle" font-size="10" fill="#ecf0f1">πθ(yl|x) ↓</text>
+
+  <!-- Reference Model -->
+  <rect x="230" y="160" width="160" height="50" rx="8" fill="#95a5a6" stroke="#7f8c8d" stroke-width="2"/>
+  <text x="310" y="182" text-anchor="middle" font-size="13" fill="#fff">参考模型 πref</text>
+  <text x="310" y="198" text-anchor="middle" font-size="10" fill="#ecf0f1">(冻结，不更新)</text>
+
+  <!-- Arrows from ref model -->
+  <line x1="390" y1="175" x2="460" y2="65" stroke="#95a5a6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-gray)"/>
+  <line x1="390" y1="195" x2="460" y2="130" stroke="#95a5a6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-gray)"/>
+
+  <!-- DPO Loss computation -->
+  <rect x="460" y="180" width="280" height="100" rx="10" fill="#fff" stroke="#333" stroke-width="2"/>
+  <text x="600" y="205" text-anchor="middle" font-size="13" font-weight="bold">DPO Loss 计算</text>
+  <text x="600" y="225" text-anchor="middle" font-size="11">L = -log σ(β log(πθ(yw|x)/πref(yw|x))</text>
+  <text x="600" y="242" text-anchor="middle" font-size="11">           - β log(πθ(yl|x)/πref(yl|x)))</text>
+  <text x="600" y="265" text-anchor="middle" font-size="10" fill="#666">σ = sigmoid 函数</text>
+
+  <!-- Gradient arrows -->
+  <line x1="520" y1="75" x2="580" y2="180" stroke="#27ae60" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+  <text x="540" y="120" font-size="10" fill="#27ae60">梯度 ↑</text>
+
+  <line x1="520" y1="145" x2="580" y2="180" stroke="#e74c3c" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+  <text x="540" y="170" font-size="10" fill="#e74c3c">梯度 ↓</text>
+
+  <!-- Gradient flow back to θ -->
+  <path d="M 460 230 Q 350 230 310 115" fill="none" stroke="#27ae60" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+  <text x="340" y="220" font-size="11" fill="#27ae60">∂L/∂θ 更新参数</text>
+
+  <!-- Key insight box -->
+  <rect x="50" y="310" width="700" height="80" rx="10" fill="#ffeaa7" stroke="#fdcb6e" stroke-width="2"/>
+  <text x="400" y="335" text-anchor="middle" font-size="14" font-weight="bold">💡 核心洞察</text>
+  <text x="400" y="358" text-anchor="middle" font-size="12">DPO 通过增大偏好回答的概率、减小不偏好回答的概率来更新模型</text>
+  <text x="400" y="378" text-anchor="middle" font-size="12">参考模型 πref 提供"锚点"，防止模型偏离太远（KL 约束）</text>
+
+  <!-- Legend -->
+  <rect x="50" y="410" width="700" height="70" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  <text x="70" y="432" font-size="12" font-weight="bold">图例：</text>
+  <rect x="70" y="442" width="20" height="12" fill="#2ecc71" rx="3"/>
+  <text x="95" y="453" font-size="11">可训练参数（有梯度）</text>
+  <rect x="250" y="442" width="20" height="12" fill="#95a5a6" rx="3"/>
+  <text x="275" y="453" font-size="11">冻结参数（无梯度）</text>
+  <line x1="430" y1="448" x2="460" y2="448" stroke="#27ae60" stroke-width="2"/>
+  <text x="465" y="453" font-size="11">梯度流向</text>
+</svg>

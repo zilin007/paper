@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-size="18" font-weight="bold">RLHF vs DPO 方法对比</text>
+
+  <!-- RLHF Pipeline (left side) -->
+  <rect x="20" y="50" width="400" height="350" rx="10" fill="#ffeaea" stroke="#e74c3c" stroke-width="2"/>
+  <text x="220" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#c0392b">RLHF（传统方法）</text>
+
+  <!-- RLHF Step 1 -->
+  <rect x="40" y="100" width="160" height="60" rx="8" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <text x="120" y="125" text-anchor="middle" font-size="12">偏好数据</text>
+  <text x="120" y="145" text-anchor="middle" font-size="11" fill="#666">(yw, yl)</text>
+
+  <!-- Arrow -->
+  <line x1="200" y1="130" x2="260" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- RLHF Step 2 -->
+  <rect x="260" y="100" width="140" height="60" rx="8" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <text x="330" y="125" text-anchor="middle" font-size="12">训练奖励模型</text>
+  <text x="330" y="145" text-anchor="middle" font-size="11" fill="#666">r(x,y)</text>
+
+  <!-- Arrow down -->
+  <line x1="330" y1="160" x2="330" y2="210" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- RLHF Step 3 -->
+  <rect x="260" y="210" width="140" height="60" rx="8" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <text x="330" y="235" text-anchor="middle" font-size="12">RL 优化 (PPO)</text>
+  <text x="330" y="255" text-anchor="middle" font-size="11" fill="#666">采样+策略梯度</text>
+
+  <!-- Arrow left -->
+  <line x1="260" y1="240" x2="120" y2="240" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- RLHF Step 4 -->
+  <rect x="40" y="210" width="160" height="60" rx="8" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <text x="120" y="235" text-anchor="middle" font-size="12">语言模型 πθ</text>
+  <text x="120" y="255" text-anchor="middle" font-size="11" fill="#666">更新策略</text>
+
+  <!-- RLHF Loop arrow -->
+  <path d="M 200 240 Q 230 270 260 240" fill="none" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <text x="230" y="285" text-anchor="middle" font-size="11" fill="#e74c3c">迭代循环</text>
+
+  <!-- RLHF disadvantages -->
+  <rect x="40" y="300" width="360" height="80" rx="8" fill="#fff3f3" stroke="#e74c3c" stroke-width="1"/>
+  <text x="55" y="322" font-size="11" fill="#c0392b">❌ 缺点：</text>
+  <text x="55" y="340" font-size="11" fill="#666">• 需要训练额外的奖励模型</text>
+  <text x="55" y="356" font-size="11" fill="#666">• PPO 训练不稳定，调参困难</text>
+  <text x="55" y="372" font-size="11" fill="#666">• 训练时需要从 LM 采样，计算量大</text>
+
+  <!-- DPO Pipeline (right side) -->
+  <rect x="480" y="50" width="400" height="350" rx="10" fill="#e8f8f5" stroke="#27ae60" stroke-width="2"/>
+  <text x="680" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#27ae60">DPO（本文方法）</text>
+
+  <!-- DPO Step 1 -->
+  <rect x="500" y="100" width="160" height="60" rx="8" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <text x="580" y="125" text-anchor="middle" font-size="12">偏好数据</text>
+  <text x="580" y="145" text-anchor="middle" font-size="11" fill="#666">(yw, yl)</text>
+
+  <!-- Arrow -->
+  <line x1="660" y1="130" x2="720" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- DPO Step 2 -->
+  <rect x="720" y="100" width="140" height="60" rx="8" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <text x="790" y="125" text-anchor="middle" font-size="12">直接优化策略</text>
+  <text x="790" y="145" text-anchor="middle" font-size="11" fill="#666">DPO Loss</text>
+
+  <!-- Arrow down -->
+  <line x1="790" y1="160" x2="790" y2="210" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- DPO Result -->
+  <rect x="720" y="210" width="140" height="60" rx="8" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <text x="790" y="235" text-anchor="middle" font-size="12">最终语言模型</text>
+  <text x="790" y="255" text-anchor="middle" font-size="11" fill="#666">πθ (一步到位)</text>
+
+  <!-- DPO advantages -->
+  <rect x="500" y="300" width="360" height="80" rx="8" fill="#f0fff4" stroke="#27ae60" stroke-width="1"/>
+  <text x="515" y="322" font-size="11" fill="#27ae60">✅ 优点：</text>
+  <text x="515" y="340" font-size="11" fill="#666">• 无需训练奖励模型</text>
+  <text x="515" y="356" font-size="11" fill="#666">• 无需 RL，直接用分类损失</text>
+  <text x="515" y="372" font-size="11" fill="#666">• 训练稳定，几乎不用调参</text>
+
+  <!-- Middle comparison -->
+  <text x="450" y="200" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">本质区别</text>
+  <text x="450" y="220" text-anchor="middle" font-size="11" fill="#666">RLHF: 两步走</text>
+  <text x="450" y="235" text-anchor="middle" font-size="11" fill="#666">DPO: 一步到位</text>
+</svg>

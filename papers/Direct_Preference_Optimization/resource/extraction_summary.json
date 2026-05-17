@@ -1,0 +1,129 @@
+{
+  "pdf": "papers\\Direct_Preference_Optimization\\Direct_Preference_Optimization.pdf",
+  "total_pages": 27,
+  "embedded_images": 2,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 158.5
+    },
+    {
+      "fig_num": "2",
+      "page": 7,
+      "caption_y": 227.6
+    },
+    {
+      "fig_num": "3",
+      "page": 8,
+      "caption_y": 227.5
+    },
+    {
+      "fig_num": "2",
+      "page": 8,
+      "caption_y": 602.0
+    },
+    {
+      "fig_num": "2",
+      "page": 9,
+      "caption_y": 205.5
+    },
+    {
+      "fig_num": "4",
+      "page": 9,
+      "caption_y": 396.4
+    },
+    {
+      "fig_num": "3",
+      "page": 9,
+      "caption_y": 483.8
+    },
+    {
+      "fig_num": "3",
+      "page": 10,
+      "caption_y": 553.4
+    },
+    {
+      "fig_num": "4",
+      "page": 22,
+      "caption_y": 615.4
+    },
+    {
+      "fig_num": "4",
+      "page": 23,
+      "caption_y": 266.7
+    },
+    {
+      "fig_num": "5",
+      "page": 27,
+      "caption_y": 365.8
+    },
+    {
+      "fig_num": "5",
+      "page": 27,
+      "caption_y": 455.7
+    }
+  ],
+  "files": [
+    {
+      "page": 2,
+      "file": "page2_img1_2380x478.png",
+      "size": "2380x478",
+      "method": "embedded"
+    },
+    {
+      "page": 27,
+      "file": "page27_img1_1450x1722.png",
+      "size": "1450x1722",
+      "method": "embedded"
+    },
+    {
+      "page": 2,
+      "file": "temp_page2_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 7,
+      "file": "temp_page7_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 8,
+      "file": "temp_page8_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 9,
+      "file": "temp_page9_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 10,
+      "file": "temp_page10_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 22,
+      "file": "temp_page22_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 23,
+      "file": "temp_page23_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 27,
+      "file": "temp_page27_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    }
+  ]
+}
