@@ -1,0 +1,91 @@
+{
+  "pdf": "F:\\professional\\AI笔记\\paper\\papers\\RRHF_Rank_Responses_to_Align_Language_Models_with_Human_Feedback_without_tears\\RRHF_Rank_Responses_to_Align_Language_Models_with_Human_Feedback_without_tears.pdf",
+  "total_pages": 16,
+  "embedded_images": 2,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 238.4
+    },
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 528.6
+    },
+    {
+      "fig_num": "2",
+      "page": 5,
+      "caption_y": 142.7
+    },
+    {
+      "fig_num": "2",
+      "page": 5,
+      "caption_y": 394.7
+    },
+    {
+      "fig_num": "3",
+      "page": 7,
+      "caption_y": 547.3
+    },
+    {
+      "fig_num": "3",
+      "page": 8,
+      "caption_y": 255.4
+    },
+    {
+      "fig_num": "2",
+      "page": 14,
+      "caption_y": 333.6
+    },
+    {
+      "fig_num": "2",
+      "page": 14,
+      "caption_y": 343.6
+    }
+  ],
+  "files": [
+    {
+      "page": 5,
+      "file": "page5_img1_1202x1014.png",
+      "size": "1202x1014",
+      "method": "embedded"
+    },
+    {
+      "page": 8,
+      "file": "page8_img1_3128x1548.png",
+      "size": "3128x1548",
+      "method": "embedded"
+    },
+    {
+      "page": 2,
+      "file": "temp_page2_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 5,
+      "file": "temp_page5_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 7,
+      "file": "temp_page7_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 8,
+      "file": "temp_page8_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 14,
+      "file": "temp_page14_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" font-family="sans-serif">
+  <defs>
+    <style>
+      .title { font-size: 16px; font-weight: bold; }
+      .label { font-size: 12px; }
+      .small { font-size: 10px; }
+      .box { rx: 6; ry: 6; }
+      .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <text x="350" y="25" text-anchor="middle" class="title">RRHF 训练迭代全景图</text>
+
+  <!-- Pre-training -->
+  <rect x="30" y="50" width="120" height="60" fill="#9E9E9E" class="box"/>
+  <text x="90" y="75" text-anchor="middle" fill="white" class="label">预训练模型</text>
+  <text x="90" y="92" text-anchor="middle" class="small" fill="white">ρ (如 Alpaca)</text>
+
+  <!-- Sampling Phase -->
+  <rect x="180" y="40" width="140" height="80" fill="#BBDEFB" class="box"/>
+  <text x="250" y="65" text-anchor="middle" class="label">采样阶段</text>
+  <text x="250" y="82" text-anchor="middle" class="small">生成 k 个 responses</text>
+  <text x="250" y="97" text-anchor="middle" class="small">y₁, y₂, ..., yₖ</text>
+  <text x="250" y="112" text-anchor="middle" class="small" fill="#1565C0">训练前一次性完成</text>
+
+  <line x1="150" y1="80" x2="180" y2="80" class="arrow"/>
+
+  <!-- Scoring -->
+  <rect x="350" y="40" width="140" height="80" fill="#C8E6C9" class="box"/>
+  <text x="420" y="65" text-anchor="middle" class="label">打分阶段</text>
+  <text x="420" y="82" text-anchor="middle" class="small">计算 pᵢ = log π(yᵢ|x)</text>
+  <text x="420" y="97" text-anchor="middle" class="small">获取 human label rᵢ</text>
+  <text x="420" y="112" text-anchor="middle" class="small" fill="#2E7D32">排序: r₁ > r₂ > ...</text>
+
+  <line x1="320" y1="80" x2="350" y2="80" class="arrow"/>
+
+  <!-- Training -->
+  <rect x="520" y="40" width="150" height="80" fill="#FFCCBC" class="box"/>
+  <text x="595" y="65" text-anchor="middle" class="label">训练阶段</text>
+  <text x="595" y="82" text-anchor="middle" class="small">L = L_rank + L_SFT</text>
+  <text x="595" y="97" text-anchor="middle" class="small">3 epochs</text>
+  <text x="595" y="112" text-anchor="middle" class="small" fill="#BF360C">更新参数 θ</text>
+
+  <line x1="490" y1="80" x2="520" y2="80" class="arrow"/>
+
+  <!-- Iteration Options -->
+  <text x="350" y="160" text-anchor="middle" class="label" fill="#666">可选迭代策略</text>
+
+  <!-- DP Strategy -->
+  <rect x="50" y="180" width="180" height="90" fill="#E3F2FD" stroke="#1976D2" stroke-width="2" class="box"/>
+  <text x="140" y="200" text-anchor="middle" class="label" fill="#1565C0">DP (Diverse Beam)</text>
+  <text x="140" y="218" text-anchor="middle" class="small">一次性采样</text>
+  <text x="140" y="233" text-anchor="middle" class="small">训练 3 epoch</text>
+  <text x="140" y="255" text-anchor="middle" class="small" fill="#1565C0">Reward: -1.02</text>
+
+  <!-- IP Strategy -->
+  <rect x="260" y="180" width="180" height="90" fill="#FFF3E0" stroke="#F57C00" stroke-width="2" class="box"/>
+  <text x="350" y="200" text-anchor="middle" class="label" fill="#E65100">IP-n (迭代更新)</text>
+  <text x="350" y="218" text-anchor="middle" class="small">采样→训练→再采样</text>
+  <text x="350" y="233" text-anchor="middle" class="small">循环 n 次</text>
+  <text x="350" y="255" text-anchor="middle" class="small" fill="#E65100">Reward: -0.94 (IP-3)</text>
+
+  <!-- OP Strategy -->
+  <rect x="470" y="180" width="180" height="90" fill="#E8F5E9" stroke="#388E3C" stroke-width="2" class="box"/>
+  <text x="560" y="200" text-anchor="middle" class="label" fill="#2E7D32">OP-k (在线采样)</text>
+  <text x="560" y="218" text-anchor="middle" class="small">边采样边训练</text>
+  <text x="560" y="233" text-anchor="middle" class="small">需加 KL 惩罚</text>
+  <text x="560" y="255" text-anchor="middle" class="small" fill="#2E7D32">Reward: -0.86 (最佳)</text>
+
+  <!-- Key Insight -->
+  <rect x="100" y="280" width="500" height="15" fill="none"/>
+  <text x="350" y="290" text-anchor="middle" class="small" fill="#666">核心发现：采样质量决定 RRHF 性能上限，迭代/在线采样可不断提升</text>
+</svg>

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" font-family="sans-serif">
+  <defs>
+    <style>
+      .title { font-size: 16px; font-weight: bold; }
+      .label { font-size: 12px; }
+      .small { font-size: 10px; }
+      .box { rx: 8; ry: 8; }
+      .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" class="title">PPO vs RRHF vs SFT 方法对比</text>
+
+  <!-- SFT Column -->
+  <rect x="20" y="50" width="200" height="340" fill="#f0f0f0" stroke="#ccc" stroke-width="2" rx="10"/>
+  <text x="120" y="75" text-anchor="middle" class="title" fill="#555">SFT (监督微调)</text>
+
+  <rect x="40" y="100" width="160" height="40" fill="#4CAF50" class="box"/>
+  <text x="120" y="125" text-anchor="middle" fill="white" class="label">Language Model</text>
+
+  <rect x="40" y="170" width="160" height="40" fill="#2196F3" class="box"/>
+  <text x="120" y="195" text-anchor="middle" fill="white" class="label">Human Response</text>
+
+  <line x1="120" y1="140" x2="120" y2="170" class="arrow"/>
+  <text x="140" y="160" class="small" fill="#666">直接模仿</text>
+
+  <rect x="40" y="240" width="160" height="50" fill="#FF9800" class="box"/>
+  <text x="120" y="260" text-anchor="middle" fill="white" class="label">Cross-Entropy Loss</text>
+  <text x="120" y="278" text-anchor="middle" class="small" fill="white">最大化正确回答概率</text>
+
+  <line x1="120" y1="210" x2="120" y2="240" class="arrow"/>
+
+  <rect x="40" y="320" width="160" height="50" fill="#9E9E9E" class="box"/>
+  <text x="120" y="340" text-anchor="middle" fill="white" class="label">优点：简单稳定</text>
+  <text x="120" y="358" text-anchor="middle" class="small" fill="white">缺点：无法学习偏好排序</text>
+
+  <!-- PPO Column -->
+  <rect x="250" y="50" width="200" height="340" fill="#f0f0f0" stroke="#ccc" stroke-width="2" rx="10"/>
+  <text x="350" y="75" text-anchor="middle" class="title" fill="#d32f2f">PPO (强化学习)</text>
+
+  <rect x="270" y="100" width="160" height="35" fill="#4CAF50" class="box"/>
+  <text x="350" y="122" text-anchor="middle" fill="white" class="label">Policy Model (π)</text>
+
+  <rect x="270" y="145" width="160" height="35" fill="#FFC107" class="box"/>
+  <text x="350" y="167" text-anchor="middle" fill="white" class="label">Value Model (V)</text>
+
+  <rect x="270" y="190" width="160" height="35" fill="#9C27B0" class="box"/>
+  <text x="350" y="212" text-anchor="middle" fill="white" class="label">Reward Model (R)</text>
+
+  <rect x="270" y="235" width="160" height="35" fill="#607D8B" class="box"/>
+  <text x="350" y="257" text-anchor="middle" fill="white" class="label">Reference Model (ρ)</text>
+
+  <rect x="270" y="290" width="160" height="40" fill="#FF9800" class="box"/>
+  <text x="350" y="307" text-anchor="middle" fill="white" class="label">PPO Loss + KL Penalty</text>
+  <text x="350" y="322" text-anchor="middle" class="small" fill="white">4个模型同时训练</text>
+
+  <rect x="270" y="345" width="160" height="40" fill="#9E9E9E" class="box"/>
+  <text x="350" y="362" text-anchor="middle" fill="white" class="label">优点：效果好</text>
+  <text x="350" y="378" text-anchor="middle" class="small" fill="white">缺点：复杂难调</text>
+
+  <!-- RRHF Column -->
+  <rect x="480" y="50" width="200" height="340" fill="#e8f5e9" stroke="#4CAF50" stroke-width="2" rx="10"/>
+  <text x="580" y="75" text-anchor="middle" class="title" fill="#2e7d32">RRHF (排序学习)</text>
+
+  <rect x="500" y="100" width="160" height="35" fill="#4CAF50" class="box"/>
+  <text x="580" y="122" text-anchor="middle" fill="white" class="label">Language Model (π)</text>
+
+  <rect x="500" y="150" width="160" height="55" fill="#8BC34A" class="box"/>
+  <text x="580" y="168" text-anchor="middle" fill="white" class="label">多个 Responses</text>
+  <text x="580" y="185" text-anchor="middle" class="small" fill="white">(模型/专家/ChatGPT)</text>
+
+  <rect x="500" y="220" width="160" height="35" fill="#FF9800" class="box"/>
+  <text x="580" y="242" text-anchor="middle" fill="white" class="label">Ranking Loss</text>
+
+  <rect x="500" y="270" width="160" height="35" fill="#2196F3" class="box"/>
+  <text x="580" y="292" text-anchor="middle" fill="white" class="label">SFT Loss (最佳回答)</text>
+
+  <line x1="580" y1="255" x2="580" y2="270" class="arrow"/>
+
+  <rect x="500" y="325" width="160" height="55" fill="#4CAF50" class="box"/>
+  <text x="580" y="345" text-anchor="middle" fill="white" class="label">优点：简单高效</text>
+  <text x="580" y="362" text-anchor="middle" class="small" fill="white">只需1-2个模型</text>
+
+  <!-- Arrows between columns -->
+  <line x1="220" y1="200" x2="250" y2="200" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="450" y1="200" x2="480" y2="200" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+</svg>
