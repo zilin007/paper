@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 620" font-family="sans-serif">
+  <defs>
+    <marker id="arrow-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-b" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+    <marker id="arrow-o" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f39c12"/>
+    </marker>
+  </defs>
+
+  <text x="375" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#2c3e50">Self-RAG 训练数据标注流程</text>
+
+  <!-- Phase 1: Critic Training -->
+  <rect x="20" y="55" width="710" height="250" rx="10" fill="#ebf5fb" stroke="#3498db" stroke-width="2"/>
+  <text x="375" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#2980b9">阶段一：训练 Critic 模型（从 GPT-4 蒸馏）</text>
+
+  <!-- GPT-4 -->
+  <rect x="50" y="100" width="140" height="50" rx="8" fill="#8e44ad"/>
+  <text x="120" y="130" text-anchor="middle" font-size="13" fill="white">GPT-4</text>
+
+  <!-- Input data -->
+  <rect x="50" y="170" width="140" height="50" rx="8" fill="#3498db"/>
+  <text x="120" y="190" text-anchor="middle" font-size="12" fill="white">原始训练数据</text>
+  <text x="120" y="210" text-anchor="middle" font-size="11" fill="white">(x, y)</text>
+
+  <!-- Arrow from GPT-4 to annotation -->
+  <line x1="190" y1="125" x2="280" y2="125" stroke="#8e44ad" stroke-width="2" marker-end="url(#arrow-g)"/>
+  <text x="235" y="118" text-anchor="middle" font-size="10" fill="#8e44ad">Prompt</text>
+
+  <!-- Reflection tokens -->
+  <rect x="280" y="100" width="180" height="50" rx="8" fill="#f39c12"/>
+  <text x="370" y="120" text-anchor="middle" font-size="12" fill="white">生成 Reflection Tokens</text>
+  <text x="370" y="140" text-anchor="middle" font-size="10" fill="white">{Retrieve, IsRel, IsSup, IsUse}</text>
+
+  <!-- Arrow down -->
+  <line x1="370" y1="150" x2="370" y2="200" stroke="#f39c12" stroke-width="2" marker-end="url(#arrow-g)"/>
+
+  <!-- Annotated data -->
+  <rect x="280" y="200" width="180" height="50" rx="8" fill="#2ecc71"/>
+  <text x="370" y="220" text-anchor="middle" font-size="12" fill="white">标注数据</text>
+  <text x="370" y="240" text-anchor="middle" font-size="10" fill="white">(x, y, tokens)</text>
+
+  <!-- Arrow to Critic -->
+  <line x1="460" y1="225" x2="530" y2="225" stroke="#2ecc71" stroke-width="2" marker-end="url(#arrow-g)"/>
+
+  <!-- Critic Model -->
+  <rect x="530" y="200" width="160" height="50" rx="8" fill="#e74c3c"/>
+  <text x="610" y="220" text-anchor="middle" font-size="13" fill="white">Critic 模型 C</text>
+  <text x="610" y="240" text-anchor="middle" font-size="10" fill="white">(Llama2-13B)</text>
+
+  <!-- Arrow from input data to critic -->
+  <line x1="190" y1="195" x2="530" y2="195" stroke="#3498db" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-b)"/>
+  <text x="360" y="188" text-anchor="middle" font-size="10" fill="#3498db">训练数据</text>
+
+  <!-- Phase 2: Generator Training -->
+  <rect x="20" y="320" width="710" height="280" rx="10" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <text x="375" y="345" text-anchor="middle" font-size="14" font-weight="bold" fill="#e67e22">阶段二：训练 Generator 模型（标准 LM 目标）</text>
+
+  <!-- Critic annotates corpus -->
+  <rect x="50" y="370" width="180" height="50" rx="8" fill="#e74c3c"/>
+  <text x="140" y="390" text-anchor="middle" font-size="12" fill="white">Critic 离线标注</text>
+  <text x="140" y="410" text-anchor="middle" font-size="10" fill="white">整个训练语料库</text>
+
+  <line x1="230" y1="395" x2="310" y2="395" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrow-g)"/>
+
+  <!-- Annotated corpus -->
+  <rect x="310" y="370" width="200" height="50" rx="8" fill="#2ecc71"/>
+  <text x="410" y="390" text-anchor="middle" font-size="12" fill="white">增强训练语料</text>
+  <text x="410" y="410" text-anchor="middle" font-size="10" fill="white">x + 检索段落 + tokens + y</text>
+
+  <line x1="510" y1="395" x2="590" y2="395" stroke="#2ecc71" stroke-width="2" marker-end="url(#arrow-g)"/>
+
+  <!-- Generator -->
+  <rect x="590" y="370" width="120" height="50" rx="8" fill="#2980b9"/>
+  <text x="650" y="390" text-anchor="middle" font-size="13" fill="white">Generator M</text>
+  <text x="650" y="410" text-anchor="middle" font-size="10" fill="white">(Llama2-7B/13B)</text>
+
+  <!-- Training objective -->
+  <rect x="310" y="450" width="400" height="60" rx="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="1"/>
+  <text x="510" y="472" text-anchor="middle" font-size="12" fill="#27ae60">训练目标：标准 LM 下一词预测</text>
+  <text x="510" y="495" text-anchor="middle" font-size="12" fill="#27ae60">L = -Σ log P(token | 前面所有 token)</text>
+
+  <!-- Inference -->
+  <rect x="50" y="530" width="660" height="55" rx="8" fill="#fadbd8" stroke="#e74c3c" stroke-width="1"/>
+  <text x="380" y="550" text-anchor="middle" font-size="12" fill="#e74c3c">推理阶段：Generator 自行生成 reflection tokens，无需 Critic 或外部模型</text>
+  <text x="380" y="572" text-anchor="middle" font-size="11" fill="#e74c3c">→ 通过 segment-level beam search 选择最佳输出路径</text>
+</svg>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 450" font-family="sans-serif">
+  <defs>
+    <marker id="arrow-grad" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrow-grad-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+  </defs>
+
+  <text x="375" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#2c3e50">Self-RAG 梯度流向（训练时哪些参数有梯度）</text>
+
+  <!-- Input -->
+  <rect x="30" y="60" width="130" height="50" rx="8" fill="#3498db"/>
+  <text x="95" y="80" text-anchor="middle" font-size="12" fill="white">输入 x</text>
+  <text x="95" y="98" text-anchor="middle" font-size="10" fill="white">(冻结)</text>
+
+  <line x1="160" y1="85" x2="230" y2="85" stroke="#333" stroke-width="2" marker-end="url(#arrow-grad)"/>
+
+  <!-- Generator LM -->
+  <rect x="230" y="60" width="180" height="70" rx="8" fill="#2ecc71"/>
+  <text x="320" y="85" text-anchor="middle" font-size="13" fill="white">Generator M</text>
+  <text x="320" y="105" text-anchor="middle" font-size="11" fill="white">所有参数可训练 ✓</text>
+  <text x="320" y="122" text-anchor="middle" font-size="10" fill="white">(Llama2 权重)</text>
+
+  <!-- Output tokens -->
+  <rect x="440" y="60" width="140" height="70" rx="8" fill="#f39c12"/>
+  <text x="510" y="80" text-anchor="middle" font-size="12" fill="white">输出序列</text>
+  <text x="510" y="98" text-anchor="middle" font-size="10" fill="white">y₁, [IsRel], y₂,</text>
+  <text x="510" y="115" text-anchor="middle" font-size="10" fill="white">[IsSup], [IsUse]</text>
+
+  <!-- Loss -->
+  <rect x="610" y="60" width="120" height="70" rx="8" fill="#e74c3c"/>
+  <text x="670" y="85" text-anchor="middle" font-size="12" fill="white">损失 L</text>
+  <text x="670" y="105" text-anchor="middle" font-size="10" fill="white">交叉熵损失</text>
+  <text x="670" y="122" text-anchor="middle" font-size="10" fill="white">对所有 token</text>
+
+  <!-- Gradient flow arrows (backward) -->
+  <line x1="610" y1="95" x2="580" y2="95" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrow-grad-red)"/>
+  <text x="595" y="88" text-anchor="middle" font-size="9" fill="#e74c3c">∂L/∂y</text>
+
+  <line x1="440" y1="95" x2="410" y2="95" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrow-grad-red)"/>
+  <text x="425" y="88" text-anchor="middle" font-size="9" fill="#e74c3c">∂L/∂h</text>
+
+  <line x1="410" y1="130" x2="410" y2="180" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow-grad)"/>
+  <text x="430" y="160" font-size="10" fill="#27ae60">梯度流向 Generator 所有参数</text>
+
+  <!-- Key insight -->
+  <rect x="30" y="170" width="690" height="120" rx="10" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+  <text x="375" y="195" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">关键：统一为下一词预测任务</text>
+
+  <text x="50" y="225" font-size="12" fill="#333">Self-RAG 将 reflection tokens 视为词汇表的扩展，训练目标与普通语言模型完全相同：</text>
+  <text x="50" y="250" font-size="12" fill="#333">L = -Σ log P(tokenᵢ | token₁, ..., tokenᵢ₋₁)</text>
+  <text x="50" y="275" font-size="12" fill="#333">其中 tokenᵢ 可以是普通词，也可以是 [Retrieve=yes]、[IsSup=fully] 等特殊令牌。</text>
+
+  <!-- Contrast with RLHF -->
+  <rect x="30" y="310" width="340" height="120" rx="10" fill="#fadbd8" stroke="#e74c3c" stroke-width="1"/>
+  <text x="200" y="335" text-anchor="middle" font-size="13" font-weight="bold" fill="#e74c3c">对比 RLHF（强化学习）</text>
+  <text x="50" y="360" font-size="11" fill="#333">• 需要在线采样 + PPO 优化</text>
+  <text x="50" y="380" font-size="11" fill="#333">• reward model 需参与训练</text>
+  <text x="50" y="400" font-size="11" fill="#333">• 训练不稳定，计算成本高</text>
+  <text x="50" y="420" font-size="11" fill="#333">• 梯度路径复杂</text>
+
+  <rect x="380" y="310" width="340" height="120" rx="10" fill="#d5f5e3" stroke="#27ae60" stroke-width="1"/>
+  <text x="550" y="335" text-anchor="middle" font-size="13" font-weight="bold" fill="#27ae60">Self-RAG（监督学习）</text>
+  <text x="400" y="360" font-size="11" fill="#333">• Critic 离线标注，不参与训练</text>
+  <text x="400" y="380" font-size="11" fill="#333">• 标准 LM 交叉熵损失</text>
+  <text x="400" y="400" font-size="11" fill="#333">• 训练稳定，计算成本低</text>
+  <text x="400" y="420" font-size="11" fill="#333">• 梯度路径清晰直接</text>
+</svg>
