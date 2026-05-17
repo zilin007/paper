@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="bold">现有 RAG 方案对比</text>
+  
+  <!-- Standard RAG -->
+  <rect x="20" y="50" width="200" height="240" rx="10" fill="#f0f0f0" stroke="#999" stroke-width="2"/>
+  <text x="120" y="75" text-anchor="middle" font-size="14" font-weight="bold">标准 RAG</text>
+  
+  <rect x="40" y="90" width="160" height="30" rx="5" fill="#4CAF50"/>
+  <text x="120" y="110" text-anchor="middle" font-size="12" fill="white">Retriever</text>
+  
+  <line x1="120" y1="120" x2="120" y2="145" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="40" y="150" width="160" height="30" rx="5" fill="#2196F3"/>
+  <text x="120" y="170" text-anchor="middle" font-size="12" fill="white">Generator (LLM)</text>
+  
+  <line x1="120" y1="180" x2="120" y2="210" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="40" y="215" width="160" height="30" rx="5" fill="#FF9800"/>
+  <text x="120" y="235" text-anchor="middle" font-size="12" fill="white">输出结果</text>
+  
+  <text x="120" y="270" text-anchor="middle" font-size="11" fill="red"> 检索失败时无补救</text>
+  <text x="120" y="285" text-anchor="middle" font-size="11" fill="red">✗ 不区分文档质量</text>
+  
+  <!-- Self-RAG -->
+  <rect x="250" y="50" width="200" height="240" rx="10" fill="#f0f0f0" stroke="#999" stroke-width="2"/>
+  <text x="350" y="75" text-anchor="middle" font-size="14" font-weight="bold">Self-RAG</text>
+  
+  <rect x="270" y="90" width="160" height="30" rx="5" fill="#9C27B0"/>
+  <text x="350" y="110" text-anchor="middle" font-size="12" fill="white">Critic Model (LLM)</text>
+  
+  <line x1="350" y1="120" x2="350" y2="145" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="270" y="150" width="160" height="30" rx="5" fill="#4CAF50"/>
+  <text x="350" y="170" text-anchor="middle" font-size="12" fill="white">Retriever (可选)</text>
+  
+  <line x1="350" y1="180" x2="350" y2="210" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="270" y="215" width="160" height="30" rx="5" fill="#2196F3"/>
+  <text x="350" y="235" text-anchor="middle" font-size="12" fill="white">Generator (LLM)</text>
+  
+  <text x="350" y="270" text-anchor="middle" font-size="11" fill="red">✗ Critic 需指令微调</text>
+  <text x="350" y="285" text-anchor="middle" font-size="11" fill="red">✗ 计算开销大</text>
+  
+  <!-- CRAG (本文) -->
+  <rect x="480" y="50" width="200" height="240" rx="10" fill="#e8f5e9" stroke="#4CAF50" stroke-width="3"/>
+  <text x="580" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">CRAG (本文)</text>
+  
+  <rect x="500" y="90" width="160" height="25" rx="5" fill="#4CAF50"/>
+  <text x="580" y="107" text-anchor="middle" font-size="11" fill="white">Retriever</text>
+  
+  <line x1="580" y1="115" x2="580" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="500" y="135" width="160" height="25" rx="5" fill="#FF9800"/>
+  <text x="580" y="152" text-anchor="middle" font-size="11" fill="white">Retrieval Evaluator (T5)</text>
+  
+  <line x1="580" y1="160" x2="520" y2="185" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="580" y1="160" x2="580" y2="185" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="580" y1="160" x2="640" y2="185" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="485" y="190" width="70" height="22" rx="4" fill="#4CAF50"/>
+  <text x="520" y="205" text-anchor="middle" font-size="10" fill="white">Correct</text>
+  
+  <rect x="545" y="190" width="70" height="22" rx="4" fill="#9E9E9E"/>
+  <text x="580" y="205" text-anchor="middle" font-size="10" fill="white">Ambiguous</text>
+  
+  <rect x="605" y="190" width="70" height="22" rx="4" fill="#F44336"/>
+  <text x="640" y="205" text-anchor="middle" font-size="10" fill="white">Incorrect</text>
+  
+  <line x1="520" y1="212" x2="520" y2="230" stroke="#666" stroke-width="1.5"/>
+  <line x1="580" y1="212" x2="580" y2="230" stroke="#666" stroke-width="1.5"/>
+  <line x1="640" y1="212" x2="640" y2="230" stroke="#666" stroke-width="1.5"/>
+  
+  <rect x="495" y="235" width="170" height="25" rx="5" fill="#2196F3"/>
+  <text x="580" y="252" text-anchor="middle" font-size="11" fill="white">Generator (任意 LLM)</text>
+  
+  <text x="580" y="275" text-anchor="middle" font-size="11" fill="green">✓ 轻量级评估器</text>
+  <text x="580" y="290" text-anchor="middle" font-size="11" fill="green">✓ 检索失败有补救</text>
+</svg>

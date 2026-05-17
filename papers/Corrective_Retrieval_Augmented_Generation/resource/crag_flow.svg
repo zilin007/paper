@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4CAF50"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#F44336"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FF9800"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="375" y="30" text-anchor="middle" font-size="18" font-weight="bold">CRAG 核心流程</text>
+  
+  <!-- Input -->
+  <rect x="300" y="50" width="150" height="40" rx="8" fill="#E3F2FD" stroke="#1976D2" stroke-width="2"/>
+  <text x="375" y="75" text-anchor="middle" font-size="14">输入问题 x</text>
+  
+  <line x1="375" y1="90" x2="375" y2="115" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Retriever -->
+  <rect x="280" y="120" width="190" height="40" rx="8" fill="#4CAF50"/>
+  <text x="375" y="145" text-anchor="middle" font-size="14" fill="white">Retriever (检索器)</text>
+  
+  <line x1="375" y1="160" x2="375" y2="185" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Retrieved Documents -->
+  <rect x="280" y="190" width="190" height="35" rx="8" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+  <text x="375" y="212" text-anchor="middle" font-size="13">检索文档 D = {d1, d2, ... dk}</text>
+  
+  <line x1="375" y1="225" x2="375" y2="250" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Retrieval Evaluator -->
+  <rect x="270" y="255" width="210" height="45" rx="8" fill="#9C27B0"/>
+  <text x="375" y="275" text-anchor="middle" font-size="14" fill="white">Retrieval Evaluator</text>
+  <text x="375" y="292" text-anchor="middle" font-size="11" fill="#E1BEE7">(T5-large, 0.77B 参数)</text>
+  
+  <!-- Three branches -->
+  <line x1="310" y1="300" x2="150" y2="340" stroke="#4CAF50" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <line x1="375" y1="300" x2="375" y2="340" stroke="#FF9800" stroke-width="2" marker-end="url(#arrow-orange)"/>
+  <line x1="440" y1="300" x2="600" y2="340" stroke="#F44336" stroke-width="2" marker-end="url(#arrow-red)"/>
+  
+  <!-- Correct branch -->
+  <rect x="80" y="345" width="140" height="35" rx="8" fill="#4CAF50"/>
+  <text x="150" y="367" text-anchor="middle" font-size="13" fill="white">Correct (正确)</text>
+  
+  <line x1="150" y1="380" x2="150" y2="410" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="80" y="415" width="140" height="35" rx="8" fill="#2196F3"/>
+  <text x="150" y="432" text-anchor="middle" font-size="11" fill="white">知识精炼</text>
+  <text x="150" y="445" text-anchor="middle" font-size="10" fill="#E3F2FD">分解→过滤→重组</text>
+  
+  <!-- Ambiguous branch -->
+  <rect x="305" y="345" width="140" height="35" rx="8" fill="#FF9800"/>
+  <text x="375" y="367" text-anchor="middle" font-size="13" fill="white">Ambiguous (模糊)</text>
+  
+  <line x1="375" y1="380" x2="375" y2="410" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="305" y="415" width="140" height="35" rx="8" fill="#2196F3"/>
+  <text x="375" y="432" text-anchor="middle" font-size="11" fill="white">内部知识 + 外部知识</text>
+  <text x="375" y="445" text-anchor="middle" font-size="10" fill="#E3F2FD">两者结合互补</text>
+  
+  <!-- Incorrect branch -->
+  <rect x="530" y="345" width="140" height="35" rx="8" fill="#F44336"/>
+  <text x="600" y="367" text-anchor="middle" font-size="13" fill="white">Incorrect (错误)</text>
+  
+  <line x1="600" y1="380" x2="600" y2="410" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="530" y="415" width="140" height="35" rx="8" fill="#2196F3"/>
+  <text x="600" y="432" text-anchor="middle" font-size="11" fill="white">Web Search</text>
+  <text x="600" y="445" text-anchor="middle" font-size="10" fill="#E3F2FD">网络搜索补充</text>
+  
+  <!-- Legend -->
+  <rect x="250" y="470" width="250" height="25" rx="5" fill="#f5f5f5" stroke="#ccc"/>
+  <text x="375" y="487" text-anchor="middle" font-size="11">绿色=检索正确 | 橙色=不确定 | 红色=检索错误</text>
+</svg>

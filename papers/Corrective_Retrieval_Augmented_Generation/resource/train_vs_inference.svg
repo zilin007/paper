@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="bold">CRAG 训练与推理阶段</text>
+  
+  <!-- Training Phase -->
+  <rect x="20" y="45" width="310" height="280" rx="10" fill="#E3F2FD" stroke="#1976D2" stroke-width="2"/>
+  <text x="175" y="70" text-anchor="middle" font-size="15" font-weight="bold" fill="#1565C0">训练阶段 (离线)</text>
+  
+  <!-- Training components -->
+  <rect x="40" y="85" width="270" height="45" rx="8" fill="#9C27B0"/>
+  <text x="175" y="105" text-anchor="middle" font-size="13" fill="white">Retrieval Evaluator 训练</text>
+  <text x="175" y="122" text-anchor="middle" font-size="11" fill="#E1BEE7">基于 T5-large, 使用 PopQA 数据集</text>
+  
+  <line x1="175" y1="130" x2="175" y2="155" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="40" y="160" width="270" height="45" rx="8" fill="#FF9800"/>
+  <text x="175" y="180" text-anchor="middle" font-size="13" fill="white">阈值设定</text>
+  <text x="175" y="197" text-anchor="middle" font-size="11" fill="#FFF3E0">upper=0.59, lower=-0.99 (PopQA)</text>
+  
+  <line x1="175" y1="205" x2="175" y2="230" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="40" y="235" width="270" height="45" rx="8" fill="#4CAF50"/>
+  <text x="175" y="255" text-anchor="middle" font-size="13" fill="white">Generator 无需训练!</text>
+  <text x="175" y="272" text-anchor="middle" font-size="11" fill="#E8F5E9">任意 LLM 可直接使用</text>
+  
+  <!-- Inference Phase -->
+  <rect x="370" y="45" width="310" height="280" rx="10" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="525" y="70" text-anchor="middle" font-size="15" font-weight="bold" fill="#2E7D32">推理阶段 (在线)</text>
+  
+  <!-- Inference flow -->
+  <rect x="390" y="85" width="270" height="35" rx="8" fill="#2196F3"/>
+  <text x="525" y="107" text-anchor="middle" font-size="12" fill="white">输入问题 x → Retriever → 文档 D</text>
+  
+  <line x1="525" y1="120" x2="525" y2="140" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="390" y="145" width="270" height="35" rx="8" fill="#9C27B0"/>
+  <text x="525" y="167" text-anchor="middle" font-size="12" fill="white">Evaluator 评估 → 触发 Correct/Incorrect/Ambiguous</text>
+  
+  <line x1="525" y1="180" x2="525" y2="200" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="390" y="205" width="270" height="35" rx="8" fill="#FF9800"/>
+  <text x="525" y="227" text-anchor="middle" font-size="12" fill="white">知识精炼 / Web搜索 / 两者结合</text>
+  
+  <line x1="525" y1="240" x2="525" y2="260" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="390" y="265" width="270" height="35" rx="8" fill="#4CAF50"/>
+  <text x="525" y="287" text-anchor="middle" font-size="12" fill="white">Generator 生成最终答案</text>
+  
+  <!-- Key difference note -->
+  <rect x="20" y="335" width="660" height="12" rx="3" fill="#FFF9C4"/>
+  <text x="350" y="344" text-anchor="middle" font-size="10" fill="#F57F17">关键: CRAG 只需训练轻量级 Evaluator (0.77B), Generator 完全无需训练, 即插即用!</text>
+</svg>
