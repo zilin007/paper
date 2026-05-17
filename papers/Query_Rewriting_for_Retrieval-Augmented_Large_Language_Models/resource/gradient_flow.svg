@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2e7d32"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1976d2"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">Rewriter 强化学习训练 — 梯度流向</text>
+
+  <!-- Step 1: Input -->
+  <rect x="50" y="70" width="150" height="50" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="1.5"/>
+  <text x="125" y="95" text-anchor="middle" font-size="13" fill="#333">输入问题 x</text>
+  <text x="125" y="112" text-anchor="middle" font-size="10" fill="#666">如 "All Star 出现在哪部电影?"</text>
+
+  <!-- Arrow to Rewriter -->
+  <line x1="200" y1="95" x2="270" y2="95" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="235" y="88" text-anchor="middle" font-size="10" fill="#666">输入</text>
+
+  <!-- Step 2: Rewriter (可训练) -->
+  <rect x="270" y="60" width="180" height="70" rx="8" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="360" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">Rewriter G_θ (T5)</text>
+  <text x="360" y="105" text-anchor="middle" font-size="11" fill="#2e7d32">★ 可训练参数 θ</text>
+  <text x="360" y="122" text-anchor="middle" font-size="10" fill="#666">输出查询 x̃ = "2000 movie All Star song"</text>
+
+  <!-- Arrow to Retriever -->
+  <line x1="450" y1="95" x2="520" y2="95" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="485" y="88" text-anchor="middle" font-size="10" fill="#666">查询 x̃</text>
+
+  <!-- Step 3: Retriever (冻结) -->
+  <rect x="520" y="70" width="150" height="50" rx="8" fill="#e1bee7" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="595" y="95" text-anchor="middle" font-size="13" fill="#333">检索器 (冻结)</text>
+  <text x="595" y="112" text-anchor="middle" font-size="10" fill="#666">网络搜索 → 文档 doc</text>
+
+  <!-- Arrow down to Reader -->
+  <line x1="595" y1="120" x2="595" y2="170" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="610" y="150" font-size="10" fill="#666">[doc, x]</text>
+
+  <!-- Step 4: Reader (冻结 LLM) -->
+  <rect x="520" y="170" width="150" height="50" rx="8" fill="#fff3e0" stroke="#f57c00" stroke-width="1.5"/>
+  <text x="595" y="195" text-anchor="middle" font-size="13" fill="#333">LLM 阅读器 (冻结)</text>
+  <text x="595" y="212" text-anchor="middle" font-size="10" fill="#666">输出答案 ŷ</text>
+
+  <!-- Arrow to Reward -->
+  <line x1="595" y1="220" x2="595" y2="270" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 5: Reward -->
+  <rect x="520" y="270" width="150" height="60" rx="8" fill="#ffcdd2" stroke="#d32f2f" stroke-width="1.5"/>
+  <text x="595" y="295" text-anchor="middle" font-size="13" font-weight="bold" fill="#d32f2f">奖励 R</text>
+  <text x="595" y="315" text-anchor="middle" font-size="10" fill="#333">R = R_lm - β·KL(π_θ||π₀)</text>
+  <text x="595" y="328" text-anchor="middle" font-size="9" fill="#666">EM/F1 匹配度 - KL正则</text>
+
+  <!-- Gradient flow back (dashed green arrows) -->
+  <line x1="520" y1="300" x2="450" y2="300" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-green)"/>
+  <text x="485" y="293" text-anchor="middle" font-size="10" fill="#2e7d32">梯度回传</text>
+
+  <line x1="450" y1="300" x2="450" y2="95" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-green)"/>
+  <text x="470" y="200" font-size="10" fill="#2e7d32">∂R/∂θ</text>
+
+  <!-- Frozen modules annotation -->
+  <rect x="510" y="55" width="170" height="175" rx="6" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="595" y="48" text-anchor="middle" font-size="11" fill="#999">冻结模块（无梯度）</text>
+
+  <!-- PPO Update box -->
+  <rect x="50" y="180" width="200" height="150" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="150" y="205" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">PPO 更新</text>
+  <text x="150" y="230" text-anchor="middle" font-size="11" fill="#333">L_PPO(θ) = E[min(r·A, clip(r)·A)]</text>
+  <text x="150" y="255" text-anchor="middle" font-size="11" fill="#333">θ_new = θ - η·∇L_PPO</text>
+  <text x="150" y="280" text-anchor="middle" font-size="11" fill="#333">KL 正则防止偏离太远</text>
+  <text x="150" y="305" text-anchor="middle" font-size="11" fill="#333">价值函数 L_V(φ) 辅助训练</text>
+
+  <!-- Arrow from PPO to Rewriter -->
+  <line x1="250" y1="255" x2="270" y2="255" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <line x1="270" y1="255" x2="270" y2="130" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="280" y="200" font-size="10" fill="#2e7d32">更新 θ</text>
+
+  <!-- Legend -->
+  <rect x="50" y="370" width="700" height="110" rx="8" fill="#fafafa" stroke="#ccc" stroke-width="1"/>
+  <text x="400" y="395" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">训练流程说明</text>
+
+  <text x="70" y="420" font-size="11" fill="#333">1. 输入问题 x → Rewriter 生成查询 x̃ → 检索器获取文档 doc</text>
+  <text x="70" y="440" font-size="11" fill="#333">2. LLM 阅读器基于 [doc, x] 生成答案 ŷ，与标准答案 y 对比计算奖励 R</text>
+  <text x="70" y="460" font-size="11" fill="#333">3. 奖励 R 通过 PPO 算法回传梯度 ∂R/∂θ，仅更新 Rewriter 参数 θ</text>
+  <text x="70" y="480" font-size="11" fill="#333">4. 检索器和 LLM 阅读器全程冻结，不参与梯度更新</text>
+</svg>
