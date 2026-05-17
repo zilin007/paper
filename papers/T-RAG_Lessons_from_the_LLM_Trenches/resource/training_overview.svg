@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">LoRA 多轮训练全景图</text>
+  
+  <!-- 第1轮 -->
+  <rect x="20" y="50" width="150" height="230" rx="8" fill="#f9f9f9" stroke="#ddd"/>
+  <text x="95" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#666">第 1 轮</text>
+  
+  <rect x="35" y="90" width="120" height="30" rx="5" fill="#f5f5f5"/>
+  <text x="95" y="110" text-anchor="middle" font-size="11">B = 0, A = 0</text>
+  
+  <rect x="35" y="130" width="120" height="30" rx="5" fill="#f5f5f5"/>
+  <text x="95" y="150" text-anchor="middle" font-size="11">BAx = 0</text>
+  
+  <rect x="35" y="170" width="120" height="30" rx="5" fill="#ffe0e0"/>
+  <text x="95" y="190" text-anchor="middle" font-size="11">梯度 = 0</text>
+  
+  <rect x="35" y="210" width="120" height="30" rx="5" fill="#ffe0e0"/>
+  <text x="95" y="230" text-anchor="middle" font-size="11">冷启动 ⚡</text>
+  
+  <rect x="35" y="250" width="120" height="20" rx="5" fill="#fff3cd"/>
+  <text x="95" y="264" text-anchor="middle" font-size="10">L = 0.3248</text>
+  
+  <!-- 箭头 -->
+  <line x1="170" y1="165" x2="210" y2="165" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- 第2-3轮 -->
+  <rect x="210" y="50" width="150" height="230" rx="8" fill="#f0f8ff" stroke="#4a90d9"/>
+  <text x="285" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#4a90d9">第 2-3 轮</text>
+  
+  <rect x="225" y="90" width="120" height="30" rx="5" fill="#e8f0fe"/>
+  <text x="285" y="110" text-anchor="middle" font-size="11">B ≈ ε, A ≈ ε</text>
+  
+  <rect x="225" y="130" width="120" height="30" rx="5" fill="#e8f0fe"/>
+  <text x="285" y="150" text-anchor="middle" font-size="11">BAx ≈ 0.0002</text>
+  
+  <rect x="225" y="170" width="120" height="30" rx="5" fill="#d4edda"/>
+  <text x="285" y="190" text-anchor="middle" font-size="11">梯度 ≠ 0</text>
+  
+  <rect x="225" y="210" width="120" height="30" rx="5" fill="#d4edda"/>
+  <text x="285" y="230" text-anchor="middle" font-size="11">参数开始更新</text>
+  
+  <rect x="225" y="250" width="120" height="20" rx="5" fill="#fff3cd"/>
+  <text x="285" y="264" text-anchor="middle" font-size="10">L = 0.3247</text>
+  
+  <!-- 箭头 -->
+  <line x1="360" y1="165" x2="400" y2="165" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- 第4-10轮 -->
+  <rect x="400" y="50" width="150" height="230" rx="8" fill="#f0fff0" stroke="#27ae60"/>
+  <text x="475" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">第 4-10 轮</text>
+  
+  <rect x="415" y="90" width="120" height="30" rx="5" fill="#d4edda"/>
+  <text x="475" y="110" text-anchor="middle" font-size="11">B, A 逐渐增大</text>
+  
+  <rect x="415" y="130" width="120" height="30" rx="5" fill="#d4edda"/>
+  <text x="475" y="150" text-anchor="middle" font-size="11">BAx 贡献变大</text>
+  
+  <rect x="415" y="170" width="120" height="30" rx="5" fill="#d4edda"/>
+  <text x="475" y="190" text-anchor="middle" font-size="11">梯度稳定</text>
+  
+  <rect x="415" y="210" width="120" height="30" rx="5" fill="#d4edda"/>
+  <text x="475" y="230" text-anchor="middle" font-size="11">所有参数参与</text>
+  
+  <rect x="415" y="250" width="120" height="20" rx="5" fill="#d4edda"/>
+  <text x="475" y="264" text-anchor="middle" font-size="10">L 持续下降</text>
+  
+  <!-- 箭头 -->
+  <line x1="550" y1="165" x2="590" y2="165" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- 收敛 -->
+  <rect x="590" y="50" width="90" height="230" rx="8" fill="#d4edda" stroke="#27ae60" stroke-width="2"/>
+  <text x="635" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">收敛</text>
+  
+  <rect x="600" y="100" width="70" height="40" rx="5" fill="#c3e6cb"/>
+  <text x="635" y="118" text-anchor="middle" font-size="10">B, A 稳定</text>
+  
+  <rect x="600" y="150" width="70" height="40" rx="5" fill="#c3e6cb"/>
+  <text x="635" y="168" text-anchor="middle" font-size="10">L 最小</text>
+  
+  <rect x="600" y="200" width="70" height="40" rx="5" fill="#c3e6cb"/>
+  <text x="635" y="218" text-anchor="middle" font-size="10">权重合并</text>
+  
+  <rect x="600" y="250" width="70" height="20" rx="5" fill="#c3e6cb"/>
+  <text x="635" y="264" text-anchor="middle" font-size="10">W' = W₀ + BA</text>
+  
+  <!-- 底部说明 -->
+  <text x="350" y="295" text-anchor="middle" font-size="12" fill="#666">冷启动 → 参数激活 → 稳定训练 → 收敛合并</text>
+</svg>

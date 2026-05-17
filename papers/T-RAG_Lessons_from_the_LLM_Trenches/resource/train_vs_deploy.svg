@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">训练时 vs 部署时</text>
+  
+  <!-- 训练时 -->
+  <rect x="20" y="50" width="310" height="210" rx="8" fill="#f0f8ff" stroke="#4a90d9" stroke-width="2"/>
+  <text x="175" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#4a90d9">训练阶段</text>
+  
+  <!-- 训练时组件 -->
+  <rect x="40" y="95" width="270" height="35" rx="5" fill="#e8f0fe"/>
+  <text x="175" y="117" text-anchor="middle" font-size="12">预训练权重 W₀（冻结 ❄️）</text>
+  
+  <rect x="40" y="140" width="270" height="35" rx="5" fill="#d4edda"/>
+  <text x="175" y="162" text-anchor="middle" font-size="12">LoRA 矩阵 B, A（可训练 ✓）</text>
+  
+  <rect x="40" y="185" width="270" height="35" rx="5" fill="#fef3cd"/>
+  <text x="175" y="207" text-anchor="middle" font-size="12">实体树模块（提供上下文）</text>
+  
+  <rect x="40" y="230" width="270" height="20" rx="5" fill="#fff3cd"/>
+  <text x="175" y="244" text-anchor="middle" font-size="10">输出: h = W₀x + BAx</text>
+  
+  <!-- 部署时 -->
+  <rect x="370" y="50" width="310" height="210" rx="8" fill="#f0fff0" stroke="#27ae60" stroke-width="2"/>
+  <text x="525" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#27ae60">部署/推理阶段</text>
+  
+  <!-- 部署时组件 -->
+  <rect x="390" y="95" width="270" height="35" rx="5" fill="#d4edda"/>
+  <text x="525" y="117" text-anchor="middle" font-size="12">合并权重 W' = W₀ + BA</text>
+  
+  <rect x="390" y="140" width="270" height="35" rx="5" fill="#f5f5f5"/>
+  <text x="525" y="162" text-anchor="middle" font-size="12">LoRA 矩阵 B, A（已合并，移除）</text>
+  
+  <rect x="390" y="185" width="270" height="35" rx="5" fill="#fef3cd"/>
+  <text x="525" y="207" text-anchor="middle" font-size="12">实体树模块（保留，仍需要）</text>
+  
+  <rect x="390" y="230" width="270" height="20" rx="5" fill="#fff3cd"/>
+  <text x="525" y="244" text-anchor="middle" font-size="10">输出: h = W'x（无额外开销）</text>
+  
+  <!-- 中间箭头 -->
+  <line x1="330" y1="155" x2="370" y2="155" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="350" y="145" text-anchor="middle" font-size="10" fill="#666">权重合并</text>
+</svg>

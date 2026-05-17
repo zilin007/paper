@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">现有方案对比</text>
+  
+  <!-- 方案一：纯 RAG -->
+  <rect x="20" y="50" width="200" height="200" rx="8" fill="#f0f4ff" stroke="#4a90d9" stroke-width="2"/>
+  <text x="120" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#4a90d9">纯 RAG</text>
+  
+  <rect x="35" y="90" width="170" height="35" rx="5" fill="#e8f0fe"/>
+  <text x="120" y="112" text-anchor="middle" font-size="12">向量数据库检索</text>
+  
+  <rect x="35" y="135" width="170" height="35" rx="5" fill="#e8f0fe"/>
+  <text x="120" y="157" text-anchor="middle" font-size="12">预训练 LLM 生成</text>
+  
+  <rect x="35" y="185" width="170" height="45" rx="5" fill="#ffe0e0"/>
+  <text x="120" y="202" text-anchor="middle" font-size="11" fill="#c0392b">✗ 无法处理层级关系</text>
+  <text x="120" y="218" text-anchor="middle" font-size="11" fill="#c0392b">✗ 检索质量不稳定</text>
+  
+  <!-- 方案二：纯微调 -->
+  <rect x="250" y="50" width="200" height="200" rx="8" fill="#f0fff0" stroke="#27ae60" stroke-width="2"/>
+  <text x="350" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">纯微调</text>
+  
+  <rect x="265" y="90" width="170" height="35" rx="5" fill="#e8f8e8"/>
+  <text x="350" y="112" text-anchor="middle" font-size="12">QLoRA 微调 LLM</text>
+  
+  <rect x="265" y="135" width="170" height="35" rx="5" fill="#e8f8e8"/>
+  <text x="350" y="157" text-anchor="middle" font-size="12">知识固化在参数中</text>
+  
+  <rect x="265" y="185" width="170" height="45" rx="5" fill="#ffe0e0"/>
+  <text x="350" y="202" text-anchor="middle" font-size="11" fill="#c0392b">✗ 容易幻觉</text>
+  <text x="350" y="218" text-anchor="middle" font-size="11" fill="#c0392b">✗ 知识无法动态更新</text>
+  
+  <!-- 方案三：T-RAG -->
+  <rect x="480" y="50" width="200" height="200" rx="8" fill="#fff8e0" stroke="#f39c12" stroke-width="2"/>
+  <text x="580" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#f39c12">T-RAG (本文)</text>
+  
+  <rect x="495" y="90" width="170" height="25" rx="5" fill="#fef3cd"/>
+  <text x="580" y="107" text-anchor="middle" font-size="11">向量数据库检索</text>
+  
+  <rect x="495" y="120" width="170" height="25" rx="5" fill="#d4edda"/>
+  <text x="580" y="137" text-anchor="middle" font-size="11">+ 实体树检索</text>
+  
+  <rect x="495" y="150" width="170" height="25" rx="5" fill="#d4edda"/>
+  <text x="580" y="167" text-anchor="middle" font-size="11">+ QLoRA 微调 LLM</text>
+  
+  <rect x="495" y="185" width="170" height="45" rx="5" fill="#d4edda"/>
+  <text x="580" y="202" text-anchor="middle" font-size="11" fill="#27ae60">✓ 层级关系准确</text>
+  <text x="580" y="218" text-anchor="middle" font-size="11" fill="#27ae60">✓ 减少幻觉</text>
+</svg>

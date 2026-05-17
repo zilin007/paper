@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">T-RAG 整体架构</text>
+  
+  <!-- 用户输入 -->
+  <rect x="250" y="45" width="200" height="40" rx="8" fill="#4a90d9"/>
+  <text x="350" y="70" text-anchor="middle" font-size="14" fill="white" font-weight="bold">用户问题</text>
+  
+  <!-- 分支1: 向量检索 -->
+  <rect x="30" y="120" width="180" height="50" rx="8" fill="#e8f0fe" stroke="#4a90d9" stroke-width="2"/>
+  <text x="120" y="142" text-anchor="middle" font-size="13" font-weight="bold">向量数据库检索</text>
+  <text x="120" y="158" text-anchor="middle" font-size="11" fill="#666">文档片段</text>
+  
+  <!-- 分支2: 实体树 -->
+  <rect x="260" y="120" width="180" height="50" rx="8" fill="#fef3cd" stroke="#f39c12" stroke-width="2"/>
+  <text x="350" y="142" text-anchor="middle" font-size="13" font-weight="bold">实体树检索</text>
+  <text x="350" y="158" text-anchor="middle" font-size="11" fill="#666">层级路径描述</text>
+  
+  <!-- 分支3: 实体识别 -->
+  <rect x="490" y="120" width="180" height="50" rx="8" fill="#e8f8e8" stroke="#27ae60" stroke-width="2"/>
+  <text x="580" y="142" text-anchor="middle" font-size="13" font-weight="bold">spaCy 实体识别</text>
+  <text x="580" y="158" text-anchor="middle" font-size="11" fill="#666">检测组织实体名</text>
+  
+  <!-- 箭头: 用户问题 -> 三个分支 -->
+  <line x1="300" y1="85" x2="120" y2="120" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="350" y1="85" x2="350" y2="120" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="400" y1="85" x2="580" y2="120" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- 箭头: 实体识别 -> 实体树 -->
+  <line x1="490" y1="145" x2="440" y2="145" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- 合并上下文 -->
+  <rect x="200" y="200" width="300" height="50" rx="8" fill="#f0e6ff" stroke="#9b59b6" stroke-width="2"/>
+  <text x="350" y="222" text-anchor="middle" font-size="13" font-weight="bold">合并上下文</text>
+  <text x="350" y="238" text-anchor="middle" font-size="11" fill="#666">文档片段 + 层级路径描述</text>
+  
+  <!-- 箭头: 分支 -> 合并 -->
+  <line x1="120" y1="170" x2="120" y2="225" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="120" y1="225" x2="200" y2="225" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="350" y1="170" x2="350" y2="200" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- LLM 生成 -->
+  <rect x="200" y="270" width="300" height="40" rx="8" fill="#27ae60"/>
+  <text x="350" y="295" text-anchor="middle" font-size="14" fill="white" font-weight="bold">QLoRA 微调 LLM 生成回答</text>
+  
+  <!-- 箭头: 合并 -> LLM -->
+  <line x1="350" y1="250" x2="350" y2="270" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>
