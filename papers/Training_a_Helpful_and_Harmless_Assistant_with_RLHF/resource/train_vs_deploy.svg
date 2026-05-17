@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" font-family="sans-serif">
+  <style>
+    .title { font-size: 15px; font-weight: bold; fill: #333; }
+    .label { font-size: 12px; fill: #333; }
+    .sublabel { font-size: 11px; fill: #666; }
+    .box { font-size: 11px; }
+  </style>
+  
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" class="title">训练时 vs 部署时：模型架构的变化</text>
+  
+  <!-- Training Phase -->
+  <rect x="30" y="50" width="300" height="250" rx="8" fill="#e8f4f8" stroke="#17a2b8" stroke-width="2"/>
+  <text x="180" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#0c5460">训练阶段</text>
+  
+  <!-- User prompt -->
+  <rect x="60" y="95" width="120" height="35" rx="6" fill="#fff" stroke="#17a2b8" stroke-width="1.5"/>
+  <text x="120" y="117" text-anchor="middle" class="box">用户提示词</text>
+  
+  <!-- Arrow down -->
+  <line x1="120" y1="130" x2="120" y2="155" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  
+  <!-- Language Model -->
+  <rect x="60" y="155" width="120" height="35" rx="6" fill="#d4edda" stroke="#28a745" stroke-width="1.5"/>
+  <text x="120" y="177" text-anchor="middle" class="box" font-weight="bold">语言模型 (策略 π)</text>
+  
+  <!-- Arrow down -->
+  <line x1="120" y1="190" x2="120" y2="215" stroke="#333" stroke-width="1.5"/>
+  
+  <!-- Generated response -->
+  <rect x="60" y="215" width="120" height="35" rx="6" fill="#fff" stroke="#17a2b8" stroke-width="1.5"/>
+  <text x="120" y="237" text-anchor="middle" class="box">生成的回复</text>
+  
+  <!-- Arrow to PM -->
+  <line x1="180" y1="232" x2="240" y2="232" stroke="#e74c3c" stroke-width="1.5"/>
+  
+  <!-- Preference Model -->
+  <rect x="240" y="210" width="75" height="45" rx="6" fill="#f8d7da" stroke="#dc3545" stroke-width="1.5"/>
+  <text x="278" y="230" text-anchor="middle" class="box" font-weight="bold">偏好模型</text>
+  <text x="278" y="245" text-anchor="middle" class="box">(奖励函数)</text>
+  
+  <!-- KL constraint -->
+  <rect x="60" y="155" width="120" height="35" rx="6" fill="none" stroke="#ffc107" stroke-width="3" stroke-dasharray="4,2"/>
+  <text x="180" y="165" font-size="10" fill="#856404">KL约束</text>
+  <line x1="180" y1="172" x2="180" y2="172" stroke="#ffc107" stroke-width="2"/>
+  
+  <!-- Arrow from PM back to LM (RL update) -->
+  <path d="M 278 210 Q 278 140 180 140 Q 140 140 140 155" fill="none" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="250" y="135" font-size="10" fill="#e74c3c">奖励信号 → PPO更新</text>
+  
+  <!-- Deployment Phase -->
+  <rect x="370" y="50" width="300" height="250" rx="8" fill="#f0f0f0" stroke="#6c757d" stroke-width="2"/>
+  <text x="520" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">部署阶段</text>
+  
+  <!-- User prompt -->
+  <rect x="400" y="95" width="120" height="35" rx="6" fill="#fff" stroke="#6c757d" stroke-width="1.5"/>
+  <text x="460" y="117" text-anchor="middle" class="box">用户提示词</text>
+  
+  <!-- Arrow down -->
+  <line x1="460" y1="130" x2="460" y2="155" stroke="#333" stroke-width="1.5"/>
+  
+  <!-- Language Model (trained) -->
+  <rect x="400" y="155" width="120" height="35" rx="6" fill="#d4edda" stroke="#28a745" stroke-width="1.5"/>
+  <text x="460" y="177" text-anchor="middle" class="box" font-weight="bold">语言模型 (已训练)</text>
+  
+  <!-- Arrow down -->
+  <line x1="460" y1="190" x2="460" y2="215" stroke="#333" stroke-width="1.5"/>
+  
+  <!-- Generated response -->
+  <rect x="400" y="215" width="120" height="35" rx="6" fill="#fff" stroke="#6c757d" stroke-width="1.5"/>
+  <text x="460" y="237" text-anchor="middle" class="box">生成的回复</text>
+  
+  <!-- PM crossed out -->
+  <rect x="540" y="210" width="75" height="45" rx="6" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  <text x="578" y="230" text-anchor="middle" class="box" fill="#999">偏好模型</text>
+  <text x="578" y="245" text-anchor="middle" class="box" fill="#999">(不需要)</text>
+  <line x1="545" y1="215" x2="610" y2="250" stroke="#e74c3c" stroke-width="2"/>
+  <line x1="610" y1="215" x2="545" y2="250" stroke="#e74c3c" stroke-width="2"/>
+  
+  <!-- Arrow between phases -->
+  <text x="350" y="170" text-anchor="middle" font-size="30" fill="#666">→</text>
+  <text x="350" y="195" text-anchor="middle" font-size="10" fill="#666">训练完成</text>
+  
+  <!-- Bottom note -->
+  <rect x="30" y="275" width="640" height="20" rx="4" fill="#fff3cd"/>
+  <text x="350" y="289" text-anchor="middle" font-size="10" fill="#856404">训练时：需要偏好模型提供奖励信号 → 部署时：模型已内化"好回复"的模式，直接生成即可</text>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+</svg>

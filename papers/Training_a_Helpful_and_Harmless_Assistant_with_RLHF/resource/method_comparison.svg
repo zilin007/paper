@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" font-family="sans-serif">
+  <style>
+    .title { font-size: 16px; font-weight: bold; fill: #333; }
+    .label { font-size: 12px; fill: #555; }
+    .desc { font-size: 11px; fill: #666; }
+    .bad { fill: #e74c3c; }
+    .good { fill: #27ae60; }
+    .neutral { fill: #f39c12; }
+  </style>
+  
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" class="title">让模型"变好"的几种方案对比</text>
+  
+  <!-- Method 1: Prompt Engineering -->
+  <rect x="30" y="60" width="190" height="140" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  <text x="125" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">方案1: 提示词工程</text>
+  <text x="125" y="105" text-anchor="middle" class="label">Prompt: "请做一个有帮助的助手"</text>
+  <text x="125" y="125" text-anchor="middle" class="desc">• 在对话开头加指令</text>
+  <text x="125" y="142" text-anchor="middle" class="desc">• 零成本，立即可用</text>
+  <text x="125" y="159" text-anchor="middle" class="desc">• 效果不稳定</text>
+  <text x="125" y="176" text-anchor="middle" class="desc bad">✗ 模型可能忽略指令</text>
+  <text x="125" y="193" text-anchor="middle" class="desc bad">✗ 无法保证安全性</text>
+  
+  <!-- Arrow -->
+  <text x="240" y="130" text-anchor="middle" font-size="20" fill="#999">→</text>
+  
+  <!-- Method 2: SFT -->
+  <rect x="260" y="60" width="190" height="140" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  <text x="355" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">方案2: 监督微调(SFT)</text>
+  <text x="355" y="105" text-anchor="middle" class="label">用高质量示例数据微调</text>
+  <text x="355" y="125" text-anchor="middle" class="desc">• 收集专家写的"好回复"</text>
+  <text x="355" y="142" text-anchor="middle" class="desc">• 用交叉熵损失训练</text>
+  <text x="355" y="159" text-anchor="middle" class="desc">• 效果比提示词好</text>
+  <text x="355" y="176" text-anchor="middle" class="desc neutral">⚠ 需要大量标注数据</text>
+  <text x="355" y="193" text-anchor="middle" class="desc neutral">⚠ 只能模仿，不能创新</text>
+  
+  <!-- Arrow -->
+  <text x="470" y="130" text-anchor="middle" font-size="20" fill="#999">→</text>
+  
+  <!-- Method 3: RLHF (This Paper) -->
+  <rect x="490" y="60" width="190" height="140" rx="8" fill="#d4edda" stroke="#28a745" stroke-width="2"/>
+  <text x="585" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#155724">方案3: RLHF (本文)</text>
+  <text x="585" y="105" text-anchor="middle" class="label">用人类偏好 + 强化学习</text>
+  <text x="585" y="125" text-anchor="middle" class="desc">• 只需"哪个更好"的对比</text>
+  <text x="585" y="142" text-anchor="middle" class="desc">• 偏好模型自动学习</text>
+  <text x="585" y="159" text-anchor="middle" class="desc">• PPO优化生成策略</text>
+  <text x="585" y="176" text-anchor="middle" class="desc good">✓ 数据收集成本低</text>
+  <text x="585" y="193" text-anchor="middle" class="desc good">✓ 同时优化有益+无害</text>
+  
+  <!-- Bottom: Key Difference -->
+  <rect x="30" y="230" width="650" height="130" rx="8" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
+  <text x="355" y="255" text-anchor="middle" font-size="14" font-weight="bold" fill="#856404">核心区别：反馈信号的不同</text>
+  
+  <!-- SFT feedback -->
+  <rect x="50" y="275" width="280" height="70" rx="6" fill="#f8f9fa"/>
+  <text x="190" y="295" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">SFT: 绝对反馈</text>
+  <text x="190" y="315" text-anchor="middle" class="label">"这个回复是好的"</text>
+  <text x="190" y="335" text-anchor="middle" class="desc">需要专家写出完美回复</text>
+  
+  <!-- RLHF feedback -->
+  <rect x="380" y="275" width="280" height="70" rx="6" fill="#d4edda"/>
+  <text x="520" y="295" text-anchor="middle" font-size="12" font-weight="bold" fill="#155724">RLHF: 相对反馈</text>
+  <text x="520" y="315" text-anchor="middle" class="label">"A比B好"</text>
+  <text x="520" y="335" text-anchor="middle" class="desc">只需比较两个回复，更简单</text>
+</svg>
