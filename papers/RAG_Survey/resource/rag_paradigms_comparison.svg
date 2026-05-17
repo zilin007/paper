@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" font-family="sans-serif">
+  <rect width="700" height="500" fill="#f8f9fa" rx="8"/>
+  <text x="350" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">RAG 三种范式演进对比</text>
+
+  <!-- Naive RAG -->
+  <rect x="30" y="60" width="200" height="400" rx="8" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+  <text x="130" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#e74c3c">Naive RAG</text>
+  <rect x="50" y="110" width="160" height="50" rx="6" fill="#ffeaa7"/>
+  <text x="130" y="132" text-anchor="middle" font-size="12" fill="#333">索引 (Indexing)</text>
+  <text x="130" y="148" text-anchor="middle" font-size="10" fill="#666">分块→编码→存储</text>
+  <line x1="130" y1="160" x2="130" y2="185" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="50" y="185" width="160" height="50" rx="6" fill="#ffeaa7"/>
+  <text x="130" y="207" text-anchor="middle" font-size="12" fill="#333">检索 (Retrieval)</text>
+  <text x="130" y="223" text-anchor="middle" font-size="10" fill="#666">Top-K 相似度匹配</text>
+  <line x1="130" y1="235" x2="130" y2="260" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="50" y="260" width="160" height="50" rx="6" fill="#ffeaa7"/>
+  <text x="130" y="282" text-anchor="middle" font-size="12" fill="#333">生成 (Generation)</text>
+  <text x="130" y="298" text-anchor="middle" font-size="10" fill="#666">拼接提示→LLM输出</text>
+
+  <rect x="50" y="340" width="160" height="100" rx="6" fill="#fadbd8"/>
+  <text x="130" y="362" text-anchor="middle" font-size="11" font-weight="bold" fill="#c0392b">缺点</text>
+  <text x="60" y="382" font-size="10" fill="#666">• 检索精度低</text>
+  <text x="60" y="398" font-size="10" fill="#666">• 容易幻觉</text>
+  <text x="60" y="414" font-size="10" fill="#666">• 单次检索不够</text>
+  <text x="60" y="430" font-size="10" fill="#666">• 上下文冗余</text>
+
+  <!-- Advanced RAG -->
+  <rect x="250" y="60" width="200" height="400" rx="8" fill="#fff" stroke="#3498db" stroke-width="2"/>
+  <text x="350" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#3498db">Advanced RAG</text>
+  <rect x="270" y="110" width="160" height="50" rx="6" fill="#d4efdf"/>
+  <text x="350" y="132" text-anchor="middle" font-size="12" fill="#333">预检索优化</text>
+  <text x="350" y="148" text-anchor="middle" font-size="10" fill="#666">查询改写/扩展</text>
+  <line x1="350" y1="160" x2="350" y2="185" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="270" y="185" width="160" height="50" rx="6" fill="#d4efdf"/>
+  <text x="350" y="207" text-anchor="middle" font-size="12" fill="#333">索引优化</text>
+  <text x="350" y="223" text-anchor="middle" font-size="10" fill="#666">元数据/层级索引</text>
+  <line x1="350" y1="235" x2="350" y2="260" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="270" y="260" width="160" height="50" rx="6" fill="#d4efdf"/>
+  <text x="350" y="282" text-anchor="middle" font-size="12" fill="#333">后检索优化</text>
+  <text x="350" y="298" text-anchor="middle" font-size="10" fill="#666">重排序/上下文压缩</text>
+
+  <rect x="270" y="340" width="160" height="100" rx="6" fill="#d4efdf"/>
+  <text x="350" y="362" text-anchor="middle" font-size="11" font-weight="bold" fill="#27ae60">改进</text>
+  <text x="280" y="382" font-size="10" fill="#666">• 查询质量提升</text>
+  <text x="280" y="398" font-size="10" fill="#666">• 检索更精准</text>
+  <text x="280" y="414" font-size="10" fill="#666">• 上下文更精炼</text>
+  <text x="280" y="430" font-size="10" fill="#666">• 仍是线性流程</text>
+
+  <!-- Modular RAG -->
+  <rect x="470" y="60" width="200" height="400" rx="8" fill="#fff" stroke="#9b59b6" stroke-width="2"/>
+  <text x="570" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#9b59b6">Modular RAG</text>
+
+  <rect x="490" y="110" width="75" height="45" rx="6" fill="#e8daef"/>
+  <text x="527" y="130" text-anchor="middle" font-size="10" fill="#333">搜索模块</text>
+  <rect x="575" y="110" width="75" height="45" rx="6" fill="#e8daef"/>
+  <text x="612" y="130" text-anchor="middle" font-size="10" fill="#333">路由模块</text>
+  <rect x="490" y="165" width="75" height="45" rx="6" fill="#e8daef"/>
+  <text x="527" y="185" text-anchor="middle" font-size="10" fill="#333">记忆模块</text>
+  <rect x="575" y="165" width="75" height="45" rx="6" fill="#e8daef"/>
+  <text x="612" y="185" text-anchor="middle" font-size="10" fill="#333">预测模块</text>
+  <rect x="490" y="220" width="75" height="45" rx="6" fill="#e8daef"/>
+  <text x="527" y="240" text-anchor="middle" font-size="10" fill="#333">RAG-Fusion</text>
+  <rect x="575" y="220" width="75" height="45" rx="6" fill="#e8daef"/>
+  <text x="612" y="240" text-anchor="middle" font-size="10" fill="#333">任务适配器</text>
+
+  <line x1="527" y1="265" x2="527" y2="290" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="490" y="290" width="160" height="40" rx="6" fill="#e8daef"/>
+  <text x="570" y="315" text-anchor="middle" font-size="11" fill="#333">灵活组合 · 迭代/自适应</text>
+
+  <rect x="490" y="350" width="160" height="90" rx="6" fill="#d5f5e3"/>
+  <text x="570" y="372" text-anchor="middle" font-size="11" font-weight="bold" fill="#27ae60">优势</text>
+  <text x="500" y="392" font-size="10" fill="#666">• 模块化可插拔</text>
+  <text x="500" y="408" font-size="10" fill="#666">• 支持迭代/递归检索</text>
+  <text x="500" y="424" font-size="10" fill="#666">• 自适应决定是否检索</text>
+
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+</svg>

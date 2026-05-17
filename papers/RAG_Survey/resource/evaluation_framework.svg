@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 450" font-family="sans-serif">
+  <rect width="750" height="450" fill="#f8f9fa" rx="8"/>
+  <text x="375" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">RAG 评估维度体系</text>
+
+  <!-- 检索质量 -->
+  <rect x="20" y="60" width="220" height="360" rx="8" fill="#fff" stroke="#3498db" stroke-width="2"/>
+  <text x="130" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#3498db">检索质量</text>
+
+  <rect x="40" y="110" width="180" height="40" rx="6" fill="#d6eaf8"/>
+  <text x="130" y="135" text-anchor="middle" font-size="12">命中率 (Hit Rate)</text>
+  <rect x="40" y="160" width="180" height="40" rx="6" fill="#d6eaf8"/>
+  <text x="130" y="185" text-anchor="middle" font-size="12">MRR</text>
+  <rect x="40" y="210" width="180" height="40" rx="6" fill="#d6eaf8"/>
+  <text x="130" y="235" text-anchor="middle" font-size="12">NDCG</text>
+
+  <rect x="40" y="270" width="180" height="130" rx="6" fill="#eaf2f8"/>
+  <text x="130" y="292" text-anchor="middle" font-size="11" font-weight="bold" fill="#2980b9">核心问题</text>
+  <text x="50" y="312" font-size="10" fill="#666">• 检索到的内容相关吗？</text>
+  <text x="50" y="328" font-size="10" fill="#666">• 有用信息排在前面吗？</text>
+  <text x="50" y="344" font-size="10" fill="#666">• 是否遗漏了关键文档？</text>
+  <text x="50" y="360" font-size="10" fill="#666">• 噪声文档占比多少？</text>
+  <text x="50" y="376" font-size="10" fill="#666">• 能否拒绝无关查询？</text>
+
+  <!-- 生成质量 -->
+  <rect x="260" y="60" width="220" height="360" rx="8" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <text x="370" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">生成质量</text>
+
+  <rect x="280" y="110" width="180" height="40" rx="6" fill="#d5f5e3"/>
+  <text x="370" y="135" text-anchor="middle" font-size="12">上下文相关性</text>
+  <rect x="280" y="160" width="180" height="40" rx="6" fill="#d5f5e3"/>
+  <text x="370" y="185" text-anchor="middle" font-size="12">答案忠实度</text>
+  <rect x="280" y="210" width="180" height="40" rx="6" fill="#d5f5e3"/>
+  <text x="370" y="235" text-anchor="middle" font-size="12">答案相关性</text>
+
+  <rect x="280" y="270" width="180" height="130" rx="6" fill="#e8f8f5"/>
+  <text x="370" y="292" text-anchor="middle" font-size="11" font-weight="bold" fill="#27ae60">核心问题</text>
+  <text x="290" y="312" font-size="10" fill="#666">• 答案基于检索内容吗？</text>
+  <text x="290" y="328" font-size="10" fill="#666">• 有没有幻觉/编造？</text>
+  <text x="290" y="344" font-size="10" fill="#666">• 回答切题吗？</text>
+  <text x="290" y="360" font-size="10" fill="#666">• 信息整合能力如何？</text>
+  <text x="290" y="376" font-size="10" fill="#666">• 面对虚假信息稳健吗？</text>
+
+  <!-- 系统能力 -->
+  <rect x="500" y="60" width="220" height="360" rx="8" fill="#fff" stroke="#9b59b6" stroke-width="2"/>
+  <text x="610" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#9b59b6">系统能力</text>
+
+  <rect x="520" y="110" width="180" height="40" rx="6" fill="#e8daef"/>
+  <text x="610" y="135" text-anchor="middle" font-size="12">噪声鲁棒性</text>
+  <rect x="520" y="160" width="180" height="40" rx="6" fill="#e8daef"/>
+  <text x="610" y="185" text-anchor="middle" font-size="12">负样本拒绝</text>
+  <rect x="520" y="210" width="180" height="40" rx="6" fill="#e8daef"/>
+  <text x="610" y="235" text-anchor="middle" font-size="12">信息整合</text>
+  <rect x="520" y="260" width="180" height="40" rx="6" fill="#e8daef"/>
+  <text x="610" y="285" text-anchor="middle" font-size="12">反事实鲁棒性</text>
+
+  <rect x="520" y="320" width="180" height="80" rx="6" fill="#f5eef8"/>
+  <text x="610" y="342" text-anchor="middle" font-size="11" font-weight="bold" fill="#8e44ad">评估工具</text>
+  <text x="530" y="362" font-size="10" fill="#666">• RAGAS</text>
+  <text x="530" y="378" font-size="10" fill="#666">• ARES / TruLens</text>
+  <text x="530" y="394" font-size="10" fill="#666">• RGB / RECALL / CRUD</text>
+</svg>

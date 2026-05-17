@@ -1,0 +1,159 @@
+{
+  "pdf": "F:\\professional\\AI笔记\\paper\\papers\\RAG_Survey\\RAG_Survey.pdf",
+  "total_pages": 21,
+  "embedded_images": 6,
+  "detected_figures": [
+    {
+      "fig_num": "1",
+      "page": 1,
+      "caption_y": 236.2
+    },
+    {
+      "fig_num": "1",
+      "page": 2,
+      "caption_y": 382.1
+    },
+    {
+      "fig_num": "2",
+      "page": 2,
+      "caption_y": 492.3
+    },
+    {
+      "fig_num": "3",
+      "page": 2,
+      "caption_y": 635.7
+    },
+    {
+      "fig_num": "2",
+      "page": 3,
+      "caption_y": 326.0
+    },
+    {
+      "fig_num": "3",
+      "page": 4,
+      "caption_y": 360.0
+    },
+    {
+      "fig_num": "4",
+      "page": 5,
+      "caption_y": 80.8
+    },
+    {
+      "fig_num": "4",
+      "page": 7,
+      "caption_y": 308.2
+    },
+    {
+      "fig_num": "5",
+      "page": 10,
+      "caption_y": 670.0
+    },
+    {
+      "fig_num": "5",
+      "page": 11,
+      "caption_y": 294.7
+    },
+    {
+      "fig_num": "6",
+      "page": 16,
+      "caption_y": 321.6
+    },
+    {
+      "fig_num": "6",
+      "page": 16,
+      "caption_y": 523.1
+    }
+  ],
+  "files": [
+    {
+      "page": 2,
+      "file": "page2_img1_2665x1916.png",
+      "size": "2665x1916",
+      "method": "embedded"
+    },
+    {
+      "page": 3,
+      "file": "page3_img1_1871x1105.png",
+      "size": "1871x1105",
+      "method": "embedded"
+    },
+    {
+      "page": 4,
+      "file": "page4_img1_1920x1168.png",
+      "size": "1920x1168",
+      "method": "embedded"
+    },
+    {
+      "page": 7,
+      "file": "page7_img1_1652x965.png",
+      "size": "1652x965",
+      "method": "embedded"
+    },
+    {
+      "page": 11,
+      "file": "page11_img1_2100x925.png",
+      "size": "2100x925",
+      "method": "embedded"
+    },
+    {
+      "page": 16,
+      "file": "page16_img1_1875x1153.png",
+      "size": "1875x1153",
+      "method": "embedded"
+    },
+    {
+      "page": 1,
+      "file": "temp_page1_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 2,
+      "file": "temp_page2_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 3,
+      "file": "temp_page3_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 4,
+      "file": "temp_page4_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 5,
+      "file": "temp_page5_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 7,
+      "file": "temp_page7_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 10,
+      "file": "temp_page10_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 11,
+      "file": "temp_page11_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    },
+    {
+      "page": 16,
+      "file": "temp_page16_full_300dpi.png",
+      "size": "2550x3300",
+      "method": "page_render"
+    }
+  ]
+}

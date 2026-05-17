@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="sans-serif">
+  <rect width="800" height="520" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">三种检索增强流程对比</text>
+
+  <!-- 迭代检索 -->
+  <rect x="20" y="60" width="240" height="440" rx="8" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+  <text x="140" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#e74c3c">迭代检索 (Iterative)</text>
+
+  <rect x="40" y="110" width="200" height="40" rx="6" fill="#ffeaa7"/>
+  <text x="140" y="135" text-anchor="middle" font-size="12">用户查询 Q</text>
+  <line x1="140" y1="150" x2="140" y2="175" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="175" width="200" height="40" rx="6" fill="#d4efdf"/>
+  <text x="140" y="200" text-anchor="middle" font-size="12">检索 → 文档 D₁</text>
+  <line x1="140" y1="215" x2="140" y2="240" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="240" width="200" height="40" rx="6" fill="#d6eaf8"/>
+  <text x="140" y="265" text-anchor="middle" font-size="12">生成 → 中间答案 A₁</text>
+  <line x1="140" y1="280" x2="140" y2="305" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="305" width="200" height="40" rx="6" fill="#d4efdf"/>
+  <text x="140" y="330" text-anchor="middle" font-size="12">检索 (Q + A₁) → D₂</text>
+  <line x1="140" y1="345" x2="140" y2="370" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="370" width="200" height="40" rx="6" fill="#d6eaf8"/>
+  <text x="140" y="395" text-anchor="middle" font-size="12">生成 → 最终答案 A₂</text>
+
+  <rect x="40" y="430" width="200" height="55" rx="6" fill="#fadbd8"/>
+  <text x="140" y="452" text-anchor="middle" font-size="11" font-weight="bold" fill="#c0392b">特点</text>
+  <text x="50" y="472" font-size="10" fill="#666">交替检索+生成，逐步丰富上下文</text>
+
+  <!-- 递归检索 -->
+  <rect x="280" y="60" width="240" height="440" rx="8" fill="#fff" stroke="#3498db" stroke-width="2"/>
+  <text x="400" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#3498db">递归检索 (Recursive)</text>
+
+  <rect x="300" y="110" width="200" height="40" rx="6" fill="#ffeaa7"/>
+  <text x="400" y="135" text-anchor="middle" font-size="12">复杂查询 Q</text>
+  <line x1="400" y1="150" x2="400" y2="175" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="300" y="175" width="200" height="40" rx="6" fill="#f5cba7"/>
+  <text x="400" y="200" text-anchor="middle" font-size="12">分解为子问题 q₁, q₂, ...</text>
+  <line x1="400" y1="215" x2="400" y2="240" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="300" y="240" width="200" height="40" rx="6" fill="#d4efdf"/>
+  <text x="400" y="265" text-anchor="middle" font-size="12">检索 q₁ → 答案 a₁</text>
+  <line x1="400" y1="280" x2="400" y2="305" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="300" y="305" width="200" height="40" rx="6" fill="#d4efdf"/>
+  <text x="400" y="330" text-anchor="middle" font-size="12">检索 q₂ → 答案 a₂</text>
+  <line x1="400" y1="345" x2="400" y2="370" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="300" y="370" width="200" height="40" rx="6" fill="#d6eaf8"/>
+  <text x="400" y="395" text-anchor="middle" font-size="12">合并 a₁, a₂ → 最终答案</text>
+
+  <rect x="300" y="430" width="200" height="55" rx="6" fill="#fadbd8"/>
+  <text x="400" y="452" text-anchor="middle" font-size="11" font-weight="bold" fill="#c0392b">特点</text>
+  <text x="290" y="472" font-size="10" fill="#666">逐步细化查询，拆解复杂问题逐个击破</text>
+
+  <!-- 自适应检索 -->
+  <rect x="540" y="60" width="240" height="440" rx="8" fill="#fff" stroke="#9b59b6" stroke-width="2"/>
+  <text x="660" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#9b59b6">自适应检索 (Adaptive)</text>
+
+  <rect x="560" y="110" width="200" height="40" rx="6" fill="#ffeaa7"/>
+  <text x="660" y="135" text-anchor="middle" font-size="12">用户查询 Q</text>
+  <line x1="660" y1="150" x2="660" y2="175" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="560" y="175" width="200" height="50" rx="6" fill="#e8daef"/>
+  <text x="660" y="197" text-anchor="middle" font-size="11">LLM 生成并评估置信度</text>
+  <text x="660" y="213" text-anchor="middle" font-size="10" fill="#666">"需要检索吗？"</text>
+  <line x1="660" y1="225" x2="660" y2="250" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 决策分支 -->
+  <rect x="560" y="250" width="95" height="45" rx="6" fill="#d4efdf"/>
+  <text x="607" y="270" text-anchor="middle" font-size="11" fill="#27ae60">需要检索</text>
+  <text x="607" y="285" text-anchor="middle" font-size="9" fill="#666">触发检索</text>
+
+  <rect x="665" y="250" width="95" height="45" rx="6" fill="#fadbd8"/>
+  <text x="712" y="270" text-anchor="middle" font-size="11" fill="#c0392b">不需要</text>
+  <text x="712" y="285" text-anchor="middle" font-size="9" fill="#666">直接输出</text>
+
+  <line x1="607" y1="295" x2="607" y2="320" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="560" y="320" width="200" height="40" rx="6" fill="#d4efdf"/>
+  <text x="660" y="345" text-anchor="middle" font-size="12">检索 → 增强生成</text>
+  <line x1="660" y1="360" x2="660" y2="385" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="560" y="385" width="200" height="40" rx="6" fill="#d6eaf8"/>
+  <text x="660" y="410" text-anchor="middle" font-size="12">再次评估 → 循环或停止</text>
+
+  <rect x="560" y="430" width="200" height="55" rx="6" fill="#fadbd8"/>
+  <text x="660" y="452" text-anchor="middle" font-size="11" font-weight="bold" fill="#c0392b">特点</text>
+  <text x="550" y="472" font-size="10" fill="#666">LLM自主决定是否检索，节省计算资源</text>
+
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+</svg>

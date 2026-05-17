@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="sans-serif">
+  <rect width="800" height="600" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">RAG 系统核心组件与数据流</text>
+
+  <!-- 知识库侧 -->
+  <rect x="20" y="60" width="240" height="480" rx="8" fill="#fff" stroke="#3498db" stroke-width="2"/>
+  <text x="140" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#3498db">知识库 (Knowledge Base)</text>
+
+  <rect x="40" y="110" width="200" height="50" rx="6" fill="#d6eaf8"/>
+  <text x="140" y="132" text-anchor="middle" font-size="12">原始文档</text>
+  <text x="140" y="148" text-anchor="middle" font-size="10" fill="#666">PDF / HTML / Markdown</text>
+  <line x1="140" y1="160" x2="140" y2="185" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="185" width="200" height="50" rx="6" fill="#d6eaf8"/>
+  <text x="140" y="207" text-anchor="middle" font-size="12">分块 (Chunking)</text>
+  <text x="140" y="223" text-anchor="middle" font-size="10" fill="#666">固定/滑动窗口/层级</text>
+  <line x1="140" y1="235" x2="140" y2="260" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="260" width="200" height="50" rx="6" fill="#d6eaf8"/>
+  <text x="140" y="282" text-anchor="middle" font-size="12">向量化 (Embedding)</text>
+  <text x="140" y="298" text-anchor="middle" font-size="10" fill="#666">BGE / AngIE / Voyage</text>
+  <line x1="140" y1="310" x2="140" y2="335" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="335" width="200" height="50" rx="6" fill="#d6eaf8"/>
+  <text x="140" y="357" text-anchor="middle" font-size="12">向量数据库</text>
+  <text x="140" y="373" text-anchor="middle" font-size="10" fill="#666">FAISS / Milvus / Pinecone</text>
+
+  <rect x="40" y="410" width="200" height="110" rx="6" fill="#eaf2f8"/>
+  <text x="140" y="432" text-anchor="middle" font-size="11" font-weight="bold" fill="#2980b9">索引优化技术</text>
+  <text x="50" y="452" font-size="10" fill="#666">• 元数据附加 (时间/作者)</text>
+  <text x="50" y="468" font-size="10" fill="#666">• 层级索引 (父子关系)</text>
+  <text x="50" y="484" font-size="10" fill="#666">• 知识图谱索引</text>
+  <text x="50" y="500" font-size="10" fill="#666">• 命题级分块 (DenseX)</text>
+
+  <!-- 查询处理侧 -->
+  <rect x="280" y="60" width="240" height="200" rx="8" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+  <text x="400" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#e74c3c">查询优化 (Query)</text>
+
+  <rect x="300" y="110" width="200" height="40" rx="6" fill="#fadbd8"/>
+  <text x="400" y="135" text-anchor="middle" font-size="12">用户原始查询</text>
+  <line x1="400" y1="150" x2="400" y2="175" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="300" y="175" width="200" height="70" rx="6" fill="#fadbd8"/>
+  <text x="400" y="197" text-anchor="middle" font-size="11" font-weight="bold">优化策略</text>
+  <text x="310" y="215" font-size="10" fill="#666">• 查询扩展 (多查询/子查询)</text>
+  <text x="310" y="231" font-size="10" fill="#666">• 查询改写 (HyDE/Step-back)</text>
+  <text x="310" y="247" font-size="10" fill="#666">• 查询路由 (语义/元数据)</text>
+
+  <!-- 检索与生成侧 -->
+  <rect x="540" y="60" width="240" height="480" rx="8" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <text x="660" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#27ae60">检索与生成 (Retrieval &amp; Generation)</text>
+
+  <rect x="560" y="110" width="200" height="50" rx="6" fill="#d5f5e3"/>
+  <text x="660" y="132" text-anchor="middle" font-size="12">相似度检索</text>
+  <text x="660" y="148" text-anchor="middle" font-size="10" fill="#666">余弦相似度 / 混合检索</text>
+  <line x1="660" y1="160" x2="660" y2="185" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="560" y="185" width="200" height="50" rx="6" fill="#d5f5e3"/>
+  <text x="660" y="207" text-anchor="middle" font-size="12">重排序 (Reranking)</text>
+  <text x="660" y="223" text-anchor="middle" font-size="10" fill="#666">Cohere / bge-reranker</text>
+  <line x1="660" y1="235" x2="660" y2="260" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="560" y="260" width="200" height="50" rx="6" fill="#d5f5e3"/>
+  <text x="660" y="282" text-anchor="middle" font-size="12">上下文压缩</text>
+  <text x="660" y="298" text-anchor="middle" font-size="10" fill="#666">LLMLingua / RECOMP</text>
+  <line x1="660" y1="310" x2="660" y2="335" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="560" y="335" width="200" height="50" rx="6" fill="#d5f5e3"/>
+  <text x="660" y="357" text-anchor="middle" font-size="12">提示拼接</text>
+  <text x="660" y="373" text-anchor="middle" font-size="10" fill="#666">查询 + 精炼上下文</text>
+  <line x1="660" y1="385" x2="660" y2="410" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="560" y="410" width="200" height="50" rx="6" fill="#d5f5e3"/>
+  <text x="660" y="432" text-anchor="middle" font-size="12">LLM 生成答案</text>
+  <text x="660" y="448" text-anchor="middle" font-size="10" fill="#666">GPT-4 / LLaMA / Claude</text>
+
+  <rect x="560" y="480" width="200" height="50" rx="6" fill="#e8f8f5"/>
+  <text x="660" y="502" text-anchor="middle" font-size="11" font-weight="bold" fill="#27ae60">增强模式</text>
+  <text x="570" y="520" font-size="10" fill="#666">迭代 / 递归 / 自适应检索</text>
+
+  <!-- 跨组件箭头 -->
+  <line x1="260" y1="300" x2="540" y2="130" stroke="#3498db" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowBlue)"/>
+  <line x1="520" y1="160" x2="540" y2="130" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowRed)"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3498db"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+  </defs>
+</svg>
